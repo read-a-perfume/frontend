@@ -5,6 +5,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true
+    //경로
   },
   "include": ["vite.config.ts"]
 }
