@@ -5,6 +5,7 @@ import FlexBox from '@layouts/flex-box'
 
 import img1 from './images/Rectangle7217(5).png'
 
+// 타입 추후에 설정할 예정입니다.
 const PerfumesItem = ({item}: any) => {
   console.log(item)
 
