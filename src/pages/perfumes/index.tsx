@@ -21,14 +21,14 @@ const Perfumes = () => {
       : parseInt((dummydata.length / 12) as any) + 1
 
   const [page, setPage] = useState(1) // 처음 페이지는 1
-  const [prefumes, setPrefumes] = useState([])
+  const [perfumes, setPerfumes] = useState([])
 
   useEffect(() => {
     // 한 페이지에 12개씩 보여줍니다.
     if (page === LAST_PAGE) {
-      setPrefumes(dummydata.slice(12 * (page - 1)) as any)
+      setPerfumes(dummydata.slice(12 * (page - 1)) as any)
     } else {
-      setPrefumes(dummydata.slice(12 * (page - 1), 12 * (page - 1) + 12) as any)
+      setPerfumes(dummydata.slice(12 * (page - 1), 12 * (page - 1) + 12) as any)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page])
@@ -93,8 +93,8 @@ const Perfumes = () => {
 
         {/* 제품 리스트 */}
         <ProductList>
-          {prefumes.length > 0 &&
-            prefumes?.map(item => <PerfumesItem item={item} />)}
+          {perfumes.length > 0 &&
+            perfumes?.map(item => <PerfumesItem item={item} key={item} />)}
         </ProductList>
 
         <Footer>
