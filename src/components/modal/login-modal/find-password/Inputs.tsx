@@ -1,8 +1,9 @@
-import { FormControl, TextField } from "@mui/material";
-import React from "react";
-import { inputStyle } from "../login-modal.style";
-import { InputProps } from "./find-password.interface";
-import { ConfirmButton, Label } from "./find-password.style";
+import Button from '@components/base/button.js'
+import {FormControl, TextField} from '@mui/material'
+import React from 'react'
+import {inputStyle} from '../login-modal.style'
+import {InputProps} from './find-password.interface'
+import {Label} from './find-password.style'
 
 const Inputs = ({
   setCondition,
@@ -12,10 +13,12 @@ const Inputs = ({
   setErrors,
 }: InputProps) => {
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setInputs({ ...inputs, [name]: value });
-    setErrors(errors);
-  };
+    const {name, value} = event.target
+    setInputs({...inputs, [name]: value})
+    setErrors(errors)
+  }
+
+  const disabled = inputs.email === '' || inputs.id === ''
 
   return (
     <FormControl fullWidth>
@@ -42,16 +45,16 @@ const Inputs = ({
         value={inputs.email}
         onChange={changeHandler}
       />
-      <ConfirmButton
-        type="submit"
+      <Button
+        text="확인"
         fullWidth
-        disabled={inputs.email === "" || inputs.id === ""}
-        onClick={() => setCondition("password_email")}
-      >
-        확인
-      </ConfirmButton>
+        fontSize="lg"
+        disabled={disabled}
+        backgroundColor={disabled ? 'disabled' : 'secondary'}
+        onClick={() => setCondition('password_email')}
+      />
     </FormControl>
-  );
-};
+  )
+}
 
-export default Inputs;
+export default Inputs

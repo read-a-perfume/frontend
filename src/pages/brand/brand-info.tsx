@@ -1,17 +1,19 @@
-import FlexBox from "../../layouts/flex-box";
+import FlexBox from '../../layouts/flex-box'
 import {
   BrandInfo,
   BrandInfoBlock,
   BrandProfile,
-  BrandSettings,
   BrandSubTitle,
   BrandTitle,
   BrandURL,
   Follows,
-} from "./brand.style";
-import { Link } from "react-router-dom";
+} from './brand.style'
+import {Link, useNavigate} from 'react-router-dom'
+import Button from '@components/base/button.js'
 
-const BrandInfoDetail = ({ enterprise }: { enterprise: boolean }) => {
+const BrandInfoDetail = ({enterprise}: {enterprise: boolean}) => {
+  const navigation = useNavigate()
+
   return (
     <BrandInfoBlock>
       <BrandProfile src="/images/brand-logo.png" alt="brand logo" />
@@ -29,13 +31,20 @@ const BrandInfoDetail = ({ enterprise }: { enterprise: boolean }) => {
           https://www.tamburins.com
         </BrandURL>
         {enterprise && (
-          <Link to="/brand/:id/settings" style={{ textDecoration: "none" }}>
-            <BrandSettings>설정 및 관리</BrandSettings>
-          </Link>
+          <Button
+            text="설정 및 관리"
+            width="92px"
+            height="33px"
+            backgroundColor="white"
+            fontSize="md"
+            color="191919"
+            style={{fontWeight: '600', border: '1px solid #DBDBDB'}}
+            onClick={() => navigation('/brand/:id/settings')}
+          />
         )}
       </BrandInfo>
     </BrandInfoBlock>
-  );
-};
+  )
+}
 
-export default BrandInfoDetail;
+export default BrandInfoDetail

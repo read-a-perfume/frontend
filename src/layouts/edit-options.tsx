@@ -1,44 +1,50 @@
-import { Box } from "@mui/material";
-import { Button, ButtonGroup } from "@mui/material";
-import styled from "@emotion/styled";
-import { theme } from "@theme/index";
+import {Box} from '@mui/material'
+import {ButtonGroup} from '@mui/material'
+import styled from '@emotion/styled'
+import Button from '@components/base/button.js'
 
 const EditOptions = () => {
   return (
-    <Box sx={{ position: "absolute", marginLeft: "440px", marginTop: "80px" }}>
+    <Box sx={{position: 'absolute', marginLeft: '440px', marginTop: '80px'}}>
       <OptionsGroup
         size="medium"
         variant="text"
         color="inherit"
         orientation="vertical"
       >
-        <EditButton>수정</EditButton>
-        <DeleteButton>삭제</DeleteButton>
+        <Button
+          text="수정"
+          fullWidth
+          backgroundColor="transparent"
+          height="30"
+          fontSize="sm"
+          style={{color: '#191919'}}
+        />
+        <Divider />
+        <Button
+          text="삭제"
+          fullWidth
+          backgroundColor="transparent"
+          height="30"
+          fontSize="sm"
+          style={{color: '#FF3B3B'}}
+        />
       </OptionsGroup>
     </Box>
-  );
-};
+  )
+}
 
-export default EditOptions;
+export default EditOptions
 
-const DeleteButton = styled(Button)({
-  height: "30px",
-  width: "100%",
-  fontSize: theme.typography.body4.fontSize,
-  fontWeight: 500,
-  color: "#FF3B3B",
-});
-const EditButton = styled(Button)({
-  height: "30px",
-  width: "100%",
-  fontSize: theme.typography.body4.fontSize,
-  fontWeight: 500,
-  color: "#191919",
-});
 const OptionsGroup = styled(ButtonGroup)({
-  border: "1px solid #C9CCD7",
-  borderRadius: "10px",
-  width: "61px",
-  height: "60px",
-  background: "white",
-});
+  border: '1px solid #C9CCD7',
+  borderRadius: '10px',
+  width: '61px',
+  height: '60px',
+  background: 'white',
+})
+
+const Divider = styled.div({
+  height: '1px',
+  backgroundColor: '#C9CCD7',
+})

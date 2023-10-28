@@ -1,6 +1,6 @@
 import FlexBox from '@layouts/flex-box'
 import styled from '@emotion/styled'
-import {Button, Switch, Typography} from '@mui/material'
+import {Switch, Typography} from '@mui/material'
 import {Link} from 'react-router-dom'
 import CustomIcons from '@assets/icons/custom-Icons'
 import Step from '@assets/constants/step'
@@ -26,22 +26,6 @@ export const BannerImage = styled.img({
   imageRendering: '-webkit-optimize-contrast',
   backfaceVisibility: 'hidden',
 })
-
-export const AddImageButton = styled(Button)(
-  ({imageurl}: {imageurl: string}) => ({
-    backgroundColor: imageurl ? 'white' : '#202020',
-    color: imageurl ? '#191919' : 'white',
-    fontSize: theme.typography.body3.fontSize,
-    width: '137px',
-    height: '34px',
-    borderRadius: '10px',
-    zIndex: 1,
-    position: 'absolute',
-    '&:hover': {
-      background: '#202020',
-    },
-  }),
-)
 
 export const Blur = styled.div({
   width: '100%',
@@ -106,17 +90,6 @@ export const BrandURL = styled(Link)({
   marginBottom: '16px',
 })
 
-export const BrandSettings = styled(Button)({
-  width: '92px',
-  height: '33px',
-  border: '1px solid #DBDBDB',
-  borderRadius: '10px',
-  background: '#FFF',
-  fontSize: theme.typography.body3.fontSize,
-  color: '#191919',
-  fontWeight: 600,
-})
-
 export const Follows = styled(Typography)(({color}: {color?: string}) => ({
   fontSize: theme.typography.body2.fontSize,
   color: color === 'red' ? '#FE7156' : '#A9A9A9',
@@ -153,30 +126,6 @@ export const Tab = styled.div(({current}: {current: boolean}) => ({
   position: 'relative',
   marginBottom: '-1px',
 }))
-
-export const AddProductButton = styled(Button)({
-  width: '101px',
-  height: '34px',
-  borderRadius: '10px',
-  background: '#FE7156',
-  fontSize: theme.typography.body3.fontSize,
-  color: 'white',
-  '&:hover': {
-    background: '#FE7156',
-  },
-})
-
-export const WriteMagazine = styled(Button)({
-  width: '137px',
-  height: '34px',
-  borderRadius: '10px',
-  background: '#202020',
-  fontSize: theme.typography.body3.fontSize,
-  color: 'white',
-  '&:hover': {
-    background: '#202020',
-  },
-})
 
 // Products & Magazine
 
@@ -362,17 +311,6 @@ export const Profile = styled.div({
   borderRadius: '194.5px',
   border: '1px solid black',
   background: 'white',
-})
-
-export const EditProfileButton = styled(Button)({
-  border: '1px solid #DBDBDB',
-  borderRadius: '10px',
-  background: 'white',
-  width: '88px',
-  height: '33px',
-  color: '#191919',
-  fontSize: theme.typography.body3.fontSize,
-  fontWeight: 600,
 })
 
 export const CategoryTitle = styled(Typography)(

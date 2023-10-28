@@ -1,5 +1,5 @@
-import FlexBox from "@layouts/flex-box";
-import { FormControl } from "@mui/material";
+import FlexBox from '@layouts/flex-box'
+import {FormControl} from '@mui/material'
 import {
   AlertSpan,
   CategoryTitle,
@@ -9,27 +9,36 @@ import {
   Label,
   Profile,
   Styledswitch,
-} from "./brand.style";
-import React from "react";
+} from './brand.style'
+import React from 'react'
+import Button from '@components/base/button.js'
 
 const Form = ({
   secondBlock,
   thirdBlock,
 }: {
-  secondBlock: React.RefObject<HTMLDivElement>;
-  thirdBlock: React.RefObject<HTMLDivElement>;
+  secondBlock: React.RefObject<HTMLDivElement>
+  thirdBlock: React.RefObject<HTMLDivElement>
 }) => {
   // const [image, setImage] = useState<string>('')
-  const image = "";
+  const image = ''
 
   return (
     <FormBlock>
       <FlexBox alignItems="center" gap="27px">
         <Profile>{image && <img src={image} alt="profile" />}</Profile>
-        <EditProfileButton>프로필 변경</EditProfileButton>
+        <Button
+          text="프로필 변경"
+          width="88px"
+          height="33px"
+          backgroundColor="white"
+          color="#191919"
+          fontSize="sm"
+          style={{fontWeight: '600'}}
+        />
       </FlexBox>
       <CategoryTitle marginTop="48px">브랜드 기본 정보</CategoryTitle>
-      <FlexBox gap="31px" style={{ marginBottom: "32px" }}>
+      <FlexBox gap="31px" style={{marginBottom: '32px'}}>
         <FormControl>
           <Label>브랜드명</Label>
           <Input name="name" />
@@ -39,7 +48,7 @@ const Form = ({
           <Input name="url" />
         </FormControl>
       </FlexBox>
-      <FormControl style={{ marginBottom: "32px" }}>
+      <FormControl style={{marginBottom: '32px'}}>
         <Label>브랜드 소개</Label>
         <Input full name="url" />
       </FormControl>
@@ -55,7 +64,7 @@ const Form = ({
       </FlexBox>
       <div ref={secondBlock}>
         <CategoryTitle marginTop="78px">관리자 계정 관리</CategoryTitle>
-        <FlexBox gap="31px" style={{ marginBottom: "32px" }}>
+        <FlexBox gap="31px" style={{marginBottom: '32px'}}>
           <FormControl>
             <Label>아이디</Label>
             <Input name="id" />
@@ -88,7 +97,7 @@ const Form = ({
         </FlexBox>
       </div>
     </FormBlock>
-  );
-};
+  )
+}
 
-export default Form;
+export default Form
