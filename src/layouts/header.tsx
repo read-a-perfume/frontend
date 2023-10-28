@@ -149,6 +149,13 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
               >
                 News
               </NavBottom>
+              <NavBottom
+                onClick={() =>
+                  !isLoggedIn ? setIsOpen(true) : navigate('/perfumes')
+                }
+              >
+                perfumes
+              </NavBottom>
             </FlexBox>
           </FlexBox>
           {rightComponent()}

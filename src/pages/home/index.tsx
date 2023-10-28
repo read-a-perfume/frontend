@@ -5,7 +5,7 @@ import Notes from './notes'
 import Review from './review'
 import {useState} from 'react'
 import {Banner, BannerBox, BannerImage, Content, Title} from './index.style'
-import {styled} from '@mui/material'
+import styled from '@emotion/styled'
 import Button from '@components/base/button.js'
 
 export default function Home() {
