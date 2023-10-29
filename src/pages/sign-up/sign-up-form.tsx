@@ -1,8 +1,7 @@
-import FormInput from "./form-input";
-import RadioTerm from "./radio-item";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import WestIcon from "@mui/icons-material/West";
+import FormInput from './form-input'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import WestIcon from '@mui/icons-material/West'
 import {
   Box,
   Button,
@@ -17,117 +16,111 @@ import {
   ButtonBase,
   FormGroup,
   //   styled,
-} from "@mui/material";
+} from '@mui/material'
 
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import styled from "@emotion/styled";
-import { theme } from "../../theme";
-import FlexBox from "../../layouts/flex-box";
+import {useEffect, useState} from 'react'
+import {useForm} from 'react-hook-form'
+import {Link} from 'react-router-dom'
+import styled from '@emotion/styled'
+import {theme} from '../../theme'
+import FlexBox from '../../layouts/flex-box'
+import CheckBox from '@components/base/check-box.js'
 
 type SignUpInputs = {
-  username: string;
-  password: string;
-  passwordCheck: string;
-  email: string;
-  emailAuthCode: string;
-  companyName: string;
-  bizNum: string;
-  phoneNumer: string;
-};
+  username: string
+  password: string
+  passwordCheck: string
+  email: string
+  emailAuthCode: string
+  companyName: string
+  bizNum: string
+  phoneNumer: string
+}
 
 type Props = {
-  type: "personal" | "enterprise" | "";
-};
+  type: 'personal' | 'enterprise' | ''
+}
 
 const initRequiredConsent = {
   ltAge: false,
   termOfUse: false,
   privacy: false,
-};
+}
 
 const initOptionalConsent = {
   marketingConsent: false,
   promotionConsent: false,
-};
+}
 
 const CheckButton = styled(Button)(() => ({
-  display: "flex",
-  height: "55px",
-  width: "100%",
-  wordBreak: "keep-all",
-  color: "white",
+  display: 'flex',
+  height: '55px',
+  width: '100%',
+  wordBreak: 'keep-all',
+  color: 'white',
   marginTop: 36,
-}));
+}))
 
 const SignUpForm = (props: Props) => {
   const {
     register,
     handleSubmit,
     // watch,
-    formState: { errors },
+    formState: {errors},
     setError,
     // getValues,
-  } = useForm<SignUpInputs>();
-  const { type } = props;
-  console.log(type);
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showPasswordCheck, setShowPasswordCheck] = useState<boolean>(false);
-  const [allConsentChecked, setAllConsentChecked] = useState<boolean>(false);
-  const [requiredConsent, setRequiredConsent] = useState(initRequiredConsent);
-  const [optionalConsent, setOptionalConsent] = useState(initOptionalConsent);
-  const [emailSendAlertOpen, setEmailSendAlertOpen] = useState<boolean>(false);
-  const onToggleShowPassword = () => setShowPassword((prev) => !prev);
-  const onToggleShowPasswordCheck = () => setShowPasswordCheck((prev) => !prev);
+  } = useForm<SignUpInputs>()
+  const {type} = props
+  console.log(type)
+  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const [showPasswordCheck, setShowPasswordCheck] = useState<boolean>(false)
+  const [allConsentChecked, setAllConsentChecked] = useState<boolean>(false)
+  const [requiredConsent, setRequiredConsent] = useState(initRequiredConsent)
+  const [optionalConsent, setOptionalConsent] = useState(initOptionalConsent)
+  const [emailSendAlertOpen, setEmailSendAlertOpen] = useState<boolean>(false)
+  const onToggleShowPassword = () => setShowPassword(prev => !prev)
+  const onToggleShowPasswordCheck = () => setShowPasswordCheck(prev => !prev)
   const onValidPasswordMatched = (value: string, data: SignUpInputs) => {
     if (data.password !== value) {
-      setError("passwordCheck", {
-        message: "비밀번호가 일치하지 않습니다.",
-      });
-      return "비밀번호가 일치하지 않습니다.";
+      setError('passwordCheck', {
+        message: '비밀번호가 일치하지 않습니다.',
+      })
+      return '비밀번호가 일치하지 않습니다.'
     }
-    return true;
-  };
+    return true
+  }
 
-  const onChangeAllConsentChecked = (event: any, checked: boolean) => {
-    console.log(event, "event");
+  const onChangeAllConsentChecked = (checked: boolean, name: string) => {
+    console.log(name)
     const requiredConsent = {
       ltAge: checked,
       privacy: checked,
       termOfUse: checked,
-    };
+    }
 
     const optionalConsent = {
       marketingConsent: checked,
       promotionConsent: checked,
-    };
+    }
 
-    setRequiredConsent(requiredConsent);
-    setOptionalConsent(optionalConsent);
-    setAllConsentChecked(checked);
-  };
+    setRequiredConsent(requiredConsent)
+    setOptionalConsent(optionalConsent)
+    setAllConsentChecked(checked)
+  }
 
-  const onChangeRequiredConsent = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
-  ) => {
-    console.log(event.target.name);
-    setRequiredConsent((prev) => ({
+  const onChangeRequiredConsent = (value: boolean, name: string) => {
+    setRequiredConsent(prev => ({
       ...prev,
-      [event.target.name]: checked,
-    }));
-  };
+      [name]: value,
+    }))
+  }
 
-  const onChangeOptionalConsent = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
-  ) => {
-    setOptionalConsent((prev) => ({
+  const onChangeOptionalConsent = (value: boolean, name: string) => {
+    setRequiredConsent(prev => ({
       ...prev,
-      [event.target.name]: checked,
-    }));
-  };
+      [name]: value,
+    }))
+  }
 
   // const checkUsernameMount = useMutation(CheckId, {
   //   onSuccess: () => {
@@ -162,15 +155,15 @@ const SignUpForm = (props: Props) => {
     //   id: getValues('username'),
     // }
     // )
-  };
+  }
 
   const onClickEmailCheck = () => {
     // checkEmailMount.mutate({email: getValues('email')})
-  };
+  }
 
   const onClickConfirmAuth = () => {
     // confirmAuthMount.mutate({code: getValues('emailAuthCode'), key: authKey})
-  };
+  }
 
   const onSubmit = () => {
     // const {marketingConsent, promotionConsent} = optionalConsent
@@ -181,15 +174,15 @@ const SignUpForm = (props: Props) => {
     //   marketingConsent,
     //   promotionConsent,
     // })
-  };
+  }
 
   const closeEmailSendAlert = () => {
-    setEmailSendAlertOpen(false);
-  };
+    setEmailSendAlertOpen(false)
+  }
 
   useEffect(() => {
-    console.log("Rendering....");
-  }, []);
+    console.log('Rendering....')
+  }, [])
 
   return (
     <SignUpFormContainer>
@@ -223,22 +216,22 @@ const SignUpForm = (props: Props) => {
               }}
               placeholder="6~16자 / 영문 소문자, 숫자 사용 가능"
               color="info"
-              {...register("username", {
+              {...register('username', {
                 required: {
                   value: true,
-                  message: "아이디를 입력해주세요.",
+                  message: '아이디를 입력해주세요.',
                 },
                 minLength: {
                   value: 6,
-                  message: "최소 6자 이상 입력해주세요.",
+                  message: '최소 6자 이상 입력해주세요.',
                 },
                 maxLength: {
                   value: 16,
-                  message: "최대 16자 이하 입력해주세요.",
+                  message: '최대 16자 이하 입력해주세요.',
                 },
                 pattern: {
                   value: /^[a-z](?=.*\d)[a-z0-9]+$/g,
-                  message: "올바른 아이디를 입력해주세요.",
+                  message: '올바른 아이디를 입력해주세요.',
                 },
               })}
             />
@@ -284,19 +277,19 @@ const SignUpForm = (props: Props) => {
                 }}
                 color="info"
                 placeholder="8~16자 / 문자, 숫자, 특수 문자 모두 혼용"
-                type={showPassword ? "text" : "password"}
-                {...register("password", {
+                type={showPassword ? 'text' : 'password'}
+                {...register('password', {
                   required: {
                     value: true,
-                    message: "비밀번호를 입력하세요",
+                    message: '비밀번호를 입력하세요',
                   },
                   minLength: {
                     value: 8,
-                    message: "비밀번호는 최소 8자리 입니다.",
+                    message: '비밀번호는 최소 8자리 입니다.',
                   },
                   maxLength: {
                     value: 16,
-                    message: "비밀번호는 최대 16자리 입니다.",
+                    message: '비밀번호는 최대 16자리 입니다.',
                   },
                 })}
                 endAdornment={
@@ -304,12 +297,10 @@ const SignUpForm = (props: Props) => {
                     <IconButton onClick={onToggleShowPassword} edge="end">
                       {showPassword ? (
                         <VisibilityOff
-                          style={{ color: theme.palette.grey[400] }}
+                          style={{color: theme.palette.grey[400]}}
                         />
                       ) : (
-                        <Visibility
-                          style={{ color: theme.palette.grey[400] }}
-                        />
+                        <Visibility style={{color: theme.palette.grey[400]}} />
                       )}
                     </IconButton>
                   </InputAdornment>
@@ -339,11 +330,11 @@ const SignUpForm = (props: Props) => {
                 }}
                 color="info"
                 placeholder="비밀번호 재확인"
-                type={showPasswordCheck ? "text" : "password"}
-                {...register("passwordCheck", {
+                type={showPasswordCheck ? 'text' : 'password'}
+                {...register('passwordCheck', {
                   required: {
                     value: true,
-                    message: "재확인 비밀번호를 입력하세요",
+                    message: '재확인 비밀번호를 입력하세요',
                   },
                   validate: (value, data) =>
                     onValidPasswordMatched(value, data),
@@ -353,12 +344,10 @@ const SignUpForm = (props: Props) => {
                     <IconButton onClick={onToggleShowPasswordCheck} edge="end">
                       {showPassword ? (
                         <VisibilityOff
-                          style={{ color: theme.palette.grey[400] }}
+                          style={{color: theme.palette.grey[400]}}
                         />
                       ) : (
-                        <Visibility
-                          style={{ color: theme.palette.grey[400] }}
-                        />
+                        <Visibility style={{color: theme.palette.grey[400]}} />
                       )}
                     </IconButton>
                   </InputAdornment>
@@ -388,14 +377,14 @@ const SignUpForm = (props: Props) => {
               type="email"
               placeholder="이메일을 입력해주세요."
               color="info"
-              {...register("email", {
+              {...register('email', {
                 required: {
                   value: true,
-                  message: "이메일을 입력해주세요.",
+                  message: '이메일을 입력해주세요.',
                 },
                 pattern: {
                   value: /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                  message: "올바른 이메일 형식으로 입력해주세요.",
+                  message: '올바른 이메일 형식으로 입력해주세요.',
                 },
               })}
             />
@@ -429,10 +418,10 @@ const SignUpForm = (props: Props) => {
                         <button
                           style={{
                             color: theme.palette.primary.main,
-                            textDecoration: "underline",
+                            textDecoration: 'underline',
                             marginLeft: 4,
-                            background: "none",
-                            border: "none",
+                            background: 'none',
+                            border: 'none',
                             padding: 0,
                             fontSize: theme.typography.caption.fontSize,
                           }}
@@ -451,10 +440,10 @@ const SignUpForm = (props: Props) => {
                     type="text"
                     placeholder="인증코드 6자리 입력."
                     color="info"
-                    {...register("emailAuthCode", {
+                    {...register('emailAuthCode', {
                       required: {
                         value: true,
-                        message: "이메일 인증번호를 입력해주세요.",
+                        message: '이메일 인증번호를 입력해주세요.',
                       },
                     })}
                   />
@@ -489,67 +478,82 @@ const SignUpForm = (props: Props) => {
             <ConsentBox>
               <Box
                 style={{
-                  borderBottom: "1px solid",
+                  borderBottom: '1px solid',
                   borderColor: theme.palette.grey[500],
-                  paddingBottom: 4,
                 }}
               >
-                <RadioTerm
+                <CheckBox
+                  gap="7px"
                   label="전체동의"
-                  name="all"
-                  checked={allConsentChecked}
-                  onChange={onChangeAllConsentChecked}
                   subText="선택항목에 대한 동의 포함"
+                  name="all"
+                  marginBottom="16px"
+                  isChecked={allConsentChecked}
+                  onClick={onChangeAllConsentChecked}
+                  style={{marginLeft: 10, marginTop: 18}}
                 />
               </Box>
               <ul
                 style={{
                   padding: 0,
                   margin: 0,
-                  marginTop: 8,
+                  marginTop: 22,
+                  marginLeft: 10,
                 }}
               >
                 <li>
-                  <RadioTerm
+                  <CheckBox
+                    gap="7px"
                     label="만 14세 이상입니다."
                     name="ltAge"
-                    checked={requiredConsent.ltAge}
-                    onChange={onChangeRequiredConsent}
-                    required
+                    marginBottom="16px"
+                    isChecked={requiredConsent.ltAge}
+                    onClick={onChangeRequiredConsent}
+                    isRequired
                   />
                 </li>
                 <li>
-                  <RadioTerm
+                  <CheckBox
+                    gap="7px"
                     label="이용약관"
                     name="termOfUse"
-                    checked={requiredConsent.termOfUse}
-                    onChange={onChangeRequiredConsent}
-                    required
+                    marginBottom="16px"
+                    isChecked={requiredConsent.termOfUse}
+                    onClick={onChangeRequiredConsent}
+                    isRequired
                   />
                 </li>
                 <li>
-                  <RadioTerm
+                  <CheckBox
+                    gap="7px"
                     label="개인정보 수집 및 이용동의"
                     name="privacy"
-                    checked={requiredConsent.privacy}
-                    onChange={onChangeRequiredConsent}
-                    required
+                    marginBottom="16px"
+                    isChecked={requiredConsent.privacy}
+                    onClick={onChangeRequiredConsent}
+                    isRequired
                   />
                 </li>
                 <li>
-                  <RadioTerm
-                    label="개인정보 마케팅 활용 동의 "
+                  <CheckBox
+                    gap="7px"
+                    label="개인정보 마케팅 활용 동의"
                     name="marketingConsent"
-                    checked={optionalConsent.marketingConsent}
-                    onChange={onChangeOptionalConsent}
+                    marginBottom="16px"
+                    isChecked={optionalConsent.marketingConsent}
+                    onClick={onChangeOptionalConsent}
+                    isOptional
                   />
                 </li>
                 <li>
-                  <RadioTerm
+                  <CheckBox
+                    gap="7px"
                     label="이벤트, 쿠폰, 특가 알림 메일 수신"
-                    name="promotionConsent"
-                    checked={optionalConsent.promotionConsent}
-                    onChange={onChangeOptionalConsent}
+                    name="marketingConsent"
+                    marginBottom="16px"
+                    isChecked={optionalConsent.promotionConsent}
+                    onClick={onChangeOptionalConsent}
+                    isOptional
                   />
                 </li>
               </ul>
@@ -560,7 +564,7 @@ const SignUpForm = (props: Props) => {
               color="inherit"
               size="large"
               style={{
-                width: "100%",
+                width: '100%',
               }}
             >
               회원가입하기
@@ -574,13 +578,13 @@ const SignUpForm = (props: Props) => {
               <Link
                 to="#"
                 style={{
-                  cursor: "pointer",
-                  margin: "0px 4px",
+                  cursor: 'pointer',
+                  margin: '0px 4px',
                   padding: 0,
-                  backgroundColor: "transparent",
-                  border: "none",
+                  backgroundColor: 'transparent',
+                  border: 'none',
                   color: theme.palette.secondary.main,
-                  textDecoration: "underline",
+                  textDecoration: 'underline',
                   marginLeft: 8,
                 }}
               >
@@ -609,43 +613,43 @@ const SignUpForm = (props: Props) => {
         </DialogContent>
       </Dialog>
     </SignUpFormContainer>
-  );
-};
+  )
+}
 
-export default SignUpForm;
+export default SignUpForm
 export const SignUpFormContainer = styled(FormGroup)(() => ({
-  display: "flex",
-  flexDirection: "column",
-  "& > * + *": {
+  display: 'flex',
+  flexDirection: 'column',
+  '& > * + *': {
     marginTop: 24,
   },
 
   maxWidth: 500,
-}));
+}))
 
 export const BackButton = styled(ButtonBase)(() => ({
-  display: "flex",
-  justifyContent: "flex-start",
+  display: 'flex',
+  justifyContent: 'flex-start',
   marginBottom: 66,
-  "& span": {
+  '& span': {
     marginLeft: 13,
   },
-}));
+}))
 
 export const ConsentBox = styled(Box)(() => ({
   marginBottom: 30,
   padding: 4,
   paddingBottom: 0,
   borderRadius: 4,
-  "& li": {
-    listStyle: "none",
+  '& li': {
+    listStyle: 'none',
   },
-}));
+}))
 
 export const LoginLinkBox = styled(Box)(() => ({
-  display: "flex",
-  justifyContent: "center",
-  "& *": {
+  display: 'flex',
+  justifyContent: 'center',
+  '& *': {
     fontSize: theme.typography.body4.fontSize,
   },
-}));
+}))
