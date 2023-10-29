@@ -35,11 +35,12 @@ const Card: React.FC<CardProps> = ({
   onClick,
 }) => {
   return (
-    <CardContainer width={width} height={height} onClick={onClick}>
+    <CardContainer width={width} height={height}>
       <CoverImage
         height={coverImageHeight}
         src={coverImage}
         alt="card-cover-image"
+        onClick={onClick}
       />
       <CardInfo>
         <FlexBox
@@ -55,9 +56,11 @@ const Card: React.FC<CardProps> = ({
           )}
           {isOptionOpen && <EditOptions />}
         </FlexBox>
-        <CardTitle>{title}</CardTitle>
-        <CardContent>{content}</CardContent>
-        <HashTags>{'#' + hashTags.join(' #')}</HashTags>
+        <ContentContainer onClick={onClick}>
+          <CardTitle>{title}</CardTitle>
+          <CardContent>{content}</CardContent>
+          <HashTags>{'#' + hashTags.join(' #')}</HashTags>
+        </ContentContainer>
       </CardInfo>
     </CardContainer>
   )
@@ -78,11 +81,16 @@ const CoverImage = styled.img(({height}: {height: string}) => ({
   objectFit: 'cover',
   overflow: 'hidden',
   borderRadius: '16px 16px 0px 0px',
+  cursor: 'pointer',
 }))
 
 const CardInfo = styled.div({
   width: '100%',
   padding: '0px 24px',
+})
+
+const ContentContainer = styled.div({
+  cursor: 'pointer',
 })
 
 const CardTitle = styled(Typography)({
