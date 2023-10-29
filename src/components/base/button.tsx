@@ -20,7 +20,6 @@ interface ButtonProps {
   disabled?: boolean
   onClick?: () => void
   style?: React.CSSProperties
-  hoverBg?: string
   fullWidth?: boolean
 }
 
@@ -28,7 +27,6 @@ const Button: React.FC<ButtonProps> = ({
   width = '137px',
   height = '34px',
   color = 'white',
-  hoverBg = 'white',
   fullWidth = false,
   fontSize,
   text,
@@ -66,7 +64,6 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       onClick={onClick}
       style={{...style}}
-      hoverBg={hoverBg}
       fullWidth={fullWidth}
       fontSize={size}
     >
@@ -82,7 +79,6 @@ const ButtonLayout = styled.button(
     textColor,
     fontSize,
     backgroundColor,
-    hoverBg,
     fullWidth,
   }: {
     height: string
@@ -90,7 +86,6 @@ const ButtonLayout = styled.button(
     textColor: string
     fontSize: '12px' | '14px' | '16px'
     backgroundColor: string
-    hoverBg: string
     fullWidth: boolean
   }) => ({
     height,
@@ -104,7 +99,7 @@ const ButtonLayout = styled.button(
     borderColor: 'transparent',
     backgroundColor,
     '&:hover': {
-      backgroundColor: hoverBg,
+      backgroundColor: backgroundColor,
     },
   }),
 )

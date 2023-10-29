@@ -32,7 +32,6 @@ export default function Home() {
             color="white"
             backgroundColor="transparent"
             fontSize="lg"
-            hoverBg="transparent"
             style={{marginTop: '79px', zIndex: 2, border: '1px solid white'}}
           />
         </BannerBox>

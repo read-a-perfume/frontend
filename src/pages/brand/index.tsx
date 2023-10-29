@@ -52,7 +52,6 @@ const Brand = () => {
             <Button
               style={{zIndex: 2, position: 'absolute'}}
               backgroundColor={fileURL ? 'white' : 'secondary'}
-              hoverBg={'#202020'}
               color={fileURL ? 'secondary' : 'white'}
               text="컴퓨터에서 가져오기"
               fontSize="md"
