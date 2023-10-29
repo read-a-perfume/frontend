@@ -129,64 +129,6 @@ export const Tab = styled.div(({current}: {current: boolean}) => ({
 
 // Products & Magazine
 
-export const CardBox = styled.div({
-  flexWrap: 'wrap',
-  marginTop: '44px',
-  padding: '0px 160px',
-  display: 'flex',
-  justifyContent: 'space-around',
-  rowGap: '60px',
-  marginBottom: '60px',
-})
-
-export const Card = styled.div(
-  ({width, height}: {width: string; height: string}) => ({
-    height: height,
-    width: width,
-    borderRadius: '16px',
-    border: '1px solid #EDEDED',
-  }),
-)
-
-export const CardImage = styled.img(({height}: {height: string}) => ({
-  height: height,
-  width: '100%',
-  objectFit: 'cover',
-  overflow: 'hidden',
-  borderRadius: '16px 16px 0px 0px',
-}))
-
-export const MagazineInfo = styled.div({
-  width: '100%',
-  padding: '0px 24px',
-})
-
-export const EditorProfile = styled.img({
-  width: '40px',
-  height: '40px',
-  borderRadius: '40px',
-  objectFit: 'cover',
-})
-
-export const CardTitle = styled(Typography)({
-  fontFamily: 'AritaBuri !important',
-  fontSize: theme.typography.h4.fontSize,
-  color: '#131313',
-  fontWeight: 500,
-  marginBottom: '16px',
-})
-
-export const CardSpan = styled(Typography)({
-  fontSize: theme.typography.body2.fontSize,
-  color: '#707070',
-  marginBottom: '8px',
-})
-
-export const HashTags = styled(Typography)({
-  fontSize: theme.typography.body3.fontSize,
-  color: '#FE7156',
-})
-
 export const BrandName = styled(Typography)({
   fontSize: theme.typography.body3.fontSize,
   color: '#131313',

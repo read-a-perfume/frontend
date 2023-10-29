@@ -1,43 +1,40 @@
-import FlexBox from "@layouts/flex-box";
+import FlexBox from '@layouts/flex-box.js'
 import {
   BoxContent,
   BrandName,
-  Card,
-  CardBox,
-  CardImage,
   Categories,
   InfoBox,
   PerfumeHamburger,
   ProductName,
   Types,
-} from "./brand.style";
+} from './brand.style.js'
 
-const InfoBoxes = ({ enterprise }: { enterprise: boolean }) => {
-  const productData = new Array(8).fill(0).map((_, i) => i + 1);
+const InfoBoxes = ({enterprise}: {enterprise: boolean}) => {
+  const productData = new Array(8).fill(0).map((_, i) => i + 1)
 
   return (
     <CardBox>
-      {productData.map((el) => (
+      {productData.map(el => (
         <FlexBox
           gap="32px"
           direction="column"
-          style={{ flexWrap: "wrap" }}
+          style={{flexWrap: 'wrap'}}
           key={el}
         >
           <Card width="376px" height="426px">
             {enterprise && (
               <div
                 style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "end",
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'end',
                 }}
               >
                 <PerfumeHamburger />
               </div>
             )}
             <CardImage src="/images/perfume.png" alt="product" height="341px" />
-            <FlexBox alignItems="center" style={{ flexDirection: "column" }}>
+            <FlexBox alignItems="center" style={{flexDirection: 'column'}}>
               <BrandName>탬버린즈</BrandName>
               <ProductName>퍼퓸 카모</ProductName>
             </FlexBox>
@@ -57,7 +54,7 @@ const InfoBoxes = ({ enterprise }: { enterprise: boolean }) => {
         </FlexBox>
       ))}
     </CardBox>
-  );
-};
+  )
+}
 
-export default InfoBoxes;
+export default InfoBoxes

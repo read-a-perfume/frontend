@@ -1,4 +1,4 @@
-import FlexBox from '../../layouts/flex-box'
+import FlexBox from '../../layouts/flex-box.js'
 import {
   BrandInfo,
   BrandInfoBlock,
@@ -7,8 +7,8 @@ import {
   BrandTitle,
   BrandURL,
   Follows,
-} from './brand.style'
-import {Link, useNavigate} from 'react-router-dom'
+} from './brand.style.js'
+import {useNavigate} from 'react-router-dom'
 import Button from '@components/base/button.js'
 
 const BrandInfoDetail = ({enterprise}: {enterprise: boolean}) => {

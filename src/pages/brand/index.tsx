@@ -1,21 +1,20 @@
-import Header from '@layouts/header'
+import Header from '@layouts/header.js'
 import {
   AddBannerSpan,
   Banner,
   BannerBlur,
   BannerImage,
   BrandContents,
-  CardBox,
   Tab,
   Tabs,
-} from './brand.style'
+} from './brand.style.js'
 import {useRef, useState} from 'react'
-import InfoBoxes from './info-boxes'
-import BrandInfoDetail from './brand-info'
-import FlexBox from '@layouts/flex-box'
+import InfoBoxes from './info-boxes.js'
+import BrandInfoDetail from './brand-info.js'
+import FlexBox from '@layouts/flex-box.js'
 import {Link} from 'react-router-dom'
-import Magazine from './magazine'
-import {magazineData} from '../home/constants'
+import Magazine from './magazine.js'
+import {magazineData} from '../home/constants.js'
 import Button from '../../components/base/button.js'
 
 const Brand = () => {
@@ -75,7 +74,7 @@ const Brand = () => {
         width="100"
         text="기업 확인 버튼"
         backgroundColor="primary"
-        fontSize={14}
+        fontSize="md"
         onClick={() => setEnterprise(!enterprise)}
       />
       {/* 추후 삭제 */}
@@ -101,14 +100,14 @@ const Brand = () => {
                 <Button
                   text="매거진 글쓰기"
                   backgroundColor="secondary"
-                  fontSize={14}
+                  fontSize="md"
                 />
               </Link>
               <Button
                 width="101"
                 text="제품 추가하기"
                 backgroundColor="primary"
-                fontSize={14}
+                fontSize="md"
               />
             </FlexBox>
           )}

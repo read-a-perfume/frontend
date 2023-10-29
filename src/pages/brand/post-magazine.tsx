@@ -1,20 +1,18 @@
-import Header from '../../layouts/header'
-import {BannerBlur, BannerImage} from './brand.style'
+import Header from '../../layouts/header.js'
+import {BannerBlur, BannerImage} from './brand.style.js'
 import React, {useEffect, useRef, useState} from 'react'
 import {
   AddButton,
   AddButtonText,
-  BannerButton,
-  BannerContent,
   EditorTitle,
   HeaderImage,
   ImageDefault,
   TextBox,
   TitleInput,
-} from './magazine.style'
-import FlexBox from '../../layouts/flex-box'
-import CustomIcons from '../../assets/icons/custom-Icons'
-import UploadIcon from '../../assets/icons/uploadI-con'
+} from './magazine.style.js'
+import FlexBox from '../../layouts/flex-box.js'
+import CustomIcons from '../../assets/icons/custom-Icons.js'
+import UploadIcon from '../../assets/icons/uploadI-con.js'
 import {Typography} from '@mui/material'
 import Button from '@components/base/button.js'
 

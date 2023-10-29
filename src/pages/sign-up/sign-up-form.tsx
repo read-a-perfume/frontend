@@ -1,7 +1,3 @@
-import FormInput from './form-input'
-import Visibility from '@mui/icons-material/Visibility'
-import VisibilityOff from '@mui/icons-material/VisibilityOff'
-import WestIcon from '@mui/icons-material/West'
 import {
   Box,
   Button,
@@ -22,9 +18,11 @@ import {useEffect, useState} from 'react'
 import {useForm} from 'react-hook-form'
 import {Link} from 'react-router-dom'
 import styled from '@emotion/styled'
-import {theme} from '../../theme'
-import FlexBox from '../../layouts/flex-box'
 import CheckBox from '@components/base/check-box.js'
+import {theme} from '@theme/index.js'
+import FormInput from './form-input.js'
+import {Visibility, VisibilityOff} from '@mui/icons-material'
+import FlexBox from '@layouts/flex-box.js'
 
 type SignUpInputs = {
   username: string
@@ -187,7 +185,7 @@ const SignUpForm = (props: Props) => {
   return (
     <SignUpFormContainer>
       <BackButton>
-        <WestIcon />
+        {/* <WestIcon /> */}
         <span>Back</span>
       </BackButton>
       <Typography variant="h1" mb={4}>

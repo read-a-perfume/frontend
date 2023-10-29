@@ -1,5 +1,5 @@
-import { LoginModalTitleProps } from "./login-modal.interface";
-import { ModalTab, ModalTitle, TabContent } from "./login-modal.style";
+import {LoginModalTitleProps} from './login-modal.interface.js'
+import {ModalTab, ModalTitle, TabContent} from './login-modal.style.js'
 
 const LoginModalTitle = ({
   tabClick,
@@ -16,29 +16,29 @@ const LoginModalTitle = ({
       <TabContent>
         <ModalTab
           onClick={() => {
-            if (tabClick !== "personal") {
-              setTabClick("personal");
-              setInputs({ id: "", password: "" });
+            if (tabClick !== 'personal') {
+              setTabClick('personal')
+              setInputs({id: '', password: ''})
             }
           }}
-          clicked={tabClick === "personal"}
+          clicked={tabClick === 'personal'}
         >
           개인용
         </ModalTab>
         <ModalTab
           onClick={() => {
-            if (tabClick !== "company") {
-              setTabClick("company");
-              setInputs({ id: "", password: "" });
+            if (tabClick !== 'company') {
+              setTabClick('company')
+              setInputs({id: '', password: ''})
             }
           }}
-          clicked={tabClick === "company"}
+          clicked={tabClick === 'company'}
         >
           기업용
         </ModalTab>
       </TabContent>
     </>
-  );
-};
+  )
+}
 
-export default LoginModalTitle;
+export default LoginModalTitle

@@ -1,15 +1,14 @@
-import FlexBox from '@layouts/flex-box'
+import FlexBox from '@layouts/flex-box.js'
 import {FormControl} from '@mui/material'
 import {
   AlertSpan,
   CategoryTitle,
-  EditProfileButton,
   FormBlock,
   Input,
   Label,
   Profile,
   Styledswitch,
-} from './brand.style'
+} from './brand.style.js'
 import React from 'react'
 import Button from '@components/base/button.js'
 

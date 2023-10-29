@@ -55,7 +55,7 @@ const Button: React.FC<ButtonProps> = ({
     } else {
       setTextColor(color)
     }
-  }, [color])
+  }, [color, disabled])
 
   return (
     <ButtonLayout

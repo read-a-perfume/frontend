@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import {Typography} from '@mui/material'
-import {theme} from '../../theme'
 
 export const Banner = styled.div({
   width: '100%',

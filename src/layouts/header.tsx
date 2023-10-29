@@ -1,14 +1,14 @@
 import styled from '@emotion/styled'
 import {Button, OutlinedInput, Typography} from '@mui/material'
-import {theme} from '../theme'
 import {FormControl, IconButton, InputAdornment} from '@mui/material'
 import {useState} from 'react'
 import {useLocation, useNavigate} from 'react-router-dom'
-import CustomIcons from '../assets/icons/custom-Icons'
-import LoginModal from '@components/modal/login-modal'
-import NotificationModal from '@components/modal/notification-modal'
 import RoundButton from '@components/base/round-button.js'
 import FlexBox from './flex-box.js'
+import CustomIcons from '@assets/icons/custom-Icons.js'
+import NotificationModal from '@components/modal/notification-modal/index.js'
+import LoginModal from '@components/modal/login-modal/index.js'
+import {theme} from '@theme/index.js'
 
 const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
   const navigate = useNavigate()
