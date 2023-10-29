@@ -21,8 +21,8 @@ const Buttons = ({tabClick, errors, inputs, condition}: ButtonsProps) => {
     <>
       <Button
         fullWidth
-        fontSize='lg'
-        height="54"
+        fontSize="lg"
+        height="54px"
         text="로그인"
         backgroundColor="secondary"
         onClick={submitHandler}
