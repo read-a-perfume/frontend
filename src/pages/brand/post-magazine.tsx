@@ -4,6 +4,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import {
   AddButton,
   AddButtonText,
+  BannerContent,
   EditorTitle,
   HeaderImage,
   ImageDefault,

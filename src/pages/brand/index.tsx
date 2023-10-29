@@ -5,6 +5,7 @@ import {
   BannerBlur,
   BannerImage,
   BrandContents,
+  CardBox,
   Tab,
   Tabs,
 } from './brand.style.js'
@@ -104,7 +105,7 @@ const Brand = () => {
                 />
               </Link>
               <Button
-                width="101"
+                width="101px"
                 text="제품 추가하기"
                 backgroundColor="primary"
                 fontSize="md"

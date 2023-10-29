@@ -129,6 +129,16 @@ export const Tab = styled.div(({current}: {current: boolean}) => ({
 
 // Products & Magazine
 
+export const CardBox = styled.div({
+  flexWrap: 'wrap',
+  marginTop: '44px',
+  padding: '0px 160px',
+  display: 'flex',
+  justifyContent: 'space-around',
+  rowGap: '60px',
+  marginBottom: '60px',
+})
+
 export const BrandName = styled(Typography)({
   fontSize: theme.typography.body3.fontSize,
   color: '#131313',
