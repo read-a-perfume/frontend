@@ -14,9 +14,9 @@ const EditOptions = () => {
       >
         <Button
           text="수정"
+          height="30px"
           fullWidth
           backgroundColor="transparent"
-          height="30"
           fontSize="sm"
           style={{color: '#191919'}}
         />
@@ -25,7 +25,7 @@ const EditOptions = () => {
           text="삭제"
           fullWidth
           backgroundColor="transparent"
-          height="30"
+          height="30px"
           fontSize="sm"
           style={{color: '#FF3B3B'}}
         />
