@@ -5,28 +5,26 @@ import FlexBox from '@layouts/flex-box.js'
 import {Typography} from '@mui/material'
 
 interface ProductCardProps {
+  width?: string
+  height?: string
   isEditor?: boolean
   brandName: string
   productName: string
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
+  width = '376px',
+  height = '426px',
   isEditor,
   brandName,
   productName,
 }) => {
   return (
-    <ProductCardContainer width="376px" height="426px">
+    <ProductCardContainer width={width} height={height}>
       {isEditor && (
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'end',
-          }}
-        >
+        <HamburgerContainer>
           <PerfumeHamburger />
-        </div>
+        </HamburgerContainer>
       )}
       <ProductCardImage src="/images/perfume.png" alt="product-image" />
       <FlexBox alignItems="center" style={{flexDirection: 'column'}}>
@@ -36,6 +34,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
     </ProductCardContainer>
   )
 }
+
+const HamburgerContainer = styled.div({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'end',
+})
 
 const ProductCardContainer = styled.div(
   ({width, height}: {width: string; height: string}) => ({
