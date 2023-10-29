@@ -35,12 +35,6 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <CardContainer width={width} height={height} onClick={onClick}>
-      {/* <Link
-        to={`/brand/:id/magazine/${data.id}`}
-        style={{textDecoration: 'none'}}
-      >
-        
-      </Link> */}
       <CoverImage
         height={coverImageHeight}
         src={coverImage}
