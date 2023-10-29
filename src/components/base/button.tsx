@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import {theme} from '@theme/index.js'
 import {useState} from 'react'
 import {useEffect} from 'react'
+import {getColor, getFontSize} from '../../hooks/useGetFonts.js'
 
 interface ButtonProps {
   text: string
@@ -41,40 +42,11 @@ const Button: React.FC<ButtonProps> = ({
   const [size, setSize] = useState<'12px' | '14px' | '16px'>('12px')
 
   useEffect(() => {
-    switch (backgroundColor) {
-      case 'primary':
-        setBg('#FE7156')
-        break
-      case 'secondary':
-        setBg('#202020')
-        break
-      case 'gray':
-        setBg('#F1F1F5')
-        break
-      case 'disabled':
-        setBg('#D9D9D9')
-        break
-      case 'white':
-        setBg('#fff')
-        break
-      case 'transparent':
-        setBg('transparent')
-        break
-    }
+    setBg(getColor(backgroundColor))
   }, [backgroundColor])
 
   useEffect(() => {
-    switch (fontSize) {
-      case 'sm':
-        setSize('12px')
-        break
-      case 'md':
-        setSize('14px')
-        break
-      case 'lg':
-        setSize('16px')
-        break
-    }
+    setSize(getFontSize(fontSize))
   }, [fontSize])
 
   useEffect(() => {
