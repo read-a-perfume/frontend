@@ -1,10 +1,10 @@
-import FlexBox from '@layouts/flex-box'
+import FlexBox from '@layouts/flex-box.js'
 import styled from '@emotion/styled'
 import {Switch, Typography} from '@mui/material'
 import {Link} from 'react-router-dom'
-import CustomIcons from '@assets/icons/custom-Icons'
-import Step from '@assets/constants/step'
-import {theme} from '@theme/index'
+import CustomIcons from '@assets/icons/custom-Icons.js'
+import Step from '@assets/constants/step.js'
+import {theme} from '@theme/index.js'
 
 // Banner
 
@@ -60,15 +60,6 @@ export const BrandInfo = styled.div({
   marginLeft: '30px',
   display: 'flex',
   flexDirection: 'column',
-})
-
-export const BrandProfile = styled.img({
-  width: '104px',
-  height: '104px',
-  borderRadius: '194.5px',
-  background: 'white',
-  marginTop: '-17px',
-  zIndex: 1,
 })
 
 export const BrandTitle = styled(Typography)({
@@ -255,14 +246,6 @@ export const SettingsNavItems = styled(Typography)(
 
 export const FormBlock = styled.div({
   marginTop: '170px',
-})
-
-export const Profile = styled.div({
-  width: '104px',
-  height: '104px',
-  borderRadius: '194.5px',
-  border: '1px solid black',
-  background: 'white',
 })
 
 export const CategoryTitle = styled(Typography)(

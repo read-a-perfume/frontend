@@ -6,11 +6,11 @@ import {
   FormBlock,
   Input,
   Label,
-  Profile,
   Styledswitch,
 } from './brand.style.js'
 import React from 'react'
 import Button from '@components/base/button.js'
+import Avatar from '@components/base/avatar.js'
 
 const Form = ({
   secondBlock,
@@ -25,7 +25,11 @@ const Form = ({
   return (
     <FormBlock>
       <FlexBox alignItems="center" gap="27px">
-        <Profile>{image && <img src={image} alt="profile" />}</Profile>
+        <Avatar
+          url={image ? image : undefined}
+          size="104px"
+          style={{border: '1px solid black'}}
+        />
         <Button
           text="프로필 변경"
           width="88px"

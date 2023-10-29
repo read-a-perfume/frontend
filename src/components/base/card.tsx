@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import EditOptions from '@layouts/edit-options.js'
 import FlexBox from '@layouts/flex-box.js'
 import {Typography} from '@mui/material'
+import Avatar from './avatar.js'
 
 interface CardProps {
   width?: string
@@ -46,7 +47,7 @@ const Card: React.FC<CardProps> = ({
           alignItems="center"
           style={{marginBottom: '8px', marginTop: '16px'}}
         >
-          <Profile size="40px" src={profileImage} alt="editor-profile-image" />
+          <Avatar size="40px" url={profileImage} />
           {isEditor && (
             <button>
               <CustomIcons.HamburgerIcon onClick={onClickHamburger} />
@@ -83,13 +84,6 @@ const CardInfo = styled.div({
   width: '100%',
   padding: '0px 24px',
 })
-
-const Profile = styled.img(({size}: {size: string}) => ({
-  width: size,
-  height: size,
-  borderRadius: size,
-  objectFit: 'cover',
-}))
 
 const CardTitle = styled(Typography)({
   fontSize: 20,
