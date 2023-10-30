@@ -6,6 +6,7 @@ import {useState} from 'react'
 import {Banner, BannerBox, BannerImage, Content, Title} from './index.style'
 import styled from '@emotion/styled'
 import Button from '@components/base/button.js'
+import Products from './products.js'
 
 export default function Home() {
   // const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -38,6 +39,7 @@ export default function Home() {
         <Magazines />
         <Notes />
         <Review />
+        <Products />
       </CustomContent>
     </>
   )
