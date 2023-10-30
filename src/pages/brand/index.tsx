@@ -95,14 +95,12 @@ const Brand = () => {
           </FlexBox>
           {enterprise && (
             <FlexBox alignItems="center" gap="14px">
-              <Link to={`/brand/:id/magazine/post`}>
-                <Button
-                  text="매거진 글쓰기"
-                  backgroundColor="secondary"
-                  fontSize="md"
-                  onClick={() => navigate(`/brand/:id/magazine/post`)}
-                />
-              </Link>
+              <Button
+                text="매거진 글쓰기"
+                backgroundColor="secondary"
+                fontSize="md"
+                onClick={() => navigate(`/brand/:id/magazine/post`)}
+              />
               <Button
                 width="101px"
                 text="제품 추가하기"
