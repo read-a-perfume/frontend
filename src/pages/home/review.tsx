@@ -1,8 +1,9 @@
 import FlexBox from '../../layouts/flex-box'
-import {Button, Select, MenuItem, styled} from '@mui/material'
+import {Button, Select, MenuItem} from '@mui/material'
 import {SectionSubTitle, SectionTitle} from './index.style'
 import CustomIcons from '../../assets/icons/custom-Icons'
 import ReviewCard from './review-card'
+import styled from '@emotion/styled'
 
 const Review = () => {
   return (
@@ -28,12 +29,11 @@ const Review = () => {
           </FilterButton>
         </FlexBox>
       </FlexBox>
-      <FlexBox style={{marginTop: 48, flexWrap: 'wrap', gap: 23}}>
+      <ReviewBox>
         {new Array(6).fill(0).map((_, index) => (
           <ReviewCard key={index} />
-
         ))}
-      </FlexBox>
+      </ReviewBox>
     </div>
   )
 }
@@ -59,4 +59,12 @@ const FilterButton = styled(Button)({
   fontSize: 16,
   fontWeight: '500',
   color: '#202020',
+})
+
+const ReviewBox = styled.div({
+  display: 'flex',
+  justifyContent: 'space-between',
+  flexWrap: 'wrap',
+  rowGap: '32px',
+  marginTop: 48,
 })
