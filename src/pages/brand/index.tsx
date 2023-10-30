@@ -13,12 +13,13 @@ import {useRef, useState} from 'react'
 import InfoBoxes from './info-boxes.js'
 import BrandInfoDetail from './brand-info.js'
 import FlexBox from '@layouts/flex-box.js'
-import {Link} from 'react-router-dom'
 import Magazine from './magazine.js'
+import {useNavigate} from 'react-router-dom'
 import {magazineData} from '../home/constants.js'
 import Button from '../../components/base/button.js'
 
 const Brand = () => {
+  const navigate = useNavigate()
   const [enterprise, setEnterprise] = useState<boolean>(true)
   const [current, setCurrent] = useState<string>('magazine')
   const [fileURL, setFILEURL] = useState<string>('')
@@ -101,6 +102,7 @@ const Brand = () => {
                   text="매거진 글쓰기"
                   backgroundColor="secondary"
                   fontSize="md"
+                  onClick={() => navigate(`/brand/:id/magazine/post`)}
                 />
               </Link>
               <Button
