@@ -142,7 +142,7 @@ const Wrapper = styled(Box)({
 })
 
 const BrandTitle = styled(Typography)({
-  // fontFamily: 'Arita-buri(OTF)',
+  fontFamily: 'AritaBuri !important',
   fontSize: '36px',
   fontWeight: '700',
   lineHeight: '43px',
