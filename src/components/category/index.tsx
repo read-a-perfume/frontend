@@ -1,10 +1,11 @@
-import {useState} from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 
-import FlexBox from '@layouts/flex-box'
-
 import {Typography} from '@mui/material'
-import categoryImg1 from './images/fruity.png'
+import categoryImg1 from '../../pages/perfumes/images/fruity.png'
+
+import FlexBox from '@layouts/flex-box'
+import CustomIcons from '@assets/icons/custom-Icons'
 
 const CATEGORIES = [
   {
@@ -53,9 +54,13 @@ const CATEGORIES = [
     name: 'heavy',
   },
 ]
-const Category = () => {
-  const [currentCategory, setCurrentCategory] = useState<string>('fruity')
 
+interface ICategory {
+  currentCategory: string
+  setCurrentCategory: React.Dispatch<React.SetStateAction<string>>
+}
+
+const Category = ({currentCategory, setCurrentCategory}: ICategory) => {
   const handleLeftArrowClick = () => {
     const currentIndex = CATEGORIES.findIndex(
       category => category.name === currentCategory,
@@ -73,82 +78,71 @@ const Category = () => {
   }
 
   return (
-    <>
+    <div>
       <FlexBox
         direction=""
-        justifyContent="space-around"
+        justifyContent="space-between"
         alignItems="center"
         gap=""
         style={{position: 'relative'}}
       >
-        <LeftArrow
-          src="/images/left-arrow.png"
-          alt="왼쪽 화살표"
+        <CustomIcons.BeforeIcon
+          style={{marginRight: 36, cursor: 'pointer'}}
           onClick={handleLeftArrowClick}
         />
 
-        {CATEGORIES?.map(category => (
+        {CATEGORIES.map(category => (
           <FlexBox
             direction="column"
             justifyContent=""
             alignItems="center"
             gap=""
             style={{
-              marginTop: '120px',
-              marginBottom: '100px',
               cursor: 'pointer',
             }}
             onClick={() => setCurrentCategory(category.name)}
             key={category.id}
           >
-            <ImgBox
-              active={currentCategory === category.name ? 'true' : ''}
+            <CategoryImg
+              clicked={currentCategory === category.name ? 'true' : ''}
               src={category.img}
               alt="category 이미지"
             />
-            <Name active={currentCategory === category.name ? 'true' : ''}>
+            <CategoryName
+              clicked={currentCategory === category.name ? 'true' : ''}
+            >
               {category.name}
-            </Name>
+            </CategoryName>
           </FlexBox>
         ))}
-
-        <RightArrow
-          src="/images/right-arrow.png"
-          alt="오른쪽 화살표"
+        <CustomIcons.AfterIcon
+          style={{marginLeft: 36, cursor: 'pointer'}}
           onClick={handleRightArrowClick}
         />
       </FlexBox>
-    </>
+    </div>
   )
 }
 
-const LeftArrow = styled.img({
-  width: '24px',
-  height: '24px',
-  cursor: 'pointer',
-})
-const RightArrow = styled.img({
-  width: '24px',
-  height: '24px',
-  cursor: 'pointer',
-})
-
-const ImgBox = styled.img<{active: string}>(({active}) => ({
+const CategoryImg = styled.img<{clicked: string}>(({clicked}) => ({
   borderRadius: '50%',
-  border: active ? '1px solid #FE7156' : '1px solid white',
+  border: clicked ? '1px solid #FE7156' : '1px solid #F1F1F5',
+  cursor: 'pointer',
   transition: 'all 0.3s ease-in-out',
   '&:hover': {
     border: '1px solid #FE7156',
   },
 }))
 
-const Name = styled(Typography)<{active: string}>(({active}) => ({
-  marginTop: '15px',
+const CategoryName = styled(Typography)<{clicked: string}>(({clicked}) => ({
+  fontFamily: 'AritaBuri, sans-serif, Arial !important',
+  marginTop: '16px',
   fontWeight: '500',
   fontSize: '18px',
   lineHeight: '21.6px',
-  color: active ? '#FE7156' : '#000000',
+  color: clicked ? '#FE7156' : 'black',
   textTransform: 'uppercase',
   transition: 'all 0.3s ease-in-out',
 }))
+
 export default Category

@@ -4,7 +4,7 @@ import {Box, Typography} from '@mui/material'
 
 import FlexBox from '@layouts/flex-box'
 import Header from '@layouts/header'
-import Category from './category'
+import Category from '@components/category'
 import Pagination from '@mui/material/Pagination'
 
 import brandDummyData from './dummyData'
@@ -14,6 +14,8 @@ import PerfumesItem from './perfumes-item'
 const dummydata = Array.from({length: 30}, (_, index) => index + 1)
 
 const Perfumes = () => {
+  const [currentCategory, setCurrentCategory] = useState<string>('fruity')
+
   // 마지막 페이지
   const LAST_PAGE =
     dummydata.length % 12 === 0
@@ -89,7 +91,12 @@ const Perfumes = () => {
         </FlexBox>
 
         {/* 카테고리 */}
-        <Category />
+        <div className="category-wrapper">
+          <Category
+            currentCategory={currentCategory}
+            setCurrentCategory={setCurrentCategory}
+          />
+        </div>
 
         {/* 제품 리스트 */}
         <ProductList>
@@ -128,6 +135,10 @@ const Perfumes = () => {
 const Wrapper = styled(Box)({
   maxWidth: '1600px',
   margin: '0 auto',
+  '& .category-wrapper': {
+    marginTop: '120px',
+    marginBottom: '100px',
+  },
 })
 
 const BrandTitle = styled(Typography)({
@@ -137,8 +148,6 @@ const BrandTitle = styled(Typography)({
   lineHeight: '43px',
   textAlign: 'left',
   color: '#FFFFFF',
-  // 임시로 해놓음,
-  // 폰트설정하면 지울 예정
   marginBottom: '15px',
 })
 
