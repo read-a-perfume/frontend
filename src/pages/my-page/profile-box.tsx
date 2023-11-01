@@ -4,8 +4,11 @@ import FlexBox from '@layouts/flex-box.js'
 import BoxBottomButtton from './box-bottom-button.js'
 import {Typography} from '@mui/material'
 import HeartIcon from '@assets/icons/heart-Icon.js'
+import { useNavigate } from 'react-router-dom'
 
 const ProfileBox = () => {
+  const navigate = useNavigate()
+
   return (
     <ProfileBoxLayout>
       <TopBox>
@@ -70,7 +73,7 @@ const ProfileBox = () => {
       <BottomBox>
         <BoxBottomButtton
           text="내 프로필 편집"
-          onClick={() => console.log('go to my profile')}
+          onClick={() => navigate('/setting')}
         />
       </BottomBox>
     </ProfileBoxLayout>

@@ -8,6 +8,7 @@ import Brand from '@pages/brand'
 import GeneralLayout from '@layouts/general-layout'
 import Perfumes from '@pages/perfumes'
 import MyPage from '@pages/my-page/index'
+import Account from '@pages/account/index'
 
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
@@ -65,6 +66,12 @@ const routerData: RouterElement[] = [
     path: '/mypage',
     element: <MyPage />,
   },
+  {
+    id: 7,
+    label: '프로필 관리',
+    path: '/settings',
+    element: <Account />,
+  },
   //   {
   //     label: "test",
   //     key: "test-key",
@@ -107,12 +114,6 @@ const routerData: RouterElement[] = [
   //     key: "post-magazine-key",
   //     route: "/brand/:id/magazine/post",
   //     component: <PostMagazine />,
-  //   },
-  //   {
-  //     label: "settings",
-  //     key: "settings-key",
-  //     route: "/:id/settings",
-  //     component: <AccountLayout />,
   //   },
 ]
 
