@@ -1,15 +1,25 @@
 import FlexBox from '@layouts/flex-box.js'
 import styled from '@emotion/styled'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import NewsFeed from './news-feed.js'
+import BottomNavigation from './bottom-navigation.js'
 
 const data = ['All', '내가 작성한 피드', '좋아요', '??']
 
-const feedData = new Array(8).fill(0).map((_, i) => i + 1)
+const feedData = new Array(80).fill(0).map((_, i) => i + 1)
 
 const Feeds = () => {
   const [ordered, setOrdered] = useState<string>('All')
-  // .slice(currentPage * 6, currentPage * 6 + 6)
+  const [page, setPage] = useState<number>(1)
+  const [lastPage, setLastPage] = useState<number>(1)
+
+  useEffect(() => {
+    setLastPage(
+      !(feedData.length / 6)
+        ? feedData.length / 6
+        : Math.ceil(feedData.length / 6),
+    )
+  }, [])
 
   return (
     <>
@@ -27,10 +37,11 @@ const Feeds = () => {
         </FlexBox>
       </div>
       <Wrapper>
-        {feedData.map(el => (
+        {feedData.slice((page - 1) * 6, (page - 1) * 6 + 6).map(el => (
           <NewsFeed key={el} />
         ))}
       </Wrapper>
+      <BottomNavigation page={page} setPage={setPage} lastPage={lastPage} />
     </>
   )
 }
@@ -48,17 +59,14 @@ const OrderButton = styled.button(({clicked}: {clicked: boolean}) => ({
 }))
 
 const Wrapper = styled.div({
-  // display: 'flex',
-  // justifyContent: 'space-between',
-  // flexWrap: 'wrap',
-  // rowGap: '88px',
   width: window.innerWidth,
-  height: window.innerHeight,
+  height: 420 * 2 + 88 + 'px',
   display: 'grid',
   rowGap: '88px',
   columnGap: '32px',
-  gridTemplateColumns: 'auto auto auto',
-  gridTemplateRows: '1fr 1fr',
+  gridTemplateColumns: '512px 512px 512px',
+  gridTemplateRows: '420px 420px',
   alignItems: 'center',
   justifyContent: 'space-between',
+  marginBottom: 130,
 })
