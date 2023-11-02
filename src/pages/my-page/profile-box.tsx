@@ -73,7 +73,7 @@ const ProfileBox = () => {
       <BottomBox>
         <BoxBottomButtton
           text="내 프로필 편집"
-          onClick={() => navigate('/setting')}
+          onClick={() => navigate('/settings')}
         />
       </BottomBox>
     </ProfileBoxLayout>

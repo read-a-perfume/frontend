@@ -4,7 +4,7 @@ import FlexBox from '@layouts/flex-box.js'
 import {Typography} from '@mui/material'
 import { theme } from '@theme/index.js'
 import Calendar from './calendar.js'
-import 'react-datepicker/dist/react-datepicker.css'
+// import 'react-datepicker/dist/react-datepicker.css'
 import { InputProps } from './index.js'
 import { Category, Title } from './index.styles.js'
 
