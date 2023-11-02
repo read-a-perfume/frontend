@@ -1,4 +1,4 @@
-import CloseIcon from '@assets/icons/close-Icon.js'
+import CustomIcons from '@assets/icons/custom-Icons.js'
 import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box.js'
 import {Box, Modal, Typography} from '@mui/material'
@@ -81,7 +81,7 @@ function NotificationModal({isOpen, setIsOpen}: ModalProps) {
             onClick={() => setIsOpen(false)}
             style={{marginBottom: -10}}
           >
-            <CloseIcon color="#CFCFCF" />
+            <CustomIcons.CloseIcon color="#CFCFCF" />
           </div>
         </FlexBox>
         <div
