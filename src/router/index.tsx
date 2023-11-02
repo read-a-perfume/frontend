@@ -3,9 +3,10 @@ import SignUp from '@pages/sign-up'
 import {Router as RemixRouter} from '@remix-run/router/dist/router'
 import SignInForm from '@pages/sign-in/sign-in-form'
 import Home from '@pages/home'
+import ReviewWriter from '@pages/reviews/review-writer'
 import Brand from '@pages/brand'
 import GeneralLayout from '@layouts/general-layout'
-import ReviewWriter from '@pages/reviews/review-writer'
+import Perfumes from '@pages/perfumes'
 
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
@@ -34,7 +35,7 @@ const routerData: RouterElement[] = [
     element: <SignInForm />,
   },
   {
-    id: 3,
+    id: 2,
     label: '회원가입 페이지',
     path: '/sign-up',
     element: <SignUp />,
@@ -51,6 +52,13 @@ const routerData: RouterElement[] = [
     path: '/reviews/review-writer',
     element: <ReviewWriter />,
   },
+  {
+    id: 5,
+    label: '제품리스트 페이지',
+    path: '/perfumes',
+    element: <Perfumes />,
+  },
+
   //   {
   //     label: "test",
   //     key: "test-key",

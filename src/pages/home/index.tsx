@@ -1,9 +1,9 @@
-import Header from "../../layouts/header";
-import LoginModal from "@components/modal/login-modal";
-import Magazines from "./magazines";
-import Notes from "./notes";
-import Review from "./review";
-import { useState } from "react";
+import Header from '../../layouts/header'
+import LoginModal from '@components/modal/login-modal'
+import Magazines from './magazines'
+import Notes from './notes'
+import Review from './review'
+import {useState} from 'react'
 import {
   Banner,
   BannerBox,
@@ -11,13 +11,13 @@ import {
   BannerImage,
   Content,
   Title,
-} from "./index.style";
-import { styled } from "@mui/material";
+} from './index.style'
+import {styled} from '@mui/material'
 
 export default function Home() {
   // const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const isLoggedIn = false;
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const isLoggedIn = false
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
     <>
@@ -40,9 +40,9 @@ export default function Home() {
         <Review />
       </CustomContent>
     </>
-  );
+  )
 }
 
 const CustomContent = styled(Content)`
   box-sizing: border-box;
-`;
+`
