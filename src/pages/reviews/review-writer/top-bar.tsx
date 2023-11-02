@@ -1,8 +1,10 @@
 import NextIcon from '@assets/icons/next-icon'
 import PrevIcon from '@assets/icons/prev-icon'
 import styled from '@emotion/styled'
+import useReviewWriterArrow from '@hooks/global-store/client/atoms/use-review-writer-arrow'
 
-const PopupHeader = ({handleNextPage, handlePrevPage}: any) => {
+const Topbar = () => {
+  const {handleNextPage, handlePrevPage} = useReviewWriterArrow()
   const Header = styled.header({
     position: 'relative',
     display: 'flex',
@@ -42,4 +44,4 @@ const PopupHeader = ({handleNextPage, handlePrevPage}: any) => {
   )
 }
 
-export default PopupHeader
+export default Topbar

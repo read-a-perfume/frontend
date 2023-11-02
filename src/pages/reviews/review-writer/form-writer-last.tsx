@@ -7,7 +7,6 @@ import {
   TextareaAutosize,
 } from '@mui/material'
 import styled from '@emotion/styled'
-import {useState} from 'react'
 
 const data = [
   '자연적인',
@@ -20,25 +19,11 @@ const data = [
   '고급진',
 ]
 
-const PopupFormSecond = () => {
-  const [checkedItems, setCheckedItems] = useState([''])
-
-  const handleChange = event => {
-    const checkedValue = event.target.value
-    const currentIndex = checkedItems.indexOf(checkedValue)
-    const newCheckedItems = [...checkedItems]
-
-    if (currentIndex === -1) {
-      if (newCheckedItems.length <= 3) {
-        newCheckedItems.push(checkedValue)
-      }
-    } else {
-      newCheckedItems.splice(currentIndex, 1)
-    }
-
-    setCheckedItems(newCheckedItems)
-  }
-
+const FormWriterLast = ({
+  formValues,
+  handleFormDataChange,
+  handleMultipleCheckBox,
+}: any) => {
   return (
     <FormControl component="fieldset">
       <OneLineReview>
@@ -61,13 +46,19 @@ const PopupFormSecond = () => {
               display: 'none',
             },
           }}
+          name="oneLineComment"
+          value={formValues.oneLineComment}
+          onChange={handleFormDataChange}
         />
       </OneLineReview>
       <div>
         <Title>이 향수는 어떤 느낌을 주나요?</Title>
         <TextareaAutosize
           aria-label="minimum height"
+          name="textarea"
           minRows={3}
+          value={formValues.textarea}
+          onChange={handleFormDataChange}
           placeholder="이 향수를 사용하면서 느낀 특징과 매력을 설명해주세요. 특유의 향과 향수의 노트들에 대해 느낀 점이나 어떤 면이 인상적이었는지에 대해 언급해주시면 좋습니다."
           style={{width: 411, height: 205, marginBottom: 84, padding: 20}}
         />
@@ -81,9 +72,11 @@ const PopupFormSecond = () => {
             }}
             control={
               <Checkbox
-                checked={checkedItems.includes(`${it}`)}
-                onChange={handleChange}
+                checked={formValues.keywords.includes(`${it}`)}
+                onChange={handleMultipleCheckBox}
                 value={it}
+                key={it}
+                name={it}
                 sx={{
                   '.MuiCheckbox-root': {
                     display: 'none',
@@ -98,12 +91,12 @@ const PopupFormSecond = () => {
           />
         ))}
       </Group>
-      <MuiCustomButton>리뷰 업로드</MuiCustomButton>
+      <MuiCustomButton type="submit">리뷰 업로드</MuiCustomButton>
     </FormControl>
   )
 }
 
-export default PopupFormSecond
+export default FormWriterLast
 
 const OneLineReview = styled.div({
   marginBottom: '13px',

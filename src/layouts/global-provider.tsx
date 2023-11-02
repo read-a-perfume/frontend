@@ -5,6 +5,7 @@ import {ErrorBoundary} from 'react-error-boundary' // (*)
 import {ThemeProvider} from '@mui/material'
 import {Global} from '@emotion/react'
 import globalReset from '@theme/global-reset'
+import {RecoilRoot} from 'recoil'
 
 const client = new QueryClient({
   defaultOptions: {
@@ -48,8 +49,10 @@ const GlobalProvider = ({children}: ProviderProps) => {
   return (
     <QueryClientProvider client={client}>
       <QueryErrorBoundary>
-        <Global styles={globalReset} />
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        <RecoilRoot>
+          <Global styles={globalReset} />
+          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        </RecoilRoot>
       </QueryErrorBoundary>
     </QueryClientProvider>
   )

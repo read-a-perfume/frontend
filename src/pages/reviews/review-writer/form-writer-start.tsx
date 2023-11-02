@@ -4,15 +4,13 @@ import SliderRating from './slider'
 import styled from '@emotion/styled'
 import {useState} from 'react'
 import RadioRoundedButton from './radio-rounded-button'
-import {top100Films} from './popup-form-first.constant'
+import {top100Films} from './form-writer-start.constant'
 
-const PopupFormFirst = () => {
-  const [selectedValue, setSelectedValue] = useState('')
-  //유저 프로필
-  const handleChange = event => {
-    setSelectedValue(event.target.value)
-  }
-
+const FormWriterStart = ({
+  handleFormDataChange,
+  formValues,
+  handleNextPage,
+}: any) => {
   const UserProfile = () => {
     return (
       <Profile>
@@ -35,8 +33,9 @@ const PopupFormFirst = () => {
           <Title>리뷰하고싶은 제품을 찾아주세요</Title>
           <PerfumeSearch
             disablePortal
-            id="combo-box-demo"
+            id="search"
             options={top100Films}
+            onChange={handleFormDataChange}
             sx={{width: 411}}
             renderInput={params => (
               <TextField
@@ -57,14 +56,14 @@ const PopupFormFirst = () => {
           <CustomRadioGroup
             row
             aria-label="향수"
-            name="row-radio-buttons-group"
-            value={selectedValue}
-            onChange={handleChange}
+            name="radioGroup1"
+            value={formValues.radioGroup1}
+            onChange={handleFormDataChange}
           >
-            <RadioRoundedButton text="데일리" />
-            <RadioRoundedButton text="데일리2" />
-            <RadioRoundedButton text="데일리3" />
-            <RadioRoundedButton text="데일리4" />
+            <RadioRoundedButton title="데일리" />
+            <RadioRoundedButton title="위클리" />
+            <RadioRoundedButton title="특별한 날" />
+            <RadioRoundedButton title="여행용" />
           </CustomRadioGroup>
         </section>
         <section>
@@ -81,23 +80,25 @@ const PopupFormFirst = () => {
           <CustomRadioGroup
             row
             aria-label="향수"
-            name="row-radio-buttons-group"
-            value={selectedValue}
-            onChange={handleChange}
+            name="radioGroup2"
+            value={formValues.radioGroup2}
+            onChange={handleFormDataChange}
           >
-            <RadioRoundedButton text="봄" />
-            <RadioRoundedButton text="여름" />
-            <RadioRoundedButton text="가을" />
-            <RadioRoundedButton text="겨울" />
+            <RadioRoundedButton title="봄" />
+            <RadioRoundedButton title="여름" />
+            <RadioRoundedButton title="가을" />
+            <RadioRoundedButton title="겨울" />
           </CustomRadioGroup>
         </section>
-        <RoundButton text="다음으로" width="full" />
+        <div onClick={handleNextPage}>
+          <RoundButton text="다음으로" width="full" />
+        </div>
       </FormControl>
     </>
   )
 }
 
-export default PopupFormFirst
+export default FormWriterStart
 
 const Profile = styled.div({
   display: 'flex',

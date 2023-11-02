@@ -1,18 +1,10 @@
 import styled from '@emotion/styled'
-import PopupHeader from './popup-header'
-import PopupBody from './popup-body'
-import {useState} from 'react'
 
-const ReviewPopup = () => {
-  const [pageMove, setPageMove] = useState(0)
-  //페이지 버튼을 클릭하는 함수를 만든다
-  const handlePrevPage = () => {
-    setPageMove(prevIndex => (prevIndex > 0 ? prevIndex - 1 : 1))
-  }
+import Form from './form'
+import Topbar from './top-bar'
 
-  const handleNextPage = () => {
-    setPageMove(prevIndex => (prevIndex < 1 ? prevIndex + 1 : 0))
-  }
+const ReviewWriter = () => {
+
 
   //리뷰 폼 만들기
   // 첫페이지에 카메라를 보여준다.
@@ -30,16 +22,13 @@ const ReviewPopup = () => {
 
   return (
     <Wrapper>
-      <PopupHeader
-        handleNextPage={handleNextPage}
-        handlePrevPage={handlePrevPage}
-      />
-      <PopupBody pageMove={pageMove} />
+      <Topbar  />
+      <Form  />
     </Wrapper>
   )
 }
 
-export default ReviewPopup
+export default ReviewWriter
 
 const Wrapper = styled.div({
   width: '1024px',
