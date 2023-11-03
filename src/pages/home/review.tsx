@@ -5,41 +5,62 @@ import {useState} from 'react'
 import CustomIcons from '../../assets/icons/custom-Icons'
 import ReviewCard from './review-card'
 
-const Review = () => {
+interface ReviewProps {
+  hasNavigation?: boolean
+}
+
+const Review = ({hasNavigation = true}: ReviewProps) => {
   const [filtered, setFiltered] = useState<string>('all')
 
   return (
     <div>
-      <SectionTitle>향수 리뷰</SectionTitle>
-      <SectionSubTitle>다양한 향수 리뷰를 피드에서 살펴보세요</SectionSubTitle>
-      <FlexBox justifyContent="space-between">
-        <FlexBox style={{gap: 12}}>
-          <OrderButton
-            clicked={filtered === 'all'}
-            onClick={() => setFiltered('all')}
-          >
-            ALL
-          </OrderButton>
-          <OrderButton
-            clicked={filtered === 'note'}
-            onClick={() => setFiltered('note')}
-          >
-            향수 노트별
-          </OrderButton>
-          <OrderButton
-            clicked={filtered === 'brand'}
-            onClick={() => setFiltered('brand')}
-          >
-            브랜드별
-          </OrderButton>
-          <OrderButton
-            clicked={filtered === 'mood'}
-            onClick={() => setFiltered('mood')}
-          >
-            분위기별
-          </OrderButton>
-        </FlexBox>
-        <FlexBox style={{gap: 20}}>
+      {hasNavigation && (
+        <>
+          <SectionTitle>향수 리뷰</SectionTitle>
+          <SectionSubTitle>
+            다양한 향수 리뷰를 피드에서 살펴보세요
+          </SectionSubTitle>
+        </>
+      )}
+
+      <FlexBox
+        justifyContent={hasNavigation ? 'space-between' : ''}
+        alignItems="center"
+      >
+        {/* 메인home화면 */}
+        {hasNavigation ? (
+          <FlexBox style={{gap: 12, width: '100%'}}>
+            <OrderButton
+              clicked={filtered === 'all'}
+              onClick={() => setFiltered('all')}
+            >
+              ALL
+            </OrderButton>
+            <OrderButton
+              clicked={filtered === 'note'}
+              onClick={() => setFiltered('note')}
+            >
+              향수 노트별
+            </OrderButton>
+            <OrderButton
+              clicked={filtered === 'brand'}
+              onClick={() => setFiltered('brand')}
+            >
+              브랜드별
+            </OrderButton>
+            <OrderButton
+              clicked={filtered === 'mood'}
+              onClick={() => setFiltered('mood')}
+            >
+              분위기별
+            </OrderButton>
+          </FlexBox>
+        ) : (
+          // 메인 home화면 아님
+          <SectionTitle style={{width: '100%'}}>향수 리뷰</SectionTitle>
+        )}
+
+        <FlexBox justifyContent="flex-end" style={{gap: 20, width: '100%'}}>
           <DetailOrder
             defaultValue="help"
             sx={{
@@ -53,11 +74,13 @@ const Review = () => {
           <FilterButton>
             필터 <CustomIcons.FilterIcon style={{marginLeft: 10}} />
           </FilterButton>
+
+          {!hasNavigation && <ReviewButton>리뷰작성하기</ReviewButton>}
         </FlexBox>
       </FlexBox>
       <FlexBox style={{marginTop: 48, flexWrap: 'wrap', gap: 23}}>
-        {new Array(6).fill(0).map(el => (
-          <ReviewCard key={el} />
+        {new Array(6).fill(0).map((_el, index) => (
+          <ReviewCard key={index} />
         ))}
       </FlexBox>
     </div>
@@ -75,6 +98,17 @@ const OrderButton = styled(Button)(({clicked}: {clicked: boolean}) => ({
   background: clicked ? '#FE7156' : '#F1F1F5',
   padding: '8px 13px',
 }))
+
+const ReviewButton = styled(Button)({
+  borderRadius: 10,
+  backgroundColor: '#FE7156',
+  color: '#FFF',
+  width: '200px',
+
+  '&:hover': {
+    backgroundColor: '#ee674c',
+  },
+})
 
 const DetailOrder = styled(Select)({
   width: 108,
