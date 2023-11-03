@@ -7,6 +7,7 @@ import EditOptions from '@layouts/edit-options'
 import Brand from '@pages/brand'
 import GeneralLayout from '@layouts/general-layout'
 import Perfumes from '@pages/perfumes'
+import PerfumeDetail from '@pages/perfume-detail'
 
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
@@ -54,6 +55,12 @@ const routerData: RouterElement[] = [
   },
   {
     id: 5,
+    label: '제품 상세 페이지',
+    path: '/perfume/:id',
+    element: <PerfumeDetail />,
+  },
+  {
+    id: 6,
     label: '테스트',
     path: '/test',
     element: <EditOptions />,

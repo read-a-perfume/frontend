@@ -1,5 +1,5 @@
-import { createSvgIcon } from "@mui/material/utils";
-import { theme } from "../../theme/index";
+import {createSvgIcon} from '@mui/material/utils'
+import {theme} from '../../theme/index'
 
 const CommentIcon = createSvgIcon(
   <svg
@@ -17,8 +17,8 @@ const CommentIcon = createSvgIcon(
       strokeLinejoin="round"
     />
   </svg>,
-  "CommentIcon"
-);
+  'CommentIcon',
+)
 
 const CommentIcon2 = createSvgIcon(
   <svg
@@ -33,8 +33,8 @@ const CommentIcon2 = createSvgIcon(
       fill="#DBDBDB"
     />
   </svg>,
-  "CommentIcon2"
-);
+  'CommentIcon2',
+)
 
 const SearchIcon = createSvgIcon(
   <svg
@@ -49,8 +49,8 @@ const SearchIcon = createSvgIcon(
       fill="#202020"
     />
   </svg>,
-  "SearchIcon"
-);
+  'SearchIcon',
+)
 
 const DefaultCheckIcon = createSvgIcon(
   <svg
@@ -73,8 +73,8 @@ const DefaultCheckIcon = createSvgIcon(
       strokeLinejoin="round"
     />
   </svg>,
-  "DefaultCheckIcon"
-);
+  'DefaultCheckIcon',
+)
 
 const YellowCheckIcon = createSvgIcon(
   <svg
@@ -97,8 +97,8 @@ const YellowCheckIcon = createSvgIcon(
       strokeLinejoin="round"
     />
   </svg>,
-  "YellowCheckIcon"
-);
+  'YellowCheckIcon',
+)
 
 const ArrowLeftIcon = createSvgIcon(
   <svg
@@ -115,8 +115,8 @@ const ArrowLeftIcon = createSvgIcon(
       strokeLinejoin="round"
     />
   </svg>,
-  "ArrowLeftIcon"
-);
+  'ArrowLeftIcon',
+)
 
 const HamburgerIcon = createSvgIcon(
   <svg
@@ -130,8 +130,8 @@ const HamburgerIcon = createSvgIcon(
       d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2z"
     />
   </svg>,
-  "HamburgerIcon"
-);
+  'HamburgerIcon',
+)
 
 const ImageUploadIcon = createSvgIcon(
   <svg width="61" height="55" viewBox="0 0 61 55" fill="none">
@@ -140,8 +140,8 @@ const ImageUploadIcon = createSvgIcon(
       fill="#B4B4B4"
     />
   </svg>,
-  "ImageUploadIcon"
-);
+  'ImageUploadIcon',
+)
 
 const TitleIcon = createSvgIcon(
   <svg
@@ -153,8 +153,8 @@ const TitleIcon = createSvgIcon(
   >
     <path d="M5 5V8H10.5V20H13.5V8H19V5H5Z" fill="black" />
   </svg>,
-  "TitleIcon"
-);
+  'TitleIcon',
+)
 
 const ImageIcon = createSvgIcon(
   <svg
@@ -169,8 +169,8 @@ const ImageIcon = createSvgIcon(
       fill="#191919"
     />
   </svg>,
-  "ImageIcon"
-);
+  'ImageIcon',
+)
 
 const TagIcon = createSvgIcon(
   <svg
@@ -185,8 +185,8 @@ const TagIcon = createSvgIcon(
       fill="black"
     />
   </svg>,
-  "TagIcon"
-);
+  'TagIcon',
+)
 
 const BeforeIcon = createSvgIcon(
   <svg
@@ -201,8 +201,8 @@ const BeforeIcon = createSvgIcon(
       fill="#B4B4B4"
     />
   </svg>,
-  "BeforeIcon"
-);
+  'BeforeIcon',
+)
 
 const BeforeIconBlack = createSvgIcon(
   <svg
@@ -217,8 +217,8 @@ const BeforeIconBlack = createSvgIcon(
       fill="black"
     />
   </svg>,
-  "BeforeIcon"
-);
+  'BeforeIcon',
+)
 
 const AfterIcon = createSvgIcon(
   <svg
@@ -233,8 +233,8 @@ const AfterIcon = createSvgIcon(
       fill="#B4B4B4"
     />
   </svg>,
-  "AfterIcon"
-);
+  'AfterIcon',
+)
 
 const AfterIconBlack = createSvgIcon(
   <svg
@@ -249,8 +249,8 @@ const AfterIconBlack = createSvgIcon(
       fill="black"
     />
   </svg>,
-  "AfterIcon"
-);
+  'AfterIcon',
+)
 
 const FilterIcon = createSvgIcon(
   <svg
@@ -267,8 +267,8 @@ const FilterIcon = createSvgIcon(
     <circle cx="6.5" cy="4.5" r="2" fill="white" stroke="black" />
     <circle cx="6.5" cy="18.5" r="2" fill="white" stroke="black" />
   </svg>,
-  "FilterIcon"
-);
+  'FilterIcon',
+)
 
 const HeartIcon = createSvgIcon(
   <svg
@@ -283,8 +283,8 @@ const HeartIcon = createSvgIcon(
       fill="#FB196A"
     />
   </svg>,
-  "HeartIcon"
-);
+  'HeartIcon',
+)
 
 const PencilIcon = createSvgIcon(
   <svg
@@ -307,8 +307,8 @@ const PencilIcon = createSvgIcon(
       fill="#131313"
     />
   </svg>,
-  "PencilIcon"
-);
+  'PencilIcon',
+)
 
 const CalendarIcon = createSvgIcon(
   <svg
@@ -323,8 +323,8 @@ const CalendarIcon = createSvgIcon(
       fill="#191919"
     />
   </svg>,
-  "CalendarIcon"
-);
+  'CalendarIcon',
+)
 
 const RadioUnchecked = createSvgIcon(
   <svg
@@ -342,8 +342,8 @@ const RadioUnchecked = createSvgIcon(
       strokeLinejoin="round"
     />
   </svg>,
-  "RadioUnchecked"
-);
+  'RadioUnchecked',
+)
 
 const RadioChecked = createSvgIcon(
   <svg
@@ -360,8 +360,8 @@ const RadioChecked = createSvgIcon(
       fill="#131313"
     />
   </svg>,
-  "RadioChecked"
-);
+  'RadioChecked',
+)
 
 const ShowPassword = createSvgIcon(
   <svg
@@ -415,8 +415,8 @@ const ShowPassword = createSvgIcon(
       strokeWidth="12"
     />
   </svg>,
-  "ShowPassword"
-);
+  'ShowPassword',
+)
 
 const HidePassword = createSvgIcon(
   <svg
@@ -433,8 +433,8 @@ const HidePassword = createSvgIcon(
       strokeLinejoin="round"
     />
   </svg>,
-  "HidePassword"
-);
+  'HidePassword',
+)
 
 const Dot = createSvgIcon(
   <svg
@@ -446,8 +446,8 @@ const Dot = createSvgIcon(
   >
     <circle cx="2" cy="2" r="2" fill="#D9D9D9" />
   </svg>,
-  "Dot"
-);
+  'Dot',
+)
 
 const CustomIcons = {
   CommentIcon,
@@ -474,6 +474,6 @@ const CustomIcons = {
   Dot,
   BeforeIconBlack,
   AfterIconBlack,
-};
+}
 
-export default CustomIcons;
+export default CustomIcons

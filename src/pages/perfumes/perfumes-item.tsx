@@ -4,39 +4,43 @@ import {Typography} from '@mui/material'
 import FlexBox from '@layouts/flex-box'
 
 import img1 from './images/Rectangle7217(5).png'
+import {Link} from 'react-router-dom'
 
 // 타입 추후에 설정할 예정입니다.
 const PerfumesItem = ({item}: any) => {
-  console.log(item)
+  console.log('item:', item)
 
   return (
-    <FlexBox
-      direction="column"
-      justifyContent=""
-      alignItems="ceter"
-      gap=""
-      style={{
-        width: '376px',
-      }}
-    >
-      <ProductWrapper>
-        <img src={img1} alt="img" />
-        <BrandTitle>구딸파리</BrandTitle>
-        <BrandSubTitle>로즈폼퐁 오 드 퍼퓸</BrandSubTitle>
-      </ProductWrapper>
+    // Link는 임시
+    <Link to={`/perfume/:id`}>
+      <FlexBox
+        direction="column"
+        justifyContent=""
+        alignItems="ceter"
+        gap=""
+        style={{
+          width: '376px',
+        }}
+      >
+        <ProductWrapper>
+          <img src={img1} alt="img" />
+          <BrandTitle>구딸파리</BrandTitle>
+          <BrandSubTitle>로즈폼퐁 오 드 퍼퓸</BrandSubTitle>
+        </ProductWrapper>
 
-      <Information>
-        <InfoLeft>
-          <Type>강도</Type>
-          적당한 향
-        </InfoLeft>
+        <Information>
+          <InfoLeft>
+            <Type>강도</Type>
+            적당한 향
+          </InfoLeft>
 
-        <div className="vertical-line" />
-        <InfoRight>
-          <Type>지속력</Type> 3시간~6시간
-        </InfoRight>
-      </Information>
-    </FlexBox>
+          <div className="vertical-line" />
+          <InfoRight>
+            <Type>지속력</Type> 3시간~6시간
+          </InfoRight>
+        </Information>
+      </FlexBox>
+    </Link>
   )
 }
 
