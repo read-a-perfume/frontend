@@ -56,7 +56,7 @@ const FormWriterStart = ({
           <CustomRadioGroup
             row
             aria-label="향수"
-            name="radioGroup1"
+            name="dayType"
             value={formValues.radioGroup1}
             onChange={handleFormDataChange}
           >
@@ -73,14 +73,25 @@ const FormWriterStart = ({
 
         <section>
           <Title>이 향수의 지속력은 어떤가요?</Title>
-          <SliderRating />
+          <CustomRadioGroup
+            row
+            aria-label="향수"
+            name="duration"
+            value={formValues.radioGroup2}
+            onChange={handleFormDataChange}
+          >
+            <RadioRoundedButton title="선택지1" />
+            <RadioRoundedButton title="선택지2" />
+            <RadioRoundedButton title="선택지3" />
+            <RadioRoundedButton title="선택지4" />
+          </CustomRadioGroup>
         </section>
         <section>
           <Title>어떤 계절하고 잘 어울린다고 생각하나요?</Title>
           <CustomRadioGroup
             row
             aria-label="향수"
-            name="radioGroup2"
+            name="season"
             value={formValues.radioGroup2}
             onChange={handleFormDataChange}
           >

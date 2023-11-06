@@ -5,43 +5,49 @@ import useReviewWriterArrow from '@hooks/global-store/client/atoms/use-review-wr
 
 const Topbar = () => {
   const {handleNextPage, handlePrevPage} = useReviewWriterArrow()
-  const Header = styled.header({
-    position: 'relative',
-    display: 'flex',
-    justifyContent: 'center',
-    alignContent: 'center',
-    fontSize: '20px',
-    padding: '20px 0',
-    borderBottom: '1px solid #EDEDED;',
-  })
-
-  const Prev = styled.span({
-    position: 'absolute',
-    left: 0,
-    top: '50%',
-    transform: 'translateY(-50%)',
-  })
-
-  const Next = styled.span({
-    position: 'absolute',
-    right: 0,
-    top: '50%',
-    transform: 'translateY(-50%)',
-  })
 
   return (
     <Header>
       <>
-        <Prev onClick={handlePrevPage}>
-          <PrevIcon />
-        </Prev>
-        <h3>리뷰작성</h3>
-        <Next onClick={handleNextPage}>
-          <NextIcon />
-        </Next>
+        <Title>리뷰작성</Title>
+        <div>
+          <Prev onClick={handlePrevPage}>
+            <PrevIcon />
+          </Prev>
+          <Next onClick={handleNextPage}>
+            <NextIcon />
+          </Next>
+        </div>
       </>
     </Header>
   )
 }
 
 export default Topbar
+const Header = styled.header({
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignContent: 'center',
+})
+
+const Title = styled.h3({
+  fontSize: '24px',
+  paddingBottom: 10,
+  fontFamily: 'AritaBuri !important',
+  fontWeight: 600,
+})
+
+const Prev = styled.span({
+  position: 'absolute',
+  right: 20,
+  top: '50%',
+  transform: 'translateY(-50%)',
+})
+
+const Next = styled.span({
+  position: 'absolute',
+  right: 0,
+  top: '50%',
+  transform: 'translateY(-50%)',
+})

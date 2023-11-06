@@ -54,7 +54,7 @@ const PostMagazine = () => {
     } else {
       setCompleted(false)
     }
-  }, [inputs.title])
+  }, [inputs.title, postImageURL])
 
   const changeImageHandler = (
     event: React.ChangeEvent<HTMLInputElement>,

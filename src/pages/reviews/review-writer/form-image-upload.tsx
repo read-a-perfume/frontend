@@ -1,6 +1,14 @@
-import {Button} from '@mui/material'
+import {
+  Button,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from '@mui/material'
 import styled from '@emotion/styled'
 import MainThumbnailUploadIcon from '@assets/icons/upload-icon'
+import {useState} from 'react'
+import DeleteIconSvg from '@mui/icons-material/Delete'
 
 interface Props {
   handleThumbnailUpload: (
@@ -16,6 +24,16 @@ const FormImageUpload = ({
   handleThumbnailUpload,
   files,
 }: Props) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null) // 열려있는 삭제 창의 인덱스
+
+  //클릭한 이미지를 추척해야함
+
+  const handleToggleIndex = index => {
+    if (openIndex === index) {
+      setOpenIndex(null)
+    } else setOpenIndex(index)
+  }
+
   return (
     <div>
       <Button
@@ -47,33 +65,77 @@ const FormImageUpload = ({
           </MainThumbnailInfo>
         </MainThumbnailContainer>
         {files && (
-          <MainThumbnailImage files={files[0]} value={files} id="fileInput" />
+          <MainThumbnailImage
+            files={files[0]}
+            value={files}
+            id="fileInput"
+            onClick={() => handleToggleIndex(0)}
+          />
         )}
-        {files[0] && (
-          <DeleteIcon onClick={() => handleThumbnailDelete(files[0])}>
-            삭제
-          </DeleteIcon>
+        {files[0] && openIndex === 0 && (
+          <Popup
+            handleThumbnailDelete={handleThumbnailDelete}
+            files={files[0]}
+          />
         )}
       </MainThumbnailView>
       <SubThumbnailGroup>
         {files.length &&
-          files
-            .slice(1)
-            .map(image => (
-              <SubThumbnailImage image={image}>
-                {image.length > 3 && (
-                  <DeleteIcon onClick={() => handleThumbnailDelete(image)}>
-                    삭제
-                  </DeleteIcon>
-                )}
-              </SubThumbnailImage>
-            ))}
+          files.slice(1).map((image, index) => (
+            <SubThumbnailImage
+              image={image}
+              onClick={() => handleToggleIndex(index + 1)}
+            >
+              {files[index + 1] && openIndex === index + 1 && (
+                <Popup
+                  handleThumbnailDelete={handleThumbnailDelete}
+                  files={image}
+                />
+              )}
+            </SubThumbnailImage>
+          ))}
       </SubThumbnailGroup>
     </div>
   )
 }
 
 export default FormImageUpload
+
+const Popup = ({handleThumbnailDelete, files}: any) => {
+  return (
+    <List
+      sx={{
+        position: 'absolute',
+        right: -20,
+        top: -20,
+        zIndex: 100,
+        width: '80px',
+        background: '#fff',
+        paddding: 0,
+        fontSize: 14,
+        '&.MuiList-root': {
+          padding: 0,
+        },
+        '& span.MuiTypography-root': {
+          fontSize: 14,
+        },
+        '& .MuiListItemButton-root': {
+          border: '1px solid black',
+        },
+      }}
+    >
+      <ListItemButton
+        sx={{padding: 0}}
+        onClick={() => handleThumbnailDelete(files)}
+      >
+        <ListItemIcon sx={{minWidth: 0}}>
+          <DeleteIconSvg sx={{width: 24}} />
+        </ListItemIcon>
+        <ListItemText primary="지우기" />
+      </ListItemButton>
+    </List>
+  )
+}
 
 const MainThumbnailView = styled.div<any>({
   position: 'relative',
@@ -84,6 +146,7 @@ const MainThumbnailView = styled.div<any>({
   borderRadius: '20px',
   border: '1px solid  #EDEDED',
   cursor: 'pointer',
+  marginBottom: '38px',
 })
 
 const MainThumbnailImage = styled.div<any>(props => ({
@@ -121,13 +184,6 @@ const MainThumbnailInfo = styled.div({
     fontSize: '16px',
     color: '#A9A9A9',
   },
-})
-
-const DeleteIcon = styled.div({
-  position: 'absolute',
-  top: -20,
-  right: -20,
-  zIndex: 1000,
 })
 
 const VisuallyHiddenInput = styled('input')({

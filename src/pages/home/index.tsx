@@ -1,4 +1,3 @@
-import Header from '../../layouts/header'
 import LoginModal from '@components/modal/login-modal'
 import Magazines from './magazines'
 import Notes from './notes'
@@ -22,7 +21,6 @@ export default function Home() {
   return (
     <>
       <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} />
-      <Header />
       <Banner onClick={() => setIsOpen(!isLoggedIn ? true : false)}>
         <BannerImage src="/images/banner.png" alt="banner" />
         <BannerBox>

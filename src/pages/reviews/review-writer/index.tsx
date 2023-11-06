@@ -4,8 +4,6 @@ import Form from './form'
 import Topbar from './top-bar'
 
 const ReviewWriter = () => {
-
-
   //리뷰 폼 만들기
   // 첫페이지에 카메라를 보여준다.
   //
@@ -22,8 +20,8 @@ const ReviewWriter = () => {
 
   return (
     <Wrapper>
-      <Topbar  />
-      <Form  />
+      <Topbar />
+      <Form />
     </Wrapper>
   )
 }
@@ -31,11 +29,9 @@ const ReviewWriter = () => {
 export default ReviewWriter
 
 const Wrapper = styled.div({
-  width: '1024px',
-  height: '788px',
-  border: '1px solid black',
+  maxWidth: '1024px',
   padding: '0 32px',
-
+  margin: 'auto',
   section: {
     marginBottom: '32px',
   },

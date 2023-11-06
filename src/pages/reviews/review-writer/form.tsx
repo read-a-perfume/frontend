@@ -4,8 +4,9 @@ import FormWriterStart from './form-writer-start'
 import FormWriterLast from './form-writer-last'
 import FormImageUpload from './form-image-upload'
 import useReviewWriterArrow from '@hooks/global-store/client/atoms/use-review-writer-arrow'
+import {ReviewWriterFormProps} from './form.interface'
 
-const data = [
+const tags = [
   '자연적인',
   '달달한',
   '여름',
@@ -15,40 +16,29 @@ const data = [
   '우아한',
   '고급진',
 ]
-interface FormValuesClientProps {
-  sliderValue: number
-  radioGroup1: string
-  radioGroup2: string
-  search: string
-  files: string[]
-  oneLineComment: string
-  textarea: string
-  compatibleKeywords: string[]
-  keywords: string[]
-}
 
 const Form = () => {
   const {handleNextPage, pageMove} = useReviewWriterArrow()
-  const [formValues, setFormValues] = useState<FormValuesClientProps>({
-    sliderValue: 0,
-    keywords: [],
-    radioGroup1: '',
-    radioGroup2: '',
-    search: '',
+  const [formValues, setFormValues] = useState<ReviewWriterFormProps>({
+    perfumeId: '',
+    dayType: '',
+    strength: '',
+    season: '',
+    duration: 0,
+    shortReview: '',
+    feeling: '',
+    tags: [],
     files: ['', '', '', '', ''],
-    oneLineComment: '',
-    textarea: '',
-    compatibleKeywords: [],
   })
 
   const handleFormDataChange = (event, value) => {
     const target = event.target
     const name = target.name
 
-    if (name === 'search') {
+    if (name === 'perfumeId') {
       setFormValues({
         ...formValues,
-        ['search']: value,
+        ['perfumeId']: value,
       })
     }
     setFormValues({
@@ -56,36 +46,36 @@ const Form = () => {
       [name]: target.value,
     })
   }
- 
+
   //최대 3개까지 가능한 체크박스
   const handleMultipleCheckBox = event => {
     const target = event.target
     const name = target.name
     //체크박스 최대 3개까지 선택가능
-    if (data.includes(event.target.name)) {
+    if (tags.includes(event.target.name)) {
       //중복 체크는 취소하도록 필터링
-      const filter = formValues.keywords.filter(keyword => keyword !== name)
+      const filter = formValues.tags.filter(keyword => keyword !== name)
 
-      if (formValues.keywords.length !== filter.length) {
+      if (formValues.tags.length !== filter.length) {
         setFormValues({
           ...formValues,
-          ['keywords']: [...filter],
+          ['tags']: [...filter],
         })
         return
       }
       //최대 3개까지
-      if (formValues.keywords.length < 3) {
+      if (formValues.tags.length < 3) {
         setFormValues({
           ...formValues,
-          ['keywords']: [name, ...formValues.keywords],
+          ['tags']: [name, ...formValues.tags],
         })
       }
       //3개이상이면 마지막께 취소되고 새로운 키워드가 선택
-      if (formValues.keywords.length >= 3) {
-        const updatedKeywords = [...formValues.keywords.slice(0, 2), name]
+      if (formValues.tags.length >= 3) {
+        const updatedtags = [...formValues.tags.slice(0, 2), name]
         setFormValues({
           ...formValues,
-          ['keywords']: updatedKeywords,
+          ['tags']: updatedtags,
         })
         return
       }
@@ -132,11 +122,12 @@ const Form = () => {
     const formData = new FormData(event.currentTarget)
 
     // 다른 formValues를 append하는 부분
-    formData.append('sliderValue', formValues.sliderValue.toString())
-    formData.append('keywords', formValues.keywords.toString())
-    formData.append('radioGroup1', formValues.radioGroup1)
-    formData.append('radioGroup2', formValues.radioGroup2)
-    formData.append('search', formValues.search)
+    formData.append('duration', formValues.duration.toString())
+    formData.append('tags', formValues.tags.toString())
+    formData.append('dayType', formValues.dayType)
+    formData.append('seaseon', formValues.season)
+    formData.append('perfumeId', formValues.perfumeId)
+    formData.append('feeling', formValues.feeling)
 
     // files 배열을 append하는 부분
     formValues.files.forEach((file, index) => {
@@ -147,7 +138,7 @@ const Form = () => {
     }
   }
 
-  //향수 리뷰 적는곳
+  //향수 리뷰 적는곳]
 
   return (
     <form onSubmit={handleSubmit}>

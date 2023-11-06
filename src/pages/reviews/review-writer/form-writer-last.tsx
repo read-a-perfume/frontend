@@ -46,7 +46,7 @@ const FormWriterLast = ({
               display: 'none',
             },
           }}
-          name="oneLineComment"
+          name="shortReview"
           value={formValues.oneLineComment}
           onChange={handleFormDataChange}
         />
@@ -55,7 +55,7 @@ const FormWriterLast = ({
         <Title>이 향수는 어떤 느낌을 주나요?</Title>
         <TextareaAutosize
           aria-label="minimum height"
-          name="textarea"
+          name="feeling"
           minRows={3}
           value={formValues.textarea}
           onChange={handleFormDataChange}
@@ -72,7 +72,7 @@ const FormWriterLast = ({
             }}
             control={
               <Checkbox
-                checked={formValues.keywords.includes(`${it}`)}
+                checked={formValues.tags.includes(`${it}`)}
                 onChange={handleMultipleCheckBox}
                 value={it}
                 key={it}
