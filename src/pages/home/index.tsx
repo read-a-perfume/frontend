@@ -1,9 +1,10 @@
+import {useState} from 'react'
+
 import Header from '../../layouts/header'
 import LoginModal from '@components/modal/login-modal'
 import Magazines from './magazines'
 import Notes from './notes'
-import Review from './review'
-import {useState} from 'react'
+import Review from '@components/review'
 import {
   Banner,
   BannerBox,
