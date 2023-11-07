@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react'
 import styled from '@emotion/styled'
-import Header from '@layouts/header'
 import Carousel from './carousel'
 import FlexBox from '@layouts/flex-box'
 import Notes from './notes'
@@ -47,7 +46,6 @@ const PerfumeDetail = () => {
 
   return (
     <>
-      <Header />
       <Box
         sx={{
           width: '100%',
