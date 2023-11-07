@@ -4,7 +4,7 @@ import Carousel from './carousel'
 import FlexBox from '@layouts/flex-box'
 import Notes from './notes'
 import Information from './information'
-import Review from '@components/review'
+import Review from '@pages/perfume-detail/review'
 import PerfumesItem from '@pages/perfumes/perfumes-item'
 
 import {Box, Button, Pagination, Typography} from '@mui/material'
@@ -119,7 +119,7 @@ const PerfumeDetail = () => {
 
         {/* 향수 리뷰 */}
         <Box sx={{marginTop: '200px'}}>
-          <Review hasNavigation={false} />
+          <Review />
 
           <Footer>
             <Pagination

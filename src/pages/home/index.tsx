@@ -3,7 +3,7 @@ import {useState} from 'react'
 import LoginModal from '@components/modal/login-modal'
 import Magazines from './magazines'
 import Notes from './notes'
-import Review from '@components/review'
+import Review from '@pages/perfume-detail/review'
 import {
   Banner,
   BannerBox,
