@@ -98,7 +98,9 @@ const Perfumes = () => {
         {/* 제품 리스트 */}
         <ProductList>
           {perfumes.length > 0 &&
-            perfumes?.map(item => <PerfumesItem item={item} key={item} />)}
+            perfumes?.map(item => (
+              <PerfumesItem item={item} key={item} hasNavigation={false} />
+            ))}
         </ProductList>
 
         <Footer>
@@ -132,6 +134,7 @@ const Perfumes = () => {
 const Wrapper = styled(Box)({
   maxWidth: '1600px',
   margin: '0 auto',
+
   '& .category-wrapper': {
     marginTop: '120px',
     marginBottom: '100px',
@@ -172,9 +175,6 @@ const Description = styled(Typography)(() => ({
   fontSize: '14px',
   color: '#707070',
   lineHeight: '16.71px',
-  // wordBreak: 'keep-all',
-
-  // color:{theme.palette.grey['500']}
 }))
 
 const ProductList = styled.ul({
@@ -183,6 +183,7 @@ const ProductList = styled.ul({
   flexWrap: 'wrap',
   justifyContent: 'center',
   gap: '32px',
+  marginTop: '66px',
 })
 
 const Footer = styled.footer({
