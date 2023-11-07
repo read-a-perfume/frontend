@@ -1,14 +1,50 @@
+import {useEffect, useState} from 'react'
+import styled from '@emotion/styled'
 import Header from '@layouts/header'
 import Carousel from './carousel'
 import FlexBox from '@layouts/flex-box'
 import Notes from './notes'
 import Information from './information'
-import Review from '@pages/home/review'
+import Review from '@components/review'
+import PerfumesItem from '@pages/perfumes/perfumes-item'
 
-import {Box, Button, Typography} from '@mui/material'
-import styled from '@emotion/styled'
+import {Box, Button, Pagination, Typography} from '@mui/material'
+
+const dummydata = Array.from({length: 15}, (_, index) => index + 1)
 
 const PerfumeDetail = () => {
+  // 마지막 페이지
+  const LAST_PAGE =
+    dummydata.length % 6 === 0
+      ? parseInt((dummydata.length / 6) as any)
+      : parseInt((dummydata.length / 6) as any) + 1
+
+  const [page, setPage] = useState(1) // 처음 페이지는 1
+  const [reviewData, setReviewData] = useState<string[]>([])
+  const [perfumes, setPerfumes] = useState<string[]>([])
+
+  console.log(reviewData)
+
+  const handlePage = (event: any) => {
+    const nowPageInt = parseInt(event.target.outerText)
+    setPage(nowPageInt)
+  }
+
+  useEffect(() => {
+    // 한 페이지에 6개씩 보여줍니다.
+    if (page === LAST_PAGE) {
+      setReviewData(dummydata.slice(6 * (page - 1)) as any)
+    } else {
+      setReviewData(dummydata.slice(6 * (page - 1), 6 * (page - 1) + 6) as any)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page])
+
+  // 임시
+  useEffect(() => {
+    setPerfumes(dummydata.slice(0, 4) as any)
+  }, [])
+
   return (
     <>
       <Header />
@@ -79,14 +115,46 @@ const PerfumeDetail = () => {
             <BuyButton>향수 구매 사이트로 이동하기</BuyButton>
 
             <Notes />
-
             <Information />
           </RightBox>
         </FlexBox>
 
+        {/* 향수 리뷰 */}
         <Box sx={{marginTop: '200px'}}>
-          <Review />
+          <Review hasNavigation={false} />
+
+          <Footer>
+            <Pagination
+              count={LAST_PAGE}
+              defaultPage={1}
+              boundaryCount={2}
+              color="standard"
+              size="large"
+              variant="outlined"
+              shape="rounded"
+              sx={{
+                margin: 2,
+                '& .MuiPaginationItem-root': {
+                  backgroundColor: '#F1F1F5',
+                },
+                '& .Mui-selected': {
+                  backgroundColor: '#FE7156 !important',
+                  color: '#fff',
+                },
+              }}
+              hidePrevButton
+              hideNextButton
+              onChange={e => handlePage(e)}
+            />
+          </Footer>
         </Box>
+
+        {/* 비슷한 향수 리스트 */}
+        <ProductListTitle>비슷한 향수</ProductListTitle>
+        <ProductList>
+          {perfumes.length > 0 &&
+            perfumes?.map(item => <PerfumesItem item={item} key={item} />)}
+        </ProductList>
       </Box>
     </>
   )
@@ -138,6 +206,31 @@ const BuyButton = styled(Button)({
     color: 'white',
     backgroundColor: '#7d7a7a',
   },
+})
+
+const ProductListTitle = styled(Typography)({
+  marginTop: '66px',
+  marginBottom: '32px',
+  fontWeight: '700',
+  fontFamily: 'AritaBuri, sans-serif, Arial !important',
+  fontSize: '26px',
+  color: '#191919',
+})
+
+const ProductList = styled.ul({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '32px',
+  marginBottom: '316px',
+})
+
+const Footer = styled.footer({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  marginTop: '53px',
+  marginBottom: '22px',
 })
 
 export default PerfumeDetail

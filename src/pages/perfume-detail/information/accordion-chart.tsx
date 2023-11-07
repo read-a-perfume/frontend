@@ -18,7 +18,7 @@ const AccordionChart = () => {
     }
 
   return (
-    <div style={{}}>
+    <div>
       <Accordion
         expanded={expanded === 'panel1'}
         onChange={handleChange('panel1')}
@@ -29,8 +29,13 @@ const AccordionChart = () => {
           borderRadius: '10px !important',
           marginBottom: '24px',
           boxShadow: 'none',
+
           '&.MuiAccordion-root:before': {
             opacity: '0',
+          },
+
+          '& .Mui-expanded': {
+            // opacity: '0',
           },
         }}
       >
@@ -38,6 +43,7 @@ const AccordionChart = () => {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
+          sx={{position: 'relative'}}
         >
           <FlexBox
             justifyContent="space-between"
@@ -59,7 +65,21 @@ const AccordionChart = () => {
           </FlexBox>
         </AccordionSummary>
 
-        <AccordionDetails sx={{paddingLeft: '3.1rem', marginTop: '0'}}>
+        <AccordionDetails
+          sx={{
+            paddingLeft: '3.1rem',
+          }}
+        >
+          <FlexBox justifyContent="center" alignItems="center" gap="11px">
+            <Typography sx={{color: '#000', fontWeight: '500'}}>
+              강함
+            </Typography>
+
+            <ChartBar percent={50} />
+
+            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
+          </FlexBox>
+
           <FlexBox justifyContent="center" alignItems="center" gap="11px">
             <Typography sx={{color: '#000', fontWeight: '500'}}>
               보통
@@ -73,16 +93,6 @@ const AccordionChart = () => {
           <FlexBox justifyContent="center" alignItems="center" gap="11px">
             <Typography sx={{color: '#000', fontWeight: '500'}}>
               약함
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              강함
             </Typography>
 
             <ChartBar percent={50} />
@@ -134,6 +144,16 @@ const AccordionChart = () => {
         <AccordionDetails sx={{paddingLeft: '3.1rem', marginTop: '0'}}>
           <FlexBox justifyContent="center" alignItems="center" gap="11px">
             <Typography sx={{color: '#000', fontWeight: '500'}}>
+              강함
+            </Typography>
+
+            <ChartBar percent={50} />
+
+            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
+          </FlexBox>
+
+          <FlexBox justifyContent="center" alignItems="center" gap="11px">
+            <Typography sx={{color: '#000', fontWeight: '500'}}>
               보통
             </Typography>
 
@@ -145,16 +165,6 @@ const AccordionChart = () => {
           <FlexBox justifyContent="center" alignItems="center" gap="11px">
             <Typography sx={{color: '#000', fontWeight: '500'}}>
               약함
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              강함
             </Typography>
 
             <ChartBar percent={50} />

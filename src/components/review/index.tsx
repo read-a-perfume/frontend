@@ -56,7 +56,7 @@ const Review = ({hasNavigation = true}: ReviewProps) => {
             </OrderButton>
           </FlexBox>
         ) : (
-          // 메인 home화면 아님
+          // 메인 home화면 아닐때
           <SectionTitle style={{width: '100%'}}>향수 리뷰</SectionTitle>
         )}
 
