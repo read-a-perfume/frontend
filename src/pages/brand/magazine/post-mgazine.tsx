@@ -1,5 +1,5 @@
-import Header from '../../layouts/header'
-import {BannerBlur, BannerImage} from './brand.style'
+import Header from '@layouts/header'
+import {BannerBlur, BannerImage} from '@pages/brand/brand.style'
 import React, {useEffect, useRef, useState} from 'react'
 import {
   AddButton,
@@ -12,8 +12,8 @@ import {
   TextBox,
   TitleInput,
 } from './magazine.style'
-import FlexBox from '../../layouts/flex-box'
-import CustomIcons from '../../assets/icons/custom-Icons'
+import FlexBox from '@layouts/flex-box'
+import CustomIcons from '@assets/icons/custom-Icons'
 import UploadIcon from '@assets/icons/upload-icon'
 import {Button, Typography} from '@mui/material'
 

@@ -3,7 +3,7 @@ import SignUp from '@pages/sign-up'
 import {Router as RemixRouter} from '@remix-run/router/dist/router'
 import SignInForm from '@pages/sign-in/sign-in-form'
 import Home from '@pages/home'
-import EditOptions from '@layouts/edit-options'
+import ReviewWriter from '@pages/reviews/review-writer'
 import Brand from '@pages/brand'
 import GeneralLayout from '@layouts/general-layout'
 import Perfumes from '@pages/perfumes'
@@ -36,7 +36,7 @@ const routerData: RouterElement[] = [
     element: <SignInForm />,
   },
   {
-    id: 3,
+    id: 2,
     label: '회원가입 페이지',
     path: '/sign-up',
     element: <SignUp />,
@@ -49,6 +49,12 @@ const routerData: RouterElement[] = [
   },
   {
     id: 4,
+    label: '테스트',
+    path: '/reviews/review-writer',
+    element: <ReviewWriter />,
+  },
+  {
+    id: 5,
     label: '제품리스트 페이지',
     path: '/perfumes',
     element: <Perfumes />,
@@ -65,6 +71,7 @@ const routerData: RouterElement[] = [
     path: '/test',
     element: <EditOptions />,
   },
+
   //   {
   //     label: "test",
   //     key: "test-key",

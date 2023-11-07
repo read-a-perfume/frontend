@@ -23,7 +23,6 @@ export default function Home() {
   return (
     <>
       <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} />
-      <Header />
       <Banner onClick={() => setIsOpen(!isLoggedIn ? true : false)}>
         <BannerImage src="/images/banner.png" alt="banner" />
         <BannerBox>
