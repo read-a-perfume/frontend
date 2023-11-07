@@ -8,7 +8,7 @@ import {
   CardTitle,
   EditorProfile,
 } from '../brand/brand.style'
-import {HashTags} from '../../components/review/review-card.styles'
+import {HashTags} from '../perfume-detail/review/review-card.styles'
 import styled from '@emotion/styled'
 
 const Magazines = () => {
