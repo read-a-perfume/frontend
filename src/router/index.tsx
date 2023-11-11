@@ -13,6 +13,7 @@ interface RouterBase {
   path: string // 페이지 경로
   label: string // 사이드바에 표시할 페이지 이름
   element: React.ReactNode // 페이지 엘리먼트
+  isLayout: boolean // 공통 레이아웃 컴포넌트 필요 여부.
 }
 
 interface UserAccessibleRouterElement extends RouterBase {
@@ -27,36 +28,42 @@ const routerData: RouterElement[] = [
     label: '메인 페이지',
     path: '/',
     element: <Home />,
+    isLayout: true,
   },
   {
     id: 1,
     label: '로그인 페이지',
     path: '/sign-in',
     element: <SignInForm />,
+    isLayout: true,
   },
   {
     id: 2,
     label: '회원가입 페이지',
     path: '/sign-up',
     element: <SignUp />,
+    isLayout: false,
   },
   {
     id: 3,
     label: '브랜드',
     path: '/brand',
     element: <Brand />,
+    isLayout: true,
   },
   {
     id: 4,
-    label: '테스트',
+    label: '리뷰 작성 페지',
     path: '/reviews/review-writer',
     element: <ReviewWriter />,
+    isLayout: false,
   },
   {
     id: 5,
     label: '제품리스트 페이지',
     path: '/perfumes',
     element: <Perfumes />,
+    isLayout: true,
   },
 
   //   {
@@ -118,9 +125,16 @@ const routerData: RouterElement[] = [
 
 export const router: RemixRouter = createBrowserRouter(
   routerData.map(router => {
+    /// 공통 레이아웃이 필요하다면 공통 레이아웃 부여
+    if (router.isLayout) {
+      return {
+        path: router.path,
+        element: <GeneralLayout>{router.element}</GeneralLayout>,
+      }
+    }
     return {
       path: router.path,
-      element: <GeneralLayout>{router.element}</GeneralLayout>,
+      element: router.element,
     }
   }),
 )

@@ -119,7 +119,7 @@ const Form = () => {
   const handleSubmit = event => {
     event.preventDefault()
     // 선택된 값에 따른 작업 수행
-    const formData = new FormData(event.currentTarget)
+    const formData = new FormData(event.current.target)
 
     // 다른 formValues를 append하는 부분
     formData.append('duration', formValues.duration.toString())
