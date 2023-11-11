@@ -2,7 +2,8 @@ import {useEffect, useState} from 'react'
 import styled from '@emotion/styled'
 import {Box, Typography} from '@mui/material'
 import FlexBox from '@layouts/flex-box'
-import Category from '@components/category'
+import Header from '@layouts/header'
+import Category from './category'
 import Pagination from '@mui/material/Pagination'
 
 import brandDummyData from './dummyData'
@@ -12,7 +13,6 @@ import PerfumesItem from './perfumes-item'
 const dummydata = Array.from({length: 30}, (_, index) => index + 1)
 
 const Perfumes = () => {
-  const [currentCategory, setCurrentCategory] = useState<string>('fruity')
 
   // 마지막 페이지
   const LAST_PAGE =
@@ -39,6 +39,7 @@ const Perfumes = () => {
   }
   return (
     <>
+      <Header />
       <Wrapper>
         <FlexBox
           justifyContent="space-around"
@@ -88,19 +89,12 @@ const Perfumes = () => {
         </FlexBox>
 
         {/* 카테고리 */}
-        <div className="category-wrapper">
-          <Category
-            currentCategory={currentCategory}
-            setCurrentCategory={setCurrentCategory}
-          />
-        </div>
+        <Category />
 
         {/* 제품 리스트 */}
         <ProductList>
           {perfumes.length > 0 &&
-            perfumes?.map(item => (
-              <PerfumesItem item={item} key={item} hasNavigation={false} />
-            ))}
+            perfumes?.map(item => <PerfumesItem item={item} key={item} />)}
         </ProductList>
 
         <Footer>
@@ -134,20 +128,17 @@ const Perfumes = () => {
 const Wrapper = styled(Box)({
   maxWidth: '1600px',
   margin: '0 auto',
-
-  '& .category-wrapper': {
-    marginTop: '120px',
-    marginBottom: '100px',
-  },
 })
 
 const BrandTitle = styled(Typography)({
-  fontFamily: 'AritaBuri !important',
+  // fontFamily: 'Arita-buri(OTF)',
   fontSize: '36px',
   fontWeight: '700',
   lineHeight: '43px',
   textAlign: 'left',
   color: '#FFFFFF',
+  // 임시로 해놓음,
+  // 폰트설정하면 지울 예정
   marginBottom: '15px',
 })
 
@@ -175,6 +166,9 @@ const Description = styled(Typography)(() => ({
   fontSize: '14px',
   color: '#707070',
   lineHeight: '16.71px',
+  // wordBreak: 'keep-all',
+
+  // color:{theme.palette.grey['500']}
 }))
 
 const ProductList = styled.ul({
@@ -183,7 +177,6 @@ const ProductList = styled.ul({
   flexWrap: 'wrap',
   justifyContent: 'center',
   gap: '32px',
-  marginTop: '66px',
 })
 
 const Footer = styled.footer({

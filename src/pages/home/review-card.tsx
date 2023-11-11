@@ -1,5 +1,5 @@
-import FlexBox from '@layouts/flex-box'
-import CustomIcons from '@assets/icons/custom-Icons'
+import FlexBox from '@layouts/flex-box.js'
+import CustomIcons from '@assets/icons/custom-Icons.js'
 import {
   HashTags,
   ImageBox,
@@ -10,10 +10,10 @@ import {
   OtherImagesTypo,
   ReviewerID,
   ReviewLayout,
-  ReviewProfile,
   ReviewText,
   SingleImageCover,
-} from './review-card.styles'
+} from './review-card.styles.js'
+import Avatar from '@components/base/avatar.js'
 
 const ReviewCard = () => {
   const images = ['1', '2']
@@ -22,7 +22,7 @@ const ReviewCard = () => {
   return (
     <ReviewLayout>
       <FlexBox alignItems="center">
-        <ReviewProfile />
+        <Avatar size="32px" url={undefined} />
         <ReviewerID>hwang_yo92</ReviewerID>
       </FlexBox>
       <ImageBox>

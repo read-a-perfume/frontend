@@ -1,29 +1,29 @@
-import Header from "@layouts/header";
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import FlexBox from "@layouts/flex-box";
+import FlexBox from '@layouts/flex-box.js'
+import Header from '@layouts/header.js'
+import {useEffect, useRef, useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 import {
   Section,
   SettingsNav,
   SettingsNavItems,
   SettingsTitle,
-} from "./brand.style";
-import Form from "./brand-form";
+} from '../brand/brand.style.js'
+import Form from './brand-form.js'
 
 const BrandSettings = () => {
-  const isLogged = true;
-  const navigate = useNavigate();
-  const [clicked, setClicked] = useState(0);
+  const isLogged = true
+  const navigate = useNavigate()
+  const [clicked, setClicked] = useState(0)
 
-  const firstBlock = useRef<HTMLDivElement>(null);
-  const secondBlock = useRef<HTMLDivElement>(null);
-  const thirdBlock = useRef<HTMLDivElement>(null);
+  const firstBlock = useRef<HTMLDivElement>(null)
+  const secondBlock = useRef<HTMLDivElement>(null)
+  const thirdBlock = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!isLogged) {
-      navigate("/");
+      navigate('/')
     }
-  }, [isLogged, navigate]);
+  }, [isLogged, navigate])
 
   return (
     <>
@@ -35,11 +35,11 @@ const BrandSettings = () => {
             <SettingsNavItems
               clicked={clicked === 0}
               onClick={() => {
-                setClicked(0);
+                setClicked(0)
                 firstBlock.current?.scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                });
+                  behavior: 'smooth',
+                  block: 'start',
+                })
               }}
             >
               브랜드 기본 정보
@@ -47,11 +47,11 @@ const BrandSettings = () => {
             <SettingsNavItems
               clicked={clicked === 1}
               onClick={() => {
-                setClicked(1);
+                setClicked(1)
                 secondBlock.current?.scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                });
+                  behavior: 'smooth',
+                  block: 'start',
+                })
               }}
             >
               관리자 계정 관리
@@ -59,11 +59,11 @@ const BrandSettings = () => {
             <SettingsNavItems
               clicked={clicked === 2}
               onClick={() => {
-                setClicked(2);
+                setClicked(2)
                 thirdBlock.current?.scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                });
+                  behavior: 'smooth',
+                  block: 'start',
+                })
               }}
             >
               알림 설정
@@ -73,7 +73,7 @@ const BrandSettings = () => {
         <Form secondBlock={secondBlock} thirdBlock={thirdBlock} />
       </Section>
     </>
-  );
-};
+  )
+}
 
-export default BrandSettings;
+export default BrandSettings

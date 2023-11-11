@@ -1,14 +1,11 @@
+import EditOptions from '@layouts/edit-options.js'
+import GeneralLayout from '@layouts/general-layout.js'
+import Brand from '@pages/brand/index.js'
+import Home from '@pages/home/index.js'
+import Perfumes from '@pages/perfumes/index.js'
+import SignInForm from '@pages/sign-in/sign-in-form.js'
+import SignUp from '@pages/sign-up/index.js'
 import {createBrowserRouter} from 'react-router-dom'
-import SignUp from '@pages/sign-up'
-import {Router as RemixRouter} from '@remix-run/router/dist/router'
-import SignInForm from '@pages/sign-in/sign-in-form'
-import Home from '@pages/home'
-import ReviewWriter from '@pages/reviews/review-writer'
-import Brand from '@pages/brand'
-import GeneralLayout from '@layouts/general-layout'
-import Perfumes from '@pages/perfumes'
-import PerfumeDetail from '@pages/perfume-detail'
-import EditOptions from '@layouts/edit-options'
 
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
