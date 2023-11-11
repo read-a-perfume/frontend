@@ -1,6 +1,5 @@
-import React from 'react'
 import styled from '@emotion/styled'
-import { Typography } from '@mui/material'
+import {Typography} from '@mui/material'
 
 const myTypes = ['fruity', 'wood', 'spicy']
 
@@ -10,7 +9,12 @@ const TypeBox = () => {
       {myTypes.map(type => (
         <div
           key={type}
-          style={{gap: 7.74, display: 'flex', flexDirection: 'column', alignItems: 'center'}}
+          style={{
+            gap: 7.74,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
         >
           <img
             src="/src/pages/perfumes/images/fruity.png"
@@ -34,7 +38,7 @@ const Box = styled.div({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: 16
+  gap: 16,
 })
 
 const Type = styled(Typography)({

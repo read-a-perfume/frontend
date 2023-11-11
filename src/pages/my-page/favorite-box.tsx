@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from '@emotion/styled'
 import BoxLayout from './box-layout.js'
 import BoxBottomButtton from './box-bottom-button.js'

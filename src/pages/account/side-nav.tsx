@@ -1,6 +1,14 @@
 import styled from '@emotion/styled'
+import FlexBox from '@layouts/flex-box'
 import {Typography} from '@mui/material'
 import {useRef, useState} from 'react'
+import PublicProfile from './public-profile'
+import Privacy from './privacy'
+import AccountSettings from './account-settings'
+import Header from '@layouts/header'
+import {Banner, BannerBox, BannerImage} from '@pages/home/index.style'
+import {Title} from './index.styles'
+import {SettingsTitle} from '@pages/brand/brand.style'
 
 export const Item = styled(Typography)(({clicked}: {clicked: boolean}) => ({
   width: 87,
@@ -105,7 +113,7 @@ const SideNav = () => {
             <Privacy inputs={inputs} setInputs={setInputs} />
           </div>
           <div ref={thirdBlock}>
-            <Account inputs={inputs} setInputs={setInputs} />
+            <AccountSettings inputs={inputs} setInputs={setInputs} />
           </div>
         </FlexBox>
       </FlexBox>
