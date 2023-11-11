@@ -34,7 +34,7 @@ const routerData: RouterElement[] = [
     element: <SignInForm />,
   },
   {
-    id: 3,
+    id: 2,
     label: '회원가입 페이지',
     path: '/sign-up',
     element: <SignUp />,
@@ -47,16 +47,29 @@ const routerData: RouterElement[] = [
   },
   {
     id: 4,
+    label: '테스트',
+    path: '/reviews/review-writer',
+    element: <ReviewWriter />,
+  },
+  {
+    id: 5,
     label: '제품리스트 페이지',
     path: '/perfumes',
     element: <Perfumes />,
   },
   {
-    id: 5,
+    id: 6,
+    label: '제품 상세 페이지',
+    path: '/perfume/:id',
+    element: <PerfumeDetail />,
+  },
+  {
+    id: 7,
     label: '테스트',
     path: '/test',
     element: <EditOptions />,
   },
+
   //   {
   //     label: "test",
   //     key: "test-key",
@@ -114,7 +127,7 @@ const routerData: RouterElement[] = [
   //   },
 ]
 
-export const router = createBrowserRouter(
+export const router: RemixRouter = createBrowserRouter(
   routerData.map(router => {
     return {
       path: router.path,
