@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react'
 import styled from '@emotion/styled'
 import {Box, Typography} from '@mui/material'
-
 import FlexBox from '@layouts/flex-box'
 import Header from '@layouts/header'
 import Category from './category'
@@ -14,6 +13,7 @@ import PerfumesItem from './perfumes-item'
 const dummydata = Array.from({length: 30}, (_, index) => index + 1)
 
 const Perfumes = () => {
+
   // 마지막 페이지
   const LAST_PAGE =
     dummydata.length % 12 === 0

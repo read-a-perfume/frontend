@@ -35,7 +35,6 @@ const Brand = () => {
 
   return (
     <>
-      <Header />
       <Banner>
         {enterprise && (
           <>
@@ -60,7 +59,10 @@ const Brand = () => {
                   fileRef.current.click()
                 }
               }}
-            />
+              style={{zIndex: 2}}
+            >
+              컴퓨터에서 가져오기
+            </AddImageButton>
           </>
         )}
         {fileURL && (
@@ -71,10 +73,7 @@ const Brand = () => {
       <BrandInfoDetail enterprise={enterprise} />
       {/* 추후 삭제 */}
       <Button
-        width="100"
-        text="기업 확인 버튼"
-        backgroundColor="primary"
-        fontSize="md"
+        style={{background: 'red'}}
         onClick={() => setEnterprise(!enterprise)}
       />
       {/* 추후 삭제 */}
