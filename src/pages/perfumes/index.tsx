@@ -13,7 +13,6 @@ import PerfumesItem from './perfumes-item'
 const dummydata = Array.from({length: 30}, (_, index) => index + 1)
 
 const Perfumes = () => {
-
   // 마지막 페이지
   const LAST_PAGE =
     dummydata.length % 12 === 0

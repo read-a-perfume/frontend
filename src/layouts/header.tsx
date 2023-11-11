@@ -154,7 +154,7 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
                   !isLoggedIn ? setIsOpen(true) : navigate('/perfumes')
                 }
               >
-                Perfumes
+                perfumes
               </NavBottom>
             </FlexBox>
           </FlexBox>

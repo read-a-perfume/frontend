@@ -1,6 +1,6 @@
 import Header from '../../layouts/header.js'
 import {BannerBlur, BannerImage} from './brand.style.js'
-import React, {useEffect, useRef, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import {
   AddButton,
   AddButtonText,
@@ -13,7 +13,6 @@ import {
 } from './magazine.style.js'
 import FlexBox from '../../layouts/flex-box.js'
 import CustomIcons from '../../assets/icons/custom-Icons.js'
-import UploadIcon from '../../assets/icons/uploadI-con.js'
 import {Typography} from '@mui/material'
 import Button from '@components/base/button.js'
 
@@ -324,7 +323,7 @@ const PostMagazine = () => {
                     </ImageDefault>
                   ) : (
                     <ImageDefault>
-                      <UploadIcon />
+                      <CustomIcons.UploadIcon />
                       <Typography
                         style={{
                           fontSize: 16,
