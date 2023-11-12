@@ -1,21 +1,25 @@
 import styled from '@emotion/styled'
 import {Button, OutlinedInput, Typography} from '@mui/material'
-import {theme} from '../theme'
 import {FormControl, IconButton, InputAdornment} from '@mui/material'
 import {useState} from 'react'
 import {useLocation, useNavigate} from 'react-router-dom'
-import CustomIcons from '../assets/icons/custom-Icons'
-import LoginModal from '@components/modal/login-modal'
-import NotificationModal from '@components/modal/notification-modal'
-import FlexBox from './flex-box'
+import RoundButton from '@components/base/round-button.js'
+import FlexBox from './flex-box.js'
+import CustomIcons from '@assets/icons/custom-Icons.js'
+import NotificationModal from '@components/modal/notification-modal/index.js'
+import LoginModal from '@components/modal/login-modal/index.js'
+import {theme} from '@theme/index.js'
 
 const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
   const navigate = useNavigate()
   const isLoggedIn = true
+  const isUploading = true
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [popOpen, setPopOpen] = useState<boolean>(false)
   const [keyword, setKeyword] = useState<string>('')
   const location = useLocation()
+
+  const colorsWhenDisabled = !editorPostCompleted ? '#F1F1F5' : '#FE7156'
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!isLoggedIn) {
@@ -28,12 +32,36 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
   const rightComponent = () => {
     if (location.pathname.split('/').includes('post')) {
       return (
-        <FlexBox gap="16px">
-          <PostButtons btntype="cancel">취소</PostButtons>
-          <PostButtons btntype="upload" disabled={!editorPostCompleted}>
-            매거진 업로드
-          </PostButtons>
-        </FlexBox>
+        <>
+          {isUploading ? (
+            <FlexBox justifyContent="flex-end">
+              <RoundButton
+                text="업로드 중"
+                borderColor="#FE7156"
+                width="218px"
+                backgroundColor="#FE7156"
+                style={{color: 'white'}}
+              />
+            </FlexBox>
+          ) : (
+            <FlexBox gap="16px">
+              <RoundButton
+                text="취소"
+                borderColor="#DBDBDB"
+                width="184px"
+                backgroundColor="white"
+              />
+              <RoundButton
+                text="매거진 업로드"
+                borderColor={colorsWhenDisabled}
+                width="248px"
+                backgroundColor={colorsWhenDisabled}
+                style={{color: !editorPostCompleted ? '#A9A9A9' : 'white'}}
+                disabled={!editorPostCompleted}
+              />
+            </FlexBox>
+          )}
+        </>
       )
     } else {
       return (
@@ -126,7 +154,7 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
                   !isLoggedIn ? setIsOpen(true) : navigate('/perfumes')
                 }
               >
-                Perfumes
+                perfumes
               </NavBottom>
             </FlexBox>
           </FlexBox>

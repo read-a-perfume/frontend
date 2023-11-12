@@ -1,44 +1,41 @@
-import FlexBox from "@layouts/flex-box";
-import LinkLayout from "@layouts/link-layout";
-import { Divider } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { ButtonsProps } from "./login-modal.interface";
-import {
-  DividerText,
-  GoogleButton,
-  GoogleIcon,
-  LoginButton,
-} from "./login-modal.style";
+import Button from '@components/base/button.js'
+import FlexBox from '@layouts/flex-box'
+import LinkLayout from '@layouts/link-layout'
+import {Divider} from '@mui/material'
+import {useNavigate} from 'react-router-dom'
+import {ButtonsProps} from './login-modal.interface'
+import {DividerText, GoogleButton, GoogleIcon} from './login-modal.style'
 
-const Buttons = ({ tabClick, errors, inputs, condition }: ButtonsProps) => {
-  const navigate = useNavigate();
+const Buttons = ({tabClick, errors, inputs, condition}: ButtonsProps) => {
+  const navigate = useNavigate()
 
   const submitHandler = () => {
     console.log({
       ...inputs,
       condition: condition,
-    });
+    })
     // navigate('/login')
-  };
+  }
 
   return (
     <>
-      <LoginButton
+      <Button
         fullWidth
-        type="submit"
-        sx={{ marginTop: errors ? "0px" : "25px" }}
+        fontSize="lg"
+        height="54px"
+        text="로그인"
+        backgroundColor="secondary"
         onClick={submitHandler}
-      >
-        로그인
-      </LoginButton>
-      {tabClick !== "company" && (
+        style={{marginTop: errors ? '0px' : '25px'}}
+      />
+      {tabClick !== 'company' && (
         <>
-          <div style={{ marginTop: "28px" }}>
+          <div style={{marginTop: '28px'}}>
             <Divider />
             <FlexBox
               justifyContent="center"
               alignItems="center"
-              style={{ width: "100%" }}
+              style={{width: '100%'}}
             >
               <DividerText>또는</DividerText>
             </FlexBox>
@@ -50,13 +47,13 @@ const Buttons = ({ tabClick, errors, inputs, condition }: ButtonsProps) => {
           <LinkLayout
             label="아직 회원이 아니신가요?"
             linkLabel="회원가입하기"
-            onClick={() => navigate("/sign-up")}
-            style={{ marginTop: "27px" }}
+            onClick={() => navigate('/sign-up')}
+            style={{marginTop: '27px'}}
           />
         </>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Buttons;
+export default Buttons

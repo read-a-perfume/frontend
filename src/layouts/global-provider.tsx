@@ -1,6 +1,5 @@
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import {useQueryErrorResetBoundary} from '@tanstack/react-query' // (*)
-import {theme} from '@theme/index'
 import {ErrorBoundary} from 'react-error-boundary' // (*)
 import {ThemeProvider} from '@mui/material'
 import {Global} from '@emotion/react'
