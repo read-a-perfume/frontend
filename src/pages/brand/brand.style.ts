@@ -1,10 +1,10 @@
-import FlexBox from '@layouts/flex-box'
+import FlexBox from '@layouts/flex-box.js'
 import styled from '@emotion/styled'
-import {Button, Switch, Typography} from '@mui/material'
+import {Switch, Typography} from '@mui/material'
 import {Link} from 'react-router-dom'
-import CustomIcons from '@assets/icons/custom-Icons'
-import Step from '@assets/constants/step'
-import {theme} from '@theme/index'
+import CustomIcons from '@assets/icons/custom-Icons.js'
+import Step from '@assets/constants/step.js'
+import {theme} from '@theme/index.js'
 
 // Banner
 
@@ -26,22 +26,6 @@ export const BannerImage = styled.img({
   imageRendering: '-webkit-optimize-contrast',
   backfaceVisibility: 'hidden',
 })
-
-export const AddImageButton = styled(Button)(
-  ({imageurl}: {imageurl: string}) => ({
-    backgroundColor: imageurl ? 'white' : '#202020',
-    color: imageurl ? '#191919' : 'white',
-    fontSize: theme.typography.body3.fontSize,
-    width: '137px',
-    height: '34px',
-    borderRadius: '10px',
-    zIndex: 1,
-    position: 'absolute',
-    '&:hover': {
-      background: '#202020',
-    },
-  }),
-)
 
 export const Blur = styled.div({
   width: '100%',
@@ -78,15 +62,6 @@ export const BrandInfo = styled.div({
   flexDirection: 'column',
 })
 
-export const BrandProfile = styled.img({
-  width: '104px',
-  height: '104px',
-  borderRadius: '194.5px',
-  background: 'white',
-  marginTop: '-17px',
-  zIndex: 1,
-})
-
 export const BrandTitle = styled(Typography)({
   fontSize: theme.typography.h3.fontSize,
   color: '#191919',
@@ -104,17 +79,6 @@ export const BrandURL = styled(Link)({
   color: '#FE7156',
   textDecoration: 'none',
   marginBottom: '16px',
-})
-
-export const BrandSettings = styled(Button)({
-  width: '92px',
-  height: '33px',
-  border: '1px solid #DBDBDB',
-  borderRadius: '10px',
-  background: '#FFF',
-  fontSize: theme.typography.body3.fontSize,
-  color: '#191919',
-  fontWeight: 600,
 })
 
 export const Follows = styled(Typography)(({color}: {color?: string}) => ({
@@ -154,30 +118,6 @@ export const Tab = styled.div(({current}: {current: boolean}) => ({
   marginBottom: '-1px',
 }))
 
-export const AddProductButton = styled(Button)({
-  width: '101px',
-  height: '34px',
-  borderRadius: '10px',
-  background: '#FE7156',
-  fontSize: theme.typography.body3.fontSize,
-  color: 'white',
-  '&:hover': {
-    background: '#FE7156',
-  },
-})
-
-export const WriteMagazine = styled(Button)({
-  width: '137px',
-  height: '34px',
-  borderRadius: '10px',
-  background: '#202020',
-  fontSize: theme.typography.body3.fontSize,
-  color: 'white',
-  '&:hover': {
-    background: '#202020',
-  },
-})
-
 // Products & Magazine
 
 export const CardBox = styled.div({
@@ -190,54 +130,6 @@ export const CardBox = styled.div({
   marginBottom: '60px',
 })
 
-export const Card = styled.div(
-  ({width, height}: {width: string; height: string}) => ({
-    height: height,
-    width: width,
-    borderRadius: '16px',
-    border: '1px solid #EDEDED',
-  }),
-)
-
-export const CardImage = styled.img(({height}: {height: string}) => ({
-  height: height,
-  width: '100%',
-  objectFit: 'cover',
-  overflow: 'hidden',
-  borderRadius: '16px 16px 0px 0px',
-}))
-
-export const MagazineInfo = styled.div({
-  width: '100%',
-  padding: '0px 24px',
-})
-
-export const EditorProfile = styled.img({
-  width: '40px',
-  height: '40px',
-  borderRadius: '40px',
-  objectFit: 'cover',
-})
-
-export const CardTitle = styled(Typography)({
-  fontFamily: 'AritaBuri !important',
-  fontSize: theme.typography.h4.fontSize,
-  color: '#131313',
-  fontWeight: 500,
-  marginBottom: '16px',
-})
-
-export const CardSpan = styled(Typography)({
-  fontSize: theme.typography.body2.fontSize,
-  color: '#707070',
-  marginBottom: '8px',
-})
-
-export const HashTags = styled(Typography)({
-  fontSize: theme.typography.body3.fontSize,
-  color: '#FE7156',
-})
-
 export const BrandName = styled(Typography)({
   fontSize: theme.typography.body3.fontSize,
   color: '#131313',
@@ -248,37 +140,6 @@ export const ProductName = styled(Typography)({
   fontSize: theme.typography.body1.fontSize,
   color: '#131313',
   fontWeight: 600,
-})
-
-export const InfoBox = styled.div({
-  width: '375px',
-  height: '46px',
-  borderRadius: '10px',
-  background: '#F1F1F1',
-  display: 'flex',
-  alignItems: 'center',
-})
-
-export const BoxContent = styled.div(({left}: {left: boolean}) => ({
-  width: '188px',
-  borderRight: left ? '1px solid #BDBDBD' : 'none',
-  paddingLeft: left ? '32px' : '28px',
-  display: 'flex',
-}))
-
-export const Categories = styled(Typography)(
-  ({color = '#949494'}: {color?: string}) => ({
-    color: color,
-    fontSize: theme.typography.body3.fontSize,
-    fontWeight: 500,
-  }),
-)
-
-export const Types = styled(Typography)({
-  color: '#333',
-  fontSize: theme.typography.body3.fontSize,
-  fontWeight: 500,
-  marginLeft: '16px',
 })
 
 export const Divider = styled.hr({
@@ -354,25 +215,6 @@ export const SettingsNavItems = styled(Typography)(
 
 export const FormBlock = styled.div({
   marginTop: '170px',
-})
-
-export const Profile = styled.div({
-  width: '104px',
-  height: '104px',
-  borderRadius: '194.5px',
-  border: '1px solid black',
-  background: 'white',
-})
-
-export const EditProfileButton = styled(Button)({
-  border: '1px solid #DBDBDB',
-  borderRadius: '10px',
-  background: 'white',
-  width: '88px',
-  height: '33px',
-  color: '#191919',
-  fontSize: theme.typography.body3.fontSize,
-  fontWeight: 600,
 })
 
 export const CategoryTitle = styled(Typography)(
