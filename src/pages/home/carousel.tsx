@@ -33,9 +33,9 @@ const Carousel: React.FC<CarouselProps> = ({
           return (
             <CarouselItem
               key={index}
-              width={(window.innerWidth - 440) / 3}
+              width={(window.innerWidth - 420) / 3}
               style={{
-                transform: `translateX(-${currentIndex * 105}%)`,
+                transform: `translateX(-${currentIndex * 104.6}%)`,
               }}
             >
               {child}
@@ -53,6 +53,8 @@ const CarouselContainer = styled.div({
   display: 'flex',
   flexWrap: 'nowrap',
   overflowX: 'hidden',
+  width: window.innerWidth - 320,
+  marginLeft: 16,
 })
 
 const CarouselItem = styled.div(({width}: {width: number}) => ({
