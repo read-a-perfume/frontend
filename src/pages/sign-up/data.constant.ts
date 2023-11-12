@@ -50,12 +50,20 @@ export const formData: DataProps[] = [
   },
   {
     label: '비밀번호 재확인',
-    name: 'passwordCheck',
+    name: 'confirmPassword',
     placeholder: '8~16자 / 문자, 숫자, 특수 문자 모두 혼용',
     register: {
       required: {
         value: true,
         message: '재확인 비밀번호를 입력하세요',
+      },
+      minLength: {
+        value: 8,
+        message: '비밀번호는 최소 8자리 입니다.',
+      },
+      maxLength: {
+        value: 16,
+        message: '비밀번호는 최대 16자리 입니다.',
       },
     },
   },
@@ -73,5 +81,39 @@ export const formData: DataProps[] = [
         message: '올바른 이메일 형식으로 입력해주세요.',
       },
     },
+  },
+]
+
+export const formCheckboxData = [
+  {
+    label: '만 14세 이상입니다. (*필수)',
+    name: 'age',
+    register: {
+      required: '만 14세 이상입니다. 동의가 필요합니다.',
+    },
+  },
+  {
+    label: '이용약관 (*필수)',
+    name: 'terms',
+    register: {
+      required: '이용약관에 동의가 필요합니다.',
+    },
+  },
+  {
+    label: '개인정보 수집 및 이용동의 (*필수)',
+    name: 'privacy',
+    register: {
+      required: '개인정보 수집 및 이용에 동의가 필요합니다.',
+    },
+  },
+  {
+    label: '개인정보 마케팅 활용 동의 (선택)',
+    name: 'marketing',
+    register: {},
+  },
+  {
+    label: '이벤트, 쿠폰, 특가 알림 메일 수신 (선택)',
+    name: 'notification',
+    register: {},
   },
 ]

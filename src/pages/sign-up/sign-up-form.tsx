@@ -1,69 +1,40 @@
-import {Box, Grid, ButtonBase, List, ListItem} from '@mui/material'
+import {Box, Grid, ButtonBase} from '@mui/material'
 import {useForm} from 'react-hook-form'
 import styled from '@emotion/styled'
 import {theme} from '../../theme'
-import FormTextFiledValidation from './form-textfiled-validation'
+
 import FormHeader from './form-header'
 import FormAgreement from './form-greement'
-import {formData} from './data.constant'
-import FormEmailCheck from './form-email-check'
+import {formCheckboxData, formData} from './data.constant'
 
-// type SignUpInputs = {
-//   username: string
-//   password: string
-//   passwordCheck: string
-//   email: string
-//   emailAuthCode: string
-//   companyName: string
-//   bizNum: string
-//   phoneNumer: string
-// }
+import FormInputList from './form-input-list'
 
-const SignUpForm = (props: any) => {
+const SignUpForm = () => {
   const {
     register,
     handleSubmit,
-
-    // watch,
+    control,
     formState: {errors},
+    watch,
+    setValue,
+  } = useForm()
 
-    // getValues,
-  } = useForm<any>()
-
-  // const onSubmit = event => {
-  //   event.preventDefault()
-  //   // 선택된 값에 따른 작업 수행
-  //   const formData = new FormData(event.currentTarget)
-
-  //   for (const pair of formData.entries()) {
-  //     console.log(pair[0] + ', ' + pair[1])
-  //   }
-  // }
+  const onSubmit = data => {
+    console.log(data)
+  }
 
   return (
-    <SignUpFormContainer
-      onSubmit={handleSubmit(data => console.log(data, 'Data'))}
-    >
+    <SignUpFormContainer onSubmit={handleSubmit(onSubmit)}>
       <FormHeader title="회원가입" />
-      <List sx={{width: '100%'}}>
-        {formData.map((it, index) => (
-          <ListItem sx={{display: 'flex', alignItems: 'end', gap: '20px'}}>
-            <FormTextFiledValidation
-              key={index}
-              label={it.label}
-              name={it.name}
-              placeholder={it.placeholder}
-              register={register(`${it.name}`, {...it.register})}
-              errors={errors && errors[`${it.name}`]}
-            />
-            {it.name === 'username' && <FormEmailCheck />}
-            {it.name === 'email' && <FormEmailCheck />}
-          </ListItem>
-        ))}
-      </List>
-
+      <FormInputList formData={formData} register={register} errors={errors} />
       <Grid container width="100%" rowSpacing={2} columnSpacing={2}>
-        <FormAgreement />
+        <FormAgreement
+          formCheckboxData={formCheckboxData}
+          errors={errors}
+          control={control}
+          setValue={setValue}
+          watch={watch}
+        />
         {/* {true && (
           <>
             <FormInput
@@ -201,3 +172,20 @@ export const LoginLinkBox = styled(Box)(() => ({
             }
        */
 }
+
+// const handleAllCheck = () => {
+//   const isAllChecked = !getValues('allChecked')
+//   setAllChecked(isAllChecked) // 상태 업데이트
+//   const checkboxFields = [
+//     'age',
+//     'terms',
+//     'privacy',
+//     'marketing',
+//     'notification',
+//   ]
+
+//   checkboxFields.forEach(field => {
+//     setValue(field, isAllChecked)
+//   })
+//   console.log(isAllChecked, 'isAll')
+// }

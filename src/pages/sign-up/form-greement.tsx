@@ -1,70 +1,47 @@
 import {Box, Button, Checkbox, Grid, Typography} from '@mui/material'
 import {ConsentBox, LoginLinkBox} from './sign-up-form'
 import {theme} from '@theme/index'
-import RadioTerm from './checkbox-list'
 import {Link} from 'react-router-dom'
 import {useState} from 'react'
 import {Controller} from 'react-hook-form'
 
-const CheckData = [
-  {
-    label: '전체동의',
-    name: 'all',
-    subText: '선택항목에 대한 동의 포함',
-  },
-  {
-    label: '만 14세 이상입니다.',
-    name: 'required1',
-    required: true,
-  },
-  {
-    label: '이용약관',
-    name: 'required2',
-    required: true,
-  },
-  {
-    label: '개인정보 수집 및 이용동의',
-    name: 'required3',
-    required: true,
-  },
-  {
-    label: '개인정보 마케팅 활용 동의',
-    name: 'optional1',
-    required: false,
-  },
-  {
-    label: '이벤트, 쿠폰, 특가 알림 메일 수신',
-    name: 'optional2',
-    required: false,
-  },
-]
-
-const FormAgreement = () => {
-  const [checkAll, setCheckAll] = useState(false)
+const FormAgreement: any = ({formCheckboxData, control, setValue, watch}) => {
   const [checkedItems, setCheckedItems] = useState({
-    required1: false,
-    required2: false,
-    required3: false,
-    optional1: false,
-    optional2: false,
+    age: false,
+    terms: false,
+    privacy: false,
+    marketing: false,
+    notification: false,
   })
-
-  const handleCheckAll = event => {
-    setCheckAll(event.target.checked)
-    setCheckedItems({
-      required1: event.target.checked,
-      required2: event.target.checked,
-      required3: event.target.checked,
-      optional1: event.target.checked,
-      optional2: event.target.checked,
-    })
-  }
+  // 전체 체크 여부를 확인할 state
 
   const handleCheckboxChange = event => {
     setCheckedItems({
       ...checkedItems,
       [event.target.name]: event.target.checked,
     })
+  }
+  const handleCheckAll = event => {
+    setCheckedItems({
+      age: event.target.checked,
+      terms: event.target.checked,
+      privacy: event.target.checked,
+      marketing: event.target.checked,
+      notification: event.target.checked,
+    })
+  }
+
+  const allChecked = watch('allChecked', false)
+  const handleSetValuesAllCheck = () => {
+    const newValue = !allChecked
+    setValue('allChecked', newValue)
+    // 다른 체크박스 필드들도 추가
+    setValue('terms', newValue)
+    setValue('age', newValue)
+    setValue('privacy', newValue)
+    setValue('marketing', newValue)
+    setValue('notification', newValue)
+    // 추가적인 체크박스들에 대해서도 setValue로 업데이트
   }
 
   return (
@@ -73,7 +50,6 @@ const FormAgreement = () => {
         <Typography variant="body3" mb={2}>
           약관동의
         </Typography>
-
         <ConsentBox>
           <Box
             sx={{
@@ -82,13 +58,27 @@ const FormAgreement = () => {
               paddingBottom: 4,
             }}
           >
-            <RadioTerm
-              label="전체동의"
-              name="all"
-              checked={checkAll}
-              onChange={handleCheckAll}
-              subText="선택항목에 대한 동의 포함"
-            />
+            <div>
+              <Controller
+                name="allChecked" // 폼 데이터의 이름
+                control={control} // react-hook-form의 control 객체
+                defaultValue={false} // 기본값
+                render={({field}) => (
+                  <Checkbox
+                    {...field}
+                    checked={allChecked}
+                    onChange={e => {
+                      field.onChange(e) // 기존 onChange 이벤트 호출
+                      handleSetValuesAllCheck()
+                      handleCheckAll(e) // 사용자 정의 onChange 호출
+                    }}
+
+                    // 필요한 다른 Material-UI Checkbox 속성을 여기에 추가하십시오.
+                  />
+                )}
+              />
+              <label>전체동의</label>
+            </div>
           </Box>
           <ul
             style={{
@@ -97,14 +87,29 @@ const FormAgreement = () => {
               marginTop: 8,
             }}
           >
-            {CheckData.slice(1, 6).map(it => (
-              <RadioTerm
-                label={it.label}
-                name={it.name}
-                checked={checkedItems[`${it.name}`]}
-                onChange={handleCheckboxChange}
-                required={it.required}
-              />
+            {formCheckboxData.map(item => (
+              <li key={item.name}>
+                <Controller
+                  name={item.name}
+                  control={control}
+                  defaultValue={false}
+                  rules={item.register}
+                  render={({field}) => (
+                    <Checkbox
+                      {...field}
+                      checked={checkedItems[item.name]}
+                      onChange={e => {
+                        console.log(field, 'filed')
+
+                        field.onChange(e) // 기존 onChange 이벤트 호출
+                        handleCheckboxChange(e) // 사용자 정의 onChange 호출
+                      }}
+                      // 필요한 다른 Material-UI Checkbox 속성을 여기에 추가하십시오.
+                    />
+                  )}
+                />
+                <label>{item.label}</label>
+              </li>
             ))}
           </ul>
         </ConsentBox>
