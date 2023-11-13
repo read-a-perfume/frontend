@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
+import FlexBox from '@layouts/flex-box.js'
 import {Typography} from '@mui/material'
-
-import FlexBox from '@layouts/flex-box'
 
 import img1 from './images/Rectangle7217(5).png'
 

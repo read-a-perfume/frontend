@@ -61,6 +61,7 @@ const Magazines = () => {
 }
 
 export default Magazines
+
 const Image = styled(CardImage)({
   width: '100%',
   borderTopLeftRadius: 13,
@@ -76,4 +77,4 @@ const Card = styled.div({
   borderBottomRightRadius: 13,
   border: '1px solid #EDEDED',
   padding: 24,
-})
+}

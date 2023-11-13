@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react'
 import styled from '@emotion/styled'
 import {Box, Typography} from '@mui/material'
-
 import FlexBox from '@layouts/flex-box'
 import Header from '@layouts/header'
 import Category from './category'

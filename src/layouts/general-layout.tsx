@@ -1,9 +1,16 @@
+import Header from './header'
+
 interface GeneralLayoutProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
-const GeneralLayout: React.FC<GeneralLayoutProps> = ({ children }) => {
-  return <>{children}</>;
-};
+const GeneralLayout: React.FC<GeneralLayoutProps> = ({children}) => {
+  return (
+    <>
+      <Header />
+      {children}
+    </>
+  )
+}
 
-export default GeneralLayout;
+export default GeneralLayout

@@ -1,8 +1,8 @@
-import { LinksProps } from "@components/modal/login-modal/login-modal.interface";
-import { ModalSpan } from "@components/modal/login-modal/login-modal.style";
-import FlexBox from "./flex-box";
+import {LinksProps} from '@components/modal/login-modal/login-modal.interface.js'
+import {ModalSpan} from '@components/modal/login-modal/login-modal.style.js'
+import FlexBox from './flex-box.js'
 
-const LinkLayout = ({ linkLabel, label, onClick, style }: LinksProps) => {
+const LinkLayout = ({linkLabel, label, onClick, style}: LinksProps) => {
   return (
     <FlexBox justifyContent="center" style={style}>
       <ModalSpan>{label}&nbsp;</ModalSpan>
@@ -10,7 +10,7 @@ const LinkLayout = ({ linkLabel, label, onClick, style }: LinksProps) => {
         {linkLabel}
       </ModalSpan>
     </FlexBox>
-  );
-};
+  )
+}
 
-export default LinkLayout;
+export default LinkLayout

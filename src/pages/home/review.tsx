@@ -28,9 +28,10 @@ const Review = () => {
           </FilterButton>
         </FlexBox>
       </FlexBox>
-      <FlexBox style={{marginTop: 48, flexWrap: 'wrap', rowGap: 32}}>
-        {new Array(6).fill(0).map(el => (
-          <ReviewCard key={el} />
+      <FlexBox style={{marginTop: 48, flexWrap: 'wrap', gap: 23}}>
+        {new Array(6).fill(0).map((_, index) => (
+          <ReviewCard key={index} />
+
         ))}
       </FlexBox>
     </div>

@@ -1,28 +1,25 @@
-import FlexBox from "@layouts/flex-box";
-import LinkLayout from "@layouts/link-layout";
-import { FormControl, TextField, Typography } from "@mui/material";
-import { theme } from "@theme/index";
-import { useState } from "react";
-import CustomIcons from "@assets/icons/custom-Icons";
-import {
-  ConfirmButton,
-  FindLayout,
-  Label,
-} from "../find-password/find-password.style";
-import { LoginLayoutProps } from "../login-modal.interface";
-import { inputStyle } from "../login-modal.style";
+import FlexBox from '@layouts/flex-box'
+import LinkLayout from '@layouts/link-layout'
+import {FormControl, TextField, Typography} from '@mui/material'
+import {theme} from '@theme/index'
+import {useState} from 'react'
+import CustomIcons from '@assets/icons/custom-Icons'
+import {FindLayout, Label} from '../find-password/find-password.style'
+import {LoginLayoutProps} from '../login-modal.interface'
+import {inputStyle} from '../login-modal.style'
+import Button from '@components/base/button.js'
 
-const FindId = ({ setCondition }: LoginLayoutProps) => {
-  const [email, setEmail] = useState<string>("");
+const FindId = ({setCondition}: LoginLayoutProps) => {
+  const [email, setEmail] = useState<string>('')
 
   return (
     <FindLayout>
       <FlexBox
-        onClick={() => setCondition("")}
-        style={{ cursor: "pointer" }}
+        onClick={() => setCondition('')}
+        style={{cursor: 'pointer'}}
         alignItems="center"
       >
-        <CustomIcons.ArrowLeftIcon style={{ marginBottom: "-16px" }} />
+        <CustomIcons.ArrowLeftIcon style={{marginBottom: '-16px'}} />
         <Typography
           fontSize={theme.typography.body2.fontSize}
           color={theme.palette.grey[800]}
@@ -33,7 +30,7 @@ const FindId = ({ setCondition }: LoginLayoutProps) => {
       <Typography
         fontSize={theme.typography.h1.fontSize}
         fontWeight="700"
-        style={{ marginTop: "65px", marginBottom: "34px" }}
+        style={{marginTop: '65px', marginBottom: '34px'}}
       >
         아이디 찾기
       </Typography>
@@ -51,23 +48,23 @@ const FindId = ({ setCondition }: LoginLayoutProps) => {
             setEmail(event?.target.value)
           }
         />
-        <ConfirmButton
-          type="submit"
+        <Button
+          text="확인"
           fullWidth
-          onClick={() => setCondition("id_result")}
-          disabled={email === ""}
-        >
-          확인
-        </ConfirmButton>
+          fontSize="lg"
+          backgroundColor={email === '' ? 'disabled' : 'secondary'}
+          onClick={() => setCondition('id_result')}
+          disabled={email === ''}
+        />
       </FormControl>
       <LinkLayout
         label="비밀번호가 기억나지 않는다면?"
         linkLabel="비밀번호 찾기"
-        onClick={() => setCondition("password")}
-        style={{ marginTop: "27px" }}
+        onClick={() => setCondition('password')}
+        style={{marginTop: '27px'}}
       />
     </FindLayout>
-  );
-};
+  )
+}
 
-export default FindId;
+export default FindId

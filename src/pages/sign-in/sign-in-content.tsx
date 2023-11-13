@@ -1,13 +1,13 @@
-import { Dialog } from "@mui/material";
-import SignInForm from "./sign-in-form";
-import styled from "@emotion/styled";
+import {Dialog} from '@mui/material'
+import styled from '@emotion/styled'
+import SignInForm from './sign-in-form.js'
 
 type SignIn = {
-  isDialog: boolean;
-  changeSignInDialog: any;
-};
+  isDialog: boolean
+  changeSignInDialog: any
+}
 
-const SignInContent = ({ ...props }: SignIn) => {
+const SignInContent = ({...props}: SignIn) => {
   return (
     <SignInDialog
       open={props.isDialog}
@@ -16,11 +16,11 @@ const SignInContent = ({ ...props }: SignIn) => {
     >
       <SignInForm />
     </SignInDialog>
-  );
-};
+  )
+}
 
-export default SignInContent;
+export default SignInContent
 const SignInDialog = styled(Dialog)(() => ({
   maxWidth: 420,
-  margin: "0 auto",
-}));
+  margin: '0 auto',
+}))

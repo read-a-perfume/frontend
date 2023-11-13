@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { LoginConditionProps, UserInfo } from "./login-modal.interface";
-import { ErrorText } from "./login-modal.style";
-import Additionals from "./additionals";
-import Buttons from "./buttons";
-import Inputs from "./Inputs";
-import LoginModalTitle from "./login-modal-title";
+import {useState} from 'react'
+import {LoginConditionProps, UserInfo} from './login-modal.interface.js'
+import {ErrorText} from './login-modal.style.js'
+import Additionals from './additionals.js'
+import Buttons from './buttons.js'
+import Inputs from './Inputs.js'
+import LoginModalTitle from './login-modal-title.js'
 
 const LoginLayout = ({
   condition,
@@ -12,9 +12,9 @@ const LoginLayout = ({
   setIsOpen,
 }: LoginConditionProps) => {
   // const navigate = useNavigate()
-  const [inputs, setInputs] = useState<UserInfo>({ id: "", password: "" });
-  const [errors, setErrors] = useState<string>("");
-  const [tabClick, setTabClick] = useState<string>("personal");
+  const [inputs, setInputs] = useState<UserInfo>({id: '', password: ''})
+  const [errors, setErrors] = useState<string>('')
+  const [tabClick, setTabClick] = useState<string>('personal')
 
   return (
     <>
@@ -34,7 +34,7 @@ const LoginLayout = ({
         setIsOpen={setIsOpen}
       />
     </>
-  );
-};
+  )
+}
 
-export default LoginLayout;
+export default LoginLayout

@@ -1,67 +1,64 @@
-import Header from "../../layouts/header";
-import styled from "@emotion/styled";
-import { Typography } from "@mui/material";
-import FlexBox from "../../layouts/flex-box";
-import { useParams } from "react-router-dom";
-import CustomIcons from "../../assets/icons/custom-Icons";
-import { magazineData } from "../home/constants";
-import { LinkButton, PostFooter } from "./magazine.style";
+import Header from '../../layouts/header'
+import styled from '@emotion/styled'
+import {Typography} from '@mui/material'
+import FlexBox from '../../layouts/flex-box'
+import {useParams} from 'react-router-dom'
+import CustomIcons from '../../assets/icons/custom-Icons'
+import {magazineData} from '../home/constants'
+import {PostFooter} from './magazine.style'
+import Button from '@components/base/button.js'
 
 const BannerImage = styled.img({
-  width: "100%",
-  height: "470px",
-  objectFit: "fill",
-  position: "absolute",
+  width: '100%',
+  height: '470px',
+  objectFit: 'fill',
+  position: 'absolute',
   zIndex: 0,
-  imageRendering: "-webkit-optimize-contrast",
-  backfaceVisibility: "hidden",
-});
+  imageRendering: '-webkit-optimize-contrast',
+  backfaceVisibility: 'hidden',
+})
 
 export const Blur = styled.div({
   background:
-    "linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 100%), url(<path-to-image>), lightgray 50% / cover no-repeat",
+    'linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 100%), url(<path-to-image>), lightgray 50% / cover no-repeat',
   opacity: 0.6,
-  position: "absolute",
-  width: "100%",
-  height: "470px",
+  position: 'absolute',
+  width: '100%',
+  height: '470px',
   zIndex: 1,
-});
+})
 
 export const BannerBox = styled.div({
-  width: "100%",
-  height: "470px",
-  background: "#F1F1F5",
-  display: "flex",
-  justifyContent: "flex-start",
-  alignItems: "center",
-});
+  width: '100%',
+  height: '470px',
+  background: '#F1F1F5',
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+})
 
 const MagazineContent = () => {
-  const path = useParams();
-  const data = magazineData[Number(path.id)];
+  const path = useParams()
+  const data = magazineData[Number(path.id)]
 
   return (
     <>
       <Header />
       <BannerBox>
-        <FlexBox style={{ padding: "0px 160px" }} direction={"column"}>
-          <CustomIcons.BeforeIcon
-            width="24"
-            height="24"
-            style={{ zIndex: 2 }}
-          />
+        <FlexBox style={{padding: '0px 160px'}} direction={'column'}>
+          <CustomIcons.BeforeIcon width="24" height="24" style={{zIndex: 2}} />
           <Typography
-            style={{ fontSize: 14, color: "white", zIndex: 2, marginTop: 16 }}
+            style={{fontSize: 14, color: 'white', zIndex: 2, marginTop: 16}}
           >
             #선물하기좋은 #탬버린즈퍼퓸핸드
           </Typography>
           <Typography
             style={{
               fontSize: 36,
-              fontWeight: "600",
-              lineHeight: "150%",
-              color: "white",
-              fontFamily: "AritaBuri !important",
+              fontWeight: '600',
+              lineHeight: '150%',
+              color: 'white',
+              fontFamily: 'AritaBuri !important',
               marginTop: 12,
               zIndex: 2,
             }}
@@ -70,14 +67,14 @@ const MagazineContent = () => {
             <br />
             매력적인 향기를 전달하는 퍼퓸핸드
           </Typography>
-          <FlexBox alignItems="center" style={{ marginTop: 19 }}>
+          <FlexBox alignItems="center" style={{marginTop: 19}}>
             <div
               style={{
                 width: 52,
                 height: 52,
                 borderRadius: 194.5,
-                border: "1px solid black",
-                background: "white",
+                border: '1px solid black',
+                background: 'white',
                 marginRight: 8,
                 zIndex: 2,
               }}
@@ -85,32 +82,48 @@ const MagazineContent = () => {
             <Typography
               style={{
                 fontSize: 18,
-                fontWeight: "600",
-                textTransform: "uppercase",
-                color: "white",
+                fontWeight: '600',
+                textTransform: 'uppercase',
+                color: 'white',
                 marginRight: 12,
                 zIndex: 2,
               }}
             >
               TAMBURINS
             </Typography>
-            <Typography style={{ fontSize: 14, color: "white", zIndex: 2 }}>
-              {new Date().toISOString().split("T")[0].split("-").join(".")}
+            <Typography style={{fontSize: 14, color: 'white', zIndex: 2}}>
+              {new Date().toISOString().split('T')[0].split('-').join('.')}
             </Typography>
           </FlexBox>
         </FlexBox>
-        <BannerImage src={data.image} alt="banner" style={{ zIndex: 1 }} />
+        <BannerImage src={data.image} alt="banner" style={{zIndex: 1}} />
         <Blur />
       </BannerBox>
-      <div style={{ paddingLeft: 160, paddingRight: 160, marginTop: 88 }}>
+      <div style={{paddingLeft: 160, paddingRight: 160, marginTop: 88}}>
         testing~~
       </div>
       <PostFooter>
-        <LinkButton>이전글</LinkButton>
-        <LinkButton>다음글</LinkButton>
+        <Button
+          text="이전글"
+          width="73px"
+          height="38px"
+          fontSize="sm"
+          backgroundColor="white"
+          color="#191919"
+          style={{border: '1px solid #DBDBDB'}}
+        />
+        <Button
+          text="다음글"
+          width="73px"
+          height="38px"
+          fontSize="sm"
+          backgroundColor="white"
+          color="#191919"
+          style={{border: '1px solid #DBDBDB'}}
+        />
       </PostFooter>
     </>
-  );
-};
+  )
+}
 
-export default MagazineContent;
+export default MagazineContent
