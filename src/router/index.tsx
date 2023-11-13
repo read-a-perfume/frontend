@@ -6,6 +6,8 @@ import Perfumes from '@pages/perfumes/index.js'
 import SignInForm from '@pages/sign-in/sign-in-form.js'
 import SignUp from '@pages/sign-up/index.js'
 import {createBrowserRouter} from 'react-router-dom'
+import MyPage from '@pages/my-page/index'
+import Account from '@pages/account/index'
 
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
@@ -76,7 +78,18 @@ const routerData: RouterElement[] = [
     path: '/test',
     element: <EditOptions />,
   },
-
+  {
+    id: 6,
+    label: '마이페이지',
+    path: '/mypage',
+    element: <MyPage />,
+  },
+  {
+    id: 7,
+    label: '프로필 관리',
+    path: '/settings',
+    element: <Account />,
+  },
   //   {
   //     label: "test",
   //     key: "test-key",
@@ -119,18 +132,6 @@ const routerData: RouterElement[] = [
   //     key: "post-magazine-key",
   //     route: "/brand/:id/magazine/post",
   //     component: <PostMagazine />,
-  //   },
-  //   {
-  //     label: "mypage",
-  //     key: "mypage-key",
-  //     route: "/mypage",
-  //     component: <MyPage />,
-  //   },
-  //   {
-  //     label: "settings",
-  //     key: "settings-key",
-  //     route: "/:id/settings",
-  //     component: <AccountLayout />,
   //   },
 ]
 
