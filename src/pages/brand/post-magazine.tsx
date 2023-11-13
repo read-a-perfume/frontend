@@ -15,6 +15,7 @@ import FlexBox from '../../layouts/flex-box.js'
 import CustomIcons from '../../assets/icons/custom-Icons.js'
 import {Typography} from '@mui/material'
 import Button from '@components/base/button.js'
+import UploadIcon from '@assets/icons/upload-icon.js'
 
 interface InputItem {
   id: number
@@ -323,7 +324,7 @@ const PostMagazine = () => {
                     </ImageDefault>
                   ) : (
                     <ImageDefault>
-                      <CustomIcons.UploadIcon />
+                      <UploadIcon />
                       <Typography
                         style={{
                           fontSize: 16,

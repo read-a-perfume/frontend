@@ -1,16 +1,8 @@
 import CarouselIcon from '../../assets/icons/carousel-Icon'
 import {magazineData} from './constants'
 import FlexBox from '../../layouts/flex-box'
-import {MagazineCard, SectionSubTitle, SectionTitle} from './index.style'
-import {
-  CardImage,
-  CardSpan,
-  CardTitle,
-  EditorProfile,
-} from '../brand/brand.style'
-import {HashTags} from './review-card.styles'
-import styled from '@emotion/styled'
-import Carousel from './carousel'
+import {SectionSubTitle, SectionTitle} from './index.style'
+import Card from '@components/base/card.js'
 import {useState} from 'react'
 
 const Magazines = () => {
@@ -20,28 +12,19 @@ const Magazines = () => {
     <div>
       <SectionTitle>향수 이야기</SectionTitle>
       <SectionSubTitle>다양한 향수의 이야기를 들어보세요</SectionSubTitle>
-      <Carousel currentIndex={currentIndex} setCurrentIndex={setCurrentIndex}>
-        {magazineData.map((item, idx) => (
-          <div key={idx}>
-            <MagazineCard key={item.title}>
-              <Image height="320" src={item.image} alt="magazine cover" />
-              <Card>
-                <EditorProfile
-                  style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 40,
-                    background: 'blue',
-                  }}
-                />
-                <CardTitle>{item.title}</CardTitle>
-                <CardSpan>{item.content}</CardSpan>
-                <HashTags>{'#' + item.hashtag.join(' #')}</HashTags>
-              </Card>
-            </MagazineCard>
-          </div>
+      <FlexBox style={{gap: '32px'}}>
+        {magazineData.map(data => (
+          <Card
+            key={data.title}
+            coverImage={data.image}
+            profileImage=""
+            title={data.title}
+            content={data.content}
+            hashTags={data.hashtag}
+            onClick={() => console.log('magazine card')}
+          />
         ))}
-      </Carousel>
+      </FlexBox>
       <FlexBox
         style={{
           flexDirection: 'row',
@@ -61,20 +44,3 @@ const Magazines = () => {
 }
 
 export default Magazines
-
-const Image = styled(CardImage)({
-  width: '100%',
-  borderTopLeftRadius: 13,
-  borderTopRightRadius: 13,
-  objectFit: 'cover',
-  marginBottom: -9,
-})
-
-const Card = styled.div({
-  height: 274,
-  width: '100%',
-  borderBottomLeftRadius: 13,
-  borderBottomRightRadius: 13,
-  border: '1px solid #EDEDED',
-  padding: 24,
-}

@@ -1,5 +1,5 @@
 import CustomIcons from '@assets/icons/custom-Icons.js'
-import HeartIcon from '@assets/icons/heart-Icon.js'
+
 import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box.js'
 import {Typography} from '@mui/material'
@@ -22,7 +22,7 @@ const NewsFeed = () => {
       <Hashtags>#플로랄 #플로랄 #고급짐</Hashtags>
       <Divider />
       <FlexBox style={{height: '9%'}} alignItems="center">
-        <HeartIcon size="24" />
+        <CustomIcons.HeartIcon />
         <BottomTypo>좋아요 172개</BottomTypo>
         <div style={{marginBottom: -13, marginLeft: 22}}>
           <CustomIcons.CommentIcon2 />

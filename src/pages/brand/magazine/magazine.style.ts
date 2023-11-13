@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
-import {Button, Typography} from '@mui/material'
-import {AddBannerSpan, AddImageButton} from '../../brand/brand.style'
+import {Typography} from '@mui/material'
+import {AddBannerSpan} from '../../brand/brand.style'
 import {theme} from '@theme/index'
-
+import Button from '@components/base/button'
 import CustomIcons from '@assets/icons/custom-Icons'
 
 // PostMagazine
@@ -22,12 +22,10 @@ export const BannerContent = styled(AddBannerSpan)({
   marginBottom: 106,
 })
 
-export const BannerButton = styled(AddImageButton)(
-  ({image}: {image: boolean}) => ({
-    zIndex: 2,
-    background: image ? '#FE7156' : '#202020',
-  }),
-)
+export const BannerButton = styled(Button)(({image}: {image: boolean}) => ({
+  zIndex: 2,
+  background: image ? '#FE7156' : '#202020',
+}))
 
 export const EditorTitle = styled(Typography)({
   fontSize: 18,

@@ -8,7 +8,9 @@ import SignUp from '@pages/sign-up/index.js'
 import {createBrowserRouter} from 'react-router-dom'
 import MyPage from '@pages/my-page/index'
 import Account from '@pages/account/index'
-
+import {Router as RemixRouter} from '@remix-run/router/dist/router'
+import ReviewWriter from '@pages/reviews/review-writer'
+import PerfumeDetail from '@pages/perfume-detail'
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
   path: string // 페이지 경로
@@ -71,24 +73,28 @@ const routerData: RouterElement[] = [
     label: '제품 상세 페이지',
     path: '/perfume/:id',
     element: <PerfumeDetail />,
+    isLayout: true,
   },
   {
     id: 7,
     label: '테스트',
     path: '/test',
     element: <EditOptions />,
+    isLayout: true,
   },
   {
     id: 6,
     label: '마이페이지',
     path: '/mypage',
     element: <MyPage />,
+    isLayout: true,
   },
   {
     id: 7,
     label: '프로필 관리',
     path: '/settings',
     element: <Account />,
+    isLayout: true,
   },
   //   {
   //     label: "test",

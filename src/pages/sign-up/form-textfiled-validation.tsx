@@ -1,4 +1,4 @@
-import {Grid, OutlinedInput, Typography} from '@mui/material'
+import {OutlinedInput, Typography} from '@mui/material'
 import {styled, Box} from '@mui/material'
 import {theme} from '@theme/index'
 

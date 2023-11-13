@@ -30,7 +30,6 @@ const Card: React.FC<CardProps> = ({
   content,
   hashTags,
   isEditor = false,
-  onClickHamburger,
   isOptionOpen = false,
   onClick,
 }) => {
@@ -51,7 +50,7 @@ const Card: React.FC<CardProps> = ({
           <Avatar size="40px" url={profileImage} />
           {isEditor && (
             <button>
-              <CustomIcons.HamburgerIcon onClick={onClickHamburger} />
+              <CustomIcons.HamburgerIcon />
             </button>
           )}
           {isOptionOpen && <EditOptions />}

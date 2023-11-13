@@ -1,8 +1,6 @@
 import {useState} from 'react'
-
 import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box'
-
 import {Box, Tab, Tabs, Typography} from '@mui/material'
 import CustomIcons from '@assets/icons/custom-Icons'
 import img1 from '../images/자몽.png'
@@ -76,7 +74,7 @@ const Notes = () => {
             <NotesName>자몽</NotesName>
           </Box>
 
-          <CustomIcons.AfterIcon style={{cursor: 'pointer'}} />
+          <CustomIcons.AfterIcon />
         </FlexBox>
       </Wrapper>
     </>

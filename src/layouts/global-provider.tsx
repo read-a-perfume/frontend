@@ -1,10 +1,11 @@
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
-import {useQueryErrorResetBoundary} from '@tanstack/react-query' // (*)
-import {ErrorBoundary} from 'react-error-boundary' // (*)
+import {useQueryErrorResetBoundary} from '@tanstack/react-query'
 import {ThemeProvider} from '@mui/material'
 import {Global} from '@emotion/react'
 import globalReset from '@theme/global-reset'
 import {RecoilRoot} from 'recoil'
+import {theme} from '@theme/index'
+import {ErrorBoundary} from 'react-error-boundary'
 
 const client = new QueryClient({
   defaultOptions: {

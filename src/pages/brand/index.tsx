@@ -1,4 +1,3 @@
-import Header from '@layouts/header.js'
 import {
   AddBannerSpan,
   Banner,

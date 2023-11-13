@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
-
 import {Typography} from '@mui/material'
 import categoryImg1 from '../../pages/perfumes/images/fruity.png'
-
 import FlexBox from '@layouts/flex-box'
 import CustomIcons from '@assets/icons/custom-Icons'
 
@@ -69,13 +67,13 @@ const Category = ({currentCategory, setCurrentCategory}: ICategory) => {
     setCurrentCategory(CATEGORIES[newIndex].name)
   }
 
-  const handleRightArrowClick = () => {
-    const currentIndex = CATEGORIES.findIndex(
-      category => category.name === currentCategory,
-    )
-    const newIndex = (currentIndex + 1) % CATEGORIES.length
-    setCurrentCategory(CATEGORIES[newIndex].name)
-  }
+  // const handleRightArrowClick = () => {
+  //   const currentIndex = CATEGORIES.findIndex(
+  //     category => category.name === currentCategory,
+  //   )
+  //   const newIndex = (currentIndex + 1) % CATEGORIES.length
+  //   setCurrentCategory(CATEGORIES[newIndex].name)
+  // }
 
   return (
     <div>
@@ -115,10 +113,7 @@ const Category = ({currentCategory, setCurrentCategory}: ICategory) => {
             </CategoryName>
           </FlexBox>
         ))}
-        <CustomIcons.AfterIcon
-          style={{marginLeft: 36, cursor: 'pointer'}}
-          onClick={handleRightArrowClick}
-        />
+        <CustomIcons.AfterIcon />
       </FlexBox>
     </div>
   )

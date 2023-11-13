@@ -3,8 +3,8 @@ import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box.js'
 import BoxBottomButtton from './box-bottom-button.js'
 import {Typography} from '@mui/material'
-import HeartIcon from '@assets/icons/heart-Icon.js'
-import { useNavigate } from 'react-router-dom'
+import CustomIcons from '@assets/icons/custom-Icons.js'
+import {useNavigate} from 'react-router-dom'
 
 const ProfileBox = () => {
   const navigate = useNavigate()
@@ -35,7 +35,7 @@ const ProfileBox = () => {
               >
                 팔로워
               </Typography>
-              <HeartIcon size="18" />
+              <CustomIcons.HeartIcon />
               <Typography
                 style={{
                   fontSize: 14,

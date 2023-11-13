@@ -1,9 +1,8 @@
-import CustomIcons from '@assets/icons/custom-Icons.js'
 import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box.js'
 import {Box, Modal, Typography} from '@mui/material'
 import {ModalProps} from '../login-modal/login-modal.interface.js'
-
+import CloseIcon from '@mui/icons-material/Close'
 export const ModalStyle = styled(Modal)({
   width: 350,
   height: 532,
@@ -81,7 +80,7 @@ function NotificationModal({isOpen, setIsOpen}: ModalProps) {
             onClick={() => setIsOpen(false)}
             style={{marginBottom: -10}}
           >
-            <CustomIcons.CloseIcon color="#CFCFCF" />
+            <CloseIcon />
           </div>
         </FlexBox>
         <div

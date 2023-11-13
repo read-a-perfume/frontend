@@ -1,4 +1,3 @@
-import Header from '../../layouts/header'
 import LoginModal from '@components/modal/login-modal'
 import Magazines from './magazines'
 import Notes from './notes'

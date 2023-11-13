@@ -4,7 +4,6 @@ import React, {useEffect, useRef, useState} from 'react'
 import {
   AddButton,
   AddButtonText,
-  BannerButton,
   BannerContent,
   EditorTitle,
   HeaderImage,
@@ -15,7 +14,8 @@ import {
 import FlexBox from '@layouts/flex-box'
 import CustomIcons from '@assets/icons/custom-Icons'
 import UploadIcon from '@assets/icons/upload-icon'
-import {Button, Typography} from '@mui/material'
+import {Typography} from '@mui/material'
+import Button from '@components/base/button'
 
 interface InputItem {
   id: number
@@ -114,17 +114,18 @@ const PostMagazine = () => {
           <br />
           커버 이미지를 추가하세요.
         </BannerContent>
-        <BannerButton
-          image={fileURL.length > 0}
-          imageurl={fileURL}
+        <Button
+          style={{zIndex: 2, position: 'absolute'}}
+          backgroundColor={fileURL ? 'white' : 'secondary'}
+          color={fileURL ? 'secondary' : 'white'}
+          text="컴퓨터에서 가져오기"
+          fontSize="md"
           onClick={() => {
             if (fileRef.current) {
               fileRef.current.click()
             }
           }}
-        >
-          컴퓨터에서 가져오기
-        </BannerButton>
+        />
         {fileURL && (
           <>
             <BannerImage src={fileURL} alt="banner" style={{zIndex: 1}} />
@@ -356,20 +357,17 @@ const PostMagazine = () => {
                         }}
                       />
                       <Button
-                        style={{
-                          width: 137,
-                          height: 34,
-                          borderRadius: 10,
-                          background: '#202020',
-                          color: 'white',
-                          fontSize: 14,
-                        }}
+                        style={{zIndex: 2, position: 'absolute'}}
+                        backgroundColor={'secondary'}
+                        color={'white'}
+                        text="컴퓨터에서 가져오기"
+                        fontSize="md"
                         onClick={() => {
-                          fileRef.current?.click()
+                          if (fileRef.current) {
+                            fileRef.current.click()
+                          }
                         }}
-                      >
-                        컴퓨터에서 가져오기
-                      </Button>
+                      />
                     </ImageDefault>
                   )}
                 </div>

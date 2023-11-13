@@ -5,7 +5,8 @@ import FlexBox from '@layouts/flex-box'
 import {useParams} from 'react-router-dom'
 import CustomIcons from '@assets/icons/custom-Icons'
 import {magazineData} from '@pages/home/constants'
-import {LinkButton, PostFooter} from './magazine.style'
+import {PostFooter} from './magazine.style'
+import Button from '@components/base/button'
 
 const BannerImage = styled.img({
   width: '100%',
@@ -102,8 +103,24 @@ const MagazineContent = () => {
         testing~~
       </div>
       <PostFooter>
-        <LinkButton>이전글</LinkButton>
-        <LinkButton>다음글</LinkButton>
+        <Button
+          text="이전글"
+          width="73px"
+          height="38px"
+          fontSize="sm"
+          backgroundColor="white"
+          color="#191919"
+          style={{border: '1px solid #DBDBDB'}}
+        />
+        <Button
+          text="다음글"
+          width="73px"
+          height="38px"
+          fontSize="sm"
+          backgroundColor="white"
+          color="#191919"
+          style={{border: '1px solid #DBDBDB'}}
+        />
       </PostFooter>
     </>
   )

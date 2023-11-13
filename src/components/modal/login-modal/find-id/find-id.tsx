@@ -19,7 +19,7 @@ const FindId = ({setCondition}: LoginLayoutProps) => {
         style={{cursor: 'pointer'}}
         alignItems="center"
       >
-        <CustomIcons.ArrowLeftIcon style={{marginBottom: '-16px'}} />
+        <CustomIcons.ArrowLeftIcon />
         <Typography
           fontSize={theme.typography.body2.fontSize}
           color={theme.palette.grey[800]}
