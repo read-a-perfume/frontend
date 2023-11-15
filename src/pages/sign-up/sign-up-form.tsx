@@ -1,13 +1,16 @@
-import {Box, Grid, ButtonBase} from '@mui/material'
+import {Box, ButtonBase} from '@mui/material'
 import {useForm} from 'react-hook-form'
 import styled from '@emotion/styled'
 import {theme} from '../../theme'
-
 import FormHeader from './form-header'
 import FormAgreement from './form-greement'
 import {formCheckboxData, formData} from './data.constant'
-
 import FormInputList from './form-input-list'
+import instance from '@api/instance'
+import {useNavigate} from 'react-router-dom'
+import useMutation from '@hooks/global-store/server/mutations/use-mutation'
+
+const API_URL = '/signup/email'
 
 const SignUpForm = () => {
   const {
@@ -18,16 +21,40 @@ const SignUpForm = () => {
     watch,
     setValue,
   } = useForm()
+  const nav = useNavigate()
+  const fetchJoin = async data => {
+    return await instance.post(API_URL, {
+      ...data,
+    })
+  }
+
+  const {mutate} = useMutation({
+    mutationFn: fetchJoin,
+    mutationKey: ['sign-up'],
+  })
 
   const onSubmit = data => {
-    console.log(data)
+    const newData = {
+      username: data.username,
+      password: data.password,
+      email: data.email,
+    }
+    mutate(newData, {
+      onSuccess: () => nav('/'),
+    })
   }
 
   return (
-    <SignUpFormContainer onSubmit={handleSubmit(onSubmit)}>
-      <FormHeader title="회원가입" />
-      <FormInputList formData={formData} register={register} errors={errors} />
-      <Grid container width="100%" rowSpacing={2} columnSpacing={2}>
+    <>
+      {/* <button onClick={() => mutate()}>제출</button> */}
+      <SignUpFormContainer onSubmit={handleSubmit(onSubmit)}>
+        <FormHeader title="회원가입" />
+        <FormInputList
+          formData={formData}
+          register={register}
+          errors={errors}
+        />
+
         <FormAgreement
           formCheckboxData={formCheckboxData}
           errors={errors}
@@ -96,9 +123,8 @@ const SignUpForm = () => {
             </Grid>
           </>
         )} */}
-        {/* <FormAgreement /> */}
-      </Grid>
-      {/* <Dialog open={() => console.log('')}>
+
+        {/* <Dialog open={() => console.log('')}>
         <DialogContent>
           <Box display="flex" flexDirection="column" justifyContent="center">
             <Typography align="center" variant="body2" mb={2} fontWeight={600}>
@@ -116,7 +142,8 @@ const SignUpForm = () => {
           </Box>
         </DialogContent>
       </Dialog> */}
-    </SignUpFormContainer>
+      </SignUpFormContainer>
+    </>
   )
 }
 

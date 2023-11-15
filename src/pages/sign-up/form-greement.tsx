@@ -1,10 +1,14 @@
-import {Box, Button, Checkbox, Grid, Typography} from '@mui/material'
+import {Box, Button, Checkbox, Typography} from '@mui/material'
 import {ConsentBox, LoginLinkBox} from './sign-up-form'
 import {theme} from '@theme/index'
 import {Link} from 'react-router-dom'
 import {useState} from 'react'
 import {Controller} from 'react-hook-form'
-
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import styled from '@emotion/styled'
+import FormAgreementModal from './form-agreement-modal'
+import FormLabel from '@mui/material/FormLabel'
 const FormAgreement: any = ({formCheckboxData, control, setValue, watch}) => {
   const [checkedItems, setCheckedItems] = useState({
     age: false,
@@ -46,16 +50,28 @@ const FormAgreement: any = ({formCheckboxData, control, setValue, watch}) => {
 
   return (
     <>
-      <Grid item xs={10}>
-        <Typography variant="body3" mb={2}>
+      <Box
+        sx={{
+          width: 342,
+          background: '#fff',
+          border: '1px solid #E7E7E7',
+          borderRadius: '16px',
+          marginLeft: '16px',
+          position: 'relative',
+        }}
+      >
+        <Typography
+          variant="body3"
+          mb={2}
+          sx={{position: 'absolute', top: -27}}
+        >
           약관동의
         </Typography>
         <ConsentBox>
           <Box
             sx={{
-              borderBottom: '1px solid',
-              borderColor: theme.palette.grey[500],
-              paddingBottom: 4,
+              borderBottom: '1px solid #E7E7E7',
+              marginBottom: '22px',
             }}
           >
             <div>
@@ -66,29 +82,23 @@ const FormAgreement: any = ({formCheckboxData, control, setValue, watch}) => {
                 render={({field}) => (
                   <Checkbox
                     {...field}
+                    icon={<RadioButtonUncheckedIcon />} // 미선택 시 아이콘
+                    checkedIcon={<CheckCircleIcon sx={{color: '#131313'}} />} // 선택 시 아이콘
                     checked={allChecked}
                     onChange={e => {
                       field.onChange(e) // 기존 onChange 이벤트 호출
                       handleSetValuesAllCheck()
                       handleCheckAll(e) // 사용자 정의 onChange 호출
                     }}
-
-                    // 필요한 다른 Material-UI Checkbox 속성을 여기에 추가하십시오.
                   />
                 )}
               />
-              <label>전체동의</label>
+              <label>전체동의 </label>
             </div>
           </Box>
-          <ul
-            style={{
-              padding: 0,
-              margin: 0,
-              marginTop: 8,
-            }}
-          >
-            {formCheckboxData.map(item => (
-              <li key={item.name}>
+          <ul>
+            {formCheckboxData.map((item, index) => (
+              <CheckboxItem key={item.name}>
                 <Controller
                   name={item.name}
                   control={control}
@@ -98,18 +108,22 @@ const FormAgreement: any = ({formCheckboxData, control, setValue, watch}) => {
                     <Checkbox
                       {...field}
                       checked={checkedItems[item.name]}
+                      icon={<RadioButtonUncheckedIcon />} // 미선택 시 아이콘
+                      checkedIcon={<CheckCircleIcon sx={{color: '#131313'}} />} // 선택 시 아이콘
                       onChange={e => {
-                        console.log(field, 'filed')
-
                         field.onChange(e) // 기존 onChange 이벤트 호출
                         handleCheckboxChange(e) // 사용자 정의 onChange 호출
                       }}
-                      // 필요한 다른 Material-UI Checkbox 속성을 여기에 추가하십시오.
                     />
                   )}
                 />
-                <label>{item.label}</label>
-              </li>
+                <FormLabel sx={{fontSize: '14px', color: '#000'}}>
+                  {item.label}
+                </FormLabel>
+                {(index === 1 || index === 2 || index === 3) && (
+                  <FormAgreementModal index={index} />
+                )}
+              </CheckboxItem>
             ))}
           </ul>
         </ConsentBox>
@@ -124,31 +138,34 @@ const FormAgreement: any = ({formCheckboxData, control, setValue, watch}) => {
         >
           회원가입하기
         </Button>
-      </Grid>
-      <Grid item xs={10}>
-        <LoginLinkBox>
-          <Typography color={theme.palette.grey[400]} variant="body4">
-            이미 회원이신가요?
-          </Typography>
-          <Link
-            to="#"
-            style={{
-              cursor: 'pointer',
-              margin: '0px 4px',
-              padding: 0,
-              backgroundColor: 'transparent',
-              border: 'none',
-              color: theme.palette.secondary.main,
-              textDecoration: 'underline',
-              marginLeft: 8,
-            }}
-          >
-            로그인하기
-          </Link>
-        </LoginLinkBox>
-      </Grid>
+      </Box>
+
+      <LoginLinkBox>
+        <Typography color={theme.palette.grey[400]} variant="body4">
+          이미 회원이신가요?
+        </Typography>
+        <Link
+          to="#"
+          style={{
+            cursor: 'pointer',
+            margin: '0px 4px',
+            padding: 0,
+            backgroundColor: 'transparent',
+            border: 'none',
+            color: theme.palette.secondary.main,
+            textDecoration: 'underline',
+            marginLeft: 8,
+          }}
+        >
+          로그인하기
+        </Link>
+      </LoginLinkBox>
     </>
   )
 }
 
 export default FormAgreement
+
+const CheckboxItem = styled.div({
+  position: 'relative',
+})

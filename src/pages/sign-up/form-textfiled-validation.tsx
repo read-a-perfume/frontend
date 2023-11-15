@@ -28,6 +28,7 @@ const FormTextFiledValidation = ({
         name={name}
         sx={{
           fontSize: theme.typography.body3.fontSize,
+          background: '#ffff',
         }}
         placeholder={placeholder}
         type={showPassword ? 'password' : 'text'}
