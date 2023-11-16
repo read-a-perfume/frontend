@@ -1,10 +1,15 @@
 pipeline {
     agent any
 
+    environment {
+        NODE_VERSION = '18'
+        NODE_ENV = 'production'
+    }
+
     stages {
-        stage('Checkout') {
+        stage('Clone Repository') {
             steps {
-                git 'https://github.com/read-a-perfume/frontend.git'
+                checkout scm
             }
         }
 
