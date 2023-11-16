@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    env {
-        NODE_ENV = 'production'
-    }
-
     stages {
         stage('Checkout') {
             steps {
