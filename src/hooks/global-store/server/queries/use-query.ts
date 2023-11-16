@@ -1,5 +1,5 @@
 import {
-  QueryFunctionContext,
+  QueryFunction,
   QueryKey,
   UseQueryOptions,
   useQuery as useQueryOrigin,
@@ -10,11 +10,11 @@ interface UseQueryProps<
   TError,
   TData,
   TQueryKey extends QueryKey,
-  QueryFunctionContext,
 > {
   queryKey: TQueryKey
-  queryFn: (variables: QueryFunctionContext) => Promise<TData>
+  queryFn: QueryFunction<TQueryFnData, TQueryKey>
   options?: UseQueryOptions<TQueryFnData, TError, TData, TQueryKey> & {
+    onError?: any
     useErrorBoundary?: boolean | ((error: TError) => boolean) | undefined
   }
 }
@@ -23,16 +23,10 @@ const useQuery = <TQueryFnData, TError, TData, TQueryKey extends QueryKey>({
   queryKey,
   queryFn,
   options,
-}: UseQueryProps<
-  TQueryFnData,
-  TError,
-  TData,
-  TQueryKey,
-  QueryFunctionContext
->) => {
-  const newOptions: any = {
+}: UseQueryProps<TQueryFnData, TError, TData, TQueryKey>) => {
+  const newOptions: UseQueryOptions<TQueryFnData, TError, TData, TQueryKey> = {
     ...options,
-    useErrorBoundary: options?.onError ? options.onError : !options?.onError,
+    useErrorBoundary: !options?.onError,
   }
 
   return useQueryOrigin({queryKey, queryFn, ...newOptions})

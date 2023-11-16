@@ -9,6 +9,7 @@ interface Props {
 
 const FormAgreementModal: React.FC<Props> = ({index}) => {
   const [open, setOpen] = useState(false)
+
   console.log(index)
   return (
     <>
