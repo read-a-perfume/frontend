@@ -1,5 +1,5 @@
 import {Box, Button, Checkbox, Typography} from '@mui/material'
-import {ConsentBox, LoginLinkBox} from './sign-up-form'
+import {ConsentBox} from './sign-up-form'
 import {theme} from '@theme/index'
 import {Link} from 'react-router-dom'
 import {useState} from 'react'
@@ -132,33 +132,16 @@ const FormAgreement: any = ({formCheckboxData, control, setValue, watch}) => {
           variant="contained"
           color="inherit"
           size="large"
-          style={{
-            width: '100%',
-          }}
+          sx={{width: '100%'}}
         >
           회원가입하기
         </Button>
       </Box>
-
       <LoginLinkBox>
         <Typography color={theme.palette.grey[400]} variant="body4">
           이미 회원이신가요?
         </Typography>
-        <Link
-          to="#"
-          style={{
-            cursor: 'pointer',
-            margin: '0px 4px',
-            padding: 0,
-            backgroundColor: 'transparent',
-            border: 'none',
-            color: theme.palette.secondary.main,
-            textDecoration: 'underline',
-            marginLeft: 8,
-          }}
-        >
-          로그인하기
-        </Link>
+        <CustomLink to="#">로그인하기</CustomLink>
       </LoginLinkBox>
     </>
   )
@@ -169,3 +152,22 @@ export default FormAgreement
 const CheckboxItem = styled.div({
   position: 'relative',
 })
+
+const CustomLink = styled(Link)({
+  cursor: 'pointer',
+  margin: '0px 4px',
+  padding: 0,
+  backgroundColor: 'transparent',
+  border: 'none',
+  color: theme.palette.secondary.main,
+  textDecoration: 'underline',
+  marginLeft: 8,
+})
+
+const LoginLinkBox = styled(Box)(() => ({
+  display: 'flex',
+  '& *': {
+    fontSize: theme.typography.body4.fontSize,
+  },
+  marginLeft: '68px',
+}))

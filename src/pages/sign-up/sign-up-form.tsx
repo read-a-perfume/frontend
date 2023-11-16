@@ -46,7 +46,6 @@ const SignUpForm = () => {
 
   return (
     <>
-      {/* <button onClick={() => mutate()}>제출</button> */}
       <SignUpFormContainer onSubmit={handleSubmit(onSubmit)}>
         <FormHeader title="회원가입" />
         <FormInputList
