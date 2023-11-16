@@ -15,7 +15,7 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 nodejs('NodeJS 20.5.1') {
-                    sh 'npm install -g yarn tsc'
+                    sh 'npm install -g yarn typescript'
                     sh 'yarn install --frozen-lockfile'
                 }
             }
