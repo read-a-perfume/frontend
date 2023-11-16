@@ -1,54 +1,54 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import {Typography} from '@mui/material'
-import categoryImg1 from '../../pages/perfumes/images/fruity.png'
+// import categoryImg1 from '../../pages/perfumes/images/fruity.png'
 import FlexBox from '@layouts/flex-box'
 import CustomIcons from '@assets/icons/custom-Icons'
 
 const CATEGORIES = [
   {
     id: '0',
-    img: categoryImg1,
+    img: '',
     name: 'fruity',
   },
   {
     id: '1',
-    img: categoryImg1,
+    img: '',
     name: 'woody',
   },
   {
     id: '2',
-    img: categoryImg1,
+    img: '',
     name: 'green',
   },
   {
     id: '3',
-    img: categoryImg1,
+    img: '',
     name: 'spicy',
   },
   {
     id: '4',
-    img: categoryImg1,
+    img: '',
     name: 'animal',
   },
   {
     id: '5',
-    img: categoryImg1,
+    img: '',
     name: 'citrus',
   },
   {
     id: '6',
-    img: categoryImg1,
+    img: '',
     name: 'light',
   },
   {
     id: '7',
-    img: categoryImg1,
+    img: '',
     name: 'musk',
   },
   {
     id: '8',
-    img: categoryImg1,
+    img: '',
     name: 'heavy',
   },
 ]
