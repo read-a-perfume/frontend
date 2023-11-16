@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box.js'
 import {Typography} from '@mui/material'
 
-import img1 from './images/Rectangle7217(5).png'
+// import img1 from './images/Rectangle7217(5).png'
 
 // 타입 추후에 설정할 예정입니다.
 const PerfumesItem = ({item}: any) => {
@@ -19,7 +19,7 @@ const PerfumesItem = ({item}: any) => {
       }}
     >
       <ProductWrapper>
-        <img src={img1} alt="img" />
+        <img src="" alt="img" />
         <BrandTitle>구딸파리</BrandTitle>
         <BrandSubTitle>로즈폼퐁 오 드 퍼퓸</BrandSubTitle>
       </ProductWrapper>

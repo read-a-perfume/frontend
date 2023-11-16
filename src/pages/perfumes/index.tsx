@@ -7,7 +7,7 @@ import Category from './category'
 import Pagination from '@mui/material/Pagination'
 
 import brandDummyData from './dummyData'
-import img1 from './images/Rectangle7370.png'
+// import img1 from './images/Rectangle7370.png'
 import PerfumesItem from './perfumes-item'
 
 const dummydata = Array.from({length: 30}, (_, index) => index + 1)
@@ -47,7 +47,7 @@ const Perfumes = () => {
         >
           {/* 브랜드 추천 메인 이미지 */}
           <Box sx={{position: 'relative'}}>
-            <img src={img1} alt="main-img-1" />
+            <img src="" alt="main-img-1" />
             <Box sx={{position: 'absolute', bottom: '20px', left: '20px'}}>
               <BrandTitle>
                 낭만적인
