@@ -1,6 +1,10 @@
 import {Button, Grid, styled} from '@mui/material'
 
-const FormEmailCheck: React.FC = () => {
+interface Props {
+  title: string
+}
+
+const FormEmailCheck: React.FC<Props> = ({title}) => {
   return (
     <Grid
       item
@@ -11,26 +15,28 @@ const FormEmailCheck: React.FC = () => {
         top: 39,
       }}
     >
-      <CheckButton variant="contained" disableElevation>
-        중복확인
-      </CheckButton>
+      {title === '중복확인' && (
+        <CheckButton variant="contained" disableElevation bg="#EFEFEF">
+          {title}
+        </CheckButton>
+      )}
+      {title === '인증(필수)' && (
+        <CheckButton variant="contained" disableElevation bg="#202020">
+          {title}
+        </CheckButton>
+      )}
     </Grid>
   )
 }
 
 export default FormEmailCheck
-const CheckButton = styled(Button)(() => ({
+
+interface CheckButtonProps {
+  bg: string
+}
+
+const CheckButton = styled(Button)<CheckButtonProps>(props => ({
   height: '55px',
-
-  color: 'white',
+  backgroundColor: `${props.bg}`,
+  color: `${props.bg === '#EFEFEF' ? '#B4B4B4' : '#ffff'}`,
 }))
-
-// sx={{
-//   backgroundColor:
-//     checkId === false
-//       ? theme.palette.error.main
-//       : checkId === true
-//       ? theme.palette.grey[200]
-//       : 'black',
-// }}
-// disabled={checkId}
