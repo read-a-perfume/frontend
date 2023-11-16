@@ -1,129 +1,201 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import {Typography} from '@mui/material'
-// import categoryImg1 from '../../pages/perfumes/images/fruity.png'
+import {Box, Typography} from '@mui/material'
 import FlexBox from '@layouts/flex-box'
 import CustomIcons from '@assets/icons/custom-Icons'
+import instance from '@api/instance'
 
-const CATEGORIES = [
-  {
-    id: '0',
-    img: '',
-    name: 'fruity',
-  },
-  {
-    id: '1',
-    img: '',
-    name: 'woody',
-  },
-  {
-    id: '2',
-    img: '',
-    name: 'green',
-  },
-  {
-    id: '3',
-    img: '',
-    name: 'spicy',
-  },
-  {
-    id: '4',
-    img: '',
-    name: 'animal',
-  },
-  {
-    id: '5',
-    img: '',
-    name: 'citrus',
-  },
-  {
-    id: '6',
-    img: '',
-    name: 'light',
-  },
-  {
-    id: '7',
-    img: '',
-    name: 'musk',
-  },
-  {
-    id: '8',
-    img: '',
-    name: 'heavy',
-  },
-]
+import {useQuery} from '@tanstack/react-query'
 
-interface ICategory {
+import {URLSearchParamsInit, useSearchParams} from 'react-router-dom'
+
+interface CategoryProps {
   currentCategory: string
   setCurrentCategory: React.Dispatch<React.SetStateAction<string>>
+  searchParams?: URLSearchParamsInit
+  setSearchParams?: React.Dispatch<React.SetStateAction<URLSearchParamsInit>>
 }
 
-const Category = ({currentCategory, setCurrentCategory}: ICategory) => {
-  const handleLeftArrowClick = () => {
-    const currentIndex = CATEGORIES.findIndex(
-      category => category.name === currentCategory,
-    )
-    const newIndex = (currentIndex - 1 + CATEGORIES.length) % CATEGORIES.length
-    setCurrentCategory(CATEGORIES[newIndex].name)
+type CategoryNameType = {
+  id: number
+  name: string
+  description: string
+  thumbnail?: string
+  img?: string
+}
+
+/** 카테고리 목록 조회 */
+const fetchGetCategories = async () => {
+  try {
+    const res = await instance.get('/categories')
+    const data = res.data
+
+    return data
+  } catch (error: any) {
+    console.log(error)
+    throw error
+  }
+}
+
+const Category = ({currentCategory, setCurrentCategory}: CategoryProps) => {
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const query = searchParams.get('category')
+
+  const {
+    isLoading,
+    error,
+    data: categories,
+  } = useQuery<CategoryNameType[]>({
+    queryKey: ['categories'],
+    queryFn: fetchGetCategories,
+  })
+
+  const setQueryParams = (categoryName: string) => {
+    if (categories) {
+      console.log(categoryName)
+      setCurrentCategory(categoryName)
+
+      setSearchParams({
+        category: categoryName,
+      })
+    }
   }
 
-  // const handleRightArrowClick = () => {
-  //   const currentIndex = CATEGORIES.findIndex(
-  //     category => category.name === currentCategory,
-  //   )
-  //   const newIndex = (currentIndex + 1) % CATEGORIES.length
-  //   setCurrentCategory(CATEGORIES[newIndex].name)
-  // }
+  const handleLeftArrowClick = () => {
+    if (categories) {
+      const currentIndex = categories.findIndex(
+        category => category.name === currentCategory,
+      )
+      const newIndex =
+        (currentIndex - 1 + categories.length) % categories.length
+
+      setQueryParams(categories[newIndex].name)
+    }
+  }
+
+  const handleRightArrowClick = () => {
+    if (categories) {
+      const currentIndex = categories.findIndex(
+        category => category.name === currentCategory,
+      )
+      const newIndex = (currentIndex + 1) % categories.length
+      setQueryParams(categories[newIndex].name)
+    }
+  }
+
+  if (isLoading) return 'Loading...'
+
+  if (error) return 'An error has occurred: ' + error
 
   return (
-    <div>
-      <FlexBox
-        direction=""
-        justifyContent="space-between"
-        alignItems="center"
-        gap=""
-        style={{position: 'relative'}}
-      >
-        <CustomIcons.BeforeIcon
-          style={{marginRight: 36, cursor: 'pointer'}}
-          onClick={handleLeftArrowClick}
-        />
+    <Wrapper>
+      <Box sx={{cursor: 'pointer'}} onClick={handleLeftArrowClick}>
+        <CustomIcons.BeforeIcon />
+      </Box>
 
-        {CATEGORIES.map(category => (
+      {categories?.length !== 0 &&
+        categories?.map(category => (
           <FlexBox
             direction="column"
-            justifyContent=""
             alignItems="center"
             gap=""
             style={{
               cursor: 'pointer',
             }}
-            onClick={() => setCurrentCategory(category.name)}
+            onClick={() => setQueryParams(category.name)}
             key={category.id}
           >
-            <CategoryImg
-              clicked={currentCategory === category.name ? 'true' : ''}
-              src={category.img}
-              alt="category 이미지"
-            />
+            {category.thumbnail ? (
+              <CategoryImg
+                clicked={
+                  (query && query === category.name) ||
+                  (!query && currentCategory === category.name)
+                    ? 'true'
+                    : ''
+                }
+                src={category.img}
+                alt="category 이미지"
+              />
+            ) : (
+              <>
+                {(query && query === category.name) ||
+                (!query && currentCategory === category.name) ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="78"
+                    height="78"
+                    viewBox="0 0 78 78"
+                    fill="none"
+                  >
+                    <circle
+                      cx="39"
+                      cy="39"
+                      r="38.625"
+                      fill="white"
+                      stroke="#FE7156"
+                      strokeWidth="0.75"
+                    />
+                    <circle cx="39" cy="39" r="36" fill="#F1F1F5" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="78"
+                    height="78"
+                    viewBox="0 0 78 78"
+                    fill="none"
+                  >
+                    <circle
+                      cx="39"
+                      cy="39"
+                      r="38.625"
+                      fill="white"
+                      stroke="#EDEDED"
+                      strokeWidth="0.75"
+                    />
+                    <circle cx="39" cy="39" r="36" fill="#F1F1F5" />
+                  </svg>
+                )}
+              </>
+            )}
+
             <CategoryName
-              clicked={currentCategory === category.name ? 'true' : ''}
+              clicked={
+                (query && query === category.name) ||
+                (!query && currentCategory === category.name)
+                  ? 'true'
+                  : ''
+              }
             >
               {category.name}
             </CategoryName>
           </FlexBox>
         ))}
+
+      <Box sx={{cursor: 'pointer'}} onClick={handleRightArrowClick}>
         <CustomIcons.AfterIcon />
-      </FlexBox>
-    </div>
+      </Box>
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.div({
+  margin: '93px 0px',
+  display: 'flex',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  position: 'relative',
+})
 
 const CategoryImg = styled.img<{clicked: string}>(({clicked}) => ({
   borderRadius: '50%',
   border: clicked ? '1px solid #FE7156' : '1px solid #F1F1F5',
   cursor: 'pointer',
-  transition: 'all 0.3s ease-in-out',
+  transition: 'all 0.1s ease-in-out',
+  width: '72px',
+  height: '72px',
+
   '&:hover': {
     border: '1px solid #FE7156',
   },
@@ -131,13 +203,13 @@ const CategoryImg = styled.img<{clicked: string}>(({clicked}) => ({
 
 const CategoryName = styled(Typography)<{clicked: string}>(({clicked}) => ({
   fontFamily: 'AritaBuri, sans-serif, Arial !important',
-  marginTop: '16px',
+  marginTop: '12px',
   fontWeight: '500',
-  fontSize: '18px',
-  lineHeight: '21.6px',
+  fontSize: '13.5px',
+  lineHeight: 'noraml',
   color: clicked ? '#FE7156' : 'black',
   textTransform: 'uppercase',
-  transition: 'all 0.3s ease-in-out',
+  transition: 'all 0.1s ease',
 }))
 
 export default Category

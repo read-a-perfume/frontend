@@ -2,25 +2,60 @@ import {useEffect, useState} from 'react'
 import styled from '@emotion/styled'
 import {Box, Typography} from '@mui/material'
 import FlexBox from '@layouts/flex-box'
-import Header from '@layouts/header'
-import Category from './category'
+import Category from '@components/category'
 import Pagination from '@mui/material/Pagination'
 
 import brandDummyData from './dummyData'
-// import img1 from './images/Rectangle7370.png'
 import PerfumesItem from './perfumes-item'
+
+import instance from '@api/instance'
+import {useQuery} from '@tanstack/react-query'
+import {useSearchParams} from 'react-router-dom'
 
 const dummydata = Array.from({length: 30}, (_, index) => index + 1)
 
+// 카테고리별 향수 조회
+const getPerfumeList = async () => {
+  try {
+    const res = await instance.get('/perfumes/category/2?page=1&size=14')
+
+    const data = res.data
+
+    return data
+  } catch (error: any) {
+    console.log(error)
+    throw error
+  }
+}
+
 const Perfumes = () => {
+  const {
+    isLoading,
+    error,
+    data: perfumeList,
+  } = useQuery({
+    queryKey: ['perfumeList'],
+    queryFn: getPerfumeList,
+  })
+
+  const [clickedCategory, setClickedCategory] = useState<string>('프루티')
+  const [page, setPage] = useState(1) // 처음 페이지는 1
+  const [perfumes, setPerfumes] = useState([])
+
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  console.log('perfumeList:', perfumeList)
+
   // 마지막 페이지
   const LAST_PAGE =
     dummydata.length % 12 === 0
       ? parseInt((dummydata.length / 12) as any)
       : parseInt((dummydata.length / 12) as any) + 1
 
-  const [page, setPage] = useState(1) // 처음 페이지는 1
-  const [perfumes, setPerfumes] = useState([])
+  const handlePage = (event: any) => {
+    const nowPageInt = parseInt(event.target.outerText)
+    setPage(nowPageInt)
+  }
 
   useEffect(() => {
     // 한 페이지에 12개씩 보여줍니다.
@@ -32,13 +67,12 @@ const Perfumes = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page])
 
-  const handlePage = (event: any) => {
-    const nowPageInt = parseInt(event.target.outerText)
-    setPage(nowPageInt)
-  }
+  if (isLoading) return 'Loading...'
+
+  if (error) return 'An error has occurred: ' + error
+
   return (
     <>
-      <Header />
       <Wrapper>
         <FlexBox
           justifyContent="space-around"
@@ -46,9 +80,16 @@ const Perfumes = () => {
           style={{marginTop: '120px'}}
         >
           {/* 브랜드 추천 메인 이미지 */}
-          <Box sx={{position: 'relative'}}>
-            <img src="" alt="main-img-1" />
-            <Box sx={{position: 'absolute', bottom: '20px', left: '20px'}}>
+          <Box
+            sx={{
+              position: 'relative',
+              width: '326.4px',
+              height: '319.7px',
+              marginRight: '32px',
+            }}
+          >
+            <img src="./images/Rectangle7370.png" alt="main-img-1" />
+            <Box sx={{position: 'absolute', bottom: '23.5px', left: '24px'}}>
               <BrandTitle>
                 낭만적인
                 <br />
@@ -69,15 +110,14 @@ const Perfumes = () => {
                 direction="column"
                 justifyContent="space-between"
                 gap=""
-                style={{width: '236px'}}
+                style={{width: '177px', height: '226px'}}
                 key={data.id}
               >
                 <img src={data.url} alt="perfumesImg" />
 
-                <FlexBox direction="column">
+                <FlexBox direction="column" style={{marginTop: '27px'}}>
                   <BrandName>{data.brandName}</BrandName>
                   <PerfumeName>{data.perfumeName}</PerfumeName>
-                  <br />
 
                   <Description
                     dangerouslySetInnerHTML={{__html: data.description}}
@@ -88,7 +128,12 @@ const Perfumes = () => {
         </FlexBox>
 
         {/* 카테고리 */}
-        <Category />
+        <Category
+          currentCategory={clickedCategory}
+          setCurrentCategory={setClickedCategory}
+          searchParams={searchParams}
+          setSearchParams={setSearchParams}
+        />
 
         {/* 제품 리스트 */}
         <ProductList>
@@ -125,49 +170,45 @@ const Perfumes = () => {
 }
 
 const Wrapper = styled(Box)({
-  maxWidth: '1600px',
+  maxWidth: '1200px',
   margin: '0 auto',
 })
 
 const BrandTitle = styled(Typography)({
-  // fontFamily: 'Arita-buri(OTF)',
-  fontSize: '36px',
+  fontFamily: 'AritaBuri, sans-serif, Arial !important',
+  fontSize: '27px',
   fontWeight: '700',
-  lineHeight: '43px',
+  lineHeight: 'normal',
   textAlign: 'left',
   color: '#FFFFFF',
-  // 임시로 해놓음,
-  // 폰트설정하면 지울 예정
-  marginBottom: '15px',
+  marginBottom: '11.8px',
 })
 
 const BrandSubTitle = styled(Typography)({
-  fontSize: '18px',
+  fontSize: '13.5px',
   fontWeight: '500',
-  lineHeight: '28.8px',
   textAlign: 'left',
-  color: '#FFFFFF',
+  lineHeight: '21.6px',
+  color: '#FFF',
 })
 
 const BrandName = styled(Typography)({
   fontWeight: '400',
-  fontSize: '14px',
+  fontSize: '10px',
   lineHeight: '16.71px',
 })
 
 const PerfumeName = styled(Typography)({
-  fontSize: '18px',
+  fontSize: '13.5px',
   fontWeight: '600',
-  lineHeight: '18px',
+  lineHeight: '15px',
 })
 
 const Description = styled(Typography)(() => ({
-  fontSize: '14px',
+  fontSize: '10px',
   color: '#707070',
-  lineHeight: '16.71px',
-  // wordBreak: 'keep-all',
-
-  // color:{theme.palette.grey['500']}
+  lineHeight: 'normal',
+  marginTop: '10.5px',
 }))
 
 const ProductList = styled.ul({
@@ -175,15 +216,15 @@ const ProductList = styled.ul({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'center',
-  gap: '32px',
+  gap: '24px',
 })
 
 const Footer = styled.footer({
   width: '100%',
   display: 'flex',
   justifyContent: 'center',
-  marginTop: '190px',
-  marginBottom: '430px',
+  marginTop: '142px',
+  marginBottom: '118px',
 })
 
 export default Perfumes
