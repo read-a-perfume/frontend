@@ -1,7 +1,7 @@
-// import img2 from './images/Rectangle7217(1).png'
-// import img3 from './images/Rectangle7217(2).png'
-// import img4 from './images/Rectangle7217(3).png'
-// import img5 from './images/Rectangle7217(4).png'
+import img2 from '../../../public/images/Rectangle7217(1).png'
+import img3 from '../../../public/images/Rectangle7217(2).png'
+import img4 from '../../../public/images/Rectangle7217(3).png'
+import img5 from '../../../public/images/Rectangle7217(4).png'
 
 interface BrandDummyData {
   id: string
@@ -11,12 +11,10 @@ interface BrandDummyData {
   description: string
 }
 
-// 10월29일 디자이너분과 회의후에 수정할 예정
-
 const brandDummyData: BrandDummyData[] = [
   {
     id: '0',
-    url: 'none',
+    url: img2,
     brandName: '구딸파리',
     perfumeName: '로즈폼퐁 오 드 퍼퓸',
     description:
@@ -24,7 +22,7 @@ const brandDummyData: BrandDummyData[] = [
   },
   {
     id: '1',
-    url: 'none',
+    url: img3,
     brandName: '구딸파리',
     perfumeName: '로즈폼퐁 오 드 퍼퓸',
     description:
@@ -32,7 +30,7 @@ const brandDummyData: BrandDummyData[] = [
   },
   {
     id: '2',
-    url: 'none',
+    url: img4,
     brandName: '구딸파리',
     perfumeName: '로즈폼퐁 오 드 퍼퓸',
     description:
@@ -40,7 +38,7 @@ const brandDummyData: BrandDummyData[] = [
   },
   {
     id: '3',
-    url: 'none',
+    url: img5,
     brandName: '구딸파리',
     perfumeName: '로즈폼퐁 오 드 퍼퓸',
     description:

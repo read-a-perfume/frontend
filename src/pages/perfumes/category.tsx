@@ -4,52 +4,52 @@ import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box'
 
 import {Typography} from '@mui/material'
-// import categoryImg1 from './images/fruity.png'
+import categoryImg1 from './images/fruity.png'
 
 const CATEGORIES = [
   {
     id: '0',
-    img: '',
+    img: categoryImg1,
     name: 'fruity',
   },
   {
     id: '1',
-    img: '',
+    img: categoryImg1,
     name: 'woody',
   },
   {
     id: '2',
-    img: '',
+    img: categoryImg1,
     name: 'green',
   },
   {
     id: '3',
-    img: '',
+    img: categoryImg1,
     name: 'spicy',
   },
   {
     id: '4',
-    img: '',
+    img: categoryImg1,
     name: 'animal',
   },
   {
     id: '5',
-    img: '',
+    img: categoryImg1,
     name: 'citrus',
   },
   {
     id: '6',
-    img: '',
+    img: categoryImg1,
     name: 'light',
   },
   {
     id: '7',
-    img: '',
+    img: categoryImg1,
     name: 'musk',
   },
   {
     id: '8',
-    img: '',
+    img: categoryImg1,
     name: 'heavy',
   },
 ]
