@@ -4,33 +4,31 @@ import Box from '@mui/material/Box'
 import MobileStepper from '@mui/material/MobileStepper'
 import SwipeableViews from 'react-swipeable-views'
 import {autoPlay} from 'react-swipeable-views-utils'
-
 import styled from '@emotion/styled'
-
 import ThumbGallery from './ThumbGallery'
-import main from '../images/main.jpg'
-import sub1 from '../images/sub1.png'
-import sub2 from '../images/sub2.jpg'
-import sub3 from '../images/sub3.jpg'
-import sub4 from '../images/sub4.png'
+// import main from '../images/main.jpg'
+// import sub1 from '../images/sub1.png'
+// import sub2 from '../images/sub2.jpg'
+// import sub3 from '../images/sub3.jpg'
+// import sub4 from '../images/sub4.png'
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
 
 const images = [
   {
-    src: main,
+    src: '',
   },
   {
-    src: sub1,
+    src: '',
   },
   {
-    src: sub2,
+    src: '',
   },
   {
-    src: sub3,
+    src: '',
   },
   {
-    src: sub4,
+    src: '',
   },
 ]
 
