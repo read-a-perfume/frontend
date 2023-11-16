@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NODE_VERSION = '18'
+        NODE_VERSION = '20.5.1'
         NODE_ENV = 'production'
     }
 
@@ -15,13 +15,18 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
-                sh 'yarn install --frozen-lockfile'
+                nodejs(nodeJSInstallationName: 'NodeJS ${NODE_VERSION}', configId: 'nodejs') {
+                    sh 'npm install -g yarn'
+                    sh 'yarn install --frozen-lockfile'
+                }
             }
         }
 
         stage('Build') {
             steps {
-                sh 'yarn build'
+                nodejs(nodeJSInstallationName: 'NodeJS ${NODE_VERSION}', configId: 'nodejs') {
+                    sh 'yarn build'
+                }
             }
         }
 
