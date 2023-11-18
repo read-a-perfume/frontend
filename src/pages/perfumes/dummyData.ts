@@ -1,7 +1,7 @@
-import img2 from './images/Rectangle7217(1).png'
-import img3 from './images/Rectangle7217(2).png'
-import img4 from './images/Rectangle7217(3).png'
-import img5 from './images/Rectangle7217(4).png'
+import img2 from '../../../public/images/Rectangle7217(1).png'
+import img3 from '../../../public/images/Rectangle7217(2).png'
+import img4 from '../../../public/images/Rectangle7217(3).png'
+import img5 from '../../../public/images/Rectangle7217(4).png'
 
 interface BrandDummyData {
   id: string
@@ -10,8 +10,6 @@ interface BrandDummyData {
   perfumeName: string
   description: string
 }
-
-// 10월29일 디자이너분과 회의후에 수정할 예정
 
 const brandDummyData: BrandDummyData[] = [
   {

@@ -1,43 +1,44 @@
 import styled from '@emotion/styled'
-import FlexBox from '@layouts/flex-box.js'
 import {Typography} from '@mui/material'
 
-import img1 from './images/Rectangle7217(5).png'
+import {Link} from 'react-router-dom'
 
 // 타입 추후에 설정할 예정입니다.
 const PerfumesItem = ({item}: any) => {
   console.log(item)
 
   return (
-    <FlexBox
-      direction="column"
-      justifyContent=""
-      alignItems="ceter"
-      gap=""
-      style={{
-        width: '376px',
-      }}
-    >
-      <ProductWrapper>
-        <img src={img1} alt="img" />
-        <BrandTitle>구딸파리</BrandTitle>
-        <BrandSubTitle>로즈폼퐁 오 드 퍼퓸</BrandSubTitle>
-      </ProductWrapper>
+    <Wrapper>
+      <Link to="/perfume/:id">
+        <ProductWrapper>
+          <img src="/images/Rectangle7217(5).png" alt="img" />
+          <BrandTitle>구딸파리</BrandTitle>
+          <BrandSubTitle>로즈폼퐁 오 드 퍼퓸</BrandSubTitle>
+        </ProductWrapper>
 
-      <Information>
-        <InfoLeft>
-          <Type>강도</Type>
-          적당한 향
-        </InfoLeft>
+        <Information>
+          <Text>
+            <Type>강도</Type>적당한 향
+          </Text>
 
-        <div className="vertical-line" />
-        <InfoRight>
-          <Type>지속력</Type> 3시간~6시간
-        </InfoRight>
-      </Information>
-    </FlexBox>
+          <div className="vertical-line" />
+
+          <Text>
+            <Type>지속력</Type>
+            3시간~6시간
+          </Text>
+        </Information>
+      </Link>
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.div({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  width: '282px',
+})
 
 const ProductWrapper = styled.div({
   border: '1px solid #EDEDED',
@@ -55,49 +56,53 @@ const ProductWrapper = styled.div({
 })
 
 const BrandTitle = styled(Typography)({
-  fontSize: '14px',
+  fontSize: '10.5px',
   fontWeight: '400',
-  lineHeight: '16.71px',
+  lineHeight: 'normal',
   marginBottom: '5px',
   color: '#131313',
 })
 
 const BrandSubTitle = styled(Typography)({
-  fontSize: '18px',
+  fontSize: '13.5px',
   fontWeight: '600',
-  lineHeight: '20px',
-  marginBottom: '32px',
+  lineHeight: '15px',
+  marginBottom: '24px',
   color: '#131313',
 })
 
 const Information = styled.div({
   width: '100%',
   display: 'flex',
-  justifyContent: 'space-evenly',
+  // justifyContent: 'space-evenly',
   alignItems: 'center',
-  borderRadius: '12px',
+  borderRadius: '7.5px',
   backgroundColor: '#F1F1F1',
   fontWeight: '500',
   color: '#333333',
-  marginTop: '32px',
+  marginTop: '24px',
   padding: '0 32px',
 
   '& .vertical-line': {
     borderLeft: '1px solid #BDBDBD',
-    margin: '8px 16px',
-    height: '30px',
+    margin: '6px  21px 6px 16.25px',
+    width: '0.75px',
+    height: '22.5px',
   },
 })
 
+const Text = styled.p({
+  width: '100%',
+  color: '#333',
+  fontFamily: 'Pretendard',
+  fontSize: '10.5px',
+  letterSpacing: '0.21px',
+  whiteSpace: 'nowrap',
+})
+
 const Type = styled.span({
-  marginRight: '15px',
   color: '#949494',
+  marginRight: '11.75px',
 })
-
-const InfoLeft = styled.div({
-  padding: '0 15px',
-})
-
-const InfoRight = styled.div({})
 
 export default PerfumesItem

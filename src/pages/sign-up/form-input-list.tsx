@@ -31,8 +31,8 @@ const FormInputList: React.FC<FormInputListProps> = ({
             register={register(`${it.name}`, {...it.register})}
             errors={errors && errors[`${it.name}`]}
           />
-          {it.name === 'username' && <FormEmailCheck />}
-          {it.name === 'email' && <FormEmailCheck />}
+          {it.name === 'username' && <FormEmailCheck title="중복확인" />}
+          {it.name === 'email' && <FormEmailCheck title="인증(필수)" />}
         </ListItem>
       ))}
     </List>
