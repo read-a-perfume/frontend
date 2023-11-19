@@ -3,7 +3,6 @@ import GeneralLayout from '@layouts/general-layout.js'
 import Brand from '@pages/brand/index.js'
 import Home from '@pages/home/index.js'
 import Perfumes from '@pages/perfumes/index.js'
-import SignInForm from '@pages/sign-in/sign-in-form.js'
 import SignUp from '@pages/sign-up/index.js'
 import {createBrowserRouter} from 'react-router-dom'
 import MyPage from '@pages/my-page/index'
@@ -11,6 +10,7 @@ import Account from '@pages/account/index'
 import {Router as RemixRouter} from '@remix-run/router/dist/router'
 import ReviewWriter from '@pages/reviews/review-writer'
 import PerfumeDetail from '@pages/perfume-detail'
+import SignIn from '@pages/sign-in'
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
   path: string // 페이지 경로
@@ -37,7 +37,7 @@ const routerData: RouterElement[] = [
     id: 1,
     label: '로그인 페이지',
     path: '/sign-in',
-    element: <SignInForm />,
+    element: <SignIn />,
     isLayout: true,
   },
   {
@@ -96,6 +96,7 @@ const routerData: RouterElement[] = [
     element: <Account />,
     isLayout: true,
   },
+
   //   {
   //     label: "test",
   //     key: "test-key",
