@@ -4,6 +4,7 @@ import FlexBox from '../../layouts/flex-box'
 import {SectionSubTitle, SectionTitle} from './index.style'
 import Card from '@components/base/card.js'
 import {useState} from 'react'
+import Carousel from './carousel'
 
 const Magazines = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -12,7 +13,7 @@ const Magazines = () => {
     <div>
       <SectionTitle>향수 이야기</SectionTitle>
       <SectionSubTitle>다양한 향수의 이야기를 들어보세요</SectionSubTitle>
-      <FlexBox style={{gap: '32px'}}>
+      <Carousel currentIndex={currentIndex} setCurrentIndex={setCurrentIndex}>
         {magazineData.map(data => (
           <Card
             key={data.title}
@@ -24,7 +25,7 @@ const Magazines = () => {
             onClick={() => console.log('magazine card')}
           />
         ))}
-      </FlexBox>
+      </Carousel>
       <FlexBox
         style={{
           flexDirection: 'row',
