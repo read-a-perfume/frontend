@@ -171,7 +171,6 @@ const LeftBox = styled.div({width: '100%'})
 
 const CenterLine = styled.div({
   width: '0.75px',
-  height: '663.75px',
   background: '#EDEDED',
   marginLeft: '58.5px',
   marginRight: '67.5px',

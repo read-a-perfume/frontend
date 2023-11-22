@@ -6,8 +6,10 @@ import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ChartBar from './ChartBar'
 import FlexBox from '@layouts/flex-box'
+import {styled} from '@mui/system'
+import {Box} from '@mui/material'
 
-// import styled from '@emotion/styled'
+const arrayTest = Array.from({length: 5}, (_, index) => index)
 
 const AccordionChart = () => {
   const [expanded, setExpanded] = useState<string | false>(false)
@@ -19,384 +21,88 @@ const AccordionChart = () => {
 
   return (
     <div>
-      <Accordion
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}
-        sx={{
-          background: 'red',
-          width: '230px',
-          display: 'flex',
-          flexDirection: 'column',
-          border: '1px solid #EDEDED',
-          borderRadius: '7.5px !important',
-          marginBottom: '18px',
-          boxShadow: 'none',
+      {arrayTest.map((item, index) => (
+        <>
+          {/* 지워야됨 */}
+          <Box sx={{display: 'none'}}>{item}</Box>
 
-          '&.MuiAccordion-root:before': {
-            opacity: '0',
-          },
+          <Accordion
+            expanded={expanded === `panel${index}`}
+            onChange={handleChange(`panel${index}`)}
+            sx={{
+              width: '253px',
+              display: 'flex',
+              flexDirection: 'column',
+              border: '.75px solid #EDEDED',
+              borderRadius: '7.5px !important',
+              marginBottom: '12px',
+              boxShadow: 'none',
+              '&.MuiAccordion-root:before': {
+                opacity: '0',
+              },
 
-          '& .Mui-expanded': {
-            // opacity: '0',
-          },
-        }}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-          sx={{position: 'relative'}}
-        >
-          <FlexBox
-            justifyContent="space-between"
-            alignItems="center"
-            // gap="14px"
-            // style={{width: '100%'}}
+              '& .Mui-expanded': {
+                // opacity: '0',
+              },
+            }}
           >
-            {/* TODO: 텍스트 길이에따라서 길이조절 */}
-            <Typography sx={{color: '#A9A9A9', fontSize: '12px'}}>
-              무게감
-            </Typography>
-            {/* 수치에 따라서 텍스트 변경할 예정
-          EX) 20%이하면 약함, 50% 중간*/}
-            <Typography
-              sx={{color: '#000', fontWeight: '500', fontSize: '12px'}}
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
             >
-              강함
-            </Typography>
+              <FlexBox
+                justifyContent="space-between"
+                alignItems="center"
+                style={{width: '100%'}}
+              >
+                <MUIText sx={{color: '#A9A9A9'}}>지속력</MUIText>
 
-            <ChartBar percent={50} />
+                <MUIText sx={{color: '#000', fontWeight: '500'}}>강함</MUIText>
 
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-        </AccordionSummary>
+                <ChartBar percent={50} />
 
-        <AccordionDetails
-          sx={{
-            paddingLeft: '3.1rem',
-          }}
-        >
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              강함
-            </Typography>
+                <MUIText sx={{color: '#000', fontWeight: '500'}}>20%</MUIText>
+              </FlexBox>
+            </AccordionSummary>
 
-            <ChartBar percent={50} />
+            <AccordionDetails
+              sx={{
+                paddingLeft: '2.2rem',
+              }}
+            >
+              <FlexBox justifyContent="center" alignItems="center" gap="11px">
+                <MUIText sx={{color: '#000', fontWeight: '500'}}>강함</MUIText>
 
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
+                <ChartBar percent={50} />
 
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              보통
-            </Typography>
+                <MUIText sx={{color: '#000', fontWeight: '500'}}>20%</MUIText>
+              </FlexBox>
 
-            <ChartBar percent={50} />
+              <FlexBox justifyContent="center" alignItems="center" gap="11px">
+                <MUIText sx={{color: '#000', fontWeight: '500'}}>보통</MUIText>
 
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
+                <ChartBar percent={50} />
 
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              약함
-            </Typography>
+                <MUIText sx={{color: '#000', fontWeight: '500'}}>20%</MUIText>
+              </FlexBox>
 
-            <ChartBar percent={50} />
+              <FlexBox justifyContent="center" alignItems="center" gap="11px">
+                <MUIText sx={{color: '#000', fontWeight: '500'}}>약함</MUIText>
 
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-        </AccordionDetails>
-      </Accordion>
+                <ChartBar percent={50} />
 
-      <Accordion
-        expanded={expanded === 'panel2'}
-        onChange={handleChange('panel2')}
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          border: '1px solid #EDEDED',
-          borderRadius: '10px !important',
-          marginBottom: '24px',
-          boxShadow: 'none',
-          '&.MuiAccordion-root:before': {
-            opacity: '0',
-          },
-        }}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
-          <FlexBox
-            justifyContent="space-between"
-            alignItems="center"
-            style={{width: '100%'}}
-          >
-            {/* TODO: 텍스트 길이에따라서 길이조절 */}
-            <Typography sx={{color: '#A9A9A9'}}>지속력</Typography>
-            {/* 수치에 따라서 텍스트 변경할 예정
-          EX) 20%이하면 약함, 50% 중간*/}
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              강함
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-        </AccordionSummary>
-
-        <AccordionDetails sx={{paddingLeft: '3.1rem', marginTop: '0'}}>
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              강함
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              보통
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              약함
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-        </AccordionDetails>
-      </Accordion>
-
-      <Accordion
-        expanded={expanded === 'panel3'}
-        onChange={handleChange('panel3')}
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          border: '1px solid #EDEDED',
-          borderRadius: '10px !important',
-          marginBottom: '24px',
-          boxShadow: 'none',
-          '&.MuiAccordion-root:before': {
-            opacity: '0',
-          },
-        }}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
-          <FlexBox
-            justifyContent="space-between"
-            alignItems="center"
-            style={{width: '100%'}}
-          >
-            {/* TODO: 텍스트 길이에따라서 길이조절 */}
-            <Typography sx={{width: '42px', color: '#A9A9A9'}}>계절</Typography>
-            {/* 수치에 따라서 텍스트 변경할 예정
-          EX) 20%이하면 약함, 50% 중간*/}
-            <Typography sx={{width: '42px', color: '#000', fontWeight: '500'}}>
-              가을
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-        </AccordionSummary>
-
-        <AccordionDetails sx={{paddingLeft: '3.1rem', marginTop: '0'}}>
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{width: '42px', color: '#000', fontWeight: '500'}}>
-              봄
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{width: '42px', color: '#000', fontWeight: '500'}}>
-              여름
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{width: '42px', color: '#000', fontWeight: '500'}}>
-              가을
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{width: '42px', color: '#000', fontWeight: '500'}}>
-              겨울
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-        </AccordionDetails>
-      </Accordion>
-
-      <Accordion
-        expanded={expanded === 'panel4'}
-        onChange={handleChange('panel4')}
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          border: '1px solid #EDEDED',
-          borderRadius: '10px !important',
-          marginBottom: '24px',
-          boxShadow: 'none',
-          '&.MuiAccordion-root:before': {
-            opacity: '0',
-          },
-        }}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
-          <FlexBox
-            justifyContent="space-between"
-            alignItems="center"
-            style={{width: '100%'}}
-          >
-            {/* TODO: 텍스트 길이에따라서 길이조절 */}
-            <Typography sx={{color: '#A9A9A9'}}>확산력</Typography>
-            {/* 수치에 따라서 텍스트 변경할 예정
-          EX) 20%이하면 약함, 50% 중간*/}
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              빠름
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-        </AccordionSummary>
-
-        <AccordionDetails sx={{paddingLeft: '3.1rem', marginTop: '0'}}>
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              빠름
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              느림
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-        </AccordionDetails>
-      </Accordion>
-
-      <Accordion
-        expanded={expanded === 'panel5'}
-        onChange={handleChange('panel5')}
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          border: '1px solid #EDEDED',
-          borderRadius: '10px !important',
-          marginBottom: '24px',
-          boxShadow: 'none',
-          '&.MuiAccordion-root:before': {
-            opacity: '0',
-          },
-        }}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
-          <FlexBox
-            justifyContent="space-between"
-            alignItems="center"
-            style={{width: '100%'}}
-          >
-            {/* TODO: 텍스트 길이에따라서 길이조절 */}
-            <Typography sx={{width: '42px', color: '#A9A9A9'}}>성별</Typography>
-            {/* 수치에 따라서 텍스트 변경할 예정
-          EX) 20%이하면 약함, 50% 중간*/}
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              여자
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-        </AccordionSummary>
-
-        <AccordionDetails sx={{paddingLeft: '3.1rem', marginTop: '0'}}>
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              여자
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              공용
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-
-          <FlexBox justifyContent="center" alignItems="center" gap="11px">
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
-              남자
-            </Typography>
-
-            <ChartBar percent={50} />
-
-            <Typography sx={{color: '#000', fontWeight: '500'}}>20%</Typography>
-          </FlexBox>
-        </AccordionDetails>
-      </Accordion>
+                <MUIText sx={{color: '#000', fontWeight: '500'}}>20%</MUIText>
+              </FlexBox>
+            </AccordionDetails>
+          </Accordion>
+        </>
+      ))}
     </div>
   )
 }
 
+const MUIText = styled(Typography)({
+  fontSize: '12px !Important',
+})
 export default AccordionChart

@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import FlexBox from '@layouts/flex-box'
+import {Box, styled} from '@mui/material'
 
 interface ProgressBarProp {
   percent: number
@@ -26,7 +26,7 @@ const ChartBar = ({percent}: ProgressBarProp) => {
   }, [percent])
 
   return (
-    <FlexBox alignItems="center">
+    <Wrapper>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="85.5"
@@ -47,8 +47,10 @@ const ChartBar = ({percent}: ProgressBarProp) => {
           strokeLinecap="round"
         />
       </svg>
-    </FlexBox>
+    </Wrapper>
   )
 }
+
+const Wrapper = styled(Box)({})
 
 export default ChartBar

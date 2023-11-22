@@ -1,36 +1,30 @@
 import {useState} from 'react'
 import {useTheme} from '@mui/material/styles'
-import Box from '@mui/material/Box'
-import MobileStepper from '@mui/material/MobileStepper'
-import SwipeableViews from 'react-swipeable-views'
-import {autoPlay} from 'react-swipeable-views-utils'
-
 import styled from '@emotion/styled'
+import {autoPlay} from 'react-swipeable-views-utils'
+import SwipeableViews from 'react-swipeable-views'
+import MobileStepper from '@mui/material/MobileStepper'
 
+import Box from '@mui/material/Box'
 import ThumbGallery from './ThumbGallery'
-import main from '../../../../public/images/perfume-detail/main.jpg'
-import sub1 from '../../../../public/images/perfume-detail/sub1.png'
-import sub2 from '../../../../public/images/perfume-detail/sub2.jpg'
-import sub3 from '../../../../public/images/perfume-detail/sub3.jpg'
-import sub4 from '../../../../public/images/perfume-detail/sub4.png'
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
 
 const images = [
   {
-    src: main,
+    src: '/images/perfume-detail/main.jpg',
   },
   {
-    src: sub1,
+    src: '/images/perfume-detail/sub1.png',
   },
   {
-    src: sub2,
+    src: '/images/perfume-detail/sub2.jpg',
   },
   {
-    src: sub3,
+    src: '/images/perfume-detail/sub3.jpg',
   },
   {
-    src: sub4,
+    src: '/images/perfume-detail/sub4.png',
   },
 ]
 
@@ -46,7 +40,7 @@ const Carousel = () => {
 
   return (
     <Container>
-      <Wrapper>
+      <CarouselWrapper>
         <AutoPlaySwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={activeStep}
@@ -72,7 +66,7 @@ const Carousel = () => {
             </ImgWrapper>
           ))}
         </AutoPlaySwipeableViews>
-      </Wrapper>
+      </CarouselWrapper>
 
       <MobileStepper
         variant="progress"
@@ -103,15 +97,17 @@ const Carousel = () => {
 
 const Container = styled(Box)({
   width: '100%',
-  // maxWidth: 662,
-  maxWidth: 496,
-  // maxHeight: 588,
+  height: '100%',
   flexGrow: 1,
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
 })
-const Wrapper = styled.div({
+
+const CarouselWrapper = styled.div({
   border: '0.75px solid #EDEDED',
   borderRadius: '12px',
-  marginBottom: '37.8px',
+  // marginBottom: '37.8px',
 })
 const ImgWrapper = styled.div({
   width: '100%',
