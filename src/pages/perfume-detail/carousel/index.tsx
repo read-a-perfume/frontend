@@ -102,21 +102,29 @@ const Carousel = () => {
 }
 
 const Container = styled(Box)({
-  maxWidth: 662,
+  width: '100%',
+  // maxWidth: 662,
+  maxWidth: 496,
+  // maxHeight: 588,
   flexGrow: 1,
 })
 const Wrapper = styled.div({
-  border: '1px solid #EDEDED',
-  borderRadius: '16px',
-  marginBottom: '50px',
+  border: '0.75px solid #EDEDED',
+  borderRadius: '12px',
+  marginBottom: '37.8px',
 })
 const ImgWrapper = styled.div({
   width: '100%',
-  height: '783px',
+  height: '100%',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: '5rem',
+
+  '& img': {
+    width: '100%',
+    height: '100%',
+    borderRadius: '12px',
+  },
 })
 
 export default Carousel

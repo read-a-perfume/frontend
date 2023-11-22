@@ -23,11 +23,13 @@ const AccordionChart = () => {
         expanded={expanded === 'panel1'}
         onChange={handleChange('panel1')}
         sx={{
+          background: 'red',
+          width: '230px',
           display: 'flex',
           flexDirection: 'column',
           border: '1px solid #EDEDED',
-          borderRadius: '10px !important',
-          marginBottom: '24px',
+          borderRadius: '7.5px !important',
+          marginBottom: '18px',
           boxShadow: 'none',
 
           '&.MuiAccordion-root:before': {
@@ -48,14 +50,18 @@ const AccordionChart = () => {
           <FlexBox
             justifyContent="space-between"
             alignItems="center"
-            gap="14px"
-            style={{width: '100%'}}
+            // gap="14px"
+            // style={{width: '100%'}}
           >
             {/* TODO: 텍스트 길이에따라서 길이조절 */}
-            <Typography sx={{color: '#A9A9A9'}}>무게감</Typography>
+            <Typography sx={{color: '#A9A9A9', fontSize: '12px'}}>
+              무게감
+            </Typography>
             {/* 수치에 따라서 텍스트 변경할 예정
           EX) 20%이하면 약함, 50% 중간*/}
-            <Typography sx={{color: '#000', fontWeight: '500'}}>
+            <Typography
+              sx={{color: '#000', fontWeight: '500', fontSize: '12px'}}
+            >
               강함
             </Typography>
 

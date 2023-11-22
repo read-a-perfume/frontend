@@ -29,7 +29,7 @@ const ChartBar = ({percent}: ProgressBarProp) => {
     <FlexBox alignItems="center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="122"
+        width="85.5"
         height="8"
         viewBox="0 0 122 8"
         fill="none"
