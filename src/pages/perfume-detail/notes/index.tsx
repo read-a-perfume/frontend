@@ -2,9 +2,6 @@ import {useState} from 'react'
 import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box'
 import {Box, Tab, Tabs, Typography} from '@mui/material'
-import CustomIcons from '@assets/icons/custom-Icons'
-import img1 from '../images/자몽.png'
-import img2 from '../images/퀸스.png'
 
 type CategoryType = '탑노트' | '미들노트' | '베이스노트'
 
@@ -17,7 +14,6 @@ function a11yProps(index: number) {
   }
 }
 
-// TODO:: 향수 노트 갯수에따라서 화살표가 생기게
 const Notes = () => {
   const [activeTab, setActiveTab] = useState<string>('탑노트')
   const [value, setValue] = useState<number>(0)
@@ -50,38 +46,36 @@ const Notes = () => {
       <Wrapper>
         <FlexBox
           direction=""
-          justifyContent="space-around"
+          justifyContent="center"
           alignItems="center"
           gap="53px"
           style={{position: 'relative'}}
         >
-          <CustomIcons.BeforeIcon style={{cursor: 'pointer'}} />
-
           <Box sx={{textAlign: 'center'}}>
-            <img src={img1} alt="note-img" />
+            <img src="/images/perfume-detail/자몽.png" alt="note-img" />
             <NotesName>자몽</NotesName>
           </Box>
           <Box sx={{textAlign: 'center'}}>
-            <img src={img2} alt="note-img" />
+            <img src="/images/perfume-detail/퀸스.png" alt="note-img" />
             <NotesName>퀸스</NotesName>
           </Box>
           <Box sx={{textAlign: 'center'}}>
-            <img src={img1} alt="note-img" />
+            <img src="/images/perfume-detail/자몽.png" alt="note-img" />
             <NotesName>자몽</NotesName>
           </Box>
           <Box sx={{textAlign: 'center'}}>
-            <img src={img1} alt="note-img" />
+            <img src="/images/perfume-detail/자몽.png" alt="note-img" />
             <NotesName>자몽</NotesName>
           </Box>
-
-          <CustomIcons.AfterIcon />
         </FlexBox>
       </Wrapper>
     </>
   )
 }
 
-const NotesHeader = styled.div({})
+const NotesHeader = styled.div({
+  fontSize: '12px',
+})
 
 const StyledTabs = styled(Tabs)({
   '& .css-1i6dhku-MuiTabs-indicator': {
@@ -100,8 +94,9 @@ const StyledTab = styled(Tab)({
 })
 
 const Wrapper = styled.div({
-  marginTop: '28.5px',
-  marginBottom: '32px',
+  marginTop: '21.38px',
+  marginBottom: '31.9px',
+
   '& img': {
     borderRadius: '50%',
   },
@@ -110,7 +105,7 @@ const Wrapper = styled.div({
 const NotesName = styled(Typography)({
   fontFamily: 'AritaBuri !important',
   fontWeight: '500',
-  fontSize: '14px',
+  fontSize: '10px',
   color: '#000',
   marginTop: '13px',
 })

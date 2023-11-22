@@ -42,8 +42,8 @@ const Information = () => {
         options={options}
         series={series}
         type="radar"
-        width={265}
-        height={265}
+        width="220px"
+        height="220px"
       />
 
       <AccordionGraph />
@@ -52,13 +52,13 @@ const Information = () => {
 }
 
 const Wrapper = styled.div({
-  width: '648px',
+  width: '100%',
   display: 'flex',
   justifyContent: 'center',
   alignContent: 'center',
-  borderRadius: '16px',
-  padding: '33px 0px',
-  border: '1px solid #EDEDED',
+  borderRadius: '12px',
+  padding: '24px 24px 24px 15px',
+  border: '0.75px solid #EDEDED',
 })
 
 const StyleChart = styled(Chart)({

@@ -1,32 +1,36 @@
-import FlexBox from '../../../layouts/flex-box'
-import {Button, Select, MenuItem, styled, Typography} from '@mui/material'
-import CustomIcons from '../../../assets/icons/custom-Icons'
+import {Button, Select, MenuItem, styled} from '@mui/material'
+import CustomIcons from '@assets/icons/custom-Icons'
 import ReviewCard from './review-card'
+import {SectionTitle} from '@pages/home/index.style'
+import FlexBox from '@layouts/flex-box'
 
 const Review = () => {
   return (
     <div>
-      <SectionTitle style={{width: '100%'}}>향수 리뷰</SectionTitle>
+      <FlexBox justifyContent="flex-end">
+        <SectionTitle style={{width: '100%'}}>향수 리뷰</SectionTitle>
+        <FlexBox style={{gap: 20}}>
+          <DetailOrder
+            defaultValue="lately"
+            sx={{
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#202020',
+              },
+            }}
+          >
+            <MenuItem value="lately">최신순</MenuItem>
+            <MenuItem value="favorite">좋아요순</MenuItem>
+            <MenuItem value="comment">댓글순</MenuItem>
+          </DetailOrder>
+          <FilterButton>
+            필터 <CustomIcons.FilterIcon style={{marginLeft: 10}} />
+          </FilterButton>
 
-      <FlexBox justifyContent="flex-end" style={{gap: 20, width: '100%'}}>
-        <DetailOrder
-          defaultValue="help"
-          sx={{
-            '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#202020',
-            },
-          }}
-        >
-          <MenuItem value="help">도움순</MenuItem>
-        </DetailOrder>
-        <FilterButton>
-          필터 <CustomIcons.FilterIcon style={{marginLeft: 10}} />
-        </FilterButton>
-
-        <ReviewButton>리뷰작성하기</ReviewButton>
+          <ReviewButton>리뷰작성하기</ReviewButton>
+        </FlexBox>
       </FlexBox>
-      <FlexBox style={{marginTop: 48, flexWrap: 'wrap', gap: 23}}>
-        {new Array(6).fill(0).map((_el, index) => (
+      <FlexBox style={{marginTop: 24, flexWrap: 'wrap', gap: 23}}>
+        {new Array(6).fill(0).map((_, index) => (
           <ReviewCard key={index} />
         ))}
       </FlexBox>
@@ -66,11 +70,4 @@ const FilterButton = styled(Button)({
   fontSize: 16,
   fontWeight: '500',
   color: '#202020',
-})
-
-const SectionTitle = styled(Typography)({
-  fontFamily: 'AritaBuri, sans-serif, Arial !important',
-  fontSize: 24,
-  fontWeight: '600',
-  color: '#191919',
 })

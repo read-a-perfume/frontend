@@ -8,13 +8,13 @@ const ThumbGallery = ({images, activeStep, setActiveStep}: any) => {
   return (
     <Wrapper>
       {images.map((image, index) => (
-        <Image
+        <ImageWrapper
           key={index}
           onClick={() => handleClick(index)}
           isActive={index === activeStep ? 'true' : ''}
         >
           <img src={image?.src} alt="" />
-        </Image>
+        </ImageWrapper>
       ))}
     </Wrapper>
   )
@@ -23,16 +23,15 @@ const ThumbGallery = ({images, activeStep, setActiveStep}: any) => {
 const Wrapper = styled.div({
   display: 'flex',
   justifyContent: 'center',
-  marginTop: '59px',
 })
 
-const Image = styled.div<{isActive: string}>(
+const ImageWrapper = styled.div<{isActive: string}>(
   {
     width: '100%',
     backgroundSize: 'cover',
     cursor: 'pointer',
-    borderRadius: '16px',
-    marginRight: '32px',
+    borderRadius: '12px',
+    marginRight: '24px',
     '&:last-child': {
       marginRight: '0',
     },
@@ -41,6 +40,8 @@ const Image = styled.div<{isActive: string}>(
       width: '100%',
       height: '100%',
       objectFit: 'cover',
+      borderRadius: '12px',
+      overflow: 'hidden',
     },
   },
   props => ({
