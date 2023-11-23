@@ -1,19 +1,19 @@
 import React from 'react'
+import {URLSearchParamsInit, useSearchParams} from 'react-router-dom'
+import {useQuery} from '@tanstack/react-query'
 import styled from '@emotion/styled'
-import {Box, Typography} from '@mui/material'
 import FlexBox from '@layouts/flex-box'
-import CustomIcons from '@assets/icons/custom-Icons'
 import instance from '@api/instance'
 
-import {useQuery} from '@tanstack/react-query'
-
-import {URLSearchParamsInit, useSearchParams} from 'react-router-dom'
+import CustomIcons from '@assets/icons/custom-Icons'
+import {Box, Skeleton, Typography} from '@mui/material'
 
 interface CategoryProps {
   currentCategory: string
   setCurrentCategory: React.Dispatch<React.SetStateAction<string>>
   searchParams?: URLSearchParamsInit
   setSearchParams?: React.Dispatch<React.SetStateAction<URLSearchParamsInit>>
+  setCategoryId?: React.Dispatch<React.SetStateAction<number>>
 }
 
 type CategoryNameType = {
@@ -23,6 +23,8 @@ type CategoryNameType = {
   thumbnail?: string
   img?: string
 }
+
+const isLoadingData = Array.from({length: 11}, (_, index) => index + 1)
 
 /** 카테고리 목록 조회 */
 const fetchGetCategories = async () => {
@@ -37,7 +39,11 @@ const fetchGetCategories = async () => {
   }
 }
 
-const Category = ({currentCategory, setCurrentCategory}: CategoryProps) => {
+const Category = ({
+  currentCategory,
+  setCurrentCategory,
+  setCategoryId,
+}: CategoryProps) => {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const query = searchParams.get('category')
@@ -51,14 +57,15 @@ const Category = ({currentCategory, setCurrentCategory}: CategoryProps) => {
     queryFn: fetchGetCategories,
   })
 
-  const setQueryParams = (categoryName: string) => {
+  const setQueryParams = (category: any) => {
     if (categories) {
-      console.log(categoryName)
-      setCurrentCategory(categoryName)
+      setCurrentCategory(category?.name)
 
       setSearchParams({
-        category: categoryName,
+        categoryId: category?.id,
       })
+
+      setCategoryId && setCategoryId(category?.id)
     }
   }
 
@@ -84,8 +91,6 @@ const Category = ({currentCategory, setCurrentCategory}: CategoryProps) => {
     }
   }
 
-  if (isLoading) return 'Loading...'
-
   if (error) return 'An error has occurred: ' + error
 
   return (
@@ -94,84 +99,100 @@ const Category = ({currentCategory, setCurrentCategory}: CategoryProps) => {
         <CustomIcons.BeforeIcon />
       </Box>
 
-      {categories?.length !== 0 &&
-        categories?.map(category => (
-          <FlexBox
-            direction="column"
-            alignItems="center"
-            gap=""
-            style={{
-              cursor: 'pointer',
-            }}
-            onClick={() => setQueryParams(category.name)}
-            key={category.id}
-          >
-            {category.thumbnail ? (
-              <CategoryImg
-                clicked={
-                  (query && query === category.name) ||
-                  (!query && currentCategory === category.name)
-                    ? 'true'
-                    : ''
-                }
-                src={category.img}
-                alt="category 이미지"
-              />
-            ) : (
-              <>
-                {(query && query === category.name) ||
-                (!query && currentCategory === category.name) ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="78"
-                    height="78"
-                    viewBox="0 0 78 78"
-                    fill="none"
-                  >
-                    <circle
-                      cx="39"
-                      cy="39"
-                      r="38.625"
-                      fill="white"
-                      stroke="#FE7156"
-                      strokeWidth="0.75"
-                    />
-                    <circle cx="39" cy="39" r="36" fill="#F1F1F5" />
-                  </svg>
+      {isLoading ? (
+        <>
+          {isLoadingData.map((_, index) => (
+            <Skeleton
+              sx={{bgcolor: 'grey.200'}}
+              variant="circular"
+              width={78}
+              height={78}
+              key={index}
+            />
+          ))}
+        </>
+      ) : (
+        <>
+          {categories?.length !== 0 &&
+            categories?.map(category => (
+              <FlexBox
+                direction="column"
+                alignItems="center"
+                gap=""
+                style={{
+                  cursor: 'pointer',
+                }}
+                onClick={() => setQueryParams(category)}
+                key={category.id}
+              >
+                {category.thumbnail ? (
+                  <CategoryImg
+                    clicked={
+                      (query && query === category.name) ||
+                      (!query && currentCategory === category.name)
+                        ? 'true'
+                        : ''
+                    }
+                    src={category.img}
+                    alt="category 이미지"
+                  />
                 ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="78"
-                    height="78"
-                    viewBox="0 0 78 78"
-                    fill="none"
-                  >
-                    <circle
-                      cx="39"
-                      cy="39"
-                      r="38.625"
-                      fill="white"
-                      stroke="#EDEDED"
-                      strokeWidth="0.75"
-                    />
-                    <circle cx="39" cy="39" r="36" fill="#F1F1F5" />
-                  </svg>
+                  <>
+                    {(query && query === category.name) ||
+                    (!query && currentCategory === category.name) ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="78"
+                        height="78"
+                        viewBox="0 0 78 78"
+                        fill="none"
+                      >
+                        <circle
+                          cx="39"
+                          cy="39"
+                          r="38.625"
+                          fill="white"
+                          stroke="#FE7156"
+                          strokeWidth="0.75"
+                        />
+                        <circle cx="39" cy="39" r="36" fill="#F1F1F5" />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="78"
+                        height="78"
+                        viewBox="0 0 78 78"
+                        fill="none"
+                      >
+                        <circle
+                          cx="39"
+                          cy="39"
+                          r="38.625"
+                          fill="white"
+                          stroke="#EDEDED"
+                          strokeWidth="0.75"
+                        />
+                        <circle cx="39" cy="39" r="36" fill="#F1F1F5" />
+                      </svg>
+                    )}
+                  </>
                 )}
-              </>
-            )}
 
-            <CategoryName
-              clicked={
-                (query && query === category.name) ||
-                (!query && currentCategory === category.name)
-                  ? 'true'
-                  : ''
-              }
-            >
-              {category.name}
-            </CategoryName>
-          </FlexBox>
-        ))}
+                <CategoryName
+                  clicked={
+                    (query && query === category.name) ||
+                    (!query && currentCategory === category.name)
+                      ? 'true'
+                      : ''
+                  }
+                >
+                  {category.name}
+                </CategoryName>
+              </FlexBox>
+            ))}
+        </>
+      )}
 
       <Box sx={{cursor: 'pointer'}} onClick={handleRightArrowClick}>
         <CustomIcons.AfterIcon />
@@ -193,8 +214,8 @@ const CategoryImg = styled.img<{clicked: string}>(({clicked}) => ({
   border: clicked ? '1px solid #FE7156' : '1px solid #F1F1F5',
   cursor: 'pointer',
   transition: 'all 0.1s ease-in-out',
-  width: '72px',
-  height: '72px',
+  width: '78px',
+  height: '78px',
 
   '&:hover': {
     border: '1px solid #FE7156',

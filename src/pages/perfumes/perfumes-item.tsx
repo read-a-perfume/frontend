@@ -1,31 +1,48 @@
 import styled from '@emotion/styled'
 import {Typography} from '@mui/material'
-
 import {Link} from 'react-router-dom'
 
-// 타입 추후에 설정할 예정입니다.
-const PerfumesItem = ({item}: any) => {
-  console.log(item)
+interface PerfumesItemProps {
+  item: ItemType
+}
 
+export type ItemType = {
+  brandName: string
+  duration: string
+  id: number
+  name: string
+  strength: string
+  thumbnailUrl?: string
+}
+
+const PerfumesItem = ({item}: PerfumesItemProps) => {
+  const {brandName, duration, name, strength, thumbnailUrl} = item
+  console.log(item)
   return (
     <Wrapper>
       <Link to="/perfume/:id">
         <ProductWrapper>
-          <img src="/images/Rectangle7217(5).png" alt="img" />
-          <BrandTitle>구딸파리</BrandTitle>
-          <BrandSubTitle>로즈폼퐁 오 드 퍼퓸</BrandSubTitle>
+          {thumbnailUrl ? (
+            <img src={thumbnailUrl} alt="img" />
+          ) : (
+            <img src="/images/Rectangle7217(5).png" alt="img" />
+          )}
+
+          <BrandTitle>{brandName}</BrandTitle>
+          <BrandSubTitle>{name}</BrandSubTitle>
         </ProductWrapper>
 
         <Information>
           <Text>
-            <Type>강도</Type>적당한 향
+            <Type>강도</Type>
+            {strength}
           </Text>
 
           <div className="vertical-line" />
 
           <Text>
             <Type>지속력</Type>
-            3시간~6시간
+            {duration}
           </Text>
         </Information>
       </Link>
