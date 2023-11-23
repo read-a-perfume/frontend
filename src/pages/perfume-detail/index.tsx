@@ -5,7 +5,7 @@ import FlexBox from '@layouts/flex-box'
 import Notes from './notes'
 import Information from './information'
 import Review from '@pages/perfume-detail/review'
-import PerfumesItem from '@pages/perfumes/perfumes-item'
+// import PerfumesItem from '@pages/perfumes/perfumes-item'
 
 import {Box, Button, Pagination, Typography} from '@mui/material'
 
@@ -20,7 +20,7 @@ const PerfumeDetail = () => {
 
   const [page, setPage] = useState(1) // 처음 페이지는 1
   const [reviewData, setReviewData] = useState<string[]>([])
-  const [perfumes, setPerfumes] = useState<string[]>([])
+  // const [perfumes, setPerfumes] = useState<string[]>([])
 
   console.log(reviewData)
 
@@ -41,7 +41,7 @@ const PerfumeDetail = () => {
 
   // 임시
   useEffect(() => {
-    setPerfumes(dummydata.slice(0, 4) as any)
+    // setPerfumes(dummydata.slice(0, 4) as any)
   }, [])
 
   return (
@@ -153,8 +153,8 @@ const PerfumeDetail = () => {
       {/* 비슷한 향수 리스트 */}
       <ProductListTitle>비슷한 향수</ProductListTitle>
       <ProductList>
-        {perfumes.length > 0 &&
-          perfumes?.map(item => <PerfumesItem item={item} key={item} />)}
+        {/* {perfumes.length > 0 &&
+          perfumes?.map(item => <PerfumesItem item={item} key={item} />)} */}
       </ProductList>
     </Container>
   )

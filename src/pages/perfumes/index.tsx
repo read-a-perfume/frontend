@@ -1,23 +1,28 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import styled from '@emotion/styled'
-import {Box, Typography} from '@mui/material'
-import FlexBox from '@layouts/flex-box'
-import Category from '@components/category'
-import Pagination from '@mui/material/Pagination'
-
-import brandDummyData from './dummyData'
-import PerfumesItem from './perfumes-item'
-
 import instance from '@api/instance'
 import {useQuery} from '@tanstack/react-query'
 import {useSearchParams} from 'react-router-dom'
 
-const dummydata = Array.from({length: 30}, (_, index) => index + 1)
+import FlexBox from '@layouts/flex-box'
+import Category from '@components/category'
+import Pagination from '@mui/material/Pagination'
+import {Box, Skeleton, Typography} from '@mui/material'
+import brandDummyData from './dummyData'
+import PerfumesItem, {ItemType} from './perfumes-item'
+
+const isLoadingData = Array.from({length: 12}, (_, index) => index + 1)
 
 // 카테고리별 향수 조회
-const getPerfumeList = async () => {
+const getPerfumeList = async (queryCategoryId: number, page: number) => {
   try {
-    const res = await instance.get('/perfumes/category/2?page=1&size=14')
+    console.log(queryCategoryId, page)
+
+    // 임시,
+    // 백엔드쪽에서 page=1로 설정해주면 page ${page}로 바꿀것
+    const res = await instance.get(
+      `/perfumes/category/${queryCategoryId}?page=0&size=10`,
+    )
 
     const data = res.data
 
@@ -29,48 +34,42 @@ const getPerfumeList = async () => {
 }
 
 const Perfumes = () => {
+  const [clickedCategory, setClickedCategory] = useState<string>('프루티')
+  const [currentPage, setCurrentPage] = useState(0) // 처음 페이지는 0
+  const [categoryId, setCategoryId] = useState(1)
+
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const queryCategoryId = searchParams.get('categoryId')
+    ? Number(searchParams.get('categoryId'))
+    : categoryId
+
+  const queryPageNumber = searchParams.get('page')
+    ? Number(searchParams.get('page'))
+    : currentPage
+
   const {
     isLoading,
     error,
     data: perfumeList,
   } = useQuery({
-    queryKey: ['perfumeList'],
-    queryFn: getPerfumeList,
+    queryKey: ['perfumeList', queryCategoryId, queryPageNumber],
+    queryFn: () => getPerfumeList(queryCategoryId, currentPage),
   })
-
-  const [clickedCategory, setClickedCategory] = useState<string>('프루티')
-  const [page, setPage] = useState(1) // 처음 페이지는 1
-  const [perfumes, setPerfumes] = useState([])
-
-  const [searchParams, setSearchParams] = useSearchParams()
 
   console.log('perfumeList:', perfumeList)
 
-  // 마지막 페이지
-  const LAST_PAGE =
-    dummydata.length % 12 === 0
-      ? parseInt((dummydata.length / 12) as any)
-      : parseInt((dummydata.length / 12) as any) + 1
-
   const handlePage = (event: any) => {
+    setSearchParams({
+      categoryId: queryCategoryId as any,
+      page: event.target.outerText,
+    })
+
     const nowPageInt = parseInt(event.target.outerText)
-    setPage(nowPageInt)
+    setCurrentPage(nowPageInt)
   }
 
-  useEffect(() => {
-    // 한 페이지에 12개씩 보여줍니다.
-    if (page === LAST_PAGE) {
-      setPerfumes(dummydata.slice(12 * (page - 1)) as any)
-    } else {
-      setPerfumes(dummydata.slice(12 * (page - 1), 12 * (page - 1) + 12) as any)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page])
-
-  if (isLoading) return 'Loading...'
-
   if (error) return 'An error has occurred: ' + error
-
   return (
     <>
       <Wrapper>
@@ -133,17 +132,37 @@ const Perfumes = () => {
           setCurrentCategory={setClickedCategory}
           searchParams={searchParams}
           setSearchParams={setSearchParams}
+          setCategoryId={setCategoryId}
         />
 
         {/* 제품 리스트 */}
         <ProductList>
-          {perfumes.length > 0 &&
-            perfumes?.map(item => <PerfumesItem item={item} key={item} />)}
+          {isLoading ? (
+            <>
+              {isLoadingData.map((_, index) => (
+                <Skeleton
+                  sx={{bgcolor: 'grey.200'}}
+                  variant="rounded"
+                  width={282}
+                  height={319}
+                  key={index}
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              {perfumeList?.content?.length > 0 &&
+                perfumeList?.content?.map((item: ItemType, index: number) => (
+                  <PerfumesItem item={item} key={index} />
+                ))}
+            </>
+          )}
         </ProductList>
 
         <Footer>
           <Pagination
-            count={LAST_PAGE}
+            page={currentPage}
+            count={perfumeList?.totalPages}
             defaultPage={1}
             boundaryCount={2}
             color="standard"
