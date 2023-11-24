@@ -1,64 +1,75 @@
-import {Button, Select, MenuItem, styled} from '@mui/material'
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import CustomIcons from '@assets/icons/custom-Icons'
-import ReviewCard from './review-card'
-import {SectionTitle} from '@pages/home/index.style'
 import FlexBox from '@layouts/flex-box'
+import {Typography, styled, Select, Button, MenuItem} from '@mui/material'
 
-const Review = () => {
+import DetailReviewCard from './detail-review-card'
+
+const DetailPageReview = () => {
   return (
-    <div>
-      <FlexBox justifyContent="flex-end">
-        <SectionTitle style={{width: '100%'}}>향수 리뷰</SectionTitle>
-        <FlexBox style={{gap: 20}}>
-          <DetailOrder
-            defaultValue="lately"
-            sx={{
-              '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#202020',
-              },
-            }}
-          >
-            <MenuItem value="lately">최신순</MenuItem>
-            <MenuItem value="favorite">좋아요순</MenuItem>
-            <MenuItem value="comment">댓글순</MenuItem>
-          </DetailOrder>
-          <FilterButton>
-            필터 <CustomIcons.FilterIcon style={{marginLeft: 10}} />
-          </FilterButton>
-
-          <ReviewButton>리뷰작성하기</ReviewButton>
+    <Container>
+      <Wrapper>
+        <FlexBox alignItems="center">
+          <SectionTitle>향수 리뷰</SectionTitle>
+          <FlexBox style={{gap: 9}}>
+            <DetailOrder
+              defaultValue="lately"
+              sx={{
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#202020',
+                },
+              }}
+            >
+              <MenuItem value="lately">도움순</MenuItem>
+              <MenuItem value="favorite">좋아요순</MenuItem>
+              <MenuItem value="comment">댓글순</MenuItem>
+            </DetailOrder>
+            <FilterButton>
+              필터 <CustomIcons.FilterIcon style={{marginLeft: 10}} />
+            </FilterButton>
+            <WriteReviewButton>리뷰 작성하기</WriteReviewButton>
+          </FlexBox>
         </FlexBox>
-      </FlexBox>
-      <FlexBox style={{marginTop: 24, flexWrap: 'wrap', gap: 23}}>
-        {new Array(6).fill(0).map((_, index) => (
-          <ReviewCard key={index} />
-        ))}
-      </FlexBox>
-    </div>
+
+        <FlexBox gap="24px" style={{marginTop: '24px', flexWrap: 'wrap'}}>
+          {new Array(6).fill(0).map((_, index) => (
+            <DetailReviewCard key={index + 1} />
+          ))}
+        </FlexBox>
+      </Wrapper>
+    </Container>
   )
 }
 
-export default Review
+const Container = styled('div')({})
 
-const ReviewButton = styled(Button)({
-  borderRadius: 10,
-  backgroundColor: '#FE7156',
-  color: '#FFF',
-  width: '200px',
+const Wrapper = styled('div')({})
 
-  '&:hover': {
-    backgroundColor: '#ee674c',
-  },
+const SectionTitle = styled(Typography)({
+  fontFamily: 'AritaBuri, sans-serif, Arial !important',
+  fontSize: 19.5,
+  fontWeight: '700',
+  color: '#191919',
+  marginRight: 'auto',
 })
 
 const DetailOrder = styled(Select)({
   width: 108,
   height: 42,
+  textAlign: 'center',
   background: 'white',
   borderRadius: 10,
   color: '#202020',
-  fontSize: 16,
+  fontSize: 12,
   fontWeight: '500',
+})
+
+const WriteReviewButton = styled(Button)({
+  color: '#FFF',
+  fontSize: 12,
+  padding: '9px 41.3px 8.5px 42px',
+  borderRadius: 10,
+  backgroundColor: '#FE7156',
 })
 
 const FilterButton = styled(Button)({
@@ -67,7 +78,9 @@ const FilterButton = styled(Button)({
   borderRadius: 10,
   border: '1px solid #202020',
   background: 'white',
-  fontSize: 16,
+  fontSize: 12,
   fontWeight: '500',
   color: '#202020',
 })
+
+export default DetailPageReview

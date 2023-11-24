@@ -17,10 +17,10 @@ export type ItemType = {
 
 const PerfumesItem = ({item}: PerfumesItemProps) => {
   const {brandName, duration, name, strength, thumbnailUrl} = item
-  console.log(item)
+
   return (
     <Wrapper>
-      <Link to="/perfume/:id">
+      <Link to={`/perfume/${item.id}`}>
         <ProductWrapper>
           {thumbnailUrl ? (
             <img src={thumbnailUrl} alt="img" />

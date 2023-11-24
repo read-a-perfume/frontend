@@ -22,7 +22,7 @@ const AccordionChart = () => {
   return (
     <div>
       {arrayTest.map((item, index) => (
-        <>
+        <div key={index}>
           {/* 지워야됨 */}
           <Box sx={{display: 'none'}}>{item}</Box>
 
@@ -35,8 +35,10 @@ const AccordionChart = () => {
               flexDirection: 'column',
               border: '.75px solid #EDEDED',
               borderRadius: '7.5px !important',
-              marginBottom: '12px',
+              marginBottom:
+                index === arrayTest.length - 1 ? '0px !important' : '12px',
               boxShadow: 'none',
+
               '&.MuiAccordion-root:before': {
                 opacity: '0',
               },
@@ -96,7 +98,7 @@ const AccordionChart = () => {
               </FlexBox>
             </AccordionDetails>
           </Accordion>
-        </>
+        </div>
       ))}
     </div>
   )
