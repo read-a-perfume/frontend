@@ -5,6 +5,12 @@ declare module '@mui/material/styles' {
   interface PaletteColor {
     '100': string
   }
+  interface TypographyVariants {
+    hero: React.CSSProperties
+    body3: React.CSSProperties
+    body4: React.CSSProperties
+    body5: React.CSSProperties
+  }
 }
 
 // // // Update the Typography's variant prop options

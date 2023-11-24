@@ -6,17 +6,15 @@ import {
   Typography,
   ListItem,
   ListItemIcon,
-  Button,
   FormControl,
   styled as muiStyled,
 } from '@mui/material'
 
-import WriterProgassBar from './writer-prograss-bar'
-import useWriter from './hooks/use-writer'
-
-const WriterFirst = () => {
-  const {handleThumbnailDelete, handleThumbnailUpload, formValues} = useWriter()
-
+const WriterFirst = ({
+  handleThumbnailDelete,
+  handleThumbnailUpload,
+  formValues,
+}: any) => {
   const ImageLength = ({formValues}: any) => {
     const files = formValues.files.length
     return (
@@ -41,7 +39,6 @@ const WriterFirst = () => {
     <main>
       <FormControl component="fieldset" sx={{width: '100%', margin: 'auto'}}>
         <Box sx={{position: 'relative', margin: 'auto', width: '420px'}}>
-          <WriterProgassBar />
           <MainPreview>
             <MainPreviewFileLabel htmlFor="files">
               <Figure
@@ -106,9 +103,6 @@ const WriterFirst = () => {
             </Box>
           </SubPreview>
           <ImageLength formValues={formValues} />
-          <Button type="button" fullWidth sx={{background: 'gray'}}>
-            다음으로
-          </Button>
         </Box>
       </FormControl>
       <MainPreviewFileInput
