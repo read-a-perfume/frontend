@@ -1,11 +1,12 @@
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import {useQueryErrorResetBoundary} from '@tanstack/react-query'
-import {ThemeProvider} from '@mui/material'
+import {CssBaseline, ThemeProvider as MuiThemeProvider} from '@mui/material'
+import {ThemeProvider as EmotionThemeProvider} from '@emotion/react'
 import {Global} from '@emotion/react'
 import globalReset from '@theme/global-reset'
 import {RecoilRoot} from 'recoil'
-import {theme} from '@theme/index'
 import {ErrorBoundary} from 'react-error-boundary'
+import {theme} from '@theme/index'
 
 const client = new QueryClient({
   defaultOptions: {
@@ -45,13 +46,24 @@ const QueryErrorBoundary = ({children}: Props) => {
   )
 }
 
+const EmotionTheme = ({children}: Props) => {
+  return (
+    <MuiThemeProvider theme={theme}>
+      <EmotionThemeProvider theme={theme}>
+        <Global styles={globalReset} />
+        <CssBaseline />
+        {children}
+      </EmotionThemeProvider>
+    </MuiThemeProvider>
+  )
+}
+
 const GlobalProvider = ({children}: ProviderProps) => {
   return (
     <QueryClientProvider client={client}>
       <QueryErrorBoundary>
         <RecoilRoot>
-          <Global styles={globalReset} />
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+          <EmotionTheme>{children}</EmotionTheme>
         </RecoilRoot>
       </QueryErrorBoundary>
     </QueryClientProvider>

@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
 
 import Form from './form'
-import Topbar from './top-bar'
+
+// import WriterFirst from './writer-first'
 
 const ReviewWriter = () => {
   //리뷰 폼 만들기
@@ -20,7 +21,7 @@ const ReviewWriter = () => {
 
   return (
     <Wrapper>
-      <Topbar />
+      {/* <WriterFirst /> */}
       <Form />
     </Wrapper>
   )
