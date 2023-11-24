@@ -61,7 +61,7 @@ const palette: Palette = {
 }
 
 const typography: Typography = {
-  fontFamily: ['AritaBuri', 'sans-serif'].join(','),
+  fontFamily: ['Pretendard', 'sans-serif'].join(','),
   htmlFontSize: 16,
   hero: {
     // 42px
