@@ -35,7 +35,7 @@ const Magazines = () => {
         }}
       >
         {new Array(magazineData.length - 2).fill(0).map((_, idx) => (
-          <button onClick={() => setCurrentIndex(idx)}>
+          <button key={idx} onClick={() => setCurrentIndex(idx)}>
             <CarouselIcon clicked={idx === currentIndex} />
           </button>
         ))}
