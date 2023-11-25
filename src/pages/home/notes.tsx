@@ -45,8 +45,8 @@ const Notes = () => {
           </NoteSubTitle>
         </NoteBox>
         <ProductLayout>
-          {new Array(6).fill(0).map(el => (
-            <ProductBox key={el}>
+          {new Array(6).fill(0).map((_, idx) => (
+            <ProductBox key={idx}>
               <img
                 src="images/perfume_test.png"
                 alt="product"
