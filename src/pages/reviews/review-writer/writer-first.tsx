@@ -13,6 +13,7 @@ import {
 const WriterFirst = ({
   handleThumbnailDelete,
   handleThumbnailUpload,
+
   formValues,
 }: any) => {
   const ImageLength = ({formValues}: any) => {
@@ -22,7 +23,7 @@ const WriterFirst = ({
         sx={{
           position: 'absolute',
           right: 0,
-          top: 522,
+          top: 400,
           padding: '4px 12px',
           borderRadius: ' 13.5px;',
           width: '49px',
@@ -59,10 +60,13 @@ const WriterFirst = ({
                     }}
                   >
                     <AddCircleIcon />
-                    <Typography variant="h3">
-                      리뷰에서 보여줄 사진이나 영상을 추가해주세요.
+                    <Typography
+                      variant="h3"
+                      fontStyle={{textAlign: 'center', color: '#dbdbdb'}}
+                    >
+                      리뷰에서 보여줄 <br />
+                      사진이나 영상을 추가해주세요.
                     </Typography>
-                    <Typography variant="body2">최대 5개까지 가능</Typography>
                   </Box>
                 </TextBox>
               </Figure>
@@ -127,6 +131,7 @@ const TextBox = muiStyled('div')({
   position: 'absolute',
   top: '50%',
   left: '50%',
+  width: '100%',
   transform: 'translate(-50%,-50%)',
 })
 
