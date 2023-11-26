@@ -1,29 +1,38 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import CustomIcons from '@assets/icons/custom-Icons'
 import FlexBox from '@layouts/flex-box'
 import {Typography, styled, Select, Button, MenuItem} from '@mui/material'
 
-import DetailReviewCard from './detail-review-card'
+import DetailReviewItem from './detail-review-item'
 
-const DetailPageReview = () => {
+const DetailReviewList = ({reviewData}: any) => {
   return (
     <Container>
       <Wrapper>
         <FlexBox alignItems="center">
           <SectionTitle>향수 리뷰</SectionTitle>
           <FlexBox style={{gap: 9}}>
-            <DetailOrder
-              defaultValue="lately"
+            <SelectStyle
+              defaultValue="인기상품순"
               sx={{
                 '& .MuiOutlinedInput-notchedOutline': {
                   borderColor: '#202020',
                 },
               }}
             >
-              <MenuItem value="lately">도움순</MenuItem>
-              <MenuItem value="favorite">좋아요순</MenuItem>
-              <MenuItem value="comment">댓글순</MenuItem>
-            </DetailOrder>
+              <MenuItemStyle value="인기상품순">
+                <span className="option-name">인기상품순</span>
+              </MenuItemStyle>
+              <MenuItemStyle value="리뷰순">
+                <span className="option-name">리뷰순</span>
+              </MenuItemStyle>
+              <MenuItemStyle value="신상품순">
+                <span className="option-name">신상품순</span>
+              </MenuItemStyle>
+              <MenuItemStyle value="인기찜순">
+                <span className="option-name">인기찜순</span>
+              </MenuItemStyle>
+            </SelectStyle>
+
             <FilterButton>
               필터 <CustomIcons.FilterIcon style={{marginLeft: 10}} />
             </FilterButton>
@@ -32,8 +41,8 @@ const DetailPageReview = () => {
         </FlexBox>
 
         <FlexBox gap="24px" style={{marginTop: '24px', flexWrap: 'wrap'}}>
-          {new Array(6).fill(0).map((_, index) => (
-            <DetailReviewCard key={index + 1} />
+          {reviewData.map(item => (
+            <DetailReviewItem item={item} key={item.id} />
           ))}
         </FlexBox>
       </Wrapper>
@@ -53,7 +62,15 @@ const SectionTitle = styled(Typography)({
   marginRight: 'auto',
 })
 
-const DetailOrder = styled(Select)({
+const MenuItemStyle = styled(MenuItem)({
+  fontSize: 12,
+  '&:hover .option-name': {
+    fontWeight: '600',
+    borderBottom: '1px solid black',
+  },
+})
+
+const SelectStyle = styled(Select)({
   width: 108,
   height: 42,
   textAlign: 'center',
@@ -70,6 +87,10 @@ const WriteReviewButton = styled(Button)({
   padding: '9px 41.3px 8.5px 42px',
   borderRadius: 10,
   backgroundColor: '#FE7156',
+
+  '&:hover': {
+    background: '#fe7256d6',
+  },
 })
 
 const FilterButton = styled(Button)({
@@ -83,4 +104,4 @@ const FilterButton = styled(Button)({
   color: '#202020',
 })
 
-export default DetailPageReview
+export default DetailReviewList
