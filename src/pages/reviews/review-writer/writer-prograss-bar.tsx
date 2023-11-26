@@ -6,24 +6,57 @@ const WriterProgassBar = ({prograss}: any) => {
   return (
     <header>
       <div>
-        <Typography sx={{fontSize: '24px', textAlign: 'center'}}>
+        <Typography
+          variant="h2"
+          sx={{textAlign: 'center', fontFamily: 'AritaBuri'}}
+        >
           리뷰 작성하기
         </Typography>
         <List sx={{display: 'flex'}}>
           {category.map((value, index) => (
-            <ListItem sx={{flexDirection: 'column'}}>
+            <ListItem
+              sx={{
+                flexDirection: 'column',
+              }}
+            >
               <Prograss
-                sx={{borderColor: `${prograss === index && '#fe7156'}`}}
+                sx={{
+                  position: 'relative',
+                  borderColor: `${prograss === index && '#fe7156'}`,
+                  backgroundColor: `${prograss > index && '#fe7156'} `,
+
+                  '&::before': {
+                    display: `${index === 0 && 'none'}`,
+                    content: '""',
+                    position: 'absolute',
+                    top: '12px',
+                    right: '30px',
+                    width: '108px',
+                    height: '2px',
+                    backgroundColor: `${
+                      prograss >= index ? '#fe7156' : '#dbdbdb '
+                    } `,
+                  },
+                }}
               >
                 <Typography
                   variant="body5"
-                  sx={{color: `${prograss === index && 'red'}`}}
+                  fontStyle={{
+                    color: `${prograss === index ? '#fe7156' : '#DBDBDB'}`,
+                  }}
                 >
                   {index + 1}
                 </Typography>
               </Prograss>
               <ListItemText>
-                <Typography variant="body5">{value}</Typography>
+                <Typography
+                  variant="body5"
+                  fontStyle={{
+                    color: `${prograss === index ? '#fe7156' : '#a9a9a9'}`,
+                  }}
+                >
+                  {value}
+                </Typography>
               </ListItemText>
             </ListItem>
           ))}
@@ -44,7 +77,5 @@ const Prograss = styled('div')({
   border: '2px solid gray',
   borderRadius: '50%',
   backgroundColor: '#fff',
-  '& span': {
-    color: '#fe7156',
-  },
+  borderColor: '#DBDBDB',
 })

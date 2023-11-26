@@ -1,11 +1,6 @@
 import {css} from '@emotion/react'
 
 const globalReset = css`
-  * {
-    margin: 0;
-    padding: 0;
-    font-family: 'AritaBuri,sans-serif';
-  }
   *,
   :after,
   :before {
