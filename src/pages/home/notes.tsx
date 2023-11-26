@@ -25,10 +25,10 @@ type PerfumesType = {
   totalPages: number
 }
 
-const fetchGetPerfumesByCategories = async () => {
+const fetchGetPerfumesByCategories = async (id: number) => {
   try {
-    // const res = await instance.get(`/perfumes/category/${id}?page=0&size=10`)
-    const res = await instance.get(`/perfumes/category/${1}?page=0&size=10`)
+    const res = await instance.get(`/perfumes/category/${id}?page=0&size=10`)
+    // const res = await instance.get(`/perfumes/category/${1}?page=0&size=10`)
     const data = res.data
 
     return data
@@ -43,11 +43,8 @@ const Notes = () => {
   const [clickedNote, setClickedNote] = useState<string>('fruit')
   const {isLoading, error, data} = useQuery<PerfumesType>({
     queryKey: ['perfumesByCategories'],
-    queryFn: () => fetchGetPerfumesByCategories(),
+    queryFn: () => fetchGetPerfumesByCategories(categoryId - 1),
   })
-
-  console.log(categoryId - 1)
-  console.log(data)
 
   return (
     <Wrapper>
