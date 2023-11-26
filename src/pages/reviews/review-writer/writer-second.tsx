@@ -1,13 +1,16 @@
 import {FormControl, RadioGroup, TextField, styled} from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
 import SliderRating from './slider'
-
 import RadioRoundedButton from './radio-rounded-button'
 import {top100Films} from './form-writer-start.constant'
 
 const durations = ['1~3시간 정도', '4~6시간 정도', '7~9시간 정도', '9시간 이상']
 
-const WriterSecond = ({handleFormDataChange, formValues}: any) => {
+const WriterSecond = ({
+  handleFormDataChange,
+  formValues,
+  handleAutoComplete,
+}: any) => {
   const inputLabelProps = {
     style: {
       fontSize: 14, // Adjust the font size as needed
@@ -23,11 +26,12 @@ const WriterSecond = ({handleFormDataChange, formValues}: any) => {
             disablePortal
             id="search"
             options={top100Films}
-            onChange={handleFormDataChange}
+            onChange={handleAutoComplete}
             sx={{width: 411}}
             renderInput={params => (
               <TextField
                 {...params}
+                name="perfumeId"
                 placeholder="향수를 선택해주세요."
                 InputLabelProps={inputLabelProps}
               />
@@ -96,7 +100,7 @@ export default WriterSecond
 
 const Item = styled('li')({
   fontSize: '14px',
-  padding: '8px 24px',
+  padding: '0 24px',
   background: '#fff',
   borderBottom: '1px solid #F1F1F5',
   boxSizing: 'content-box',
@@ -104,7 +108,7 @@ const Item = styled('li')({
 
 const Title = styled('h3')({
   fontSize: '14px',
-  paddingBottom: '24px',
+  marginTop: 0,
 })
 
 const CustomRadioGroup = styled(RadioGroup)({

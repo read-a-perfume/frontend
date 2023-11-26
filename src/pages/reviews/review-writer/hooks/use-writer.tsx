@@ -9,6 +9,7 @@ const tags = [
   '우아한',
   '고급진',
 ]
+
 const useWriter = () => {
   const [formValues, setFormValues] = useState<any>({
     perfumeId: '',
@@ -50,19 +51,19 @@ const useWriter = () => {
     })
   }
 
-  const handleFormDataChange = (event, value) => {
+  const handleFormDataChange = event => {
     const target = event.target
     const name = target.name
-
-    if (name === 'perfumeId') {
-      setFormValues({
-        ...formValues,
-        ['perfumeId']: value,
-      })
-    }
     setFormValues({
       ...formValues,
       [name]: target.value,
+    })
+  }
+
+  const handleAutoComplete = (_event, value) => {
+    setFormValues({
+      ...formValues,
+      ['perfumeId']: value,
     })
   }
 
@@ -108,6 +109,7 @@ const useWriter = () => {
     handleThumbnailUpload,
     handleFormDataChange,
     handleMultipleCheckBox,
+    handleAutoComplete,
   }
 }
 
