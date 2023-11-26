@@ -1,16 +1,18 @@
+import {Box} from '@mui/material'
+
 interface FlexBoxProps {
-  children: any;
-  direction?: any | undefined;
-  justifyContent?: string;
-  alignItems?: string;
-  gap?: string;
-  style?: any;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  children: any
+  direction?: any | undefined
+  justifyContent?: string
+  alignItems?: string
+  gap?: string
+  style?: any
+  onClick?: React.MouseEventHandler<HTMLDivElement>
 }
 
 const FlexBox = ({
   children,
-  direction = "row",
+  direction = 'row',
   justifyContent,
   alignItems,
   gap,
@@ -18,11 +20,11 @@ const FlexBox = ({
   onClick,
 }: FlexBoxProps) => {
   return (
-    <div
-      role={"presentation"}
+    <Box
+      role={'presentation'}
       onClick={onClick}
-      style={{
-        display: "flex",
+      sx={{
+        display: 'flex',
         flexDirection: direction,
         justifyContent: justifyContent,
         alignItems: alignItems,
@@ -31,8 +33,8 @@ const FlexBox = ({
       }}
     >
       {children}
-    </div>
-  );
-};
+    </Box>
+  )
+}
 
-export default FlexBox;
+export default FlexBox
