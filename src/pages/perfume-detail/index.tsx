@@ -1,4 +1,7 @@
 import {useEffect, useState} from 'react'
+import instance from '@api/instance'
+import {useParams} from 'react-router-dom'
+import {useQuery} from '@tanstack/react-query'
 
 import Carousel from './carousel'
 import FlexBox from '@layouts/flex-box'
@@ -6,7 +9,6 @@ import Notes from './notes'
 import Information from './information'
 import DetailReviewList from './review'
 import PerfumesItem from '@pages/perfumes/perfumes-item'
-
 import {Box, Button, Pagination, Typography, styled} from '@mui/material'
 
 const dummydata = [
@@ -195,7 +197,23 @@ const dummydata = [
   },
 ]
 
+// 향수 조회
+const getPerfume = async (id: string) => {
+  try {
+    const res = await instance.get(`/perfumes/${id}`)
+
+    const data = res.data
+
+    return data
+  } catch (error: any) {
+    console.log(error)
+    throw error
+  }
+}
+
 const PerfumeDetail = () => {
+  const params = useParams()
+
   // 마지막 페이지
   const LAST_PAGE =
     dummydata.length % 6 === 0
@@ -205,6 +223,12 @@ const PerfumeDetail = () => {
   const [page, setPage] = useState(1) // 처음 페이지는 1
   const [reviewData, setReviewData] = useState<string[]>([])
   const [perfumes, setPerfumes] = useState<string[]>([])
+
+  const {isLoading, error, data} = useQuery({
+    queryKey: ['perfume'],
+    queryFn: () => getPerfume(params.id as string),
+  })
+  console.log(isLoading)
 
   const handlePage = (event: any) => {
     const nowPageInt = parseInt(event.target.outerText)
@@ -226,6 +250,8 @@ const PerfumeDetail = () => {
     setPerfumes(dummydata.slice(0, 4) as any)
   }, [])
 
+  if (error) return 'An error has occurred: ' + error
+
   return (
     <Container>
       <FlexBox>
@@ -236,13 +262,15 @@ const PerfumeDetail = () => {
         <CenterLine />
 
         <RightBox>
-          {/* 향수 타입 */}
+          {/*향수 카테고리 및 향수 타입 */}
           <PerfumeType>
-            플로럴 <span>#달달한 #우아한 #꽃</span>
+            {data?.categoryName} <span>#달달한 #우아한 #꽃</span>
           </PerfumeType>
 
-          {/* 향수 이름 */}
-          <PerfumeName>CHANEL 샹스 오 드 빠르펭</PerfumeName>
+          {/* 향수 브랜드 및 향수 이름 */}
+          <PerfumeName>
+            [{data?.brandName}] {data?.name}
+          </PerfumeName>
 
           <Description>
             <Typography
@@ -256,14 +284,20 @@ const PerfumeDetail = () => {
             <Typography
               sx={{fontSize: '12px', fontWeight: '400', lineHeight: '20.4px'}}
             >
-              예측할 수 없이, 반짝이는 로맨틱한 향. 당신의 샹스의 회오리로
-              녹아듭니다.
+              {data?.story}
             </Typography>
           </Description>
 
           <BuyButton>향수 구매 사이트로 이동하기</BuyButton>
 
-          <Notes />
+          {/* 향수 노트 */}
+          <Notes
+            topNotes={data?.topNotes}
+            middleNotes={data?.middleNotes}
+            baseNotes={data?.baseNotes}
+          />
+
+          {/* 향수 정보 */}
           <Information />
         </RightBox>
       </FlexBox>
@@ -302,7 +336,9 @@ const PerfumeDetail = () => {
       <ProductListTitle>비슷한 향수</ProductListTitle>
       <ProductList>
         {perfumes.length > 0 &&
-          perfumes?.map(item => <PerfumesItem item={item as any} key={item} />)}
+          perfumes?.map((item, index) => (
+            <PerfumesItem item={item as any} key={item + index} />
+          ))}
       </ProductList>
     </Container>
   )
@@ -346,7 +382,7 @@ const PerfumeName = styled(Typography)({
 })
 
 const Description = styled('div')({
-  marginTop: '28.5px',
+  marginTop: '9.25px',
   width: '486px',
   fontWeight: '400',
   lineHeight: ' 170%',

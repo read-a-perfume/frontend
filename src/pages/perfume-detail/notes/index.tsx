@@ -3,6 +3,12 @@ import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box'
 import {Box, Tab, Tabs, Typography} from '@mui/material'
 
+interface NotesProps {
+  topNotes: string[]
+  middleNotes: string[]
+  baseNotes: string[]
+}
+
 type CategoryType = '탑노트' | '미들노트' | '베이스노트'
 
 const CATEGORIES: CategoryType[] = ['탑노트', '미들노트', '베이스노트']
@@ -14,12 +20,12 @@ function a11yProps(index: number) {
   }
 }
 
-const Notes = () => {
+const Notes = ({topNotes, middleNotes, baseNotes}: NotesProps) => {
   const [activeTab, setActiveTab] = useState<string>('탑노트')
   const [value, setValue] = useState<number>(0)
   // const [notesData, setNotesData] = useState<string[]>([])
 
-  console.log(activeTab)
+  console.log(activeTab, topNotes, middleNotes, baseNotes)
   const handleTabsChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
     setActiveTab(CATEGORIES[value])

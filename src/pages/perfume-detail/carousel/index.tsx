@@ -46,7 +46,6 @@ const Carousel = () => {
           index={activeStep}
           onChangeIndex={handleStepChange}
           enableMouseEvents
-          threshold={1}
         >
           {images.map((step, index) => (
             <ImgWrapper key={step.src}>
@@ -107,7 +106,6 @@ const Container = styled(Box)({
 const CarouselWrapper = styled.div({
   border: '0.75px solid #EDEDED',
   borderRadius: '12px',
-  // marginBottom: '37.8px',
 })
 const ImgWrapper = styled.div({
   width: '100%',
