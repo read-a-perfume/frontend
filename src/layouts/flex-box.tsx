@@ -1,5 +1,4 @@
-// import {Box} from '@mui/material'
-import {useMemo} from 'react'
+import {Box} from '@mui/material'
 
 interface FlexBoxProps {
   children: any
@@ -20,23 +19,21 @@ const FlexBox = ({
   style,
   onClick,
 }: FlexBoxProps) => {
-  const customStyle = useMemo(() => ({...style}), [style])
-
   return (
-    <div
+    <Box
       role={'presentation'}
       onClick={onClick}
-      style={{
+      sx={{
         display: 'flex',
         flexDirection: direction,
         justifyContent: justifyContent,
         alignItems: alignItems,
         gap: gap,
-        ...customStyle,
+        ...style,
       }}
     >
       {children}
-    </div>
+    </Box>
   )
 }
 

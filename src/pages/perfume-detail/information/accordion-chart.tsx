@@ -16,6 +16,7 @@ const AccordionChart = () => {
 
   const handleChange =
     (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
+      console.log(panel)
       setExpanded(isExpanded ? panel : false)
     }
 
@@ -25,7 +26,6 @@ const AccordionChart = () => {
         <div key={index}>
           {/* 지워야됨 */}
           <Box sx={{display: 'none'}}>{item}</Box>
-
           <Accordion
             expanded={expanded === `panel${index}`}
             onChange={handleChange(`panel${index}`)}
@@ -36,7 +36,9 @@ const AccordionChart = () => {
               border: '.75px solid #EDEDED',
               borderRadius: '7.5px !important',
               marginBottom:
-                index === arrayTest.length - 1 ? '0px !important' : '12px',
+                index === arrayTest.length - 1
+                  ? '0px !important'
+                  : '12px !important',
               boxShadow: 'none',
 
               '&.MuiAccordion-root:before': {

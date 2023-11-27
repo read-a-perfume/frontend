@@ -1,4 +1,3 @@
-import CustomIcons from '@assets/icons/custom-Icons'
 import FlexBox from '@layouts/flex-box'
 import {Typography, styled, Select, Button, MenuItem} from '@mui/material'
 
@@ -10,7 +9,7 @@ const DetailReviewList = ({reviewData}: any) => {
       <Wrapper>
         <FlexBox alignItems="center">
           <SectionTitle>향수 리뷰</SectionTitle>
-          <FlexBox style={{gap: 9}}>
+          <FlexBox gap="9px">
             <SelectStyle
               defaultValue="인기상품순"
               sx={{
@@ -33,9 +32,6 @@ const DetailReviewList = ({reviewData}: any) => {
               </MenuItemStyle>
             </SelectStyle>
 
-            <FilterButton>
-              필터 <CustomIcons.FilterIcon style={{marginLeft: 10}} />
-            </FilterButton>
             <WriteReviewButton>리뷰 작성하기</WriteReviewButton>
           </FlexBox>
         </FlexBox>
@@ -91,17 +87,6 @@ const WriteReviewButton = styled(Button)({
   '&:hover': {
     background: '#fe7256d6',
   },
-})
-
-const FilterButton = styled(Button)({
-  width: 91,
-  height: 42,
-  borderRadius: 10,
-  border: '1px solid #202020',
-  background: 'white',
-  fontSize: 12,
-  fontWeight: '500',
-  color: '#202020',
 })
 
 export default DetailReviewList
