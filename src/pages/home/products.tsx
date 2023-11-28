@@ -3,8 +3,11 @@ import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box.js'
 import {Typography} from '@mui/material'
 import PerfumeCharacteristics from './perfume-characteristics.js'
+import {useNavigate} from 'react-router-dom'
 
 const Products = () => {
+  const navigate = useNavigate()
+
   return (
     <div style={{marginTop: 136}}>
       <SectionTitle>사람들이 많이 찾은 향수</SectionTitle>
@@ -13,7 +16,12 @@ const Products = () => {
       </SectionSubTitle>
       <ProductBox>
         {new Array(6).fill(0).map((_, idx) => (
-          <FlexBox key={idx} direction="column" gap="32px">
+          <FlexBox
+            key={idx}
+            direction="column"
+            gap="32px"
+            onClick={() => navigate('/perfume/:id')}
+          >
             <GridItem>
               <Product>
                 <ProductImage src="public/images/Rectangle7217(5).png" />
