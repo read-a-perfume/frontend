@@ -45,7 +45,7 @@ const Carousel: React.FC<CarouselProps> = ({
             <CarouselItem
               key={index}
               style={{
-                transform: `translateX(-${currentIndex * 108}%)`,
+                transform: `translateX(-${currentIndex * 105.9}%)`,
               }}
             >
               {child}
