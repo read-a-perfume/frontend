@@ -7,7 +7,7 @@ import {useSearchParams} from 'react-router-dom'
 import FlexBox from '@layouts/flex-box'
 import Category from '@components/category'
 import Pagination from '@mui/material/Pagination'
-import {Box, Skeleton, Typography} from '@mui/material'
+import {Box, Skeleton, Stack, Typography} from '@mui/material'
 import brandDummyData from './dummyData'
 import PerfumesItem, {ItemType} from './perfumes-item'
 
@@ -70,6 +70,7 @@ const Perfumes = () => {
   }
 
   if (error) return 'An error has occurred: ' + error
+
   return (
     <>
       <Wrapper>
@@ -140,13 +141,17 @@ const Perfumes = () => {
           {isLoading ? (
             <>
               {isLoadingData.map((_, index) => (
-                <Skeleton
-                  sx={{bgcolor: 'grey.200'}}
-                  variant="rounded"
-                  width={282}
-                  height={319}
-                  key={index}
-                />
+                <Stack spacing={1} key={index}>
+                  <Skeleton
+                    sx={{bgcolor: 'grey.200'}}
+                    variant="rounded"
+                    width={282}
+                    height={319}
+                    key={index}
+                  />
+
+                  <Skeleton variant="rounded" width={282} height={34.5} />
+                </Stack>
               ))}
             </>
           ) : (
@@ -231,10 +236,11 @@ const Description = styled(Typography)(() => ({
 }))
 
 const ProductList = styled.ul({
+  padding: '0',
+  margin: '0',
   width: '100%',
   display: 'flex',
   flexWrap: 'wrap',
-  justifyContent: 'center',
   gap: '24px',
 })
 
