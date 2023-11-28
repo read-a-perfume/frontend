@@ -11,7 +11,7 @@ const Review = () => {
       <SectionTitle>향수 리뷰</SectionTitle>
       <SectionSubTitle>다양한 향수 리뷰를 피드에서 살펴보세요</SectionSubTitle>
       <FlexBox justifyContent="flex-end">
-        <FlexBox style={{gap: 20}}>
+        <FlexBox gap="20px">
           <DetailOrder
             defaultValue="lately"
             sx={{

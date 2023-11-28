@@ -29,7 +29,7 @@ const ReviewCard = () => {
         {images.length == 1 ? (
           <SingleImageCover />
         ) : (
-          <FlexBox style={{gap: 16, marginTop: 20}}>
+          <FlexBox gap="16px">
             <MainImageCover />
             <OtherImages>
               <OtherImagesTypo>+ {images.length - 1}</OtherImagesTypo>

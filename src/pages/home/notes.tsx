@@ -60,7 +60,7 @@ const Notes = () => {
       />
 
       {!isLoading && !error && (
-        <FlexBox style={{marginTop: 74, gap: 32}}>
+        <FlexBox gap="32px">
           <NoteBox>
             <img
               src="images/note_bg.png"
