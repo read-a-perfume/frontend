@@ -34,9 +34,9 @@ const Products = () => {
 export default Products
 
 const ProductBox = styled.div({
-  display: 'flex',
-  justifyContent: 'space-between',
-  flexWrap: 'wrap',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(4, 1fr)',
+  gridTemplateRows: 'repeat(3, 1fr)',
   rowGap: '88px',
 })
 
@@ -44,6 +44,9 @@ const GridItem = styled.div({
   width: '376px',
   height: '100%',
   cursor: 'pointer',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 })
 
 const Product = styled.div({
