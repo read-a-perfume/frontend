@@ -14,7 +14,7 @@ const Review = () => {
       <FlexBox justifyContent="space-between">
         <FlexBox gap="8.75px">
           {['ALL', '최신 순', '좋아요 순'].map((item, index) => (
-            <button onClick={() => setClickedChip(index)}>
+            <button onClick={() => setClickedChip(index)} key={index}>
               <Chip
                 style={{
                   backgroundColor:
