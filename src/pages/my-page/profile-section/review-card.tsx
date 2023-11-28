@@ -17,7 +17,7 @@ const ReviewCard = ({onWrite, completeWrite}: proptype) => {
       <CardTitle>내 리뷰</CardTitle>
       <Divider />
       <MyCardContent sx={{justifyContent: 'space-evenly'}}>
-        <EachReviewCount title="작성 중인 후기" number={onWrite} />
+        <EachReviewCount title="작성중인 후기" number={onWrite} />
         <EachReviewCount title="작성한 후기" number={completeWrite} />
       </MyCardContent>
       <Divider />

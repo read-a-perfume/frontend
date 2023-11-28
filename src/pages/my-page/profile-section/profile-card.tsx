@@ -106,7 +106,8 @@ const AavatarContainer = styled('div')`
 `
 
 const InfoContainer = styled('div')`
-  width: 350px;
+  max-width: 350px;
+
   margin-left: 24px;
   flex-grow: 0;
 `

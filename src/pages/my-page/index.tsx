@@ -1,6 +1,7 @@
-import { Stack, Typography, styled} from '@mui/material'
+import {Typography, styled} from '@mui/material'
 import ProfileSection from './profile-section/profile-section'
-import FeedChip from './base/feed-chip'
+import FeedSection from './feed-section/feed-section'
+
 
 
 const MyPage = () => {
@@ -13,11 +14,7 @@ const MyPage = () => {
         <Title variant="h1">마이페이지</Title>
         <ProfileSection />
         <Title variant="h1">피드모아보기</Title>
-        <Stack direction="row">
-          <FeedChip label="ALL" clickable></FeedChip>
-          <FeedChip label="내가 작성한 피드" clickable></FeedChip>
-          <FeedChip label="좋아요" clickable></FeedChip>
-        </Stack>
+        <FeedSection/>
       </ContentSection>
     </div>
   )
