@@ -1,5 +1,7 @@
-import {Typography, styled} from '@mui/material'
+import { Stack, Typography, styled} from '@mui/material'
 import ProfileSection from './profile-section/profile-section'
+import FeedChip from './base/feed-chip'
+
 
 const MyPage = () => {
   return (
@@ -11,6 +13,11 @@ const MyPage = () => {
         <Title variant="h1">마이페이지</Title>
         <ProfileSection />
         <Title variant="h1">피드모아보기</Title>
+        <Stack direction="row">
+          <FeedChip label="ALL" clickable></FeedChip>
+          <FeedChip label="내가 작성한 피드" clickable></FeedChip>
+          <FeedChip label="좋아요" clickable></FeedChip>
+        </Stack>
       </ContentSection>
     </div>
   )
@@ -19,7 +26,7 @@ const MyPage = () => {
 export default MyPage
 
 const Banner = styled('div')`
-  width: 1920px;
+  width: 100%;
   height: 470px;
   display: flex;
   align-items: center;

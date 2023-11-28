@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import {Typography} from '@mui/material'
+import CustomIcons from '../../../assets/icons/custom-Icons'
 
 interface proptype {
   title: string
@@ -9,9 +10,10 @@ interface proptype {
 const Follow = ({title, number}: proptype) => {
   return (
     <StyledTypography>
-      {title}
-      <span style={{fontSize: 14, letterSpacing: 0.28, color: '#707070'}}>
-        {number}
+      {title + ' '}
+      <CustomIcons.HeartIcon style={{width:16.5,height:15,margin:0,padding:0}}/>
+      <span style={{fontSize: '14px', letterSpacing: 0.28, color: '#707070'}}>
+        {' ' + number}
       </span>
     </StyledTypography>
   )
