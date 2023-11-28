@@ -3,11 +3,22 @@ import {magazineData} from './constants'
 import FlexBox from '../../layouts/flex-box'
 import {SectionSubTitle, SectionTitle} from './index.style'
 import Card from '@components/base/card.js'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import Carousel from './carousel'
 
 const Magazines = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   return (
     <div>
@@ -23,15 +34,16 @@ const Magazines = () => {
             content={data.content}
             hashTags={data.hashtag}
             onClick={() => console.log('magazine card')}
+            style={{width: (screenWidth - 425) / 3.1}}
           />
         ))}
       </Carousel>
       <FlexBox
+        justifyContent="center"
+        direction={'row'}
         style={{
-          flexDirection: 'row',
-          marginTop: 50,
+          marginTop: 10,
           width: '100%',
-          justifyContent: 'center',
         }}
       >
         {new Array(magazineData.length - 2).fill(0).map((_, idx) => (

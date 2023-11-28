@@ -18,6 +18,7 @@ interface CardProps {
   isOptionOpen?: boolean
   onClickHamburger?: () => void
   onClick: () => void
+  style?: any
 }
 
 const Card: React.FC<CardProps> = ({
@@ -32,9 +33,10 @@ const Card: React.FC<CardProps> = ({
   isEditor = false,
   isOptionOpen = false,
   onClick,
+  style,
 }) => {
   return (
-    <CardContainer width={width} height={height}>
+    <CardContainer width={width} height={height} style={style}>
       <CoverImage
         height={coverImageHeight}
         src={coverImage}
@@ -57,7 +59,9 @@ const Card: React.FC<CardProps> = ({
         </FlexBox>
         <ContentContainer onClick={onClick}>
           <CardTitle>{title}</CardTitle>
-          <CardContent>{content}</CardContent>
+          <CardContent>
+            {content.length > 30 ? content.slice(0, 100) + '...' : content}
+          </CardContent>
           <HashTags>{'#' + hashTags.join(' #')}</HashTags>
         </ContentContainer>
       </CardInfo>

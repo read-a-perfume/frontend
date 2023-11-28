@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from '@emotion/styled'
 
 interface CarouselProps {
@@ -13,6 +13,17 @@ const Carousel: React.FC<CarouselProps> = ({
   setCurrentIndex,
 }) => {
   const itemCount = React.Children.count(children) - 2
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   useEffect(() => {
     const autoPlayId = window.setInterval(() => {
@@ -27,15 +38,14 @@ const Carousel: React.FC<CarouselProps> = ({
   }, [itemCount, setCurrentIndex])
 
   return (
-    <div style={{position: 'relative'}}>
+    <div style={{position: 'relative', width: screenWidth - 360}}>
       <CarouselContainer>
         {React.Children.map(children, (child, index) => {
           return (
             <CarouselItem
               key={index}
-              width={(window.innerWidth - 420) / 3}
               style={{
-                transform: `translateX(-${currentIndex * 104.6}%)`,
+                transform: `translateX(-${currentIndex * 108}%)`,
               }}
             >
               {child}
@@ -53,13 +63,11 @@ const CarouselContainer = styled.div({
   display: 'flex',
   flexWrap: 'nowrap',
   overflowX: 'hidden',
-  width: window.innerWidth - 320,
-  marginLeft: 16,
+  marginLeft: 20,
 })
 
-const CarouselItem = styled.div(({width}: {width: number}) => ({
+const CarouselItem = styled.div({
   flex: '0 0 auto',
-  width: width,
   transition: 'transform 2.5s ease',
   margin: '0 16px',
-}))
+})
