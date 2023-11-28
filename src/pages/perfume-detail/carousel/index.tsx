@@ -107,7 +107,7 @@ const Container = styled(Box)({
 const CarouselWrapper = styled.div({
   border: '0.75px solid #EDEDED',
   borderRadius: '12px',
-  // marginBottom: '37.8px',
+  marginBottom: '37.8px',
 })
 const ImgWrapper = styled.div({
   width: '100%',

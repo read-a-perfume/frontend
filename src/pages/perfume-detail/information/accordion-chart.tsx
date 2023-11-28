@@ -16,16 +16,16 @@ const AccordionChart = () => {
 
   const handleChange =
     (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
+      console.log(panel)
       setExpanded(isExpanded ? panel : false)
     }
 
   return (
     <div>
       {arrayTest.map((item, index) => (
-        <>
+        <div key={index}>
           {/* 지워야됨 */}
           <Box sx={{display: 'none'}}>{item}</Box>
-
           <Accordion
             expanded={expanded === `panel${index}`}
             onChange={handleChange(`panel${index}`)}
@@ -35,8 +35,12 @@ const AccordionChart = () => {
               flexDirection: 'column',
               border: '.75px solid #EDEDED',
               borderRadius: '7.5px !important',
-              marginBottom: '12px',
+              marginBottom:
+                index === arrayTest.length - 1
+                  ? '0px !important'
+                  : '12px !important',
               boxShadow: 'none',
+
               '&.MuiAccordion-root:before': {
                 opacity: '0',
               },
@@ -96,7 +100,7 @@ const AccordionChart = () => {
               </FlexBox>
             </AccordionDetails>
           </Accordion>
-        </>
+        </div>
       ))}
     </div>
   )
