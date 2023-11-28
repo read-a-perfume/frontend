@@ -8,7 +8,7 @@ const Products = () => {
   return (
     <div style={{marginTop: 136}}>
       <SectionTitle>사람들이 많이 찾은 향수</SectionTitle>
-      <SectionSubTitle style={{marginBottom: 94}}>
+      <SectionSubTitle>
         사람들이 많이 검색한 향수 위주로 모아봤어요
       </SectionSubTitle>
       <ProductBox>
@@ -16,7 +16,7 @@ const Products = () => {
           <FlexBox key={idx} direction="column" gap="32px">
             <GridItem>
               <Product>
-                <ProductImage src="/src/pages/perfumes/images/Rectangle7217(5).png" />
+                <ProductImage src="public/images/Rectangle7217(5).png" />
                 <FlexBox direction="column" alignItems="center" gap="8px">
                   <BrandName>브랜드명</BrandName>
                   <ProductName>로즈폼퐁 오 드 퍼퓸</ProductName>
@@ -43,6 +43,7 @@ const ProductBox = styled.div({
 const GridItem = styled.div({
   width: '376px',
   height: '100%',
+  cursor: 'pointer',
 })
 
 const Product = styled.div({
@@ -53,6 +54,8 @@ const Product = styled.div({
 
 const ProductImage = styled.img({
   height: '341px',
+  width: '100%',
+  objectFit: 'contain',
 })
 
 const BrandName = styled(Typography)({
