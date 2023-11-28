@@ -57,8 +57,6 @@ const Perfumes = () => {
     queryFn: () => getPerfumeList(queryCategoryId, currentPage),
   })
 
-  console.log('perfumeList:', perfumeList)
-
   const handlePage = (event: any) => {
     setSearchParams({
       categoryId: queryCategoryId as any,
