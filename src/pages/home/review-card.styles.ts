@@ -3,7 +3,6 @@ import {Typography} from '@mui/material'
 
 export const ReviewLayout = styled.div({
   width: 512,
-  height: 420,
   borderRadius: 16,
   border: '1px solid #EDEDED',
   background: 'white',
