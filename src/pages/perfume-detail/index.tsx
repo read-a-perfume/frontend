@@ -264,7 +264,7 @@ const PerfumeDetail = () => {
         <RightBox>
           {/*향수 카테고리 및 향수 타입 */}
           <PerfumeType>
-            {data?.categoryName} <span>#달달한 #우아한 #꽃</span>
+            {data?.categoryName} <span>{data?.categoryTags}</span>
           </PerfumeType>
 
           {/* 향수 브랜드 및 향수 이름 */}
@@ -391,7 +391,7 @@ const Description = styled('div')({
 const BuyButton = styled(Button)({
   width: '486px',
   height: '36px',
-  marginTop: '17.74px',
+  marginTop: '89.25px',
   marginBottom: '33px',
   borderRadius: '7.5px',
   color: 'white',

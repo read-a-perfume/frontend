@@ -1,12 +1,19 @@
 import {useState} from 'react'
-import styled from '@emotion/styled'
+
 import FlexBox from '@layouts/flex-box'
-import {Box, Tab, Tabs, Typography} from '@mui/material'
+import {Box, Tab, Tabs, Typography, styled} from '@mui/material'
+import NoteCarouselItem from './Note-carousel-item'
 
 interface NotesProps {
-  topNotes: string[]
-  middleNotes: string[]
-  baseNotes: string[]
+  topNotes: notesType[]
+  middleNotes: notesType[]
+  baseNotes: notesType[]
+}
+
+export type notesType = {
+  id: number
+  name: string
+  thumbnailUrl: string
 }
 
 type CategoryType = '탑노트' | '미들노트' | '베이스노트'
@@ -23,12 +30,12 @@ function a11yProps(index: number) {
 const Notes = ({topNotes, middleNotes, baseNotes}: NotesProps) => {
   const [activeTab, setActiveTab] = useState<string>('탑노트')
   const [value, setValue] = useState<number>(0)
-  // const [notesData, setNotesData] = useState<string[]>([])
 
-  console.log(activeTab, topNotes, middleNotes, baseNotes)
   const handleTabsChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
-    setActiveTab(CATEGORIES[value])
+    setValue(() => {
+      setActiveTab(CATEGORIES[newValue])
+      return newValue
+    })
   }
 
   return (
@@ -52,34 +59,76 @@ const Notes = ({topNotes, middleNotes, baseNotes}: NotesProps) => {
       <Wrapper>
         <FlexBox
           direction=""
-          justifyContent="center"
+          justifyContent="space-around"
           alignItems="center"
-          gap="53px"
-          style={{position: 'relative'}}
+          style={{
+            position: 'relative',
+          }}
         >
-          <Box sx={{textAlign: 'center'}}>
-            <img src="/images/perfume-detail/자몽.png" alt="note-img" />
-            <NotesName>자몽</NotesName>
-          </Box>
-          <Box sx={{textAlign: 'center'}}>
-            <img src="/images/perfume-detail/퀸스.png" alt="note-img" />
-            <NotesName>퀸스</NotesName>
-          </Box>
-          <Box sx={{textAlign: 'center'}}>
-            <img src="/images/perfume-detail/자몽.png" alt="note-img" />
-            <NotesName>자몽</NotesName>
-          </Box>
-          <Box sx={{textAlign: 'center'}}>
-            <img src="/images/perfume-detail/자몽.png" alt="note-img" />
-            <NotesName>자몽</NotesName>
-          </Box>
+          {activeTab === '탑노트' &&
+            (topNotes?.length <= 4 ? (
+              topNotes?.map(note => (
+                <FlexBox
+                  direction="column"
+                  alignItems="center"
+                  style={{
+                    textAlign: 'center',
+                    width: '100%',
+                  }}
+                  key={note?.name}
+                >
+                  <img src="/images/perfume-detail/자몽.png" alt="note-img" />
+                  <NotesName>{note?.name}</NotesName>
+                </FlexBox>
+              ))
+            ) : (
+              <NoteCarouselItem notes={topNotes} />
+            ))}
+
+          {activeTab === '미들노트' &&
+            (middleNotes?.length <= 4 ? (
+              middleNotes?.map(note => (
+                <FlexBox
+                  direction="column"
+                  alignItems="center"
+                  style={{
+                    textAlign: 'center',
+                  }}
+                  key={note?.name}
+                >
+                  <img src="/images/perfume-detail/자몽.png" alt="note-img" />
+                  <NotesName>{note?.name}</NotesName>
+                </FlexBox>
+              ))
+            ) : (
+              <NoteCarouselItem notes={middleNotes} />
+            ))}
+
+          {activeTab === '베이스노트' &&
+            (baseNotes?.length <= 4 ? (
+              baseNotes?.map(note => (
+                <FlexBox
+                  direction="column"
+                  alignItems="center"
+                  style={{
+                    textAlign: 'center',
+                  }}
+                  key={note?.name}
+                >
+                  <img src="/images/perfume-detail/자몽.png" alt="note-img" />
+                  <NotesName>{note?.name}</NotesName>
+                </FlexBox>
+              ))
+            ) : (
+              <NoteCarouselItem notes={baseNotes} />
+            ))}
         </FlexBox>
       </Wrapper>
     </>
   )
 }
 
-const NotesHeader = styled.div({
+const NotesHeader = styled('div')({
   fontSize: '12px',
 })
 
@@ -99,11 +148,12 @@ const StyledTab = styled(Tab)({
   },
 })
 
-const Wrapper = styled.div({
+const Wrapper = styled('div')({
   marginTop: '21.38px',
   marginBottom: '31.9px',
 
   '& img': {
+    width: '50px',
     borderRadius: '50%',
   },
 })
@@ -111,9 +161,10 @@ const Wrapper = styled.div({
 const NotesName = styled(Typography)({
   fontFamily: 'AritaBuri !important',
   fontWeight: '500',
-  fontSize: '10px',
+  fontSize: '12px',
   color: '#000',
   marginTop: '13px',
+  width: '100px',
 })
 
 export default Notes

@@ -85,7 +85,7 @@ const WriteReviewButton = styled(Button)({
   backgroundColor: '#FE7156',
 
   '&:hover': {
-    background: '#fe7256d6',
+    background: '#fe7256d6 ',
   },
 })
 
