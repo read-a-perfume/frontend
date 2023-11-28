@@ -1,48 +1,70 @@
-import styled from '@emotion/styled'
-import {Typography} from '@mui/material'
-import Header from '@layouts/header.js'
-import FlexBox from '@layouts/flex-box.js'
-import {Banner, BannerImage, BannerBox, Title} from '@pages/home/index.style.js'
-import ProfileBox from './profile-box.js'
-import ReviewBox from './review-box.js'
-import FavoriteBox from './favorite-box.js'
-import Feeds from './feeds.js'
+import { Stack, Typography, styled} from '@mui/material'
+import ProfileSection from './profile-section/profile-section'
+import FeedChip from './base/feed-chip'
 
-const Category = styled(Typography)({
-  fontFamily: 'AritaBuri !important',
-  fontSize: 32,
-  fontWeight: '600',
-  color: '#0F0F0F',
-  marginTop: 88,
-  marginBottom: 64,
-})
 
 const MyPage = () => {
   return (
-    <>
-      <Header />
+    <div>
       <Banner>
-        <BannerImage src="/images/banner.png" alt="banner" />
-        <BannerBox>
-          <Title>
-            REED A PERFUME에 오신것을 환영합니다.
-            <br />
-            ~~마이페이지관련멘트~~
-          </Title>
-        </BannerBox>
+        <BannerText variant="h1">마이페이지 관련 멘트</BannerText>
       </Banner>
-      <div style={{margin: '0px 160px'}}>
-        <Category>마이 페이지</Category>
-        <FlexBox justifyContent="space-between" style={{marginBottom: 112}}>
-          <ProfileBox />
-          <ReviewBox />
-          <FavoriteBox />
-        </FlexBox>
-        <Category>피드 모아보기</Category>
-        <Feeds />
-      </div>
-    </>
+      <ContentSection>
+        <Title variant="h1">마이페이지</Title>
+        <ProfileSection />
+        <Title variant="h1">피드모아보기</Title>
+        <Stack direction="row">
+          <FeedChip label="ALL" clickable></FeedChip>
+          <FeedChip label="내가 작성한 피드" clickable></FeedChip>
+          <FeedChip label="좋아요" clickable></FeedChip>
+        </Stack>
+      </ContentSection>
+    </div>
   )
 }
 
 export default MyPage
+
+const Banner = styled('div')`
+  width: 100%;
+  height: 470px;
+  display: flex;
+  align-items: center;
+  padding-left: 160px;
+
+  background-color: black;
+`
+
+const BannerText = styled(Typography)`
+  width: 681px;
+  height: 116px;
+  font-family: Arita-buri(OTF);
+  font-size: 36px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
+`
+
+const ContentSection = styled('div')`
+  flex-grow: 0;
+  padding: 0 160px 78px 160px;
+  background-color: #fafafa;
+`
+
+const Title = styled(Typography)`
+  margin-top: 88px;
+  margin-bottom: 64px;
+  font-family: Arita-buri(OTF);
+  font-size: 32px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.64px;
+  text-align: left;
+  color: #0f0f0f;
+`
