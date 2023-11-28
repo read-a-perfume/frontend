@@ -1,6 +1,6 @@
 import instance from '@api/instance'
 import styled from '@emotion/styled'
-import {Typography} from '@mui/material'
+import {Skeleton, Typography} from '@mui/material'
 import {useQuery} from '@tanstack/react-query'
 
 type PerfumesType = {
@@ -20,6 +20,8 @@ type PerfumesType = {
   totalElements: number
   totalPages: number
 }
+
+const skeletons = new Array(6).fill(0).map((_, idx) => idx + 1)
 
 const fetchGetPerfumesByCategory = async (id: number) => {
   try {
@@ -63,6 +65,16 @@ const NoteProducts = ({categoryId}: {categoryId: number}) => {
             </ProductInfoBox>
           </ProductBox>
         ))}
+      {isLoading &&
+        skeletons.map(item => (
+          <Skeleton
+            key={item}
+            sx={{borderRadius: 4, animationDuration: '1.2s'}}
+            variant="rectangular"
+            width={'30%'}
+            height={285}
+          />
+        ))}
     </ProductLayout>
   )
 }
@@ -79,7 +91,7 @@ const ProductLayout = styled.div({
 })
 
 const ProductBox = styled.div({
-  width: '31%',
+  width: '30%',
   height: 284,
   borderRadius: 16,
   background: 'white',
