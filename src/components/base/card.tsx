@@ -59,9 +59,7 @@ const Card: React.FC<CardProps> = ({
         </FlexBox>
         <ContentContainer onClick={onClick}>
           <CardTitle>{title}</CardTitle>
-          <CardContent>
-            {content.length > 30 ? content.slice(0, 100) + '...' : content}
-          </CardContent>
+          <CardContent>{content}</CardContent>
           <HashTags>{'#' + hashTags.join(' #')}</HashTags>
         </ContentContainer>
       </CardInfo>
