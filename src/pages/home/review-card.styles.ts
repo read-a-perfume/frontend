@@ -70,7 +70,6 @@ export const Options = styled.div({
   borderTop: '1px solid #EDEDED',
   display: 'flex',
   alignItems: 'center',
-  paddingBottom: 10,
   gap: 22,
 })
 
