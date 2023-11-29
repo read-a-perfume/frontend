@@ -4,7 +4,6 @@ import {Typography} from '@mui/material'
 export const Banner = styled.div({
   width: '100%',
   height: '470px',
-  background: 'red',
 })
 
 export const BannerImage = styled.img({
