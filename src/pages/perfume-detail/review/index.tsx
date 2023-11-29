@@ -1,73 +1,92 @@
-import {Button, Select, MenuItem, styled} from '@mui/material'
-import CustomIcons from '@assets/icons/custom-Icons'
-import ReviewCard from './review-card'
-import {SectionTitle} from '@pages/home/index.style'
 import FlexBox from '@layouts/flex-box'
+import {Typography, styled, Select, Button, MenuItem} from '@mui/material'
 
-const Review = () => {
+import DetailReviewItem from './detail-review-item'
+
+const DetailReviewList = ({reviewData}: any) => {
   return (
-    <div>
-      <FlexBox justifyContent="flex-end">
-        <SectionTitle style={{width: '100%'}}>향수 리뷰</SectionTitle>
-        <FlexBox style={{gap: 20}}>
-          <DetailOrder
-            defaultValue="lately"
-            sx={{
-              '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#202020',
-              },
-            }}
-          >
-            <MenuItem value="lately">최신순</MenuItem>
-            <MenuItem value="favorite">좋아요순</MenuItem>
-            <MenuItem value="comment">댓글순</MenuItem>
-          </DetailOrder>
-          <FilterButton>
-            필터 <CustomIcons.FilterIcon style={{marginLeft: 10}} />
-          </FilterButton>
+    <Container>
+      <Wrapper>
+        <FlexBox alignItems="center">
+          <SectionTitle>향수 리뷰</SectionTitle>
+          <FlexBox gap="9px">
+            <SelectStyle
+              defaultValue="인기상품순"
+              sx={{
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#202020',
+                },
+              }}
+            >
+              <MenuItemStyle value="인기상품순">
+                <span className="option-name">인기상품순</span>
+              </MenuItemStyle>
+              <MenuItemStyle value="리뷰순">
+                <span className="option-name">리뷰순</span>
+              </MenuItemStyle>
+              <MenuItemStyle value="신상품순">
+                <span className="option-name">신상품순</span>
+              </MenuItemStyle>
+              <MenuItemStyle value="인기찜순">
+                <span className="option-name">인기찜순</span>
+              </MenuItemStyle>
+            </SelectStyle>
 
-          <ReviewButton>리뷰작성하기</ReviewButton>
+            <WriteReviewButton>리뷰 작성하기</WriteReviewButton>
+          </FlexBox>
         </FlexBox>
-      </FlexBox>
-      <FlexBox style={{marginTop: 24, flexWrap: 'wrap', gap: 23}}>
-        {new Array(6).fill(0).map((_, index) => (
-          <ReviewCard key={index} />
-        ))}
-      </FlexBox>
-    </div>
+
+        <FlexBox gap="24px" style={{marginTop: '24px', flexWrap: 'wrap'}}>
+          {reviewData.map(item => (
+            <DetailReviewItem item={item} key={item.id} />
+          ))}
+        </FlexBox>
+      </Wrapper>
+    </Container>
   )
 }
 
-export default Review
+const Container = styled('div')({})
 
-const ReviewButton = styled(Button)({
-  borderRadius: 10,
-  backgroundColor: '#FE7156',
-  color: '#FFF',
-  width: '200px',
+const Wrapper = styled('div')({})
 
-  '&:hover': {
-    backgroundColor: '#ee674c',
+const SectionTitle = styled(Typography)({
+  fontFamily: 'AritaBuri, sans-serif, Arial !important',
+  fontSize: 19.5,
+  fontWeight: '700',
+  color: '#191919',
+  marginRight: 'auto',
+})
+
+const MenuItemStyle = styled(MenuItem)({
+  fontSize: 12,
+  '&:hover .option-name': {
+    fontWeight: '600',
+    borderBottom: '1px solid black',
   },
 })
 
-const DetailOrder = styled(Select)({
+const SelectStyle = styled(Select)({
   width: 108,
   height: 42,
+  textAlign: 'center',
   background: 'white',
   borderRadius: 10,
   color: '#202020',
-  fontSize: 16,
+  fontSize: 12,
   fontWeight: '500',
 })
 
-const FilterButton = styled(Button)({
-  width: 91,
-  height: 42,
+const WriteReviewButton = styled(Button)({
+  color: '#FFF',
+  fontSize: 12,
+  padding: '9px 41.3px 8.5px 42px',
   borderRadius: 10,
-  border: '1px solid #202020',
-  background: 'white',
-  fontSize: 16,
-  fontWeight: '500',
-  color: '#202020',
+  backgroundColor: '#FE7156',
+
+  '&:hover': {
+    background: '#fe7256d6 ',
+  },
 })
+
+export default DetailReviewList

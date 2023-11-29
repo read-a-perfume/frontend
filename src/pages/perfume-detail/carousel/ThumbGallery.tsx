@@ -23,6 +23,7 @@ const ThumbGallery = ({images, activeStep, setActiveStep}: any) => {
 const Wrapper = styled.div({
   display: 'flex',
   justifyContent: 'center',
+  marginTop: '44.2px',
 })
 
 const ImageWrapper = styled.div<{isActive: string}>(

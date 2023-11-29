@@ -6,7 +6,7 @@ import FlexBox from '@layouts/flex-box'
 import instance from '@api/instance'
 
 import CustomIcons from '@assets/icons/custom-Icons'
-import {Box, Skeleton, Typography} from '@mui/material'
+import {Box, Skeleton, Stack, Typography} from '@mui/material'
 
 interface CategoryProps {
   currentCategory: string
@@ -58,7 +58,7 @@ const Category = ({
   })
 
   const setQueryParams = (category: any) => {
-    if (categories) {
+    if (categories && category) {
       setCurrentCategory(category?.name)
 
       setSearchParams({
@@ -77,7 +77,7 @@ const Category = ({
       const newIndex =
         (currentIndex - 1 + categories.length) % categories.length
 
-      setQueryParams(categories[newIndex].name)
+      setQueryParams(categories[newIndex])
     }
   }
 
@@ -87,7 +87,7 @@ const Category = ({
         category => category.name === currentCategory,
       )
       const newIndex = (currentIndex + 1) % categories.length
-      setQueryParams(categories[newIndex].name)
+      setQueryParams(categories[newIndex])
     }
   }
 
@@ -102,13 +102,16 @@ const Category = ({
       {isLoading ? (
         <>
           {isLoadingData.map((_, index) => (
-            <Skeleton
-              sx={{bgcolor: 'grey.200'}}
-              variant="circular"
-              width={78}
-              height={78}
-              key={index}
-            />
+            <Stack spacing={1} key={index}>
+              <Skeleton
+                sx={{bgcolor: 'grey.200'}}
+                variant="circular"
+                width={78}
+                height={78}
+                key={index}
+              />
+              <Skeleton height={25} />
+            </Stack>
           ))}
         </>
       ) : (
