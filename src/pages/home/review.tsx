@@ -55,8 +55,8 @@ const Chip = styled.div({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  borderRadius: '15.75px',
+  borderRadius: 21,
   height: 31,
-  padding: '20px 11px',
+  padding: '20px 15px',
   fontFamily: 'Pretendard',
 })
