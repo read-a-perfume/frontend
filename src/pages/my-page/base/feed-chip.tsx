@@ -1,7 +1,9 @@
 import {Chip, styled} from '@mui/material'
+import {CustomThemeOptions} from '../../../theme/index.interface'
 
 interface proptype {
   active: boolean
+  theme?: CustomThemeOptions
 }
 
 const FeedChip = styled(Chip)`
@@ -17,8 +19,8 @@ const FeedChip = styled(Chip)`
   color: ${({...props}: proptype) => (props.active ? '#fff' : '#a9a9a9')};
   padding: 12px 0 12px 0;
   height: 42px;
-  background-color: ${({...props}: proptype) =>
-    props.active ? '#fe7156' : ''};
+  background-color: ${({theme, ...props}: proptype) =>
+    props.active ? theme?.palette.primary.main : ''};
 `
 
 export default FeedChip

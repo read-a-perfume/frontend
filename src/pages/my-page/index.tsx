@@ -35,7 +35,7 @@ const Banner = styled('div')`
 const BannerText = styled(Typography)`
   width: 681px;
   height: 116px;
-  font-family: Arita-buri(OTF);
+  font-family: Arita-buri;
   font-size: 36px;
   font-weight: 600;
   font-stretch: normal;

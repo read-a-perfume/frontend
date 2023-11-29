@@ -5,6 +5,7 @@ import {CreateOutlined} from '@mui/icons-material'
 import MyCardContent from '../base/card-content'
 import EachReviewCount from './each-review-count'
 import CardTitle from '../base/card-title'
+import { useNavigate } from 'react-router-dom'
 
 interface proptype {
   onWrite: number
@@ -12,6 +13,13 @@ interface proptype {
 }
 
 const ReviewCard = ({onWrite, completeWrite}: proptype) => {
+
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/reviews/review-writer');
+  }
+
   return (
     <CardContainer>
       <CardTitle>내 리뷰</CardTitle>
@@ -23,7 +31,7 @@ const ReviewCard = ({onWrite, completeWrite}: proptype) => {
       <Divider />
       <MyPageButton
         text="리뷰 작성하기"
-        onClick={() => {}}
+        onClick={handleButtonClick}
         icon={
           <CreateOutlined
             sx={{

@@ -6,6 +6,7 @@ import FeedTag from './feed-tag'
 import FeedFooterContent from './feed-footer-content'
 import CustomIcons from '../../../assets/icons/custom-Icons'
 
+
 interface proptype {
   data: eachFeedType
 }
