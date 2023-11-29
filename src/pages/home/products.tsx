@@ -17,7 +17,7 @@ const Products = () => {
   }
 
   return (
-    <div style={{marginTop: 136}}>
+    <ProductsContainer>
       <SectionTitle>사람들이 많이 찾은 향수</SectionTitle>
       <SectionSubTitle>
         사람들이 많이 검색한 향수 위주로 모아봤어요
@@ -62,11 +62,15 @@ const Products = () => {
           }}
         />
       </FlexBox>
-    </div>
+    </ProductsContainer>
   )
 }
 
 export default Products
+
+const ProductsContainer = styled.div({
+  marginTop: 136,
+})
 
 const ProductBox = styled.div({
   display: 'grid',

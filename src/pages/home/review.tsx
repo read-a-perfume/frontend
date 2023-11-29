@@ -15,15 +15,7 @@ const Review = () => {
         <FlexBox gap="8.75px">
           {['ALL', '최신 순', '좋아요 순'].map((item, index) => (
             <button onClick={() => setClickedChip(index)} key={index}>
-              <Chip
-                style={{
-                  backgroundColor:
-                    clickedChip === index ? '#FE7156' : '#F1F1F5',
-                  color: clickedChip === index ? 'white' : '#A9A9A9',
-                }}
-              >
-                {item}
-              </Chip>
+              <Chip isClicked={clickedChip === index}>{item}</Chip>
             </button>
           ))}
         </FlexBox>
@@ -48,7 +40,7 @@ const ReviewBox = styled.div({
   marginTop: 30,
 })
 
-const Chip = styled.div({
+const Chip = styled.div(({isClicked}: {isClicked: boolean}) => ({
   border: 'none',
   fontSize: 16,
   fontWeight: '600',
@@ -59,4 +51,6 @@ const Chip = styled.div({
   height: 31,
   padding: '20px 15px',
   fontFamily: 'Pretendard',
-})
+  backgroundColor: isClicked ? '#FE7156' : '#F1F1F5',
+  color: isClicked ? 'white' : '#A9A9A9',
+}))
