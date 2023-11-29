@@ -40,6 +40,21 @@ const CarouselWithStepper = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  const responsiveContentLengths = (content: string) => {
+    if (screenWidth >= 1913) {
+      return content.slice(0, 185) + '...'
+    } else if (screenWidth >= 1852) {
+      return content.slice(0, 145) + '...'
+    } else if (screenWidth >= 1667) {
+      return content.slice(0, 90) + '...'
+    } else if (screenWidth >= 1304) {
+      return content.slice(0, 58) + '...'
+    } else if (screenWidth >= 1217) {
+      return content.slice(0, 38) + '...'
+    }
+    return content.slice(0, 20) + '...'
+  }
+
   return (
     <>
       <Carousel
@@ -61,7 +76,7 @@ const CarouselWithStepper = () => {
             coverImage={data.image}
             profileImage=""
             title={data.title}
-            content={data.content}
+            content={responsiveContentLengths(data.content)}
             hashTags={data.hashtag}
             onClick={() => console.log('magazine card')}
             style={{width: (screenWidth - 425) / 3.1}}
