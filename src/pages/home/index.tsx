@@ -6,11 +6,18 @@ import {useState} from 'react'
 import {Banner, BannerBox, BannerImage, Content, Title} from './index.style'
 import Button from '@components/base/button.js'
 import Products from './products.js'
+import {useNavigate} from 'react-router-dom'
 
 export default function Home() {
-  // const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const navigate = useNavigate()
   const isLoggedIn = false
   const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     navigate('/sign-in')
+  //   }
+  // }, [])
 
   return (
     <>
@@ -30,6 +37,7 @@ export default function Home() {
             color="white"
             backgroundColor="transparent"
             fontSize="lg"
+            onClick={() => navigate('/reviews/review-writer')}
             style={{marginTop: '79px', zIndex: 2, border: '1px solid white'}}
           />
         </BannerBox>
