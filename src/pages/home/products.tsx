@@ -55,7 +55,8 @@ const Products = () => {
           hideNextButton
           renderItem={item => <Item {...item} />}
           sx={{
-            marginTop: 30,
+            marginTop: 20,
+            marginBottom: 20,
             '& .Mui-selected': {
               backgroundColor: '#D9D9D9',
             },
