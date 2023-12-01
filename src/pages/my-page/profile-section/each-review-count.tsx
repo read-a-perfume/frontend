@@ -8,9 +8,9 @@ interface proptype {
 const EachReviewCount = ({title, number}: proptype) => {
   return (
     <EachReviewCountContainer>
-      <Typography>{title}</Typography>
-      <Typography sx={{fontSize: '16px'}}>
-        <span style={{fontSize: '20px', color: 'black'}}>{number + ' '}</span>건
+      <Typography variant='h3'>{title}</Typography>
+      <Typography variant='body2'>
+        <Typography sx={{fontSize: '20px', color: 'black'}} variant='body4'>{number + ' '}</Typography>건
       </Typography>
     </EachReviewCountContainer>
   )
@@ -21,13 +21,7 @@ const EachReviewCountContainer = styled('div')`
   flex-direction: row;
   justify-content: space-between;
   font-family: Pretendard;
-  font-size: 22px;
   font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
   color: #707070;
 `
 
