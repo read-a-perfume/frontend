@@ -1,6 +1,4 @@
-import styled from '@emotion/styled'
-import {Button, Typography} from '@mui/material'
-import {CustomThemeOptions} from '../../../theme/index.interface'
+import {Button, Typography, styled} from '@mui/material'
 
 interface proptype {
   number: number
@@ -9,7 +7,6 @@ interface proptype {
 
 interface styleProptype {
   active: boolean
-  theme?: CustomThemeOptions
 }
 
 const PageNumber = ({number, active}: proptype) => {
@@ -22,25 +19,24 @@ const PageNumber = ({number, active}: proptype) => {
 
 export default PageNumber
 
-const NumberCotainer = styled(Button)`
-  width: 40px;
-  height: 43px;
-  background-color: ${({theme, ...props}: styleProptype) =>
-    props.active ? theme?.palette.grey[400] : theme?.palette.grey[200]};
-  min-width: 40px;
-  color: #000;
-  &:hover {
-    background-color: ${({theme}: styleProptype) =>
-    theme?.palette.grey[300]};
-  }
-`
-const NumberText = styled(Typography)`
-  font-family: Pretendard;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: right;
- 
-`
+const NumberCotainer = styled(Button)<styleProptype>(({theme, active}) => ({
+  width: '40px',
+  height: '43px',
+  backgroundColor: active ? theme.palette.grey[400] : theme.palette.grey[200],
+  minWidth: '40px',
+  color: '#000',
+
+  '&:hover': {
+    backgroundColor: theme.palette.grey[300],
+  },
+}))
+
+const NumberText = styled(Typography)(() => ({
+  fontFamily: 'Pretendard',
+  fontWeight: 500,
+  fontStretch: 'normal',
+  fontStyle: 'normal',
+  lineHeight: 'normal',
+  letterSpacing: 'normal',
+  textAlign: 'right',
+}))

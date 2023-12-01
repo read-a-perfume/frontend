@@ -1,4 +1,4 @@
-import {Avatar, Typography, styled} from '@mui/material'
+import {Avatar, Box, Typography, styled} from '@mui/material'
 
 interface proptype {
   author: string
@@ -7,21 +7,21 @@ interface proptype {
 const FeedAuthor = ({author}: proptype) => {
   return (
     <FeedAuthorContainer>
-      <Avatar sx={{width:'32px',height:'32px'}}>A</Avatar>
-      <AuthorText variant='body1'>{author}</AuthorText>
+      <Avatar sx={{width: '32px', height: '32px'}}>A</Avatar>
+      <AuthorText variant="body1">{author}</AuthorText>
     </FeedAuthorContainer>
   )
 }
 
 export default FeedAuthor
 
-const FeedAuthorContainer = styled('div')`
-  display: flex;
-  gap: 16px;
-`
+const FeedAuthorContainer = styled(Box)(() => ({
+  display: 'flex',
+  gap: '16px',
+}))
 
-const AuthorText = styled(Typography)`
-  font-family: Pretendard;
-  font-weight: 600;
-  color: #000;
-`
+const AuthorText = styled(Typography)(() => ({
+  fontFamily: 'Pretendard',
+  fontWeight: 600,
+  color: '#000',
+}))

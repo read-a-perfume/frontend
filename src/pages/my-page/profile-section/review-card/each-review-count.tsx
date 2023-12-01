@@ -1,4 +1,4 @@
-import {Typography, styled} from '@mui/material'
+import {Box, Typography, styled} from '@mui/material'
 
 interface proptype {
   title: string
@@ -8,21 +8,24 @@ interface proptype {
 const EachReviewCount = ({title, number}: proptype) => {
   return (
     <EachReviewCountContainer>
-      <Typography variant='h3'>{title}</Typography>
-      <Typography variant='body2'>
-        <Typography sx={{fontSize: '20px', color: 'black'}} variant='body4'>{number + ' '}</Typography>건
+      <Typography variant="h3">{title}</Typography>
+      <Typography variant="body2">
+        <Typography sx={{fontSize: '20px', color: 'black'}} variant="body4">
+          {number + ' '}
+        </Typography>
+        건
       </Typography>
     </EachReviewCountContainer>
   )
 }
 
-const EachReviewCountContainer = styled('div')`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-family: Pretendard;
-  font-weight: 500;
-  color: #707070;
-`
+const EachReviewCountContainer = styled(Box)(({theme}) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  fontFamily: 'Pretendard',
+  fontWeight: 500,
+  color: theme.palette.grey[500],
+}))
 
 export default EachReviewCount

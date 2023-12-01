@@ -18,9 +18,9 @@ const FeedFooterContent = ({icon, title, value}: proptype) => {
 
 export default FeedFooterContent
 
-const FooterText = styled(Typography)`
-  font-family: Pretendard;
-  font-weight: 500;
-  color: #333;
-  margin-left: 8px;
-`
+const FooterText = styled(Typography)(({ theme }) => ({
+  fontFamily: 'Pretendard',
+  fontWeight: 500,
+  color: theme.palette.grey['700'],
+  marginLeft: '8px',
+}));

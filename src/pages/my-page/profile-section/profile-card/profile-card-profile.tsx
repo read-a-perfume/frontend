@@ -1,4 +1,4 @@
-import {Avatar, Typography, styled} from '@mui/material'
+import {Avatar, Box, Typography, styled} from '@mui/material'
 import Follow from './follow'
 
 interface proptype {
@@ -38,45 +38,47 @@ const ProfileCardProfile = ({
 
 export default ProfileCardProfile
 
-const ProfileContainer = styled('div')`
-  display: flex;
-  height: 136px;
-  margin-bottom: 24px;
-`
+const ProfileContainer = styled(Box)(() => ({
+  display: 'flex',
+  height: '136px',
+  marginBottom: '24px',
+}));
 
-const AavatarContainer = styled('div')`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
+const AavatarContainer = styled(Box)(() => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+}));
 
-const InfoContainer = styled('div')`
-  max-width: 350px;
-  margin-left: 24px;
-  flex-grow: 0;
-`
+const InfoContainer = styled(Box)(() => ({
+  maxWidth: '350px',
+  marginLeft: '24px',
+  flexGrow: 0,
+}));
 
-const Name = styled(Typography)`
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #000;
-  font-family: Pretendard;
-`
-const Introduction = styled(Typography)`
-  margin: 11px 0 10px;
-  font-family: Pretendard;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.6;
-  letter-spacing: normal;
-  text-align: left;
-  color: #000;
-`
-const FollowContainer = styled('div')`
-  display: flex;
-  justify-content: space-between;
-`
+const Name = styled(Typography)(() => ({
+  fontStretch: 'normal',
+  fontStyle: 'normal',
+  lineHeight: 'normal',
+  letterSpacing: 'normal',
+  textAlign: 'left',
+  color: '#000',
+  fontFamily: 'Pretendard',
+}));
+
+export const Introduction = styled(Typography)(() => ({
+  margin: '11px 0 10px',
+  fontFamily: 'Pretendard',
+  fontWeight: 500,
+  fontStretch: 'normal',
+  fontStyle: 'normal',
+  lineHeight: 1.6,
+  letterSpacing: 'normal',
+  textAlign: 'left',
+  color: '#000',
+}));
+
+export const FollowContainer = styled('div')(() => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+}));

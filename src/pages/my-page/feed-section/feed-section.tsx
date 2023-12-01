@@ -25,7 +25,7 @@ const FeedSection = () => {
       <FeedCard data={TEMP_EACH_FEED} />
       <Card
         coverImage={`/images/perfume.png`}
-        profileImage= {`/images/perfume.png`}
+        profileImage={`/images/perfume.png`}
         title="안녕"
         content={TEMP_EACH_FEED.content}
         hashTags={TEMP_EACH_FEED.tag}
@@ -42,9 +42,9 @@ const FeedSection = () => {
 
 export default FeedSection
 
-const TestPageNumber = styled(Box)`
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 130px;
-`
+const TestPageNumber = styled(Box)(() => ({
+  display: 'flex',
+  gap: '1rem',
+  justifyContent: 'center',
+  marginTop: '130px',
+}))
