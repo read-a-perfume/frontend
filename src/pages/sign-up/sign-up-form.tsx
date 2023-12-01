@@ -8,7 +8,7 @@ import {formCheckboxData, formData} from './data.constant'
 import FormInputList from './form-input-list'
 import instance from '@api/instance'
 import {useNavigate} from 'react-router-dom'
-import useMutation from '@hooks/global-store/server/mutations/use-mutation'
+import useMutation from 'src/store/server/use-mutation'
 
 const API_URL = '/signup/email'
 
