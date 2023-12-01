@@ -2,34 +2,18 @@ import {
   Box,
   Tab,
   Tabs,
-  Button,
   Grid,
   styled,
   Typography,
-  OutlinedInput,
+  TextField,
 } from '@mui/material'
-
 import {SyntheticEvent, useCallback, useState} from 'react'
-import {useTheme} from '@mui/material/styles'
-import instance from '@api/instance'
-import useMutation from '@hooks/global-store/server/mutations/use-mutation'
+
+import useMutation from 'src/store/server/use-mutation'
 import {useNavigate} from 'react-router-dom'
-
-interface TabItemProps {
-  children?: React.ReactNode
-  index: number
-  value: number
-}
-
-function TabItem(props: TabItemProps) {
-  const {children, value, index} = props
-
-  return (
-    <Box sx={{width: '100%'}} hidden={value !== index}>
-      {value === index && <Typography>{children}</Typography>}
-    </Box>
-  )
-}
+import SignInOptions from './sign-in-options'
+import SignInButtonGroup from './sign-in-button-group'
+import {fetchLogin} from 'src/store/server/auth/mutations'
 
 const SignInForm = () => {
   const [value, setValue] = useState(0)
@@ -42,16 +26,7 @@ const SignInForm = () => {
     [],
   )
   const nav = useNavigate()
-  const theme = useTheme()
 
-  interface FetchLoginProps {
-    username: any
-    password: any
-  }
-
-  const fetchLogin = async (data: FetchLoginProps) => {
-    return await instance.post('/login', {...data})
-  }
   const {mutate} = useMutation({
     mutationFn: fetchLogin,
     mutationKey: ['sign-in'],
@@ -66,7 +41,6 @@ const SignInForm = () => {
     const username = formData.get('username')
     const password = formData.get('password')
 
-    console.log(username, 'username')
     mutate(
       {username, password},
       {
@@ -78,60 +52,45 @@ const SignInForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <Box sx={{width: '342px', margin: 'auto'}}>
-        <DialogGridContainer container spacing={1}>
-          <DialogGrid item>
-            <DialogGridSubTitle variant="h2">
-              향기로움을 찾는 사람들의 <br /> 리뷰 모음집
-            </DialogGridSubTitle>
-          </DialogGrid>
-          <DialogGrid item>
-            <TabBox>
-              <Tabs
-                variant="fullWidth"
-                textColor="inherit"
-                value={value}
-                onChange={handleChange}
-                TabIndicatorProps={{style: {background: 'black'}}}
-              >
-                <Tab label="개인용"></Tab>
-                <Tab label="기업용"></Tab>
-              </Tabs>
-            </TabBox>
-            <TabItem value={value} index={0}>
-              <Box sx={{py: 1}}>
-                <MUITextFiled
-                  theme={theme}
-                  placeholder="아이디"
-                  type="text"
-                  name="username"
-                />
-                <MUITextFiled
-                  theme={theme}
-                  placeholder="패스워드"
-                  type="password"
-                  name="password"
-                />
-                <LoginButton
-                  variant="contained"
-                  customColor="#F8DB52"
-                  type="submit"
-                >
-                  로그인
-                </LoginButton>
-                <LoginButton
-                  variant="outlined"
-                  customColor="white"
-                  sx={{mt: 1}}
-                >
-                  Google 로그인
-                </LoginButton>
-              </Box>
-            </TabItem>
-            <TabItem value={value} index={1}>
-              기업 로그인 폼
-            </TabItem>
-          </DialogGrid>
-        </DialogGridContainer>
+        <SignInGrid item>
+          <Title variant="h2">
+            향기로움을 찾는 <br /> 사람들의 리뷰 모음집
+          </Title>
+        </SignInGrid>
+        <SignInGrid item>
+          <SignInTypeList>
+            <Tabs
+              variant="fullWidth"
+              textColor="inherit"
+              value={value}
+              onChange={handleChange}
+              TabIndicatorProps={{sx: {background: 'black'}}}
+            >
+              <Tab label="개인용" />
+              <Tab label="기업용" />
+            </Tabs>
+          </SignInTypeList>
+          <Box sx={{marginTop: '30px'}}>
+            <Box>
+              <SignInFormTextFiled
+                placeholder="아이디"
+                type="text"
+                name="username"
+              />
+              <SignInFormTextFiled
+                placeholder="패스워드"
+                type="password"
+                name="password"
+              />
+              <SignInOptions
+                label="로그인 유지"
+                option1="비밀번호 찾기"
+                option2="아이디 찾기"
+              />
+              <SignInButtonGroup />
+            </Box>
+          </Box>
+        </SignInGrid>
       </Box>
     </form>
   )
@@ -139,50 +98,45 @@ const SignInForm = () => {
 
 export default SignInForm
 
-interface LoginButtonProps {
-  customColor: '#F8DB52' | 'white'
-}
-
-const DialogGridContainer = styled(Grid)(() => ({}))
-const DialogGrid = styled(Grid)(() => ({
+const SignInGrid = styled(Grid)(() => ({
   width: '100%',
 }))
 
-const DialogGridSubTitle = styled(Typography)(() => ({
-  fontFamily: 'Pretendard',
+const Title = styled(Typography)(() => ({
   fontSize: ' 28px',
   fontStyle: 'normal',
   fontWeight: '400',
-  lineheight: '150%' /* 42px */,
+  lineHeight: '150%',
   letterSpacing: '0.56px',
 }))
 
-const TabBox = styled(Box)(() => ({
+const SignInTypeList = styled(Box)(() => ({
   borderBottom: 1,
   borderColor: 'divider',
 }))
 
-const LoginButton = styled(Button)<LoginButtonProps>(({...props}) => ({
-  boxShadow: 'none',
-  width: '100%',
-  background: props.customColor,
-  color: 'black',
-  borderColor: '#EFEFEF',
-  '&:hover': {
-    borderColor: '#EFEFEF',
-  },
-}))
-
-const MUITextFiled = styled(OutlinedInput)(({theme}) => ({
-  '&.MuiInputBase-root': {
-    width: 342,
-    height: 48,
-    fontSize: theme.typography.body3,
+const SignInFormTextFiled = styled(TextField)(({theme}) => ({
+  '&': {
+    width: '100%',
+    height: '48px',
     boxSizing: 'border-box',
-    padding: 0,
+    marginBottom: '4px',
+  },
+  '&.MuiTextField-root > div': {
+    width: '100%',
+    height: '48px',
+    boxSizing: 'border-box',
     backgroundColor: theme.palette.grey[100],
   },
-  '& > .MuiOutlinedInput-notchedOutline': {
+  '& input.MuiOutlinedInput-input': {
     color: '#000',
+    fontSize: '14px',
+  },
+  MuiOutlinedInput: {
+    input: {
+      '&:-webkit-autofill': {
+        background: 'rgb(232, 241, 250)',
+      },
+    },
   },
 }))
