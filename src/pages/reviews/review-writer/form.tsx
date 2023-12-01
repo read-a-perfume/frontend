@@ -5,7 +5,7 @@ import WriterThird from './writer-third'
 import WriterFirst from './writer-first'
 import useWriter from './hooks/use-writer'
 import {useState} from 'react'
-import useMutation from '@hooks/global-store/server/mutations/use-mutation'
+import useMutation from 'src/store/server/use-mutation'
 import instance from '@api/instance'
 
 const Form = () => {

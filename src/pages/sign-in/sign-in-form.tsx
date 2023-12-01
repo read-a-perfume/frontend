@@ -8,16 +8,12 @@ import {
   TextField,
 } from '@mui/material'
 import {SyntheticEvent, useCallback, useState} from 'react'
-import instance from '@api/instance'
-import useMutation from '@hooks/global-store/server/mutations/use-mutation'
+
+import useMutation from 'src/store/server/use-mutation'
 import {useNavigate} from 'react-router-dom'
 import SignInOptions from './sign-in-options'
 import SignInButtonGroup from './sign-in-button-group'
-
-interface FetchLoginProps {
-  username: any
-  password: any
-}
+import {fetchLogin} from 'src/store/server/auth/mutations'
 
 const SignInForm = () => {
   const [value, setValue] = useState(0)
@@ -31,9 +27,6 @@ const SignInForm = () => {
   )
   const nav = useNavigate()
 
-  const fetchLogin = async (data: FetchLoginProps) => {
-    return await instance.post('/login', {...data})
-  }
   const {mutate} = useMutation({
     mutationFn: fetchLogin,
     mutationKey: ['sign-in'],
