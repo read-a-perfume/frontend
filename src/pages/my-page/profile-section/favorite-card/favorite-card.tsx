@@ -1,8 +1,8 @@
 import {Divider} from '@mui/material'
-import CardContainer from '../base/card-container'
-import MyCardContent from '../base/card-content'
-import CardTitle from '../base/card-title'
-import MyPageButton from '../base/mypage-button'
+import CardContainer from '../../base/card-container'
+import MyCardContent from '../../base/card-content'
+import CardTitle from '../../base/card-title'
+import MyPageButton from '../../base/mypage-button'
 
 const FavoriteCard = () => {
   return (

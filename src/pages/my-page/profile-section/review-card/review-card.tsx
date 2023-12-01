@@ -1,10 +1,10 @@
 import {Divider} from '@mui/material'
-import CardContainer from '../base/card-container'
-import MyPageButton from '../base/mypage-button'
+import CardContainer from '../../base/card-container'
+import MyPageButton from '../../base/mypage-button'
 import {CreateOutlined} from '@mui/icons-material'
-import MyCardContent from '../base/card-content'
+import MyCardContent from '../../base/card-content'
 import EachReviewCount from './each-review-count'
-import CardTitle from '../base/card-title'
+import CardTitle from '../../base/card-title'
 import { useNavigate } from 'react-router-dom'
 
 interface proptype {

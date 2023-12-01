@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import {Box, Typography} from '@mui/material'
+import {Button, Typography} from '@mui/material'
 import {CustomThemeOptions} from '../../../theme/index.interface'
 
 interface proptype {
@@ -7,7 +7,7 @@ interface proptype {
   active: boolean
 }
 
-interface stylePropType {
+interface styleProptype {
   active: boolean
   theme?: CustomThemeOptions
 }
@@ -22,17 +22,17 @@ const PageNumber = ({number, active}: proptype) => {
 
 export default PageNumber
 
-const NumberCotainer = styled(Box)`
+const NumberCotainer = styled(Button)`
   width: 40px;
   height: 43px;
-  flex-grow: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({theme, ...props}: stylePropType) =>
+  background-color: ${({theme, ...props}: styleProptype) =>
     props.active ? theme?.palette.grey[400] : theme?.palette.grey[200]};
-  
+  min-width: 40px;
+  color: #000;
+  &:hover {
+    background-color: ${({theme}: styleProptype) =>
+    theme?.palette.grey[300]};
+  }
 `
 const NumberText = styled(Typography)`
   font-family: Pretendard;
@@ -42,5 +42,5 @@ const NumberText = styled(Typography)`
   line-height: normal;
   letter-spacing: normal;
   text-align: right;
-  color: #000;
+ 
 `

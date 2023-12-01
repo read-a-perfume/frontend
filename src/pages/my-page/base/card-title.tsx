@@ -1,18 +1,23 @@
 import {Typography, styled} from '@mui/material'
+import { CustomThemeOptions } from '@theme/index.interface';
 
-
+interface proptype {
+  theme?: CustomThemeOptions
+}
 
 const CardTitle = styled(Typography)`
   font-family: Pretendard;
-  font-size: 24px;
-  font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
   text-align: left;
-  color: #707070;
+  color: ${({theme}:proptype)=>theme?.palette.grey['500']};
   margin-bottom: 24px;
 `
 
 export default CardTitle;
+
+CardTitle.defaultProps = {
+  variant: "h2",
+}

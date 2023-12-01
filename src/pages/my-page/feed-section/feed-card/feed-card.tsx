@@ -1,10 +1,10 @@
 import {Divider, Typography, styled} from '@mui/material'
-import {eachFeedType} from '../data/each-feed-data'
+import {eachFeedType} from '../../data/each-feed-data'
 import FeedAuthor from './feed-author'
 import FeedImg from './feed-img'
 import FeedTag from './feed-tag'
 import FeedFooterContent from './feed-footer-content'
-import CustomIcons from '../../../assets/icons/custom-Icons'
+import CustomIcons from '../../../../assets/icons/custom-Icons'
 
 
 interface proptype {
@@ -16,7 +16,7 @@ const FeedCard = ({data}: proptype) => {
     <FeedCardContainer>
       <FeedAuthor author={data.author} />
       <FeedImg />
-      <FeedContent>{data.content}</FeedContent>
+      <FeedContent variant='body2'>{data.content}</FeedContent>
       <FeedTag tags={data.tag} />
       <Divider />
       <FeedFooterContainer>
@@ -50,7 +50,6 @@ const FeedCardContainer = styled('div')`
 
 const FeedContent = styled(Typography)`
   font-family: Pretendard;
-  font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;

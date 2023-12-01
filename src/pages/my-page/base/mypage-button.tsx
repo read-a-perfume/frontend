@@ -1,20 +1,22 @@
-import {Button, styled} from '@mui/material'
+import {Button, Typography, styled} from '@mui/material'
 import {ReactNode} from 'react'
+import {CustomThemeOptions} from '../../../theme/index.interface'
 interface proptype {
   icon?: ReactNode
   text: string
   onClick: () => void
 }
 
+interface styleProptype {
+  theme?: CustomThemeOptions
+}
+
 const MyPageButton = ({icon, text, onClick}: proptype) => {
   return (
     <ButtonContainer>
-      <MyButton
-        variant="outlined"
-        onClick={onClick}
-      >
+      <MyButton variant="outlined" onClick={onClick}>
         {icon !== undefined ? icon : ''}
-        {text}
+        <ButtonText variant='body2'>{text}</ButtonText>
       </MyButton>
     </ButtonContainer>
   )
@@ -32,21 +34,22 @@ const ButtonContainer = styled('div')`
 `
 
 const MyButton = styled(Button)`
+  color: ${({theme}: styleProptype) => theme?.palette.grey[800]};
+  border-color: ${({theme}: styleProptype) => theme?.palette.grey[300]};
+  width: 80%;
+  height: 55%;
+  border-radius: 10px;
+  &:hover {
+    border-color: ${({theme}: styleProptype) => theme?.palette.grey[300]};
+    background-color: ${({theme}: styleProptype) => theme?.palette.grey[200]};
+  }
+`
+const ButtonText = styled(Typography)`
   font-family: Pretendard;
-  font-size: 16px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: 0.32px;
   text-align: left;
-  color: #191919;
-  border-color: #dbdbdb;
-  width: 80%;
-  height: 55%;
-  border-radius: 10px;
-  &:hover {
-    border-color: #dbdbdb;
-    background-color: #eee;
-  }
 `

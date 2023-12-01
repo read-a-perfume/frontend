@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import {Typography} from '@mui/material'
-import CustomIcons from '../../../assets/icons/custom-Icons'
+import CustomIcons from '../../../../assets/icons/custom-Icons'
 
 interface proptype {
   title: string
