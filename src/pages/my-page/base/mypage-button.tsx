@@ -1,5 +1,6 @@
-import {Button, styled} from '@mui/material'
+import {Box, Button, Typography, styled} from '@mui/material'
 import {ReactNode} from 'react'
+
 interface proptype {
   icon?: ReactNode
   text: string
@@ -9,12 +10,9 @@ interface proptype {
 const MyPageButton = ({icon, text, onClick}: proptype) => {
   return (
     <ButtonContainer>
-      <MyButton
-        variant="outlined"
-        onClick={onClick}
-      >
+      <MyButton variant="outlined" onClick={onClick}>
         {icon !== undefined ? icon : ''}
-        {text}
+        <ButtonText variant="body2">{text}</ButtonText>
       </MyButton>
     </ButtonContainer>
   )
@@ -22,31 +20,34 @@ const MyPageButton = ({icon, text, onClick}: proptype) => {
 
 export default MyPageButton
 
-const ButtonContainer = styled('div')`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  max-height: 84px;
-`
+const ButtonContainer = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%',
+  height: '100%',
+  maxHeight: '84px',
+}))
 
-const MyButton = styled(Button)`
-  font-family: Pretendard;
-  font-size: 16px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 0.32px;
-  text-align: left;
-  color: #191919;
-  border-color: #dbdbdb;
-  width: 80%;
-  height: 55%;
-  border-radius: 10px;
-  &:hover {
-    border-color: #dbdbdb;
-    background-color: #eee;
-  }
-`
+const MyButton = styled(Button)(({theme}) => ({
+  color: theme.palette.grey[800],
+  borderColor: theme.palette.grey[300],
+  width: '80%',
+  height: '55%',
+  borderRadius: '10px',
+
+  '&:hover': {
+    borderColor: theme.palette.grey[300],
+    backgroundColor: theme.palette.grey[200],
+  },
+}))
+
+const ButtonText = styled(Typography)(() => ({
+  fontFamily: 'Pretendard',
+  fontWeight: 500,
+  fontStretch: 'normal',
+  fontStyle: 'normal',
+  lineHeight: 'normal',
+  letterSpacing: '0.32px',
+  textAlign: 'left',
+}))
