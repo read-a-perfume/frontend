@@ -9,14 +9,17 @@ import {
   OtherImages,
   OtherImagesTypo,
   ReviewerID,
+  ReviewImage,
   ReviewLayout,
+  ReviewMainImage,
+  ReviewSingleImage,
   ReviewText,
   SingleImageCover,
 } from './review-card.styles.js'
 import Avatar from '@components/base/avatar.js'
 
 const ReviewCard = () => {
-  const images = ['1', '2']
+  const images = ['', '']
   const hash = ['플로랄', '플로랄', '고급짐']
 
   return (
@@ -27,12 +30,17 @@ const ReviewCard = () => {
       </FlexBox>
       <ImageBox>
         {images.length == 1 ? (
-          <SingleImageCover />
+          <SingleImageCover>
+            <ReviewSingleImage src="images/perfume-detail/review-preview02.jpg" />
+          </SingleImageCover>
         ) : (
-          <FlexBox style={{gap: 16, marginTop: 20}}>
-            <MainImageCover />
+          <FlexBox gap="16px">
+            <MainImageCover>
+              <ReviewMainImage src="images/perfume-detail/review-preview02.jpg" />
+            </MainImageCover>
             <OtherImages>
               <OtherImagesTypo>+ {images.length - 1}</OtherImagesTypo>
+              <ReviewImage src="images/perfume-detail/review-preview03.jpg" />
             </OtherImages>
           </FlexBox>
         )}

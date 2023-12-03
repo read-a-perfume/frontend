@@ -1,62 +1,56 @@
 import FlexBox from '../../layouts/flex-box'
-import {Button, Select, MenuItem, styled} from '@mui/material'
 import {SectionSubTitle, SectionTitle} from './index.style'
-import CustomIcons from '../../assets/icons/custom-Icons'
 import ReviewCard from './review-card'
+import styled from '@emotion/styled'
+import {useState} from 'react'
 
 const Review = () => {
+  const [clickedChip, setClickedChip] = useState<number>(0)
+
   return (
     <div>
       <SectionTitle>향수 리뷰</SectionTitle>
       <SectionSubTitle>다양한 향수 리뷰를 피드에서 살펴보세요</SectionSubTitle>
-      <FlexBox justifyContent="flex-end">
-        <FlexBox style={{gap: 20}}>
-          <DetailOrder
-            defaultValue="lately"
-            sx={{
-              '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#202020',
-              },
-            }}
-          >
-            <MenuItem value="lately">최신순</MenuItem>
-            <MenuItem value="favorite">좋아요순</MenuItem>
-            <MenuItem value="comment">댓글순</MenuItem>
-          </DetailOrder>
-          <FilterButton>
-            필터 <CustomIcons.FilterIcon style={{marginLeft: 10}} />
-          </FilterButton>
+      <FlexBox justifyContent="space-between">
+        <FlexBox gap="8.75px">
+          {['ALL', '최신 순', '좋아요 순'].map((item, index) => (
+            <button onClick={() => setClickedChip(index)} key={index}>
+              <Chip isClicked={clickedChip === index}>{item}</Chip>
+            </button>
+          ))}
         </FlexBox>
+        <button>더보기</button>
       </FlexBox>
-      <FlexBox style={{marginTop: 48, flexWrap: 'wrap', gap: 23}}>
+      <ReviewBox>
         {new Array(6).fill(0).map((_, index) => (
           <ReviewCard key={index} />
-
         ))}
-      </FlexBox>
+      </ReviewBox>
     </div>
   )
 }
 
 export default Review
 
-const DetailOrder = styled(Select)({
-  width: 108,
-  height: 42,
-  background: 'white',
-  borderRadius: 10,
-  color: '#202020',
-  fontSize: 16,
-  fontWeight: '500',
+const ReviewBox = styled.div({
+  display: 'flex',
+  justifyContent: 'space-between',
+  flexWrap: 'wrap',
+  rowGap: '32px',
+  marginTop: 30,
 })
 
-const FilterButton = styled(Button)({
-  width: 91,
-  height: 42,
-  borderRadius: 10,
-  border: '1px solid #202020',
-  background: 'white',
+const Chip = styled.div(({isClicked}: {isClicked: boolean}) => ({
+  border: 'none',
   fontSize: 16,
-  fontWeight: '500',
-  color: '#202020',
-})
+  fontWeight: '600',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: 21,
+  height: 31,
+  padding: '20px 15px',
+  fontFamily: 'Pretendard',
+  backgroundColor: isClicked ? '#FE7156' : '#F1F1F5',
+  color: isClicked ? 'white' : '#A9A9A9',
+}))

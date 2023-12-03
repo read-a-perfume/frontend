@@ -142,37 +142,6 @@ export const ProductName = styled(Typography)({
   fontWeight: 600,
 })
 
-export const InfoBox = styled.div({
-  width: '375px',
-  height: '46px',
-  borderRadius: '10px',
-  background: '#F1F1F1',
-  display: 'flex',
-  alignItems: 'center',
-})
-
-export const BoxContent = styled.div(({left}: {left: boolean}) => ({
-  width: '188px',
-  borderRight: left ? '1px solid #BDBDBD' : 'none',
-  paddingLeft: left ? '32px' : '28px',
-  display: 'flex',
-}))
-
-export const Categories = styled(Typography)(
-  ({color = '#949494'}: {color?: string}) => ({
-    color: color,
-    fontSize: theme.typography.body3.fontSize,
-    fontWeight: 500,
-  }),
-)
-
-export const Types = styled(Typography)({
-  color: '#333',
-  fontSize: theme.typography.body3.fontSize,
-  fontWeight: 500,
-  marginLeft: '16px',
-})
-
 export const Divider = styled.hr({
   width: '190px',
   height: '2px',
