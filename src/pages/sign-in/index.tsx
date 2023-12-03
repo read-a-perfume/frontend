@@ -1,16 +1,26 @@
-import styled from '@emotion/styled'
+import {Box, styled} from '@mui/material'
 import SignInForm from './sign-in-form'
 
 const SignIn = () => {
   return (
-    <SignInContainer>
-      <SignInForm />
-    </SignInContainer>
+    <Wrapper>
+      <Container>
+        <SignInForm />
+      </Container>
+    </Wrapper>
   )
 }
 export default SignIn
 
-const SignInContainer = styled.div({
+const Wrapper = styled(Box)({
+  position: 'relative',
+  height: 'calc(100vh - 150px)',
+})
+
+const Container = styled(Box)({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%,-50%)',
   width: '458px',
-  margin: 'auto',
 })
