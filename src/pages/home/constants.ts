@@ -1,32 +1,3 @@
-export const noteData = [
-  {
-    name: 'Fruity',
-    image: '',
-    cover_image: '',
-    content: '',
-  },
-  {
-    name: 'Woody',
-    image: '',
-    cover_image: '/images/note_bg.png',
-    content: `
-        나무 향을 의미하며,
-        건조하고 성숙한 느낌을 전달합니다.`,
-  },
-  {
-    name: 'Green',
-    image: '',
-    cover_image: '',
-    content: '',
-  },
-  {name: 'Spicy', image: '', cover_image: '', content: ''},
-  {name: 'Animal', image: '', cover_image: '', content: ''},
-  {name: 'Citrus', image: '', cover_image: '', content: ''},
-  {name: 'Light', image: '', cover_image: '', content: ''},
-  {name: 'Musk', image: '', cover_image: '', content: ''},
-  {name: 'Heavy', image: '', cover_image: '', content: ''},
-]
-
 export const magazineData = [
   {
     id: 1,

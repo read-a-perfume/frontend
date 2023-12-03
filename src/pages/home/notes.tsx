@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import FlexBox from '../../layouts/flex-box'
 import {SectionSubTitle, SectionTitle} from './index.style'
 import styled from '@emotion/styled'
@@ -8,7 +8,29 @@ import NoteProducts from './note-products'
 
 const Notes = () => {
   const [categoryId, setCategoryId] = useState<number>(1)
-  const [clickedNote, setClickedNote] = useState<string>('fruit')
+  const [clickedNote, setClickedNote] = useState<string>('프루티')
+  const [image, setImage] = useState<string>('default')
+  const [description, setDescription] = useState<string>(
+    '달콤한 과일의 향이 지속되어 생동감과 매력적인 느낌을 줍니다.',
+  )
+
+  useEffect(() => {
+    if (clickedNote === '애니멀') {
+      setImage('animal')
+    } else if (clickedNote === '시트러스') {
+      setImage('citrus')
+    } else if (clickedNote === '그린') {
+      setImage('green')
+    } else if (clickedNote === '머스크') {
+      setImage('musk')
+    } else if (clickedNote === '스파이시') {
+      setImage('spicy')
+    } else if (clickedNote === '스위트') {
+      setImage('sweet')
+    } else {
+      setImage('default')
+    }
+  }, [clickedNote])
 
   return (
     <Wrapper>
@@ -21,12 +43,13 @@ const Notes = () => {
         currentCategory={clickedNote}
         setCurrentCategory={setClickedNote}
         setCategoryId={setCategoryId}
+        setDescription={setDescription}
       />
 
       <FlexBox gap="32px">
         <NoteBox>
           <img
-            src="images/note_bg.png"
+            src={`images/note-images/note-${image}.png`}
             alt="note"
             style={{
               background:
@@ -40,11 +63,7 @@ const Notes = () => {
             <br />
             NOTE
           </NoteTitle>
-          <NoteSubTitle>
-            나무 향을 의미하며,
-            <br />
-            건조하고 성숙한 느낌을 전달합니다.
-          </NoteSubTitle>
+          <NoteSubTitle>{description}</NoteSubTitle>
         </NoteBox>
         <NoteProducts categoryId={categoryId} />
       </FlexBox>
@@ -76,6 +95,8 @@ const NoteSubTitle = styled(Typography)({
   paddingLeft: 32,
   paddingTop: 53,
   marginTop: 100,
+  whiteSpace: 'pre-wrap',
+  width: 255,
 })
 
 const NoteBox = styled.div({
