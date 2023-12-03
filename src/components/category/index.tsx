@@ -14,6 +14,7 @@ interface CategoryProps {
   searchParams?: URLSearchParamsInit
   setSearchParams?: React.Dispatch<React.SetStateAction<URLSearchParamsInit>>
   setCategoryId?: React.Dispatch<React.SetStateAction<number>>
+  setDescription?: React.Dispatch<React.SetStateAction<string>>
 }
 
 type CategoryNameType = {
@@ -43,6 +44,7 @@ const Category = ({
   currentCategory,
   setCurrentCategory,
   setCategoryId,
+  setDescription,
 }: CategoryProps) => {
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -60,6 +62,10 @@ const Category = ({
   const setQueryParams = (category: any) => {
     if (categories && category) {
       setCurrentCategory(category?.name)
+
+      if (setDescription) {
+        setDescription(category?.description)
+      }
 
       setSearchParams({
         categoryId: category?.id,
