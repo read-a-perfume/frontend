@@ -4,7 +4,6 @@ import {Typography} from '@mui/material'
 export const Banner = styled.div({
   width: '100%',
   height: '470px',
-  background: 'red',
 })
 
 export const BannerImage = styled.img({
@@ -51,7 +50,7 @@ export const MagazineCard = styled.div({
 export const SectionTitle = styled(Typography)({
   fontFamily: 'AritaBuri, sans-serif, Arial !important',
   fontSize: 24,
-  fontWeight: '600',
+  fontWeight: '500',
   color: '#191919',
 })
 

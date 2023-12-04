@@ -115,9 +115,7 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
               style={{marginLeft: '182px'}}
             >
               <NavBottom
-                onClick={() =>
-                  !isLoggedIn ? setIsOpen(true) : console.log('home')
-                }
+                onClick={() => (!isLoggedIn ? setIsOpen(true) : navigate('/'))}
               >
                 Home
               </NavBottom>

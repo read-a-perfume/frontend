@@ -3,7 +3,6 @@ import {Typography} from '@mui/material'
 
 export const ReviewLayout = styled.div({
   width: 512,
-  height: 420,
   borderRadius: 16,
   border: '1px solid #EDEDED',
   background: 'white',
@@ -33,23 +32,25 @@ export const MainImageCover = styled.div({
   height: 184,
   borderRadius: 16,
   background: 'grey',
+  overflow: 'hidden',
 })
 
 export const OtherImages = styled.div({
   width: 142,
   height: 184,
   borderRadius: 15,
-  background: 'lightgrey',
 })
 
 export const OtherImagesTypo = styled(Typography)({
   fontSize: 22,
   color: 'white',
-  width: '100%',
-  height: '100%',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  position: 'absolute',
+  zIndex: 2,
+  width: 142,
+  height: 184,
 })
 
 export const ReviewText = styled(Typography)({
@@ -71,7 +72,6 @@ export const Options = styled.div({
   borderTop: '1px solid #EDEDED',
   display: 'flex',
   alignItems: 'center',
-  paddingBottom: 10,
   gap: 22,
 })
 
@@ -80,4 +80,27 @@ export const OptionsText = styled(Typography)({
   fontSize: 14,
   fontWeight: '500',
   marginLeft: 6,
+})
+
+export const ReviewImage = styled.img({
+  width: 142,
+  height: 184,
+  objectFit: 'cover',
+  position: 'absolute',
+  zIndex: 1,
+  opacity: 0.75,
+  borderRadius: 15,
+})
+
+export const ReviewMainImage = styled.img({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+})
+
+export const ReviewSingleImage = styled.img({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  borderRadius: 15,
 })

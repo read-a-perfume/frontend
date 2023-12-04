@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Box } from '@mui/material'
 
 const FeedImg = () => {
   return (
@@ -8,9 +9,9 @@ const FeedImg = () => {
 
 export default FeedImg
 
-const FeedImgContainer = styled('div')`
-  width: 464px;
-  height: 184px;
-  margin: 19px 0 14px 0;
-  border-radius: 16px;
-`
+const FeedImgContainer = styled(Box)(() => ({
+  width: '464px',
+  height: '184px',
+  margin: '19px 0 14px 0',
+  borderRadius: '16px',
+}))

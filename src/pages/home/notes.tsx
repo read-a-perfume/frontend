@@ -1,14 +1,37 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import FlexBox from '../../layouts/flex-box'
 import {SectionSubTitle, SectionTitle} from './index.style'
 import styled from '@emotion/styled'
 import {Typography} from '@mui/material'
 import Category from '@components/category'
+import NoteProducts from './note-products'
 
 const Notes = () => {
-  const [clickedNote, setClickedNote] = useState<string>('fruit')
+  const [categoryId, setCategoryId] = useState<number>(1)
+  const [clickedNote, setClickedNote] = useState<string>('프루티')
+  const [image, setImage] = useState<string>('default')
+  const [description, setDescription] = useState<string>(
+    '달콤한 과일의 향이 지속되어 생동감과 매력적인 느낌을 줍니다.',
+  )
 
-  // 인라인스타일 주지말것.
+  useEffect(() => {
+    if (clickedNote === '애니멀') {
+      setImage('animal')
+    } else if (clickedNote === '시트러스') {
+      setImage('citrus')
+    } else if (clickedNote === '그린') {
+      setImage('green')
+    } else if (clickedNote === '머스크') {
+      setImage('musk')
+    } else if (clickedNote === '스파이시') {
+      setImage('spicy')
+    } else if (clickedNote === '스위트') {
+      setImage('sweet')
+    } else {
+      setImage('default')
+    }
+  }, [clickedNote])
+
   return (
     <Wrapper>
       <SectionTitle>노트별 향수 추천</SectionTitle>
@@ -19,12 +42,14 @@ const Notes = () => {
       <Category
         currentCategory={clickedNote}
         setCurrentCategory={setClickedNote}
+        setCategoryId={setCategoryId}
+        setDescription={setDescription}
       />
 
-      <FlexBox style={{marginTop: 74, gap: 32}}>
+      <FlexBox gap="32px">
         <NoteBox>
           <img
-            src="images/note_bg.png"
+            src={`images/note-images/note-${image}.png`}
             alt="note"
             style={{
               background:
@@ -38,27 +63,9 @@ const Notes = () => {
             <br />
             NOTE
           </NoteTitle>
-          <NoteSubTitle>
-            나무 향을 의미하며,
-            <br />
-            건조하고 성숙한 느낌을 전달합니다.
-          </NoteSubTitle>
+          <NoteSubTitle>{description}</NoteSubTitle>
         </NoteBox>
-        <ProductLayout>
-          {new Array(6).fill(0).map(el => (
-            <ProductBox key={el}>
-              <img
-                src="images/perfume_test.png"
-                alt="product"
-                style={{objectFit: 'contain', width: '100%', height: 206}}
-              />
-              <ProductInfoBox>
-                <ProductName>오드퍼퓸 플레르드뽀 750ml</ProductName>
-                <BrandName>딥디크</BrandName>
-              </ProductInfoBox>
-            </ProductBox>
-          ))}
-        </ProductLayout>
+        <NoteProducts categoryId={categoryId} />
       </FlexBox>
     </Wrapper>
   )
@@ -88,34 +95,8 @@ const NoteSubTitle = styled(Typography)({
   paddingLeft: 32,
   paddingTop: 53,
   marginTop: 100,
-})
-
-const ProductLayout = styled.div({
-  display: 'flex',
-  flex: 1,
-  height: 600,
-  gap: 32,
-  flexWrap: 'wrap',
-  marginBottom: 136,
-})
-
-const ProductBox = styled.div({
-  width: '31%',
-  height: 284,
-  borderRadius: 16,
-  background: 'white',
-  border: '1px solid #DBDBDB',
-  overflow: 'hidden',
-})
-
-const ProductInfoBox = styled.div({
-  paddingLeft: 24,
-  marginTop: -6,
-  height: 78,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  borderTop: '1px solid #EDEDED',
+  whiteSpace: 'pre-wrap',
+  width: 255,
 })
 
 const NoteBox = styled.div({
@@ -123,15 +104,4 @@ const NoteBox = styled.div({
   width: 376,
   borderRadius: 16,
   overflow: 'hidden',
-})
-
-const ProductName = styled(Typography)({
-  color: '#191919',
-  fontSize: 18,
-  fontWeight: '500',
-})
-
-const BrandName = styled(Typography)({
-  color: '#A9A9A9',
-  fontSize: 14,
 })
