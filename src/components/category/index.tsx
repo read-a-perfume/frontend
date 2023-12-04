@@ -48,7 +48,7 @@ const Category = ({
 }: CategoryProps) => {
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const query = searchParams.get('category')
+  const query = searchParams.get('categoryId')
 
   const {
     isLoading,
@@ -57,6 +57,7 @@ const Category = ({
   } = useQuery<CategoryNameType[]>({
     queryKey: ['categories'],
     queryFn: fetchGetCategories,
+    staleTime: 99999,
   })
 
   const setQueryParams = (category: any) => {
@@ -137,7 +138,7 @@ const Category = ({
                 {category.thumbnail ? (
                   <CategoryImg
                     clicked={
-                      (query && query === category.name) ||
+                      (query && query === String(category.id)) ||
                       (!query && currentCategory === category.name)
                         ? 'true'
                         : ''
@@ -147,7 +148,7 @@ const Category = ({
                   />
                 ) : (
                   <>
-                    {(query && query === category.name) ||
+                    {(query && query === String(category.id)) ||
                     (!query && currentCategory === category.name) ? (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +191,7 @@ const Category = ({
 
                 <CategoryName
                   clicked={
-                    (query && query === category.name) ||
+                    (query && query === String(category.id)) ||
                     (!query && currentCategory === category.name)
                       ? 'true'
                       : ''
