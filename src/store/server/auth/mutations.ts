@@ -6,5 +6,5 @@ export const fetchLogin = async (data: FetchLoginProps) => {
 }
 
 export const fetchUserProfile = async () => {
- await instance.get('/me')
+  return await instance.get('/me')
 }

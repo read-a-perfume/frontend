@@ -1,22 +1,28 @@
 import {
-  useMutation as useMutationOrigin,
+  MutationFunction,
   UseMutationOptions,
+  useMutation as useMutationOrigin,
 } from '@tanstack/react-query'
 
-interface UseMutationProps<TData, TError, TVariables, TContext> {
-  mutationKey: string[]
-  mutationFn: (variables: TVariables) => Promise<TData>
+interface Props<TData, TError, TVariables, TContext> {
+  mutationKey?: string[]
+  mutationFn?: MutationFunction<TData, TVariables>
   options?: UseMutationOptions<TData, TError, TVariables, TContext> & {
     useErrorBoundary?: boolean | ((error: TError) => boolean) | undefined
   }
 }
 
-const useMutation = <TData, TError, TVariables, TContext>({
+const useMutation = <
+  TData = unknown,
+  TError = unknown,
+  TVariables = void,
+  TContext = unknown,
+>({
   mutationFn,
-  options,
+  options = {},
   mutationKey,
-}: UseMutationProps<TData, TError, TVariables, TContext>) => {
-  const newOptions: UseMutationOptions<TData, TError, TVariables, TContext> = {
+}: Props<TData, TError, TVariables, TContext>) => {
+  const newOptions = {
     ...options,
     useErrorBoundary: options?.useErrorBoundary ?? !options?.onError,
   }

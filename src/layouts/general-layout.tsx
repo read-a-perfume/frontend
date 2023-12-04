@@ -7,10 +7,10 @@ interface GeneralLayoutProps {
 }
 
 const GeneralLayout: React.FC<GeneralLayoutProps> = ({children}) => {
-  const {logigAuthGuard} = useAuthRedirect()
+  const {loginAuthGuard} = useAuthRedirect()
   useEffect(() => {
-    logigAuthGuard()
-  }, [logigAuthGuard])
+    loginAuthGuard()
+  }, [loginAuthGuard])
 
   return (
     <>
