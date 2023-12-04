@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import {Box, Typography} from '@mui/material'
-import {CustomThemeOptions} from '../../../theme/index.interface'
+import {CustomOptions} from '../../../theme/index.interface'
 
 interface proptype {
   number: number
@@ -32,7 +32,6 @@ const NumberCotainer = styled(Box)`
   align-items: center;
   background-color: ${({theme, ...props}: stylePropType) =>
     props.active ? theme?.palette.grey[400] : theme?.palette.grey[200]};
-  
 `
 const NumberText = styled(Typography)`
   font-family: Pretendard;
