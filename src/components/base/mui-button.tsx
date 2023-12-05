@@ -12,7 +12,7 @@ const MuiButton: React.FC<ButtonProps> = ({
   title,
   type,
   variant,
-  hover,
+
   width,
 }) => {
   const theme = useTheme()
