@@ -1,29 +1,12 @@
 import {MobileStepper} from '@mui/material'
 import 'react-multi-carousel/lib/styles.css'
-import Carousel from 'react-multi-carousel'
 import {useEffect, useState} from 'react'
 import Card from '@components/base/card.js'
 import {magazineData} from '../constants'
+import {Swiper, SwiperSlide} from 'swiper/react'
+import {Autoplay} from 'swiper/modules'
 import FlexBox from '@layouts/flex-box'
-
-const responsive = {
-  superLargeDesktop: {
-    breakpoint: {max: 4000, min: 3000},
-    items: 5,
-  },
-  desktop: {
-    breakpoint: {max: 3000, min: 1024},
-    items: 3,
-  },
-  tablet: {
-    breakpoint: {max: 1024, min: 464},
-    items: 2,
-  },
-  mobile: {
-    breakpoint: {max: 464, min: 0},
-    items: 1,
-  },
-}
+import 'swiper/css'
 
 const CarouselWithStepper = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -57,32 +40,35 @@ const CarouselWithStepper = () => {
 
   return (
     <>
-      <Carousel
-        responsive={responsive}
-        className="carousel"
-        arrows={false}
-        autoPlay
-        autoPlaySpeed={4500}
-        rewind
-        rewindWithAnimation
-        customTransition={'transform 2.5s ease'}
-        beforeChange={nextSlide => {
-          setCurrentIndex(nextSlide)
+      <Swiper
+        autoplay={{
+          delay: 4500,
+          disableOnInteraction: false,
         }}
+        speed={1000}
+        rewind
+        slidesPerView={3}
+        spaceBetween={30}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Autoplay]}
+        onRealIndexChange={newIndex => setCurrentIndex(newIndex.activeIndex)}
       >
         {magazineData.map(data => (
-          <Card
-            key={data.title}
-            coverImage={data.image}
-            profileImage=""
-            title={data.title}
-            content={responsiveContentLengths(data.content)}
-            hashTags={data.hashtag}
-            onClick={() => console.log('magazine card')}
-            style={{width: (screenWidth - 425) / 3.1}}
-          />
+          <SwiperSlide key={data.title}>
+            <Card
+              coverImage={data.image}
+              profileImage=""
+              title={data.title}
+              content={responsiveContentLengths(data.content)}
+              hashTags={data.hashtag}
+              onClick={() => console.log('magazine card')}
+              style={{width: (screenWidth - 425) / 3.1}}
+            />
+          </SwiperSlide>
         ))}
-      </Carousel>
+      </Swiper>
       <FlexBox justifyContent="center">
         <MobileStepper
           variant="progress"
