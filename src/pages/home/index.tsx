@@ -1,8 +1,6 @@
-import LoginModal from '@components/modal/login-modal'
 import Magazines from './magazines'
 import Notes from './notes'
 import Review from './review'
-import {useState} from 'react'
 import {Banner, BannerBox, BannerImage, Content, Title} from './index.style'
 import Button from '@components/base/button.js'
 import Products from './products.js'
@@ -10,19 +8,10 @@ import {useNavigate} from 'react-router-dom'
 
 export default function Home() {
   const navigate = useNavigate()
-  const isLoggedIn = false
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     navigate('/sign-in')
-  //   }
-  // }, [])
 
   return (
     <>
-      <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} />
-      <Banner onClick={() => setIsOpen(!isLoggedIn ? true : false)}>
+      <Banner>
         <BannerImage src="/images/banner.png" alt="banner" />
         <BannerBox>
           <Title>
