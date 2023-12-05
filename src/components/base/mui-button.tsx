@@ -5,9 +5,16 @@ export interface ButtonProps {
   type: string
   variant: 'contained' | 'outlined' | 'text'
   hover?: 'hover'
+  width?: string
 }
 
-const MuiButton: React.FC<ButtonProps> = ({title, type, variant, hover}) => {
+const MuiButton: React.FC<ButtonProps> = ({
+  title,
+  type,
+  variant,
+
+  width,
+}) => {
   const theme = useTheme()
 
   const styles = {
@@ -35,6 +42,7 @@ const MuiButton: React.FC<ButtonProps> = ({title, type, variant, hover}) => {
       variant={`${variant}`}
       disableRipple
       sx={{
+        width: `${width ? width : '100%'}`,
         borderRadius: '10px',
         height: '48px',
 
