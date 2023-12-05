@@ -25,38 +25,18 @@ declare module '@mui/material/Typography' {
 
 const palette: Palette = {
   primary: {
-    '100': '#F1E8BD', //disabled
-    light: '#FD8142',
     main: '#FE7156',
-    dark: '#FF5838',
   },
   secondary: {
-    main: '#379070',
-  },
-  info: {
-    main: '#5D9EFF',
-  },
-  success: {
-    main: '#9EFF5D',
-  },
-  warning: {
-    main: '#FF763B',
-  },
-  error: {
-    '100': '#FFC8CD', //disabled
-    light: '#F16464',
-    main: '#FF3B3B',
-    dark: '#DF0014',
+    main: '#0B0B0B',
   },
   grey: {
-    '100': '#FAFAFA', //1
-    '200': '#EFEFEF', //2
-    '300': '#E7E7E7', //3
-    '400': '#B4B4B4', //4
-    '500': '#707070', //5
-    '600': '#212121', //5-1
-    '700': '#303030', //6
-    '800': '#131313', //7
+    '100': '#F8F8FA',
+    '200': '#F1F1F5',
+    '300': '#EDEDED',
+    '400': '#DBDBDB',
+    '500': '#D2D2D2',
+    '600': '#A9A9A9',
   },
 }
 
