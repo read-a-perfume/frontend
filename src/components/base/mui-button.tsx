@@ -24,7 +24,7 @@ const MuiButton: React.FC<ButtonProps> = ({
     },
 
     dark: {
-      backgroundColor: '#000',
+      backgroundColor: theme.palette.secondary.main,
       color: '#fff',
       ':hover': {background: ''},
     },
