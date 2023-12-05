@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from '@storybook/react'
 
 const meta: Meta<typeof MuiButton> = {
   component: MuiButton,
-  title: 'Button',
+  title: 'Base/Button',
 }
 
 export default meta
