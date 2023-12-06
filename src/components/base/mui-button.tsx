@@ -8,13 +8,7 @@ export interface ButtonProps {
   width?: string
 }
 
-const MuiButton: React.FC<ButtonProps> = ({
-  title,
-  type,
-  variant,
-
-  width,
-}) => {
+const MuiButton: React.FC<ButtonProps> = ({title, type, variant, width}) => {
   const theme = useTheme()
 
   const styles = {
@@ -29,8 +23,8 @@ const MuiButton: React.FC<ButtonProps> = ({
       ':hover': {background: ''},
     },
     grey: {
-      backgroundColor: '#EDEDED',
-      color: '#fff',
+      backgroundColor: theme.palette.grey[400],
+      color: theme.palette.grey[600],
     },
     white: {
       backgroundColor: '#EDEDED',
@@ -40,14 +34,20 @@ const MuiButton: React.FC<ButtonProps> = ({
   return (
     <Button
       variant={`${variant}`}
-      disableRipple
       sx={{
-        width: `${width ? width : '100%'}`,
-        borderRadius: '10px',
-        height: '48px',
-
-        ...styles[`${type}`],
+        '&.MuiButtonBase-root': {
+          width: `${width ? width : '100%'}`,
+          borderRadius: '10px',
+          fontWeight: 500,
+          height: '48px',
+          boxShadow: 'none',
+          ...styles[`${type}`],
+        },
+        '&.MuiButtonBase-root::hover': {
+          backgroundColor: 'inherit',
+        },
       }}
+      disableRipple
     >
       {title}
     </Button>
