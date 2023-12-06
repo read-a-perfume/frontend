@@ -30,16 +30,16 @@ export const BannerBox = styled.div({
   flexDirection: 'column',
   justifyContent: 'center',
   height: '100%',
-  paddingLeft: '160px',
-  paddingRight: '160px',
+  paddingLeft: '360px',
+  paddingRight: '360px',
 })
 
 export const Content = styled.section({
   width: '100%',
   height: '100%',
   marginTop: 100,
-  paddingLeft: 160,
-  paddingRight: 160,
+  paddingLeft: 360,
+  paddingRight: 360,
 })
 
 export const MagazineCard = styled.div({
@@ -49,13 +49,13 @@ export const MagazineCard = styled.div({
 
 export const SectionTitle = styled(Typography)({
   fontFamily: 'AritaBuri, sans-serif, Arial !important',
-  fontSize: 24,
+  fontSize: 18,
   fontWeight: '500',
   color: '#191919',
 })
 
 export const SectionSubTitle = styled(Typography)({
-  fontSize: 16,
+  fontSize: 12,
   fontWeight: '500',
   color: '#A9A9A9',
   marginTop: 5,
