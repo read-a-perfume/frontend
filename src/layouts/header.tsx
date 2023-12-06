@@ -98,7 +98,7 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
     <>
       <NotificationModal isOpen={popOpen} setIsOpen={setPopOpen} />
       <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} />
-      <HeaderLayout style={{display: 'flex', flexDirection: 'column'}}>
+      <HeaderLayout>
         <HeaderNavigation height="58px">
           <NavTop
             onClick={() => (!isLoggedIn ? setIsOpen(true) : setPopOpen(true))}
@@ -177,6 +177,7 @@ export default Header
 const HeaderLayout = styled.div({
   height: '152px',
   display: 'flex',
+  flexDirection: 'column',
   width: '100%',
   borderBottom: '1px solid black',
 })
@@ -189,6 +190,7 @@ const HeaderNavigation = styled.div(({height}: {height: string}) => ({
   display: 'flex',
   justifyContent: 'end',
   alignItems: 'center',
+  gap: '20px',
   '&:nth-of-type(2)': {
     display: 'flex',
     justifyContent: 'space-between',
