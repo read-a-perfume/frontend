@@ -1,29 +1,11 @@
-import { ThemeOptions } from "@mui/material"
-
+import {ThemeOptions} from '@mui/material'
+//만약 main이라는 게 귀찮다면 SimplePaletteColorOptions 타입을 통해 바꿀수있다.
 export interface Palette {
   primary: {
-    '100': string
-    light: string
     main: string
-    dark: string
   }
   secondary: {
     main: string
-  }
-  info: {
-    main: string
-  }
-  success: {
-    main: string
-  }
-  warning: {
-    main: string
-  }
-  error: {
-    '100': string
-    light: string
-    main: string
-    dark: string
   }
   grey: {
     '100': string
@@ -32,8 +14,6 @@ export interface Palette {
     '400': string
     '500': string
     '600': string
-    '700': string
-    '800': string
   }
 }
 

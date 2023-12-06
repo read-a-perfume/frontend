@@ -2,7 +2,7 @@ import {Box, Stack} from '@mui/material'
 import FeedChip from '../base/feed-chip'
 import {TEMP_EACH_FEED} from '../data/each-feed-data'
 import FeedCard from './feed-card/feed-card'
-import PageNumber from './page-number'
+import PageNumber from '../../../components/base/page-number-button'
 import styled from '@emotion/styled'
 import Card from '@components/base/card'
 
