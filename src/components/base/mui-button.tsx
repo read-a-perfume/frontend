@@ -1,14 +1,20 @@
 import {Button, useTheme} from '@mui/material'
-
+import React from 'react'
 export interface ButtonProps {
   title: string
   type: string
-  variant: 'contained' | 'outlined' | 'text'
-  hover?: 'hover'
-  width?: string
+  width?: string // 구체적인 px이나 퍼센트 적기
+  icon?: React.ReactNode // 아이콘 컴포넌트를 주입
+  handleClick?: (event: React.MouseEvent<HTMLButtonElement> | any) => void
 }
 
-const MuiButton: React.FC<ButtonProps> = ({title, type, variant, width}) => {
+const MuiButton: React.FC<ButtonProps> = ({
+  title,
+  type,
+  width,
+  icon,
+  handleClick,
+}) => {
   const theme = useTheme()
 
   const styles = {
@@ -20,20 +26,20 @@ const MuiButton: React.FC<ButtonProps> = ({title, type, variant, width}) => {
     dark: {
       backgroundColor: theme.palette.secondary.main,
       color: '#fff',
-      ':hover': {background: ''},
     },
     grey: {
-      backgroundColor: theme.palette.grey[400],
-      color: theme.palette.grey[600],
+      backgroundColor: '#E7E7E7',
+      color: '#707070',
     },
     white: {
-      backgroundColor: '#EDEDED',
-      color: '#fff',
+      backgroundColor: '#Fff',
+      color: '#191919',
+      border: `1px solid ${theme.palette.grey[400]}`,
     },
   }
   return (
     <Button
-      variant={`${variant}`}
+      variant="contained"
       sx={{
         '&.MuiButtonBase-root': {
           width: `${width ? width : '100%'}`,
@@ -48,8 +54,9 @@ const MuiButton: React.FC<ButtonProps> = ({title, type, variant, width}) => {
         },
       }}
       disableRipple
+      onClick={handleClick}
     >
-      {title}
+      {icon} {title}
     </Button>
   )
 }
