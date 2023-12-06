@@ -10,8 +10,8 @@ import 'swiper/css'
 
 const CarouselWithStepper = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
   const STEPS = 5
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
   useEffect(() => {
     const handleResize = () => {
@@ -23,19 +23,8 @@ const CarouselWithStepper = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const responsiveContentLengths = (content: string) => {
-    if (screenWidth >= 1913) {
-      return content.slice(0, 185) + '...'
-    } else if (screenWidth >= 1852) {
-      return content.slice(0, 145) + '...'
-    } else if (screenWidth >= 1667) {
-      return content.slice(0, 90) + '...'
-    } else if (screenWidth >= 1304) {
-      return content.slice(0, 58) + '...'
-    } else if (screenWidth >= 1217) {
-      return content.slice(0, 38) + '...'
-    }
-    return content.slice(0, 20) + '...'
+  const sliceContent = (content: string) => {
+    return content.slice(0, 140) + '...'
   }
 
   return (
@@ -56,15 +45,17 @@ const CarouselWithStepper = () => {
         onRealIndexChange={newIndex => setCurrentIndex(newIndex.activeIndex)}
       >
         {magazineData.map(data => (
-          <SwiperSlide key={data.id}>
+          <SwiperSlide key={data.id} style={{width: 384, height: 462}}>
             <Card
+              width={`${(screenWidth - 720 - 132) / 3}px`}
+              height="442px"
+              coverImageHeight={'240px'}
               coverImage={data.image}
               profileImage=""
               title={data.title}
-              content={responsiveContentLengths(data.content)}
+              content={sliceContent(data.content)}
               hashTags={data.hashtag}
               onClick={() => console.log('magazine card')}
-              style={{width: (screenWidth - 425) / 3.1}}
             />
           </SwiperSlide>
         ))}
