@@ -56,7 +56,7 @@ const CarouselWithStepper = () => {
         onRealIndexChange={newIndex => setCurrentIndex(newIndex.activeIndex)}
       >
         {magazineData.map(data => (
-          <SwiperSlide key={data.title}>
+          <SwiperSlide key={data.id}>
             <Card
               coverImage={data.image}
               profileImage=""
