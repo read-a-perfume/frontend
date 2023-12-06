@@ -1,14 +1,25 @@
-import {useState} from 'react'
-import {useTheme} from '@mui/material/styles'
 import styled from '@emotion/styled'
-import {autoPlay} from 'react-swipeable-views-utils'
-import SwipeableViews from 'react-swipeable-views'
-import MobileStepper from '@mui/material/MobileStepper'
+import {useState} from 'react'
+
+import {Swiper, SwiperSlide} from 'swiper/react'
+import {
+  FreeMode,
+  Navigation,
+  Pagination,
+  Autoplay,
+  Thumbs,
+} from 'swiper/modules'
+import SwiperCore from 'swiper'
+import 'swiper/css'
+import 'swiper/css/free-mode'
+import 'swiper/css/navigation'
+import 'swiper/css/thumbs'
+import 'swiper/css/pagination'
 
 import Box from '@mui/material/Box'
-import ThumbGallery from './ThumbGallery'
+import {Skeleton} from '@mui/material'
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
+SwiperCore.use([Navigation, Pagination, Autoplay])
 
 const images = [
   {
@@ -24,50 +35,77 @@ const images = [
     src: '/images/perfume-detail/sub3.jpg',
   },
   {
-    src: '/images/perfume-detail/sub4.png',
+    src: '/images/perfume-detail/sub4.jpg',
   },
 ]
 
-const Carousel = () => {
-  const theme = useTheme()
-  const [activeStep, setActiveStep] = useState(0)
-
-  const maxSteps = images.length
-
-  const handleStepChange = (step: number) => {
-    setActiveStep(step)
-  }
+// TODO 타입설정
+const Carousel = ({isLoading}: any) => {
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>()
 
   return (
     <Container>
-      <CarouselWrapper>
-        <AutoPlaySwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={activeStep}
-          onChangeIndex={handleStepChange}
-          enableMouseEvents
-          threshold={1}
-        >
-          {images.map((step, index) => (
-            <ImgWrapper key={step.src}>
-              {Math.abs(activeStep - index) <= 2 ? (
-                <Box
-                  component="img"
-                  sx={{
-                    display: 'block',
-                    overflow: 'hidden',
-                    width: '100%',
-                    padding: '5px',
-                  }}
-                  src={step.src}
-                  alt={step.src}
-                />
-              ) : null}
-            </ImgWrapper>
-          ))}
-        </AutoPlaySwipeableViews>
-      </CarouselWrapper>
+      {isLoading ? (
+        <Skeleton width="100%" height="100%"></Skeleton>
+      ) : (
+        <>
+          <CarouselWrapper>
+            <Swiper
+              spaceBetween={10}
+              pagination={{
+                type: 'progressbar',
+              }}
+              thumbs={{
+                swiper:
+                  thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+              }}
+              modules={[Pagination, FreeMode, Navigation, Thumbs]}
+              className="main-image-wrapper"
+            >
+              {images?.map((img, index) => (
+                <SwiperSlide key={index}>
+                  <Box
+                    sx={{
+                      width: '100%',
+                      height: '100%',
+                      backgroundImage: `url(${img.src})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
 
+            <Swiper
+              onSwiper={setThumbsSwiper}
+              spaceBetween={10}
+              slidesPerView={4}
+              freeMode={true}
+              watchSlidesProgress={true}
+              modules={[FreeMode, Navigation, Thumbs]}
+              className="sub-images-wrapper"
+            >
+              {images?.map((img, index) => (
+                <SwiperSlide key={index}>
+                  <Box
+                    sx={{
+                      height: '123px',
+                      backgroundImage: `url(${img.src})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      border: '1px solid #EDEDED',
+                      borderRadius: '12px',
+                      cursor: 'pointer',
+                    }}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </CarouselWrapper>
+        </>
+      )}
+      {/* 
       <MobileStepper
         variant="progress"
         steps={maxSteps}
@@ -84,13 +122,14 @@ const Carousel = () => {
             backgroundColor: '#FE7156',
           },
         }}
-      />
+      /> */}
 
-      <ThumbGallery
+      {/* <ThumbGallery
         images={images}
         activeStep={activeStep}
         setActiveStep={setActiveStep}
-      />
+        isLoading={isLoading}
+      /> */}
     </Container>
   )
 }
@@ -98,28 +137,37 @@ const Carousel = () => {
 const Container = styled(Box)({
   width: '100%',
   height: '100%',
-  flexGrow: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
 })
 
 const CarouselWrapper = styled.div({
-  border: '0.75px solid #EDEDED',
-  borderRadius: '12px',
-  marginBottom: '37.8px',
-})
-const ImgWrapper = styled.div({
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  '& .swiper': {
+    width: '496.5px',
+    height: '588px',
 
-  '& img': {
-    width: '100%',
-    height: '100%',
+    '& .swiper-pagination-progressbar': {
+      zIndex: '100',
+      top: 'initial',
+      bottom: '0px',
+      background: '#DBDBDB',
+
+      '& span': {
+        backgroundColor: '#FE7156',
+      },
+    },
+  },
+
+  '& .main-image-wrapper': {
+    border: '0.75px solid #EDEDED',
     borderRadius: '12px',
+    height: '588px',
+  },
+
+  '& .sub-images-wrapper': {
+    // marginTop: '24px',
+    marginTop: '100px',
+    height: '123px',
+
+    '& .swiper-slide': {},
   },
 })
 

@@ -1,13 +1,14 @@
 import {useState} from 'react'
 
 import FlexBox from '@layouts/flex-box'
-import {Box, Tab, Tabs, Typography, styled} from '@mui/material'
+import {Box, Skeleton, Tab, Tabs, Typography, styled} from '@mui/material'
 import NoteCarouselItem from './Note-carousel-item'
 
 interface NotesProps {
   topNotes: notesType[]
   middleNotes: notesType[]
   baseNotes: notesType[]
+  isLoading: boolean
 }
 
 export type notesType = {
@@ -20,6 +21,8 @@ type CategoryType = '탑노트' | '미들노트' | '베이스노트'
 
 const CATEGORIES: CategoryType[] = ['탑노트', '미들노트', '베이스노트']
 
+const isLoadingData = Array.from({length: 4}, (_, index) => index + 1)
+
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
@@ -27,7 +30,7 @@ function a11yProps(index: number) {
   }
 }
 
-const Notes = ({topNotes, middleNotes, baseNotes}: NotesProps) => {
+const Notes = ({topNotes, middleNotes, baseNotes, isLoading}: NotesProps) => {
   const [activeTab, setActiveTab] = useState<string>('탑노트')
   const [value, setValue] = useState<number>(0)
 
@@ -65,63 +68,98 @@ const Notes = ({topNotes, middleNotes, baseNotes}: NotesProps) => {
             position: 'relative',
           }}
         >
-          {activeTab === '탑노트' &&
-            (topNotes?.length <= 4 ? (
-              topNotes?.map(note => (
-                <FlexBox
-                  direction="column"
-                  alignItems="center"
-                  style={{
-                    textAlign: 'center',
-                    width: '100%',
-                  }}
-                  key={note?.name}
-                >
-                  <img src="/images/perfume-detail/자몽.png" alt="note-img" />
-                  <NotesName>{note?.name}</NotesName>
-                </FlexBox>
-              ))
-            ) : (
-              <NoteCarouselItem notes={topNotes} />
-            ))}
+          {isLoading ? (
+            isLoadingData.map((_, index) => (
+              <FlexBox
+                direction="column"
+                alignItems="center"
+                style={{
+                  textAlign: 'center',
+                  width: '100%',
+                }}
+                key={index}
+              >
+                <Skeleton
+                  width="81px"
+                  height="81px"
+                  variant="circular"
+                ></Skeleton>
 
-          {activeTab === '미들노트' &&
-            (middleNotes?.length <= 4 ? (
-              middleNotes?.map(note => (
-                <FlexBox
-                  direction="column"
-                  alignItems="center"
-                  style={{
-                    textAlign: 'center',
-                  }}
-                  key={note?.name}
-                >
-                  <img src="/images/perfume-detail/자몽.png" alt="note-img" />
-                  <NotesName>{note?.name}</NotesName>
-                </FlexBox>
-              ))
-            ) : (
-              <NoteCarouselItem notes={middleNotes} />
-            ))}
+                <Skeleton width="33px" height="24px" sx={{marginTop: '13px'}}>
+                  <Typography variant="body4">.</Typography>
+                </Skeleton>
+              </FlexBox>
+            ))
+          ) : (
+            <>
+              {activeTab === '탑노트' &&
+                (topNotes?.length <= 4 ? (
+                  topNotes?.map((note, index) => (
+                    <FlexBox
+                      direction="column"
+                      alignItems="center"
+                      style={{
+                        textAlign: 'center',
+                        width: '100%',
+                      }}
+                      key={index}
+                    >
+                      <img
+                        src="/images/perfume-detail/자몽.png"
+                        alt="note-img"
+                      />
+                      <NotesName>{note?.name}</NotesName>
+                    </FlexBox>
+                  ))
+                ) : (
+                  <NoteCarouselItem notes={topNotes} />
+                ))}
 
-          {activeTab === '베이스노트' &&
-            (baseNotes?.length <= 4 ? (
-              baseNotes?.map(note => (
-                <FlexBox
-                  direction="column"
-                  alignItems="center"
-                  style={{
-                    textAlign: 'center',
-                  }}
-                  key={note?.name}
-                >
-                  <img src="/images/perfume-detail/자몽.png" alt="note-img" />
-                  <NotesName>{note?.name}</NotesName>
-                </FlexBox>
-              ))
-            ) : (
-              <NoteCarouselItem notes={baseNotes} />
-            ))}
+              {activeTab === '미들노트' &&
+                (middleNotes?.length <= 4 ? (
+                  middleNotes?.map((note, index) => (
+                    <FlexBox
+                      direction="column"
+                      alignItems="center"
+                      style={{
+                        textAlign: 'center',
+                      }}
+                      key={index}
+                    >
+                      <img
+                        src="/images/perfume-detail/자몽.png"
+                        alt="note-img"
+                      />
+                      <NotesName>{note?.name}</NotesName>
+                    </FlexBox>
+                  ))
+                ) : (
+                  <NoteCarouselItem notes={middleNotes} />
+                ))}
+
+              {activeTab === '베이스노트' &&
+                (baseNotes?.length <= 4 ? (
+                  baseNotes?.map((note, index) => (
+                    <FlexBox
+                      direction="column"
+                      alignItems="center"
+                      style={{
+                        textAlign: 'center',
+                      }}
+                      key={index}
+                    >
+                      <img
+                        src="/images/perfume-detail/자몽.png"
+                        alt="note-img"
+                      />
+                      <NotesName>{note?.name}</NotesName>
+                    </FlexBox>
+                  ))
+                ) : (
+                  <NoteCarouselItem notes={baseNotes} />
+                ))}
+            </>
+          )}
         </FlexBox>
       </Wrapper>
     </>
@@ -153,7 +191,7 @@ const Wrapper = styled('div')({
   marginBottom: '31.9px',
 
   '& img': {
-    width: '50px',
+    width: '81px',
     borderRadius: '50%',
   },
 })

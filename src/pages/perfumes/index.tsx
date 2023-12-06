@@ -86,7 +86,7 @@ const Perfumes = () => {
               marginRight: '32px',
             }}
           >
-            <img src="./images/Rectangle7370.png" alt="main-img-1" />
+            <img src="/images/Rectangle7370.png" alt="main-img-1" />
             <Box sx={{position: 'absolute', bottom: '23.5px', left: '24px'}}>
               <BrandTitle>
                 낭만적인
