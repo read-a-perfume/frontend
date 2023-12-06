@@ -22,8 +22,8 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({
-  width = '512px',
-  height = '594px',
+  width = '464px',
+  height = '442px',
   coverImageHeight = '320px',
   coverImage,
   profileImage,
@@ -38,18 +38,19 @@ const Card: React.FC<CardProps> = ({
   return (
     <CardContainer width={width} height={height} style={style}>
       <CoverImage
+        width={width}
         height={coverImageHeight}
         src={coverImage}
         alt="card-cover-image"
         onClick={onClick}
       />
-      <CardInfo>
+      <CardInfo width={width}>
         <FlexBox
           justifyContent="space-between"
           alignItems="center"
           style={{marginBottom: '8px', marginTop: '16px'}}
         >
-          <Avatar size="40px" url={profileImage} />
+          <Avatar size="30px" url={profileImage} />
           {isEditor && (
             <button>
               <CustomIcons.HamburgerIcon />
@@ -76,40 +77,42 @@ const CardContainer = styled.div(
   }),
 )
 
-const CoverImage = styled.img(({height}: {height: string}) => ({
-  height,
-  width: '100%',
-  objectFit: 'cover',
-  overflow: 'hidden',
-  borderRadius: '16px 16px 0px 0px',
-  cursor: 'pointer',
-}))
+const CoverImage = styled.img(
+  ({height, width}: {height: string; width: string}) => ({
+    width,
+    height,
+    objectFit: 'cover',
+    overflow: 'hidden',
+    borderRadius: '16px 16px 0px 0px',
+    cursor: 'pointer',
+  }),
+)
 
-const CardInfo = styled.div({
-  width: '100%',
+const CardInfo = styled.div(({width}: {width: string}) => ({
+  width: Number(width.slice(0, width.length - 2)) - 50,
   padding: '0px 24px',
-})
+}))
 
 const ContentContainer = styled.div({
   cursor: 'pointer',
 })
 
 const CardTitle = styled(Typography)({
-  fontSize: 20,
+  fontSize: 15,
   color: '#131313',
   fontWeight: 500,
   marginBottom: '16px',
 })
 
 const CardContent = styled(Typography)({
-  fontSize: 16,
+  fontSize: 12,
   color: '#707070',
   marginBottom: '8px',
   lineHeight: '150%',
 })
 
 const HashTags = styled(Typography)({
-  fontSize: 14,
+  fontSize: 10.5,
   color: '#FE7156',
 })
 
