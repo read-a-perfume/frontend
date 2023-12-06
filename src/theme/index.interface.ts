@@ -1,5 +1,5 @@
 import {ThemeOptions} from '@mui/material'
-
+//만약 main이라는 게 귀찮다면 SimplePaletteColorOptions 타입을 통해 바꿀수있다.
 export interface Palette {
   primary: {
     main: string

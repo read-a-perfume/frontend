@@ -24,12 +24,8 @@ const FormTextFiledValidation = ({
       <Typography variant="body3" mb={2}>
         {label}
       </Typography>
-      <OutlinedInput
+      <TextFiled
         name={name}
-        sx={{
-          fontSize: theme.typography.body3.fontSize,
-          background: '#ffff',
-        }}
         placeholder={placeholder}
         type={showPassword ? 'password' : 'text'}
         color="info"
@@ -50,4 +46,11 @@ const TextFiledWrapper = styled(Box)(({theme}) => ({
   '& input': {
     fontSize: theme.typography.body3,
   },
+}))
+
+const TextFiled = styled(OutlinedInput)(({theme}) => ({
+  fontSize: theme.typography.body3.fontSize,
+  background: '#ffff',
+  borderRadius: '10px',
+  height: '48px',
 }))
