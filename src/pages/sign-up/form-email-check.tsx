@@ -6,15 +6,7 @@ interface Props {
 
 const FormEmailCheck: React.FC<Props> = ({title}) => {
   return (
-    <Grid
-      item
-      xs={3}
-      sx={{
-        position: 'absolute',
-        right: 42,
-        top: 39,
-      }}
-    >
+    <Grid item xs={3}>
       {title === '중복확인' && (
         <CheckButton variant="contained" disableElevation bg="#EFEFEF">
           {title}
