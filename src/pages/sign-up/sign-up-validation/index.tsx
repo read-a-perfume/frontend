@@ -11,7 +11,7 @@ interface FormTextFiledValidationProps {
   register: any
 }
 
-const FormTextFiledValidation = ({
+const SignUpValidation = ({
   label,
   errors,
   placeholder,
@@ -39,7 +39,7 @@ const FormTextFiledValidation = ({
     </TextFiledWrapper>
   )
 }
-export default FormTextFiledValidation
+export default SignUpValidation
 const TextFiledWrapper = styled(Box)(({theme}) => ({
   display: 'flex',
   flexDirection: 'column',

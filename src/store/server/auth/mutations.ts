@@ -8,3 +8,10 @@ export const fetchLogin = async (data: FetchLoginProps) => {
 export const fetchUserProfile = async () => {
   return await instance.get('/me')
 }
+
+export const fetchSignUp = async data => {
+  const API_URL = '/signup/email'
+  return await instance.post(API_URL, {
+    ...data,
+  })
+}

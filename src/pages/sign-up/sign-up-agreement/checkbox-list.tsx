@@ -2,7 +2,7 @@ import {Box, Checkbox, FormLabel, styled} from '@mui/material'
 import {Controller} from 'react-hook-form'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import FormAgreementModal from '../form-agreement-modal'
+import FormAgreementModal from './form-agreement-modal'
 
 interface CheckBoxList {
   formCheckboxData: any
