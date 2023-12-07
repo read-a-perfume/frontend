@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
-import instance from '@api/instance'
 import {useParams} from 'react-router-dom'
 import {useQuery} from '@tanstack/react-query'
+import {getPerfume} from 'src/store/server/perfume-datail/queries'
 
 import Carousel from './carousel'
 import FlexBox from '@layouts/flex-box'
@@ -206,20 +206,6 @@ const dummydata = [
 ]
 
 const isLoadingData = Array.from({length: 4}, (_, index) => index + 1)
-
-// 향수 조회
-const getPerfume = async (id: string) => {
-  try {
-    const res = await instance.get(`/perfumes/${id}`)
-
-    const data = res.data
-
-    return data
-  } catch (error: any) {
-    console.log(error)
-    throw error
-  }
-}
 
 const PerfumeDetail = () => {
   const params = useParams()
