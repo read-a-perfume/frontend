@@ -5,7 +5,7 @@ import GlobalProvider from '@layouts/global-provider'
 const App = () => {
   return (
     <GlobalProvider>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </GlobalProvider>
   )
 }

@@ -6,7 +6,7 @@ import {Typography} from '@mui/material'
 import Category from '@components/category'
 import NoteProducts from './note-products'
 
-const Notes = () => {
+const Notes = ({categoryLoading, categoryError, categories}: any) => {
   const [categoryId, setCategoryId] = useState<number>(1)
   const [clickedNote, setClickedNote] = useState<string>('프루티')
   const [image, setImage] = useState<string>('default')
@@ -40,6 +40,9 @@ const Notes = () => {
       </SectionSubTitle>
 
       <Category
+        loading={categoryLoading}
+        error={categoryError}
+        categories={categories}
         currentCategory={clickedNote}
         setCurrentCategory={setClickedNote}
         setCategoryId={setCategoryId}
