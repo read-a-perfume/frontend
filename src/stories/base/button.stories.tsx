@@ -11,7 +11,6 @@ export default meta
 type Story = StoryObj<typeof MuiButton>
 export const Primary: Story = {
   args: {
-
     title: '리뷰 업로드',
 
     type: 'primary',
@@ -20,7 +19,6 @@ export const Primary: Story = {
 
 export const Dark = {
   args: {
-
     title: '로그인',
 
     type: 'dark',
@@ -28,7 +26,6 @@ export const Dark = {
 }
 export const Grey = {
   args: {
-
     title: '확인',
 
     type: 'grey',
@@ -37,19 +34,15 @@ export const Grey = {
 
 export const White = {
   args: {
-
     title: '내 프로필 편집',
     type: 'white',
-
   },
 }
 
 export const ButtonIcon = {
   args: {
-
     title: '내 프로필 편집 아이콘',
     type: 'white',
     icon: <BorderColorIcon />,
-
   },
 }
