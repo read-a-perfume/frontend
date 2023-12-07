@@ -15,7 +15,7 @@ import FlexBox from '@layouts/flex-box.js'
 import Magazine from './magazine.js'
 import {useNavigate} from 'react-router-dom'
 import {magazineData} from '../home/constants.js'
-import Button from '../../components/base/button.js'
+import MuiButton from '@components/base/mui-button.js'
 
 const Brand = () => {
   const navigate = useNavigate()
@@ -48,13 +48,11 @@ const Brand = () => {
             <AddBannerSpan imageurl={fileURL} style={{zIndex: 2}}>
               {fileURL ? '배너 이미지 변경' : '배너 이미지 추가'}
             </AddBannerSpan>
-            <Button
-              style={{zIndex: 2, position: 'absolute'}}
-              backgroundColor={fileURL ? 'white' : 'secondary'}
-              color={fileURL ? 'secondary' : 'white'}
-              text="컴퓨터에서 가져오기"
-              fontSize="md"
-              onClick={() => {
+            <MuiButton
+              title="컴퓨터에서 가져오기"
+              type="white"
+              width="137px"
+              handleClick={() => {
                 if (fileRef.current) {
                   fileRef.current.click()
                 }
@@ -69,12 +67,11 @@ const Brand = () => {
       </Banner>
       <BrandInfoDetail enterprise={enterprise} />
       {/* 추후 삭제 */}
-      <Button
-        width="100"
-        text="기업 확인 버튼"
-        backgroundColor="primary"
-        fontSize="md"
-        onClick={() => setEnterprise(!enterprise)}
+      <MuiButton
+        title="기업 확인 버튼"
+        width="100px"
+        type="primary"
+        handleClick={() => setEnterprise(!enterprise)}
       />
       {/* 추후 삭제 */}
       <BrandContents>
@@ -95,18 +92,14 @@ const Brand = () => {
           </FlexBox>
           {enterprise && (
             <FlexBox alignItems="center" gap="14px">
-              <Button
-                text="매거진 글쓰기"
-                backgroundColor="secondary"
-                fontSize="md"
-                onClick={() => navigate(`/brand/:id/magazine/post`)}
+              <MuiButton
+                title="매거진 글쓰기"
+                type="dark"
+                handleClick={() => navigate(`/brand/:id/magazine/post`)}
+                width='137px'
+                height='34px'
               />
-              <Button
-                width="101px"
-                text="제품 추가하기"
-                backgroundColor="primary"
-                fontSize="md"
-              />
+              <MuiButton title="제품 추가하기" type="primary" width='101px' height='34px'/>
             </FlexBox>
           )}
         </Tabs>

@@ -125,7 +125,7 @@ export const CardBox = styled.div({
   marginTop: '44px',
   padding: '0px 160px',
   display: 'flex',
-  justifyContent: 'space-around',
+  columnGap: '32px',
   rowGap: '60px',
   marginBottom: '60px',
 })

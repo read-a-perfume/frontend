@@ -11,7 +11,7 @@ type Story = StoryObj<typeof MuiButton>
 export const Primary: Story = {
   args: {
     title: 'Primary',
-    variant: 'contained',
+   
     type: 'primary',
   },
 }
@@ -19,14 +19,14 @@ export const Primary: Story = {
 export const Dark = {
   args: {
     title: 'dark',
-    variant: 'contained',
+   
     type: 'dark',
   },
 }
 export const Grey = {
   args: {
     title: 'Grey',
-    variant: 'contained',
+   
     type: 'grey',
   },
 }
@@ -34,7 +34,7 @@ export const Grey = {
 export const Outlined = {
   args: {
     title: 'Outlined',
-    variant: 'outlined',
+  
     type: '100',
   },
 }
@@ -42,7 +42,7 @@ export const Outlined = {
 export const Text = {
   args: {
     title: 'Text',
-    variant: 'text',
+   
     type: 'light',
   },
 }
