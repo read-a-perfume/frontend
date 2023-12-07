@@ -1,14 +1,16 @@
 import React from 'react'
 import {URLSearchParamsInit, useSearchParams} from 'react-router-dom'
-import {useQuery} from '@tanstack/react-query'
 import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box'
-import instance from '@api/instance'
+import {CategoryNameType} from './interfaces'
 
 import CustomIcons from '@assets/icons/custom-Icons'
 import {Box, Skeleton, Stack, Typography} from '@mui/material'
 
 interface CategoryProps {
+  categories: CategoryNameType[] | undefined
+  loading: boolean
+  error: string | unknown
   currentCategory: string
   setCurrentCategory: React.Dispatch<React.SetStateAction<string>>
   searchParams?: URLSearchParamsInit
@@ -17,30 +19,12 @@ interface CategoryProps {
   setDescription?: React.Dispatch<React.SetStateAction<string>>
 }
 
-type CategoryNameType = {
-  id: number
-  name: string
-  description: string
-  thumbnail?: string
-  img?: string
-}
-
 const isLoadingData = Array.from({length: 11}, (_, index) => index + 1)
 
-/** 카테고리 목록 조회 */
-const fetchGetCategories = async () => {
-  try {
-    const res = await instance.get('/categories')
-    const data = res.data
-
-    return data
-  } catch (error: any) {
-    console.log(error)
-    throw error
-  }
-}
-
 const Category = ({
+  categories,
+  loading,
+  error,
   currentCategory,
   setCurrentCategory,
   setCategoryId,
@@ -49,16 +33,6 @@ const Category = ({
   const [searchParams, setSearchParams] = useSearchParams()
 
   const query = searchParams.get('categoryId')
-
-  const {
-    isLoading,
-    error,
-    data: categories,
-  } = useQuery<CategoryNameType[]>({
-    queryKey: ['categories'],
-    queryFn: fetchGetCategories,
-    staleTime: 99999,
-  })
 
   const setQueryParams = (category: any) => {
     if (categories && category) {
@@ -98,7 +72,7 @@ const Category = ({
     }
   }
 
-  if (error) return 'An error has occurred: ' + error
+  console.log(error)
 
   return (
     <Wrapper>
@@ -106,7 +80,7 @@ const Category = ({
         <CustomIcons.BeforeIcon />
       </Box>
 
-      {isLoading ? (
+      {loading ? (
         <>
           {isLoadingData.map((_, index) => (
             <Stack spacing={1} key={index}>

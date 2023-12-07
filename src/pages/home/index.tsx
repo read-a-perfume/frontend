@@ -7,11 +7,24 @@ import {Banner, BannerBox, BannerImage, Content, Title} from './index.style'
 import Button from '@components/base/button.js'
 import Products from './products.js'
 import {useNavigate} from 'react-router-dom'
+import {CategoryNameType} from '@components/category/interfaces.js'
+import {fetchGetCategories} from 'src/store/server/categories/queries.js'
+import {useQuery} from '@tanstack/react-query'
 
 export default function Home() {
   const navigate = useNavigate()
   const isLoggedIn = false
   const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  const {
+    isLoading: categoryLoading,
+    error: categoryError,
+    data: categories,
+  } = useQuery<CategoryNameType[]>({
+    queryKey: ['categories'],
+    queryFn: fetchGetCategories,
+    staleTime: 99999,
+  })
 
   // useEffect(() => {
   //   if (!isLoggedIn) {
@@ -44,7 +57,11 @@ export default function Home() {
       </Banner>
       <Content>
         <Magazines />
-        <Notes />
+        <Notes
+          categoryLoading={categoryLoading}
+          categoryError={categoryError}
+          categories={categories}
+        />
         <Review />
         <Products />
       </Content>

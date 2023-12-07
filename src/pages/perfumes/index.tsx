@@ -1,8 +1,12 @@
 import {useState} from 'react'
 import styled from '@emotion/styled'
-import instance from '@api/instance'
 import {useQuery} from '@tanstack/react-query'
 import {useSearchParams} from 'react-router-dom'
+import {CategoryNameType} from '@components/category/interfaces'
+import {
+  fetchGetCategories,
+  getPerfumeList,
+} from 'src/store/server/categories/queries'
 
 import FlexBox from '@layouts/flex-box'
 import Category from '@components/category'
@@ -12,26 +16,6 @@ import brandDummyData from './dummyData'
 import PerfumesItem, {ItemType} from './perfumes-item'
 
 const isLoadingData = Array.from({length: 12}, (_, index) => index + 1)
-
-// 카테고리별 향수 조회
-const getPerfumeList = async (queryCategoryId: number, page: number) => {
-  try {
-    console.log(queryCategoryId, page)
-
-    // 임시,
-    // 백엔드쪽에서 page=1로 설정해주면 page ${page}로 바꿀것
-    const res = await instance.get(
-      `/perfumes/category/${queryCategoryId}?page=0&size=10`,
-    )
-
-    const data = res.data
-
-    return data
-  } catch (error: any) {
-    console.log(error)
-    throw error
-  }
-}
 
 const Perfumes = () => {
   const [clickedCategory, setClickedCategory] = useState<string>('프루티')
@@ -49,12 +33,22 @@ const Perfumes = () => {
     : currentPage
 
   const {
-    isLoading,
-    error,
+    isLoading: prefumesLoading,
+    error: perfumesError,
     data: perfumeList,
   } = useQuery({
     queryKey: ['perfumeList', queryCategoryId, queryPageNumber],
     queryFn: () => getPerfumeList(queryCategoryId, currentPage),
+  })
+
+  const {
+    isLoading: categoryLoading,
+    error: categoryError,
+    data: categories,
+  } = useQuery<CategoryNameType[]>({
+    queryKey: ['categories'],
+    queryFn: fetchGetCategories,
+    staleTime: 99999,
   })
 
   const handlePage = (event: any) => {
@@ -67,7 +61,7 @@ const Perfumes = () => {
     setCurrentPage(nowPageInt)
   }
 
-  if (error) return 'An error has occurred: ' + error
+  console.log(perfumesError)
 
   return (
     <>
@@ -127,7 +121,10 @@ const Perfumes = () => {
 
         {/* 카테고리 */}
         <Category
+          categories={categories}
           currentCategory={clickedCategory}
+          loading={categoryLoading}
+          error={categoryError}
           setCurrentCategory={setClickedCategory}
           searchParams={searchParams}
           setSearchParams={setSearchParams}
@@ -136,7 +133,7 @@ const Perfumes = () => {
 
         {/* 제품 리스트 */}
         <ProductList>
-          {isLoading ? (
+          {prefumesLoading ? (
             <>
               {isLoadingData.map((_, index) => (
                 <Stack spacing={1} key={index}>
