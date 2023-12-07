@@ -1,7 +1,7 @@
 import {ButtonBase, Typography, styled} from '@mui/material'
 import WestIcon from '@mui/icons-material/West'
 
-const FormHeader = ({title}: any) => {
+const SignUpHeader = ({title}: any) => {
   return (
     <>
       <BackButton>
@@ -15,7 +15,7 @@ const FormHeader = ({title}: any) => {
   )
 }
 
-export default FormHeader
+export default SignUpHeader
 
 const BackButton = styled(ButtonBase)(() => ({
   display: 'flex',
