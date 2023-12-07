@@ -1,15 +1,30 @@
-import WriterSecond from './writer-second'
-import WriterProgassBar from './writer-prograss-bar'
-import {Box, Button, styled} from '@mui/material'
-import WriterThird from './writer-third'
-import WriterFirst from './writer-first'
-import useWriter from './hooks/use-writer'
-import {useState} from 'react'
+import {Box, styled} from '@mui/material'
 import useMutation from 'src/store/server/use-mutation'
-import instance from '@api/instance'
+import ReviewFormFirst from './review-form-first'
+import ReviewFormSecond from './review-form-second'
+import ReviewFormLast from './review-form-last'
+import ReviewFormProgassState from './review-form-prograss-state'
+import useReviewFormPreNext from './hooks/use-review-form-pre-nex'
+import ReviewFormPreNext from './review-form-pre-next'
+import useReviewForm from './hooks/use-review-form'
+import {fetchReviewCreate} from 'src/store/server/reviews/mutations'
+
+const formData = {
+  perfumeId: '',
+  dayType: '',
+  strength: '',
+  season: '',
+  duration: 0,
+  shortReview: '',
+  feeling: '',
+  tags: [],
+  files: [],
+}
 
 const Form = () => {
-  const [prograss, setPrograss] = useState(0)
+  const {handleNextPage, handlePrevPage, prograss} = useReviewFormPreNext({
+    index: 0,
+  })
   const {
     formValues,
     handleThumbnailDelete,
@@ -17,14 +32,10 @@ const Form = () => {
     handleFormDataChange,
     handleMultipleCheckBox,
     handleAutoComplete,
-  } = useWriter()
+  } = useReviewForm({formData})
 
   //리뷰 이미지 업로드
-
   //리뷰 이미지 삭제
-  const fetchReviewCreate = async data => {
-    await instance.post('/reviews', {...data})
-  }
 
   const {mutate} = useMutation({
     mutationFn: fetchReviewCreate,
@@ -63,26 +74,19 @@ const Form = () => {
     }
   }
 
-  const handleNextPage = () => {
-    setPrograss(pre => (pre < 2 ? pre + 1 : pre))
-  }
-  const handlePrevPage = () => {
-    setPrograss(pre => (pre > 0 ? pre - 1 : pre))
-  }
-
   return (
     <form onSubmit={handleSubmit}>
       <Container>
-        <WriterProgassBar prograss={prograss} />
+        <ReviewFormProgassState prograss={prograss} />
         {prograss === 0 && (
-          <WriterFirst
+          <ReviewFormFirst
             formValues={formValues}
             handleThumbnailUpload={handleThumbnailUpload}
             handleThumbnailDelete={handleThumbnailDelete}
           />
         )}
         {prograss === 1 && (
-          <WriterSecond
+          <ReviewFormSecond
             handleFormDataChange={handleFormDataChange}
             handleNextPage={handleNextPage}
             handleAutoComplete={handleAutoComplete}
@@ -90,44 +94,17 @@ const Form = () => {
           />
         )}
         {prograss === 2 && (
-          <WriterThird
+          <ReviewFormLast
             formValues={formValues}
             handleFormDataChange={handleFormDataChange}
             handleMultipleCheckBox={handleMultipleCheckBox}
           />
         )}
-        <Box sx={{display: 'flex', gap: '10px', marginTop: '20px'}}>
-          {prograss === 0 && (
-            <BaseButton
-              sx={{
-                width: '100%',
-              }}
-              onClick={handleNextPage}
-            >
-              다음으로
-            </BaseButton>
-          )}
-          {prograss > 0 && prograss < 2 && (
-            <>
-              <BaseButton onClick={handlePrevPage} sx={{width: '156px'}}>
-                이전
-              </BaseButton>
-              <BaseButton onClick={handleNextPage} sx={{width: '252px'}}>
-                다음으로
-              </BaseButton>
-            </>
-          )}
-          {prograss === 2 && (
-            <>
-              <BaseButton onClick={handlePrevPage} sx={{width: '156px'}}>
-                이전
-              </BaseButton>
-              <BaseButton type="submit" sx={{width: '252px'}}>
-                리뷰 업로드
-              </BaseButton>
-            </>
-          )}
-        </Box>
+        <ReviewFormPreNext
+          handleNextPage={handleNextPage}
+          handlePrevPage={handlePrevPage}
+          prograss={prograss}
+        />
       </Container>
     </form>
   )
@@ -138,14 +115,4 @@ export default Form
 const Container = styled(Box)({
   width: '420px',
   margin: 'auto',
-})
-
-const BaseButton = styled(Button)({
-  height: '56px;',
-  display: ' flex',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  alignItems: 'center',
-  borderRadius: '10px',
-  backgroundColor: '#f1f1f5',
 })

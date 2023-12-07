@@ -2,7 +2,7 @@ import {List, ListItem, ListItemText, Typography, styled} from '@mui/material'
 
 const category = ['향수 이미지 업로드', '향수 특징 선택', '상세 리뷰 작성']
 
-const WriterProgassBar = ({prograss}: any) => {
+const ReviewFormProgassState = ({prograss}: any) => {
   return (
     <header>
       <div>
@@ -66,7 +66,7 @@ const WriterProgassBar = ({prograss}: any) => {
   )
 }
 
-export default WriterProgassBar
+export default ReviewFormProgassState
 
 const Prograss = styled('div')({
   display: 'flex',
