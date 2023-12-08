@@ -87,7 +87,7 @@ const CoverImage = styled('img')<{height: string}>(({height}) => ({
 }))
 
 const CardInfo = styled(Box)(() => ({
-  width: '100%',
+  width: '90%',
   padding: '0px 24px',
 }))
 
@@ -99,19 +99,20 @@ const CardTitle = styled(Typography)(() => ({
   color: '#131313',
   fontWeight: 500,
   marginBottom: '16px',
+  width: '100%',
 }))
 
 const CardContent = styled(Typography)(() => ({
   color: '#707070',
   marginBottom: '8px',
   lineHeight: '150%',
-  minHeight: '96px',
   maxHeight: '96px',
   display: '-webkit-box',
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
   WebkitLineClamp: 4,
   textOverflow: 'ellipsis',
+  width: '90%',
 }))
 
 const HashTags = styled(Typography)(({theme}) => ({
