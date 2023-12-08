@@ -1,12 +1,12 @@
 import {FormControl, RadioGroup, TextField, styled} from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
 import SliderRating from './slider'
-import RadioRoundedButton from './radio-rounded-button'
+import RadioRoundedButton from '../radio-rounded-button'
 import {top100Films} from './form-writer-start.constant'
 
 const durations = ['1~3시간 정도', '4~6시간 정도', '7~9시간 정도', '9시간 이상']
 
-const WriterSecond = ({
+const ReviewFormSecond = ({
   handleFormDataChange,
   formValues,
   handleAutoComplete,
@@ -96,7 +96,7 @@ const WriterSecond = ({
   )
 }
 
-export default WriterSecond
+export default ReviewFormSecond
 
 const Item = styled('li')({
   fontSize: '14px',

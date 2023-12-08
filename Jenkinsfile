@@ -1,29 +1,46 @@
 pipeline {
     agent any
-
+    environment {
+        DOCKER_HUB_CREDENTIALS = 'dockerhub'
+        DOCKER_REPOSITORY_NAME = 'webdev0594'
+    }
     stages {
+        stage('Initialize') {
+            steps {
+                script {
+                    env.GIT_COMMIT_HASH = sh(returnStdout: true, script: 'git rev-parse HEAD | cut -c 1-10').trim()
+                    env.DOCKER_IMAGE_NAME = "${DOCKER_REPOSITORY_NAME}/perfume-frontend"
+                }
+            }
+        }
         stage('Clone Repository') {
             steps {
                 checkout scm
             }
         }
-
-        stage('Build') {
-            agent {
-                docker { 
-                    image 'node:21-alpine3.18' 
-                    reuseNode true
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    def customImage = docker.build("${DOCKER_IMAGE_NAME}:${env.GIT_COMMIT_HASH}", "--file Dockerfile .")
                 }
             }
+        }
+        stage('Push to Docker Hub') {
             steps {
-                sh 'yarn install --frozen-lockfile'
-                sh 'yarn build'
+                script {
+                    docker.withRegistry("https://index.docker.io/v1/", DOCKER_HUB_CREDENTIALS) {
+                        def customImage = docker.image("${env.DOCKER_IMAGE_NAME}:${env.GIT_COMMIT_HASH}")
+                        customImage.push("${env.GIT_COMMIT_HASH}")
+                        customImage.push("latest")
+                    }
+                }
             }
         }
-        
-        stage('Deploy') {
-            steps {
-                sh 'aws s3 sync dist/ s3://perfume-fe --profile=s3-deploy --delete'
+    }
+    post {
+        always {
+            script {
+                sh 'docker logout'
             }
         }
     }

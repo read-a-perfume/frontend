@@ -1,7 +1,7 @@
 import {List, ListItem} from '@mui/material'
-import FormTextFiledValidation from './form-textfiled-validation'
-import FormEmailCheck from './form-email-check'
+import FormEmailCheck from '../form-email-check'
 import {FieldErrors, UseFormRegister} from 'react-hook-form'
+import SignUpValidation from '../sign-up-validation'
 
 interface FormInputListProps {
   formData: any
@@ -9,7 +9,7 @@ interface FormInputListProps {
   errors: FieldErrors<any>
 }
 
-const FormInputList: React.FC<FormInputListProps> = ({
+const IndividualSignupInputs: React.FC<FormInputListProps> = ({
   formData,
   register,
   errors,
@@ -21,7 +21,7 @@ const FormInputList: React.FC<FormInputListProps> = ({
           key={it.name}
           sx={{display: 'flex', alignItems: 'end', gap: '20px'}}
         >
-          <FormTextFiledValidation
+          <SignUpValidation
             label={it.label}
             name={it.name}
             placeholder={it.placeholder}
@@ -39,4 +39,4 @@ const FormInputList: React.FC<FormInputListProps> = ({
   )
 }
 
-export default FormInputList
+export default IndividualSignupInputs

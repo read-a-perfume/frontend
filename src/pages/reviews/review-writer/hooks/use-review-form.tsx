@@ -10,18 +10,8 @@ const tags = [
   '고급진',
 ]
 
-const useWriter = () => {
-  const [formValues, setFormValues] = useState<any>({
-    perfumeId: '',
-    dayType: '',
-    strength: '',
-    season: '',
-    duration: 0,
-    shortReview: '',
-    feeling: '',
-    tags: [],
-    files: [],
-  })
+const useReviewForm = ({formData}:any) => {
+  const [formValues, setFormValues] = useState<any>(formData)
 
   const handleThumbnailUpload = event => {
     const target = event.target
@@ -113,4 +103,4 @@ const useWriter = () => {
   }
 }
 
-export default useWriter
+export default useReviewForm

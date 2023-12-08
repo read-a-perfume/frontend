@@ -12,6 +12,7 @@ type Story = StoryObj<typeof MuiButton>
 export const Primary: Story = {
   args: {
     title: '리뷰 업로드',
+
     type: 'primary',
   },
 }
@@ -19,12 +20,14 @@ export const Primary: Story = {
 export const Dark = {
   args: {
     title: '로그인',
+
     type: 'dark',
   },
 }
 export const Grey = {
   args: {
     title: '확인',
+
     type: 'grey',
   },
 }

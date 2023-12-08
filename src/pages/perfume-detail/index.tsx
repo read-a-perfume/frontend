@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
-import instance from '@api/instance'
 import {useParams} from 'react-router-dom'
 import {useQuery} from '@tanstack/react-query'
+import {getPerfume} from 'src/store/server/perfume-datail/queries'
 
 import Carousel from './carousel'
 import FlexBox from '@layouts/flex-box'
@@ -9,7 +9,15 @@ import Notes from './notes'
 import Information from './information'
 import DetailReviewList from './review'
 import PerfumesItem from '@pages/perfumes/perfumes-item'
-import {Box, Button, Pagination, Typography, styled} from '@mui/material'
+import {
+  Box,
+  Button,
+  Pagination,
+  Skeleton,
+  Stack,
+  Typography,
+  styled,
+} from '@mui/material'
 
 const dummydata = [
   {
@@ -197,19 +205,7 @@ const dummydata = [
   },
 ]
 
-// 향수 조회
-const getPerfume = async (id: string) => {
-  try {
-    const res = await instance.get(`/perfumes/${id}`)
-
-    const data = res.data
-
-    return data
-  } catch (error: any) {
-    console.log(error)
-    throw error
-  }
-}
+const isLoadingData = Array.from({length: 4}, (_, index) => index + 1)
 
 const PerfumeDetail = () => {
   const params = useParams()
@@ -228,7 +224,6 @@ const PerfumeDetail = () => {
     queryKey: ['perfume'],
     queryFn: () => getPerfume(params.id as string),
   })
-  console.log(isLoading)
 
   const handlePage = (event: any) => {
     const nowPageInt = parseInt(event.target.outerText)
@@ -251,26 +246,42 @@ const PerfumeDetail = () => {
   }, [])
 
   if (error) return 'An error has occurred: ' + error
-
   return (
     <Container>
       <FlexBox>
         <LeftBox>
-          <Carousel />
+          <Carousel isLoading={isLoading} />
         </LeftBox>
 
         <CenterLine />
 
         <RightBox>
           {/*향수 카테고리 및 향수 타입 */}
-          <PerfumeType>
-            {data?.categoryName} <span>{data?.categoryTags}</span>
-          </PerfumeType>
+          {isLoading ? (
+            <FlexBox gap="11px">
+              <Skeleton width="28px" height="16px">
+                <Typography variant="caption">.</Typography>
+              </Skeleton>
+              <Skeleton width="88px" height="16px">
+                <Typography variant="caption">.</Typography>
+              </Skeleton>
+            </FlexBox>
+          ) : (
+            <PerfumeType>
+              {data?.categoryName} <span>{data?.categoryTags}</span>
+            </PerfumeType>
+          )}
 
           {/* 향수 브랜드 및 향수 이름 */}
-          <PerfumeName>
-            [{data?.brandName}] {data?.name}
-          </PerfumeName>
+          {isLoading ? (
+            <Skeleton width="213px" height="29px">
+              <Typography variant="caption">.</Typography>
+            </Skeleton>
+          ) : (
+            <PerfumeName>
+              [{data?.brandName}] {data?.name}
+            </PerfumeName>
+          )}
 
           <Description>
             <Typography
@@ -281,11 +292,17 @@ const PerfumeDetail = () => {
             </Typography>
 
             {/* 향수 설명 */}
-            <Typography
-              sx={{fontSize: '12px', fontWeight: '400', lineHeight: '20.4px'}}
-            >
-              {data?.story}
-            </Typography>
+            {isLoading ? (
+              <Skeleton width="486px" height="20px">
+                <Typography variant="caption">.</Typography>
+              </Skeleton>
+            ) : (
+              <Typography
+                sx={{fontSize: '12px', fontWeight: '400', lineHeight: '20.4px'}}
+              >
+                {data?.story}
+              </Typography>
+            )}
           </Description>
 
           <BuyButton>향수 구매 사이트로 이동하기</BuyButton>
@@ -295,16 +312,17 @@ const PerfumeDetail = () => {
             topNotes={data?.topNotes}
             middleNotes={data?.middleNotes}
             baseNotes={data?.baseNotes}
+            isLoading={isLoading}
           />
 
           {/* 향수 정보 */}
-          <Information />
+          <Information isLoading={isLoading} />
         </RightBox>
       </FlexBox>
 
       {/* 향수 리뷰 */}
       <Box sx={{marginTop: '200px'}}>
-        <DetailReviewList reviewData={reviewData} />
+        <DetailReviewList reviewData={reviewData} isLoading={isLoading} />
 
         <Footer>
           <Pagination
@@ -334,11 +352,32 @@ const PerfumeDetail = () => {
 
       {/* 비슷한 향수 리스트 */}
       <ProductListTitle>비슷한 향수</ProductListTitle>
+
       <ProductList>
-        {perfumes.length > 0 &&
-          perfumes?.map((item, index) => (
-            <PerfumesItem item={item as any} key={item + index} />
-          ))}
+        {isLoading ? (
+          <>
+            {isLoadingData.map((_, index) => (
+              <Stack spacing={3} key={index}>
+                <Skeleton
+                  sx={{bgcolor: 'grey.200'}}
+                  variant="rounded"
+                  width={282}
+                  height={319}
+                  key={index}
+                />
+
+                <Skeleton variant="rounded" width={282} height={34.5} />
+              </Stack>
+            ))}
+          </>
+        ) : (
+          <ProductList>
+            {perfumes.length > 0 &&
+              perfumes?.map((item, index) => (
+                <PerfumesItem item={item as any} key={item + index} />
+              ))}
+          </ProductList>
+        )}
       </ProductList>
     </Container>
   )

@@ -2,15 +2,14 @@ import {Box, ButtonBase} from '@mui/material'
 import {useForm} from 'react-hook-form'
 import styled from '@emotion/styled'
 import {theme} from '../../theme'
-import FormHeader from './form-header'
-import FormAgreement from './form-agreement'
-import {formCheckboxData, formData} from './data.constant'
-import FormInputList from './form-input-list'
-import instance from '@api/instance'
+import FormAgreement from './sign-up-agreement'
+import {formData} from './data.constant'
+import IndividualSignupInputs from './individual/individual-signup-inputs'
 import {useNavigate} from 'react-router-dom'
 import useMutation from 'src/store/server/use-mutation'
-
-const API_URL = '/signup/email'
+import {fetchSignUp} from 'src/store/server/auth/mutations'
+import SignUpHeader from './sign-up-header'
+import SignUpFooter from './sign-up-footer'
 
 const SignUpForm = () => {
   const {
@@ -22,14 +21,9 @@ const SignUpForm = () => {
     setValue,
   } = useForm()
   const nav = useNavigate()
-  const fetchJoin = async data => {
-    return await instance.post(API_URL, {
-      ...data,
-    })
-  }
 
   const {mutate} = useMutation({
-    mutationFn: fetchJoin,
+    mutationFn: fetchSignUp,
     mutationKey: ['sign-up'],
   })
 
@@ -47,20 +41,14 @@ const SignUpForm = () => {
   return (
     <>
       <SignUpFormContainer onSubmit={handleSubmit(onSubmit)}>
-        <FormHeader title="회원가입" />
-        <FormInputList
+        <SignUpHeader title="회원가입" />
+        <IndividualSignupInputs
           formData={formData}
           register={register}
           errors={errors}
         />
-
-        <FormAgreement
-          formCheckboxData={formCheckboxData}
-          errors={errors}
-          control={control}
-          setValue={setValue}
-          watch={watch}
-        />
+        <FormAgreement control={control} setValue={setValue} watch={watch} />
+        <SignUpFooter subText="이미 회원이신가요?" title="로그인하기" />
       </SignUpFormContainer>
     </>
   )

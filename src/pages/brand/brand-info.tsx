@@ -8,8 +8,8 @@ import {
   Follows,
 } from './brand.style.js'
 import {useNavigate} from 'react-router-dom'
-import Button from '@components/base/button.js'
 import Avatar from '@components/base/avatar.js'
+import MuiButton from '@components/base/mui-button.js'
 
 const BrandInfoDetail = ({enterprise}: {enterprise: boolean}) => {
   const navigation = useNavigate()
@@ -39,15 +39,12 @@ const BrandInfoDetail = ({enterprise}: {enterprise: boolean}) => {
           https://www.tamburins.com
         </BrandURL>
         {enterprise && (
-          <Button
-            text="설정 및 관리"
+          <MuiButton
+            title="설정 및 관리"
+            type="white"
+            handleClick={() => navigation('/brand/:id/settings')}
             width="92px"
-            height="33px"
-            backgroundColor="white"
-            fontSize="md"
-            color="191919"
-            style={{fontWeight: '600', border: '1px solid #DBDBDB'}}
-            onClick={() => navigation('/brand/:id/settings')}
+            height="34px"
           />
         )}
       </BrandInfo>

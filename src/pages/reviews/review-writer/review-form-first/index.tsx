@@ -10,7 +10,7 @@ import {
   styled as muiStyled,
 } from '@mui/material'
 
-const WriterFirst = ({
+const ReviewFormFirst = ({
   handleThumbnailDelete,
   handleThumbnailUpload,
 
@@ -120,7 +120,7 @@ const WriterFirst = ({
   )
 }
 
-export default WriterFirst
+export default ReviewFormFirst
 
 const Figure = muiStyled('figure')({
   position: 'relative',

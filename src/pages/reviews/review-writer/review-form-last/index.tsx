@@ -19,7 +19,7 @@ const data = [
   '고급진',
 ]
 
-const WriterThird = ({
+const ReviewFormLast = ({
   formValues,
   handleFormDataChange,
   handleMultipleCheckBox,
@@ -76,7 +76,7 @@ const WriterThird = ({
   )
 }
 
-export default WriterThird
+export default ReviewFormLast
 
 const OneLineReview = styled('div')({
   marginBottom: '13px',

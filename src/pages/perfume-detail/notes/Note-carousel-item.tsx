@@ -1,8 +1,25 @@
-import {useState} from 'react'
-import {Box, Typography, styled} from '@mui/material'
+import {Typography, styled} from '@mui/material'
+
+import {Swiper, SwiperSlide} from 'swiper/react'
+import {FreeMode, Navigation, Pagination} from 'swiper/modules'
+import SwiperCore from 'swiper'
+import 'swiper/css'
+import 'swiper/css/free-mode'
+import 'swiper/css/pagination'
 
 import FlexBox from '@layouts/flex-box'
-import CustomIcons from '@assets/icons/custom-Icons'
+
+interface NoteItemProps {
+  notes: NoteType[]
+}
+
+type NoteType = {
+  id: number
+  name: string
+  thumbnail?: string
+}
+
+SwiperCore.use([Navigation, Pagination])
 
 const SlideItem = ({note}) => (
   <CarouselItem key={note?.name}>
@@ -19,48 +36,46 @@ const SlideItem = ({note}) => (
   </CarouselItem>
 )
 
-const NoteCarouselItem = ({notes}: any) => {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const handlePrev = () => {
-    setCurrentIndex(prevIndex =>
-      prevIndex > 0 ? prevIndex - 1 : notes.length - 1,
-    )
-  }
-
-  const handleNext = () => {
-    setCurrentIndex(prevIndex =>
-      prevIndex < notes.length - 1 ? prevIndex + 1 : 0,
-    )
-  }
-
+const NoteCarouselItem = ({notes}: NoteItemProps) => {
   return (
-    <CarouselContainer>
-      {currentIndex !== 0 && <StyleBeforeArrow onClick={handlePrev} />}
-
-      <CarouselWrapper sx={{transform: `translateX(-${currentIndex * 100}%)`}}>
-        {notes?.map(note => (
-          <SlideItem key={note?.name} note={note} />
+    <Container>
+      <Swiper
+        slidesPerView={4}
+        navigation={true}
+        pagination={false}
+        spaceBetween={10}
+        freeMode={true}
+        modules={[FreeMode, Pagination, Navigation]}
+        className="mySwiper"
+      >
+        {notes?.map((note, index) => (
+          <SwiperSlide key={index}>
+            <SlideItem note={note} />
+          </SwiperSlide>
         ))}
-      </CarouselWrapper>
-
-      {currentIndex !== notes?.length - 5 && (
-        <StyleAfterArrow onClick={handleNext} />
-      )}
-    </CarouselContainer>
+      </Swiper>
+    </Container>
   )
 }
 
-const CarouselContainer = styled('div')({
-  display: 'flex',
+const Container = styled('div')({
   width: '100%',
-  overflow: 'hidden',
-})
 
-const CarouselWrapper = styled(Box)({
-  display: 'flex',
-  width: '100%',
-  transition: 'transform 0.5s ease',
+  '& .swiper-button-prev, .swiper-button-next': {
+    color: '#B4B4B4 !important',
+  },
+
+  '& .swiper-button-next': {
+    right: '0',
+  },
+  '& .swiper-button-prev': {
+    left: '0',
+  },
+
+  '&  .swiper-button-prev:after, .swiper-button-next:after ': {
+    fontSize: '1.1rem !important',
+    fontWeight: '600 !important',
+  },
 })
 
 const CarouselItem = styled('div')({
@@ -74,28 +89,6 @@ const NotesName = styled(Typography)({
   color: '#000',
   marginTop: '13px',
   width: '100px',
-})
-
-const SlideButton = styled(CustomIcons.BeforeIcon)({
-  position: 'absolute',
-  top: '50%',
-  transform: ' translateY(-50%)',
-  background: 'none',
-  border: 'none',
-  fontSize: '24px',
-  cursor: ' pointer',
-  color: '#333',
-  outline: 'none',
-})
-
-const StyleBeforeArrow = styled(SlideButton)({
-  left: '0px',
-  zIndex: '10',
-})
-
-const StyleAfterArrow = styled(SlideButton)({
-  transform: 'rotate(180deg)',
-  right: ' 0px',
 })
 
 export default NoteCarouselItem

@@ -3,7 +3,7 @@ import {Typography, styled, Select, Button, MenuItem} from '@mui/material'
 
 import DetailReviewItem from './detail-review-item'
 
-const DetailReviewList = ({reviewData}: any) => {
+const DetailReviewList = ({reviewData, isLoading}: any) => {
   return (
     <Container>
       <Wrapper>
@@ -38,7 +38,7 @@ const DetailReviewList = ({reviewData}: any) => {
 
         <FlexBox gap="24px" style={{marginTop: '24px', flexWrap: 'wrap'}}>
           {reviewData.map(item => (
-            <DetailReviewItem item={item} key={item.id} />
+            <DetailReviewItem item={item} isLoading={isLoading} key={item.id} />
           ))}
         </FlexBox>
       </Wrapper>

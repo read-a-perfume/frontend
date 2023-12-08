@@ -1,5 +1,5 @@
 import CustomIcons from '@assets/icons/custom-Icons.js'
-import styled from '@emotion/styled'
+import {Box, styled} from '@mui/material'
 import EditOptions from '@layouts/edit-options.js'
 import FlexBox from '@layouts/flex-box.js'
 import {Typography} from '@mui/material'
@@ -59,61 +59,63 @@ const Card: React.FC<CardProps> = ({
           {isOptionOpen && <EditOptions />}
         </FlexBox>
         <ContentContainer onClick={onClick}>
-          <CardTitle>{title}</CardTitle>
-          <CardContent>{content}</CardContent>
-          <HashTags>{'#' + hashTags.join(' #')}</HashTags>
+          <CardTitle variant="h4">{title}</CardTitle>
+          <CardContent variant="body2">{content}</CardContent>
+          <HashTags variant="body3">{'#' + hashTags.join(' #')}</HashTags>
         </ContentContainer>
       </CardInfo>
     </CardContainer>
   )
 }
 
-const CardContainer = styled.div(
-  ({width, height}: {width: string; height: string}) => ({
-    height,
-    width,
+const CardContainer = styled(Box)<{width: string; height: string}>(
+  ({width, height, theme}) => ({
+    height: height,
+    width: width,
     borderRadius: '16px',
-    border: '1px solid #EDEDED',
+    border: `1px solid ${theme.palette.grey[300]}`,
   }),
 )
 
-const CoverImage = styled.img(
-  ({height, width}: {height: string; width: string}) => ({
-    width,
-    height,
-    objectFit: 'cover',
-    overflow: 'hidden',
-    borderRadius: '16px 16px 0px 0px',
-    cursor: 'pointer',
-  }),
-)
+const CoverImage = styled('img')<{height: string}>(({height}) => ({
+  height: height,
+  width: '100%',
+  objectFit: 'cover',
+  overflow: 'hidden',
+  borderRadius: '16px 16px 0px 0px',
+  cursor: 'pointer',
+}))
 
-const CardInfo = styled.div(({width}: {width: string}) => ({
-  width: Number(width.slice(0, width.length - 2)) - 50,
+const CardInfo = styled(Box)(() => ({
+  width: '100%',
   padding: '0px 24px',
 }))
 
-const ContentContainer = styled.div({
+const ContentContainer = styled(Box)(() => ({
   cursor: 'pointer',
-})
+}))
 
-const CardTitle = styled(Typography)({
-  fontSize: 15,
+const CardTitle = styled(Typography)(() => ({
   color: '#131313',
   fontWeight: 500,
   marginBottom: '16px',
-})
+}))
 
-const CardContent = styled(Typography)({
-  fontSize: 12,
+const CardContent = styled(Typography)(() => ({
   color: '#707070',
   marginBottom: '8px',
   lineHeight: '150%',
-})
+  minHeight: '96px',
+  maxHeight: '96px',
+  display: '-webkit-box',
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
+  WebkitLineClamp: 4,
+  textOverflow: 'ellipsis',
+}))
 
-const HashTags = styled(Typography)({
-  fontSize: 10.5,
-  color: '#FE7156',
-})
+const HashTags = styled(Typography)(({theme}) => ({
+  color: theme.palette.primary.main,
+}))
 
 export default Card
