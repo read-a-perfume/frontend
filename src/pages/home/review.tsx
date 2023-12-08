@@ -2,10 +2,21 @@ import FlexBox from '../../layouts/flex-box'
 import {SectionSubTitle, SectionTitle} from './index.style'
 import ReviewCard from './review-card'
 import styled from '@emotion/styled'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 const Review = () => {
   const [clickedChip, setClickedChip] = useState<number>(0)
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   return (
     <div>
@@ -19,11 +30,14 @@ const Review = () => {
             </button>
           ))}
         </FlexBox>
-        <button>더보기</button>
+        <button></button>
       </FlexBox>
       <ReviewBox>
         {new Array(6).fill(0).map((_, index) => (
-          <ReviewCard key={index} />
+          <ReviewCard
+            key={index}
+            width={(screenWidth - 720 - 100) / 3 + 'px'}
+          />
         ))}
       </ReviewBox>
     </div>
@@ -33,10 +47,11 @@ const Review = () => {
 export default Review
 
 const ReviewBox = styled.div({
-  display: 'flex',
-  justifyContent: 'space-between',
-  flexWrap: 'wrap',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 1fr)',
+  gridTemplateRows: 'repeat(2, 1fr)',
   rowGap: '32px',
+  columnGap: '42px',
   marginTop: 30,
 })
 
