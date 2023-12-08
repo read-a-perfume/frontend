@@ -9,6 +9,7 @@ interface PerfumeCharacteristicsProps {
   secondCategory?: string
   firstValue?: string
   secondValue?: string
+  width?: string
 }
 
 const PerfumeCharacteristics: React.FC<PerfumeCharacteristicsProps> = ({
@@ -16,10 +17,11 @@ const PerfumeCharacteristics: React.FC<PerfumeCharacteristicsProps> = ({
   secondCategory = '지속력',
   firstValue = '적당한 향',
   secondValue = '3시간-6시간',
+  width = '526px',
 }) => {
   return (
     <FlexBox direction="column" gap="12px">
-      <InfoBox>
+      <InfoBox width={width}>
         {firstCategory ? (
           <BoxContent left={true}>
             <Categories>{firstCategory}</Categories>
@@ -41,14 +43,14 @@ const PerfumeCharacteristics: React.FC<PerfumeCharacteristicsProps> = ({
 
 export default PerfumeCharacteristics
 
-export const InfoBox = styled.div({
-  width: '375px',
+export const InfoBox = styled.div<{width: string}>(({width}) => ({
+  width,
   height: '46px',
   borderRadius: '10px',
   background: '#F1F1F1',
   display: 'flex',
   alignItems: 'center',
-})
+}))
 
 export const BoxContent = styled.div(({left}: {left: boolean}) => ({
   width: '188px',

@@ -4,13 +4,24 @@ import FlexBox from '@layouts/flex-box.js'
 import {Pagination, PaginationItem, Typography} from '@mui/material'
 import PerfumeCharacteristics from './perfume-characteristics.js'
 import {useNavigate} from 'react-router-dom'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 const products = new Array(6).fill(0).map((_, i) => i + 1)
 
 const Products = () => {
   const navigate = useNavigate()
   const [page, setPage] = useState<number>(0)
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const handlePage = (_, page: number) => {
     setPage(page)
@@ -30,7 +41,7 @@ const Products = () => {
             gap="32px"
             onClick={() => navigate('/perfume/:id')}
           >
-            <GridItem>
+            <GridItem width={(screenWidth - 720 - 100) / 4 + 'px'}>
               <Product>
                 <ProductImage src="public/images/Rectangle7217(5).png" />
                 <FlexBox direction="column" alignItems="center" gap="8px">
@@ -39,7 +50,9 @@ const Products = () => {
                 </FlexBox>
               </Product>
             </GridItem>
-            <PerfumeCharacteristics />
+            <PerfumeCharacteristics
+              width={(screenWidth - 720 - 100) / 4 + 'px'}
+            />
           </FlexBox>
         ))}
       </ProductBox>
@@ -78,16 +91,17 @@ const ProductBox = styled.div({
   gridTemplateColumns: 'repeat(4, 1fr)',
   gridTemplateRows: 'repeat(2, 1fr)',
   rowGap: '88px',
+  columnGap: '10px',
 })
 
-const GridItem = styled.div({
-  width: '376px',
+const GridItem = styled.div<{width: string}>(({width}) => ({
+  width: width,
   height: '100%',
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-})
+}))
 
 const Product = styled.div({
   height: 426,
