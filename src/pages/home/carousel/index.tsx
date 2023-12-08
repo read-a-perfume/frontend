@@ -24,7 +24,7 @@ const CarouselWithStepper = () => {
   }, [])
 
   const sliceContent = (content: string) => {
-    return content.slice(0, 140) + '...'
+    return content.slice(0, 45) + '...'
   }
 
   return (
@@ -38,9 +38,6 @@ const CarouselWithStepper = () => {
         rewind
         slidesPerView={3}
         spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
         modules={[Autoplay]}
         onRealIndexChange={newIndex => setCurrentIndex(newIndex.activeIndex)}
       >
