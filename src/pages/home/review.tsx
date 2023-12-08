@@ -53,6 +53,7 @@ const ReviewBox = styled.div({
   rowGap: '32px',
   columnGap: '42px',
   marginTop: 30,
+  height: '890px',
 })
 
 const Chip = styled.div(({isClicked}: {isClicked: boolean}) => ({
