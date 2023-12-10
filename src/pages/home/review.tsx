@@ -59,7 +59,6 @@ const Review = () => {
           reviews.map(item => (
             <ReviewCard
               key={item.id}
-              reviewId={item.id}
               width={(screenWidth - 720 - 100) / 3 + 'px'}
             />
           ))}
