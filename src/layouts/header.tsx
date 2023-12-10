@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import {Button, OutlinedInput, Typography} from '@mui/material'
 import {FormControl, IconButton, InputAdornment} from '@mui/material'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useLocation, useNavigate} from 'react-router-dom'
 import RoundButton from '@components/base/round-button.js'
 import FlexBox from './flex-box.js'
@@ -18,6 +18,17 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
   const [popOpen, setPopOpen] = useState<boolean>(false)
   const [keyword, setKeyword] = useState<string>('')
   const location = useLocation()
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const colorsWhenDisabled = !editorPostCompleted ? '#F1F1F5' : '#FE7156'
 
@@ -32,7 +43,7 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
   const rightComponent = () => {
     if (location.pathname.split('/').includes('post')) {
       return (
-        <>
+        <div>
           {isUploading ? (
             <FlexBox justifyContent="flex-end">
               <RoundButton
@@ -61,7 +72,7 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
               />
             </FlexBox>
           )}
-        </>
+        </div>
       )
     } else {
       return (
@@ -87,7 +98,7 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
     <>
       <NotificationModal isOpen={popOpen} setIsOpen={setPopOpen} />
       <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} />
-      <HeaderLayout style={{display: 'flex', flexDirection: 'column'}}>
+      <HeaderLayout>
         <HeaderNavigation height="58px">
           <NavTop
             onClick={() => (!isLoggedIn ? setIsOpen(true) : setPopOpen(true))}
@@ -103,60 +114,58 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
           </NavTop>
         </HeaderNavigation>
         <HeaderNavigation height="94px">
-          <FlexBox>
-            <Logo
-              src={'/images/logo-text.png'}
-              alt="logo"
-              onClick={() => navigate('/')}
-            />
-            <FlexBox
-              alignItems="center"
-              gap="52px"
-              style={{marginLeft: '182px'}}
-            >
-              <NavBottom
-                onClick={() => (!isLoggedIn ? setIsOpen(true) : navigate('/'))}
-              >
-                Home
-              </NavBottom>
-              <NavBottom
-                onClick={() =>
-                  !isLoggedIn ? setIsOpen(true) : console.log('service 링크')
-                }
-              >
-                Our Service
-              </NavBottom>
-              <NavBottom
-                onClick={() =>
-                  !isLoggedIn ? setIsOpen(true) : console.log('brand 링크')
-                }
-              >
-                Brand
-              </NavBottom>
-              <NavBottom
-                onClick={() =>
-                  !isLoggedIn ? setIsOpen(true) : console.log('note 링크')
-                }
-              >
-                Note
-              </NavBottom>
-              <NavBottom
-                onClick={() =>
-                  !isLoggedIn ? setIsOpen(true) : console.log('news 링크')
-                }
-              >
-                News
-              </NavBottom>
-              <NavBottom
-                onClick={() =>
-                  !isLoggedIn ? setIsOpen(true) : navigate('/perfumes')
-                }
-              >
-                Perfumes
-              </NavBottom>
+          <FlexBox
+            justifyContent="space-between"
+            style={{width: screenWidth - 720}}
+          >
+            <FlexBox alignItems="center">
+              <Logo
+                src={'/images/logo-text.png'}
+                alt="logo"
+                onClick={() => navigate('/')}
+              />
             </FlexBox>
+            <FlexBox style={{width: '588px'}} justifyContent="center">
+              <FlexBox alignItems="center" gap="54px">
+                <NavBottom
+                  onClick={() =>
+                    !isLoggedIn ? setIsOpen(true) : navigate('/')
+                  }
+                >
+                  홈
+                </NavBottom>
+                <NavBottom
+                  onClick={() =>
+                    !isLoggedIn ? setIsOpen(true) : console.log('')
+                  }
+                >
+                  리뷰
+                </NavBottom>
+                <NavBottom
+                  onClick={() =>
+                    !isLoggedIn ? setIsOpen(true) : navigate('/brand')
+                  }
+                >
+                  브랜드
+                </NavBottom>
+                <NavBottom
+                  onClick={() =>
+                    !isLoggedIn ? setIsOpen(true) : navigate('/perfumes')
+                  }
+                >
+                  제품
+                </NavBottom>
+                <NavBottom
+                  onClick={() =>
+                    !isLoggedIn ? setIsOpen(true) : console.log('')
+                  }
+                >
+                  뉴스
+                </NavBottom>
+              </FlexBox>
+            </FlexBox>
+            {rightComponent()}
           </FlexBox>
-          {rightComponent()}
         </HeaderNavigation>
       </HeaderLayout>
     </>
@@ -168,6 +177,7 @@ export default Header
 const HeaderLayout = styled.div({
   height: '152px',
   display: 'flex',
+  flexDirection: 'column',
   width: '100%',
   borderBottom: '1px solid black',
 })
@@ -175,12 +185,12 @@ const HeaderLayout = styled.div({
 const HeaderNavigation = styled.div(({height}: {height: string}) => ({
   width: '100%',
   height: height,
-  paddingLeft: '160px',
-  paddingRight: '160px',
+  paddingLeft: 360,
+  paddingRight: 360,
   display: 'flex',
-  gap: '28px',
   justifyContent: 'end',
   alignItems: 'center',
+  gap: '20px',
   '&:nth-of-type(2)': {
     display: 'flex',
     justifyContent: 'space-between',

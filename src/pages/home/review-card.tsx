@@ -18,12 +18,12 @@ import {
 } from './review-card.styles.js'
 import Avatar from '@components/base/avatar.js'
 
-const ReviewCard = () => {
-  const images = ['', '']
+const ReviewCard = ({width}: {width: string}) => {
+  const images = ['']
   const hash = ['플로랄', '플로랄', '고급짐']
 
   return (
-    <ReviewLayout>
+    <ReviewLayout width={width}>
       <FlexBox alignItems="center">
         <Avatar size="32px" url={undefined} />
         <ReviewerID>hwang_yo92</ReviewerID>
@@ -34,7 +34,7 @@ const ReviewCard = () => {
             <ReviewSingleImage src="images/perfume-detail/review-preview02.jpg" />
           </SingleImageCover>
         ) : (
-          <FlexBox gap="16px">
+          <FlexBox justifyContent="space-between" gap="12px">
             <MainImageCover>
               <ReviewMainImage src="images/perfume-detail/review-preview02.jpg" />
             </MainImageCover>
