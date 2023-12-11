@@ -5,13 +5,15 @@ import {CreateOutlined} from '@mui/icons-material'
 import {useNavigate} from 'react-router-dom'
 import ProfileCardType from './profile-card-type'
 import ProfileCardProfile from './profile-card-profile'
+import { mytypeType } from '../queryfn'
 
 interface proptype {
   name: string
   introduction: string
   follower: number
   following: number
-  mytype: string
+  mytype: mytypeType[]
+  thumbnail:string
 }
 
 const ProfileCard = ({
@@ -20,6 +22,7 @@ const ProfileCard = ({
   follower,
   following,
   mytype,
+  thumbnail,
 }: proptype) => {
   const navigate = useNavigate()
   const handleButtonClick = () => {
@@ -33,6 +36,7 @@ const ProfileCard = ({
         introduction={introduction}
         follower={follower}
         following={following}
+        thumbnail={thumbnail}
       />
       <Divider />
       <ProfileCardType mytype={mytype} />

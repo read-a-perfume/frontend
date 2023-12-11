@@ -1,7 +1,8 @@
 import {Avatar, Box, Typography, styled} from '@mui/material'
+import { mytypeType } from '../queryfn'
 
 interface proptype {
-  mytype: string
+  mytype:mytypeType[]
 }
 
 const ProfileCardType = ({mytype}: proptype) => {
@@ -16,8 +17,8 @@ const ProfileCardType = ({mytype}: proptype) => {
         </Typography>
       </TitleContainer>
       <MytypeContainer>
-        <TypeAvatar>F</TypeAvatar>
-        <TypeText variant="body3">{mytype}</TypeText>
+        <TypeAvatar src={mytype[0].thumbnail} alt={mytype[0].name}/>
+        <TypeText variant="body3">{mytype[0].name}</TypeText>
       </MytypeContainer>
     </TypeContainer>
   )

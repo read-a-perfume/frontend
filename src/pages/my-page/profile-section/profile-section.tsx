@@ -4,12 +4,17 @@ import ReviewCard from './review-card/review-card'
 import {useEffect, useState} from 'react'
 import {TEMP_USER, tempUserType} from '../data/user-data'
 import FavoriteCard from './favorite-card/favorite-card'
+import {useQuery} from '@tanstack/react-query'
+import {getCurUser, getFollowCount, getMytype, getReviewCount} from './queryfn'
 
 const ProfileSection = () => {
-  /*
-  USER데이터를 받아온다.
-  그리고 카드 3개를 usequery로 그에 맞게 마운트시 상태를 갱신한다.
-  */
+  const {data: curUser} = useQuery(['curuser'], () => getCurUser())
+
+  const {data: reviewCount} = useQuery(['reviewcount'], () => getReviewCount())
+
+  const {data: followCount} = useQuery(['followcount'], () => getFollowCount())
+
+  const {data: mytype} = useQuery(['mytype'], () => getMytype())
 
   const [userInfo, setUserInfo] = useState<tempUserType>({
     follower: 0,
@@ -22,21 +27,23 @@ const ProfileSection = () => {
   })
 
   useEffect(() => {
+    console.log('mytype', mytype)
+
     setUserInfo(TEMP_USER)
-  }, [])
+  }, [mytype])
   return (
     <Container>
-      <ProfileCard
-        name={userInfo.name}
-        introduction={userInfo.introduction}
-        follower={userInfo.follower}
-        following={userInfo.following}
-        mytype={userInfo.mytype}
-      />
-      <ReviewCard
-        onWrite={userInfo.onWrite}
-        completeWrite={userInfo.completeWrite}
-      />
+      {mytype && followCount && curUser && (
+        <ProfileCard
+          name={curUser.username}
+          introduction={userInfo.introduction}
+          follower={followCount.followerCount}
+          following={followCount.followingCount}
+          mytype={[{name:'asdf',id:1,thumbnail:'',description:'asdf'}]}
+          thumbnail={curUser.thumbnail}
+        />
+      )}
+      {reviewCount && <ReviewCard completeWrite={reviewCount.reviewCount} />}
       <FavoriteCard />
     </Container>
   )
