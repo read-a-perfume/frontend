@@ -1,5 +1,6 @@
 import {useState} from 'react'
-const tags = [
+import {ReviewWriterFormProps} from '../form.interface'
+const keywords = [
   '자연적인',
   '달달한',
   '여름',
@@ -10,9 +11,13 @@ const tags = [
   '고급진',
 ]
 
-const useReviewForm = ({formData}:any) => {
-  const [formValues, setFormValues] = useState<any>(formData)
+interface Props {
+  formData: ReviewWriterFormProps
+}
 
+const useReviewForm = ({formData}: Props) => {
+  const [formValues, setFormValues] = useState<any>(formData)
+  console.log(formValues.keywords)
   const handleThumbnailUpload = event => {
     const target = event.target
     const file = target.files[0]
@@ -21,7 +26,7 @@ const useReviewForm = ({formData}:any) => {
     if (file && file.size <= fileSizeLimit) {
       setFormValues({
         ...formValues,
-        ['files']: [url, ...formValues.files],
+        ['thumbnails']: [url, ...formValues.thumbnails],
       })
       return
     } else {
@@ -33,11 +38,11 @@ const useReviewForm = ({formData}:any) => {
 
   const handleThumbnailDelete = file => {
     //삭제할 아이템 필터링
-    const filteredItems = formValues.files.filter(it => it !== file && it)
+    const filteredItems = formValues.thumbnails.filter(it => it !== file && it)
 
     setFormValues({
       ...formValues,
-      ['files']: [...filteredItems],
+      ['thumbnails']: [...filteredItems],
     })
   }
 
@@ -51,9 +56,10 @@ const useReviewForm = ({formData}:any) => {
   }
 
   const handleAutoComplete = (_event, value) => {
+    console.log(value, 'vlaue')
     setFormValues({
       ...formValues,
-      ['perfumeId']: value,
+      ['perfumeId']: value.id,
     })
   }
 
@@ -62,30 +68,32 @@ const useReviewForm = ({formData}:any) => {
     const target = event.target
     const name = target.name
     //체크박스 최대 3개까지 선택가능
-    if (tags.includes(event.target.name)) {
+    if (keywords.includes(event.target.name)) {
       //중복 체크는 취소하도록 필터링
-      const filter = formValues.tags.filter(keyword => keyword !== name)
+      const filter = formValues.keywords.filter(
+        keyword => keyword.name !== name,
+      )
 
-      if (formValues.tags.length !== filter.length) {
+      if (formValues.keywords.length !== filter.length) {
         setFormValues({
           ...formValues,
-          ['tags']: [...filter],
+          ['keywords']: [...filter],
         })
         return
       }
       //최대 3개까지
-      if (formValues.tags.length < 3) {
+      if (formValues.keywords.length < 3) {
         setFormValues({
           ...formValues,
-          ['tags']: [name, ...formValues.tags],
+          ['keywords']: [name, ...formValues.keywords],
         })
       }
       //3개이상이면 마지막께 취소되고 새로운 키워드가 선택
-      if (formValues.tags.length >= 3) {
-        const updatedtags = [...formValues.tags.slice(0, 2), name]
+      if (formValues.keywords.length >= 3) {
+        const updatedkeywords = [...formValues.keywords.slice(0, 2), name]
         setFormValues({
           ...formValues,
-          ['tags']: updatedtags,
+          ['keywords']: updatedkeywords,
         })
         return
       }

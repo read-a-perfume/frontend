@@ -42,11 +42,11 @@ const ReviewFormLast = ({
       </OneLineReview>
       <div>
         <Title>이 향수는 어떤 느낌을 주나요?</Title>
-        <TextareaAutosize
+        <AutoSizer
           aria-label="minimum height"
-          name="feeling"
+          name="fullReview"
           minRows={3}
-          value={formValues.feeling}
+          value={formValues.fullReview}
           onChange={handleFormDataChange}
           placeholder="이 향수를 사용하면서 느낀 특징과 매력을 설명해주세요. 특유의 향과 향수의 노트들에 대해 느낀 점이나 어떤 면이 인상적이었는지에 대해 언급해주시면 좋습니다."
           style={{width: 411, height: 205, marginBottom: '32px', padding: 20}}
@@ -61,7 +61,7 @@ const ReviewFormLast = ({
             }}
             control={
               <CustomCheckBox
-                checked={formValues.tags.includes(`${it}`)}
+                checked={formValues.keywords.includes(`${it}`)}
                 onChange={handleMultipleCheckBox}
                 value={it}
                 key={it}
@@ -146,4 +146,11 @@ const CustomCheckBox = styled(Checkbox)({
   '&.MuiCheckbox-root + span': {
     fontWeight: 500,
   },
+})
+
+const AutoSizer = styled(TextareaAutosize)({
+  width: 411,
+  height: 205,
+  marginBottom: '32px',
+  padding: 20,
 })

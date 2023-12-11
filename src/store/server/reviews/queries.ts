@@ -4,3 +4,10 @@ import instance from '@api/instance'
 export const fetcTest = async data => {
   await instance.post('/Dummy', {...data})
 }
+
+export const fetchPerfumeSearch = async (keyword?: string) => {
+  const res = await instance.get(`/perfumes/search?query=${keyword}`)
+  console.log(res, 'Res')
+  const data = await res.data
+  return data
+}

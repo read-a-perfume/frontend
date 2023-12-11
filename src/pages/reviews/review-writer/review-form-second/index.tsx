@@ -2,7 +2,9 @@ import {FormControl, RadioGroup, TextField, styled} from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
 import SliderRating from './slider'
 import RadioRoundedButton from '../radio-rounded-button'
-import {top100Films} from './form-writer-start.constant'
+import useQuery from 'src/store/server/use-query'
+import {fetchPerfumeSearch} from 'src/store/server/reviews/queries'
+import {useState} from 'react'
 
 const durations = ['1~3시간 정도', '4~6시간 정도', '7~9시간 정도', '9시간 이상']
 
@@ -11,12 +13,42 @@ const ReviewFormSecond = ({
   formValues,
   handleAutoComplete,
 }: any) => {
+  const [search, setSearch] = useState('')
+  const [searchData, setSearchData] = useState([])
   const inputLabelProps = {
     style: {
       fontSize: 14, // Adjust the font size as needed
     },
   }
 
+  // const handleSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const target = event.target
+  //   if (target.value && target.value.length > 1) {
+  //     const res = await fetchPerfumeSearch(event.target.value)
+  //     console.log(res, 'res')
+  //     setSearchData(res)
+  //   }
+  // }
+
+  const handleUpdate = (event: any) => {
+    const target = event.target
+    const value: string = target.value
+    if (target && value && value.length > 0) {
+      setSearch(value)
+    }
+  }
+
+  const {data} = useQuery({
+    queryFn: () => fetchPerfumeSearch(search),
+    queryKey: [`search/${search}-key`],
+  })
+  const options =
+    data && data.length > 0
+      ? data.map(item => ({
+          id: item.perfumeId,
+          title: item.perfumeNameWithBrand,
+        }))
+      : []
   return (
     <>
       <FormControl component="fieldset">
@@ -25,7 +57,8 @@ const ReviewFormSecond = ({
           <PerfumeSearch
             disablePortal
             id="search"
-            options={top100Films}
+            options={options}
+            onInputChange={event => handleUpdate(event)}
             onChange={handleAutoComplete}
             sx={{width: 411}}
             renderInput={params => (
@@ -36,9 +69,10 @@ const ReviewFormSecond = ({
                 InputLabelProps={inputLabelProps}
               />
             )}
+            getOptionLabel={(option: any) => option.title}
             renderOption={(props, option: any) => (
               <>
-                <Item {...props}>{option.label}</Item>
+                <Item {...props}>{option.title}</Item>
               </>
             )}
           />
