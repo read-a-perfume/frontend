@@ -19,7 +19,12 @@ interface UseQueryProps<
   }
 }
 
-const useQuery = <TQueryFnData, TError, TData, TQueryKey extends QueryKey>({
+const useQuery = <
+  TQueryFnData = unknown,
+  TError = unknown,
+  TData = TQueryFnData,
+  TQueryKey extends QueryKey = QueryKey,
+>({
   queryKey,
   queryFn,
   options,

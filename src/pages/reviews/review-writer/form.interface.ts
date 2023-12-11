@@ -1,11 +1,11 @@
 export interface ReviewWriterFormProps {
-  perfumeId: any // 향수아이디
-  dayType: string // 어떤 날에 뿌리나요?
-  strength: string // // 확산력
-  season: string // 어떤 계절이랑 잘어울리는지
-  duration: number // 지속력
-  shortReview: string // 한줄 평
-  feeling: string // 이 향수는 어떤느낌을 주나요 텍스트에리어
-  tags: string[]
-  files: string[]
+  perfumeId: number //향수 ID
+  season: string // 어울리는 계절
+  dayType: string
+  strength: string // 향수 강도
+  duration: string //향수 지속력
+  shortReview: string // 한줄 리뷰
+  fullReview: string // 상세 리뷰
+  keywords: number[] | [] //리뷰 태그
+  thumbnails: any //리뷰 썸네일 이미지
 }

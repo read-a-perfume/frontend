@@ -13,11 +13,10 @@ import {
 const ReviewFormFirst = ({
   handleThumbnailDelete,
   handleThumbnailUpload,
-
   formValues,
 }: any) => {
   const ImageLength = ({formValues}: any) => {
-    const files = formValues.files.length
+    const files = formValues.thumbnails.length
     return (
       <Box
         sx={{
@@ -35,16 +34,15 @@ const ReviewFormFirst = ({
       </Box>
     )
   }
-
   return (
     <main>
       <FormControl component="fieldset" sx={{width: '100%', margin: 'auto'}}>
         <Box sx={{position: 'relative', margin: 'auto', width: '420px'}}>
           <MainPreview>
-            <MainPreviewFileLabel htmlFor="files">
+            <MainPreviewFileLabel htmlFor="thumbnails">
               <Figure
                 sx={{
-                  backgroundImage: `url(${formValues.files[0]})`,
+                  backgroundImage: `url(${formValues.thumbnails[0]})`,
                   backgroundSize: '100% 100%',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
@@ -71,9 +69,9 @@ const ReviewFormFirst = ({
                 </TextBox>
               </Figure>
             </MainPreviewFileLabel>
-            {formValues.files[0] && (
+            {formValues.thumbnails[0] && (
               <CustomDeleteButton
-                onClick={() => handleThumbnailDelete(formValues.files[0])}
+                onClick={() => handleThumbnailDelete(formValues.thumbnails[0])}
               />
             )}
           </MainPreview>
@@ -85,18 +83,16 @@ const ReviewFormFirst = ({
                     <SubPreviewItem
                       sx={{
                         //프리뷰 이미지
-                        backgroundImage: `url(${formValues.files[value]})`,
+                        backgroundImage: `url(${formValues.thumbnails[value]})`,
                       }}
                     >
                       <ListItemIcon
                         sx={{display: 'flex', justifyContent: 'center'}}
-                      >
-                        <AddCircleIcon />
-                      </ListItemIcon>
-                      {formValues.files[value] && (
+                      />
+                      {formValues.thumbnails[value] && (
                         <CustomDeleteButton
                           onClick={() =>
-                            handleThumbnailDelete(formValues.files[value])
+                            handleThumbnailDelete(formValues.thumbnails[value])
                           }
                         />
                       )}
@@ -111,8 +107,8 @@ const ReviewFormFirst = ({
       </FormControl>
       <MainPreviewFileInput
         type="file"
-        name="files"
-        id="files"
+        name="thumbnails"
+        id="thumbnails"
         accept=".jpg, .png"
         onChange={handleThumbnailUpload}
       />

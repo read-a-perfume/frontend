@@ -18,6 +18,7 @@ const ReviewFormProgassState = ({prograss}: any) => {
               sx={{
                 flexDirection: 'column',
               }}
+              key={index}
             >
               <Prograss
                 sx={{
