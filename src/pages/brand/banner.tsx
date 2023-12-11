@@ -1,7 +1,7 @@
 import MuiButton from '@components/base/mui-button'
 import {Box, styled} from '@mui/material'
 import React from 'react'
-import {AddBannerSpan} from '../brand.style'
+import {AddBannerSpan} from './brand.style'
 
 interface proptype {
   fileURL: string

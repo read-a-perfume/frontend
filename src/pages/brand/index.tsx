@@ -16,7 +16,7 @@ import Magazine from './magazine.js'
 import {useNavigate} from 'react-router-dom'
 import {magazineData} from '../home/constants.js'
 import MuiButton from '@components/base/mui-button.js'
-import Banner from './brandpage/banner.js'
+import Banner from './banner.js'
 
 const Brand = () => {
   const navigate = useNavigate()
@@ -25,51 +25,9 @@ const Brand = () => {
   const [fileURL, setFILEURL] = useState<string>('')
   const fileRef = useRef<HTMLInputElement>(null)
 
-  /*
-  const changeImageHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault()
-
-    if (event.target.files) {
-      const newFileURL = URL.createObjectURL(event.target.files[0])
-      setFILEURL(newFileURL)
-    }
-  }*/
-
   return (
     <>
     <Banner fileURL={fileURL} fileRef={fileRef} enterprise={enterprise} setFILEURL={setFILEURL}/>
-      {/*
-        <Banner>
-          {enterprise && (
-            <>
-              <input
-                type="file"
-                accept="image/jpg,image/png,image/jpeg"
-                hidden
-                ref={fileRef}
-                onChange={changeImageHandler}
-              />
-              <AddBannerSpan imageurl={fileURL} style={{zIndex: 2}}>
-                {fileURL ? '배너 이미지 변경' : '배너 이미지 추가'}
-              </AddBannerSpan>
-              <MuiButton
-                title="컴퓨터에서 가져오기"
-                type="white"
-                width="137px"
-                handleClick={() => {
-                  if (fileRef.current) {
-                    fileRef.current.click()
-                  }
-                }}
-              />
-            </>
-          )}
-          {fileURL && (
-            <BannerImage src={fileURL} alt="banner" style={{zIndex: 1}} />
-          )}
-          <BannerBlur />
-        </Banner>
-          */}
       <BrandInfoDetail enterprise={enterprise} />
       {/* 추후 삭제 */}
       <MuiButton
