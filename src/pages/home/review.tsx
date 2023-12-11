@@ -1,11 +1,44 @@
+import instance from '@api/instance'
 import FlexBox from '../../layouts/flex-box'
 import {SectionSubTitle, SectionTitle} from './index.style'
 import ReviewCard from './review-card'
 import styled from '@emotion/styled'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import {useQuery} from '@tanstack/react-query'
+import {Skeleton} from '@mui/material'
+
+const getReviews = async () => {
+  try {
+    const res = await instance.get('/reviews?page=1&size=6')
+    return res.data
+  } catch (error) {
+    console.error(`review: ${error}`)
+  }
+}
 
 const Review = () => {
   const [clickedChip, setClickedChip] = useState<number>(0)
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+
+  const {data: reviews, isLoading} = useQuery({
+    queryKey: ['reviews'],
+    queryFn: () => getReviews(),
+    onSuccess: data => {
+      console.log(data)
+    },
+  })
+
+  console.log(reviews)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   return (
     <div>
@@ -19,12 +52,28 @@ const Review = () => {
             </button>
           ))}
         </FlexBox>
-        <button>더보기</button>
+        <button></button>
       </FlexBox>
       <ReviewBox>
-        {new Array(6).fill(0).map((_, index) => (
-          <ReviewCard key={index} />
-        ))}
+        {reviews &&
+          reviews.map(item => (
+            <ReviewCard
+              key={item.id}
+              width={(screenWidth - 720 - 100) / 3 + 'px'}
+            />
+          ))}
+        {(isLoading || !reviews) &&
+          new Array(6).fill(0).map((_, idx) => {
+            return (
+              <Skeleton
+                key={idx}
+                sx={{borderRadius: 4, animationDuration: '1.2s'}}
+                variant="rectangular"
+                width={(screenWidth - 720 - 100) / 3 + 'px'}
+                height={'390px'}
+              />
+            )
+          })}
       </ReviewBox>
     </div>
   )
@@ -33,11 +82,13 @@ const Review = () => {
 export default Review
 
 const ReviewBox = styled.div({
-  display: 'flex',
-  justifyContent: 'space-between',
-  flexWrap: 'wrap',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 1fr)',
+  gridTemplateRows: 'repeat(2, 1fr)',
   rowGap: '32px',
+  columnGap: '42px',
   marginTop: 30,
+  height: '890px',
 })
 
 const Chip = styled.div(({isClicked}: {isClicked: boolean}) => ({

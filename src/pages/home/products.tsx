@@ -1,16 +1,52 @@
 import {SectionSubTitle, SectionTitle} from './index.style.js'
 import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box.js'
-import {Pagination, PaginationItem, Typography} from '@mui/material'
+import {Pagination, PaginationItem, Skeleton, Typography} from '@mui/material'
 import PerfumeCharacteristics from './perfume-characteristics.js'
 import {useNavigate} from 'react-router-dom'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import instance from '@api/instance.js'
+import {useQuery} from '@tanstack/react-query'
 
-const products = new Array(6).fill(0).map((_, i) => i + 1)
+type Product = {
+  id: number
+  name: string
+  thumbnail: string | null
+  brandName: string
+  strength: string
+  duration: string
+}
+
+const getPerfumesByFavorite = async () => {
+  const res = await instance.get(
+    '/perfumes?sort=favorite&lastPerfumeId=6&pageSize=3',
+  )
+  return res.data
+}
 
 const Products = () => {
   const navigate = useNavigate()
   const [page, setPage] = useState<number>(0)
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+  const [perfumes, setPerfumes] = useState<Product[]>([])
+
+  const {data, isLoading} = useQuery(['perfumes'], getPerfumesByFavorite)
+
+  useEffect(() => {
+    if (data && Array.isArray(data.content)) {
+      setPerfumes(data.content)
+    }
+  }, [data])
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const handlePage = (_, page: number) => {
     setPage(page)
@@ -23,30 +59,49 @@ const Products = () => {
         사람들이 많이 검색한 향수 위주로 모아봤어요
       </SectionSubTitle>
       <ProductBox>
-        {products.map((_, idx) => (
-          <FlexBox
-            key={idx}
-            direction="column"
-            gap="32px"
-            onClick={() => navigate('/perfume/:id')}
-          >
-            <GridItem>
-              <Product>
-                <ProductImage src="public/images/Rectangle7217(5).png" />
-                <FlexBox direction="column" alignItems="center" gap="8px">
-                  <BrandName>브랜드명</BrandName>
-                  <ProductName>로즈폼퐁 오 드 퍼퓸</ProductName>
-                </FlexBox>
-              </Product>
-            </GridItem>
-            <PerfumeCharacteristics />
-          </FlexBox>
-        ))}
+        {!isLoading &&
+          perfumes.map(item => (
+            <FlexBox
+              key={item.id}
+              direction="column"
+              gap="32px"
+              onClick={() => navigate('/perfume/:id')}
+            >
+              <GridItem width={(screenWidth - 720 - 100) / 4 + 'px'}>
+                <Product>
+                  <ProductImage
+                    src={item.thumbnail || 'public/images/Rectangle7217(5).png'}
+                  />
+                  <FlexBox direction="column" alignItems="center" gap="8px">
+                    <BrandName>{item.brandName}</BrandName>
+                    <ProductName>{item.name}</ProductName>
+                  </FlexBox>
+                </Product>
+              </GridItem>
+              <PerfumeCharacteristics
+                width={(screenWidth - 720 - 100) / 4 + 'px'}
+                firstValue={item.strength}
+                secondValue={item.duration}
+              />
+            </FlexBox>
+          ))}
+        {(isLoading || !perfumes) &&
+          perfumes.map(item => {
+            return (
+              <Skeleton
+                key={item.id}
+                sx={{borderRadius: 4, animationDuration: '1.2s'}}
+                variant="rectangular"
+                width={(screenWidth - 720 - 100) / 4 + 'px'}
+                height={'100%'}
+              />
+            )
+          })}
       </ProductBox>
       <FlexBox justifyContent="center">
         <Pagination
           page={page}
-          count={Math.ceil(products.length / 6)}
+          count={Math.ceil(perfumes.length / 6)}
           onChange={handlePage}
           variant="outlined"
           shape="rounded"
@@ -78,16 +133,17 @@ const ProductBox = styled.div({
   gridTemplateColumns: 'repeat(4, 1fr)',
   gridTemplateRows: 'repeat(2, 1fr)',
   rowGap: '88px',
+  columnGap: '10px',
 })
 
-const GridItem = styled.div({
-  width: '376px',
+const GridItem = styled.div<{width: string}>(({width}) => ({
+  width: width,
   height: '100%',
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-})
+}))
 
 const Product = styled.div({
   height: 426,

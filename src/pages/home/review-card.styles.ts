@@ -1,13 +1,14 @@
 import styled from '@emotion/styled'
 import {Typography} from '@mui/material'
 
-export const ReviewLayout = styled.div({
-  width: 512,
+export const ReviewLayout = styled.div<{width: string}>(({width}) => ({
+  maxWidth: 512,
+  width: width,
   borderRadius: 16,
   border: '1px solid #EDEDED',
   background: 'white',
   padding: '17px 24px 0px 24px',
-})
+}))
 
 export const ReviewerID = styled(Typography)({
   fontSize: 16,

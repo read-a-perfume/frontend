@@ -1,8 +1,6 @@
-import LoginModal from '@components/modal/login-modal'
 import Magazines from './magazines'
 import Notes from './notes'
 import Review from './review'
-import {useState} from 'react'
 import {Banner, BannerBox, BannerImage, Content, Title} from './index.style'
 import Button from '@components/base/button.js'
 import Products from './products.js'
@@ -13,8 +11,6 @@ import {useQuery} from '@tanstack/react-query'
 
 export default function Home() {
   const navigate = useNavigate()
-  const isLoggedIn = false
-  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const {
     isLoading: categoryLoading,
@@ -34,8 +30,7 @@ export default function Home() {
 
   return (
     <>
-      <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} />
-      <Banner onClick={() => setIsOpen(!isLoggedIn ? true : false)}>
+      <Banner>
         <BannerImage src="/images/banner.png" alt="banner" />
         <BannerBox>
           <Title>

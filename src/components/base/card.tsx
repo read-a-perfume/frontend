@@ -22,8 +22,8 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({
-  width = '512px',
-  height = '594px',
+  width = '464px',
+  height = '442px',
   coverImageHeight = '320px',
   coverImage,
   profileImage,
@@ -38,18 +38,19 @@ const Card: React.FC<CardProps> = ({
   return (
     <CardContainer width={width} height={height} style={style}>
       <CoverImage
+        width={width}
         height={coverImageHeight}
         src={coverImage}
         alt="card-cover-image"
         onClick={onClick}
       />
-      <CardInfo>
+      <CardInfo width={width}>
         <FlexBox
           justifyContent="space-between"
           alignItems="center"
           style={{marginBottom: '8px', marginTop: '16px'}}
         >
-          <Avatar size="40px" url={profileImage} />
+          <Avatar size="30px" url={profileImage} />
           {isEditor && (
             <button>
               <CustomIcons.HamburgerIcon />
@@ -58,9 +59,9 @@ const Card: React.FC<CardProps> = ({
           {isOptionOpen && <EditOptions />}
         </FlexBox>
         <ContentContainer onClick={onClick}>
-          <CardTitle variant='h4'>{title}</CardTitle>
-          <CardContent variant='body2'>{content}</CardContent>
-          <HashTags variant='body3'>{'#' + hashTags.join(' #')}</HashTags>
+          <CardTitle variant="h4">{title}</CardTitle>
+          <CardContent variant="body2">{content}</CardContent>
+          <HashTags variant="body3">{'#' + hashTags.join(' #')}</HashTags>
         </ContentContainer>
       </CardInfo>
     </CardContainer>
@@ -86,7 +87,7 @@ const CoverImage = styled('img')<{height: string}>(({height}) => ({
 }))
 
 const CardInfo = styled(Box)(() => ({
-  width: '100%',
+  width: '90%',
   padding: '0px 24px',
 }))
 
@@ -98,19 +99,20 @@ const CardTitle = styled(Typography)(() => ({
   color: '#131313',
   fontWeight: 500,
   marginBottom: '16px',
+  width: '100%',
 }))
 
 const CardContent = styled(Typography)(() => ({
   color: '#707070',
   marginBottom: '8px',
   lineHeight: '150%',
-  minHeight: '96px',
   maxHeight: '96px',
   display: '-webkit-box',
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
   WebkitLineClamp: 4,
   textOverflow: 'ellipsis',
+  width: '90%',
 }))
 
 const HashTags = styled(Typography)(({theme}) => ({
