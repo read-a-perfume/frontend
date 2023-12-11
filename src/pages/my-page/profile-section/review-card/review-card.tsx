@@ -8,11 +8,11 @@ import CardTitle from '../../base/card-title'
 import {useNavigate} from 'react-router-dom'
 
 interface proptype {
-  onWrite: number
+ 
   completeWrite: number
 }
 
-const ReviewCard = ({onWrite, completeWrite}: proptype) => {
+const ReviewCard = ({ completeWrite}: proptype) => {
   const navigate = useNavigate()
 
   const handleButtonClick = () => {
@@ -24,7 +24,7 @@ const ReviewCard = ({onWrite, completeWrite}: proptype) => {
       <CardTitle>내 리뷰</CardTitle>
       <Divider />
       <MyCardContent sx={{justifyContent: 'space-evenly'}}>
-        <EachReviewCount title="작성중인 후기" number={onWrite} />
+       
         <EachReviewCount title="작성한 후기" number={completeWrite} />
       </MyCardContent>
       <Divider />
