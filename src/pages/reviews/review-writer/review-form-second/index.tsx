@@ -14,7 +14,6 @@ const ReviewFormSecond = ({
   handleAutoComplete,
 }: any) => {
   const [search, setSearch] = useState('')
-  const [searchData, setSearchData] = useState([])
   const inputLabelProps = {
     style: {
       fontSize: 14, // Adjust the font size as needed
