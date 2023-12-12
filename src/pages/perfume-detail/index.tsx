@@ -1,7 +1,10 @@
 import {useEffect, useState} from 'react'
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import {useQuery} from '@tanstack/react-query'
-import {getPerfume} from 'src/store/server/perfume-datail/queries'
+import {
+  getPerfume,
+  getPerfumeGraph,
+} from 'src/store/server/perfume-datail/queries'
 
 import Carousel from './carousel'
 import FlexBox from '@layouts/flex-box'
@@ -224,6 +227,10 @@ const PerfumeDetail = () => {
     queryKey: ['perfume'],
     queryFn: () => getPerfume(params.id as string),
   })
+  const {isLoading: graphLoading, data: graphData} = useQuery({
+    queryKey: ['perfume-detail-graph'],
+    queryFn: () => getPerfumeGraph(params.id as string),
+  })
 
   const handlePage = (event: any) => {
     const nowPageInt = parseInt(event.target.outerText)
@@ -244,7 +251,7 @@ const PerfumeDetail = () => {
   useEffect(() => {
     setPerfumes(dummydata.slice(0, 4) as any)
   }, [])
-
+  console.log(graphData)
   if (error) return 'An error has occurred: ' + error
   return (
     <Container>
@@ -305,7 +312,9 @@ const PerfumeDetail = () => {
             )}
           </Description>
 
-          <BuyButton>향수 구매 사이트로 이동하기</BuyButton>
+          <Link to={data?.perfumeShopUrl} target="_blank">
+            <BuyButton>향수 구매 사이트로 이동하기</BuyButton>
+          </Link>
 
           {/* 향수 노트 */}
           <Notes
@@ -316,7 +325,7 @@ const PerfumeDetail = () => {
           />
 
           {/* 향수 정보 */}
-          <Information isLoading={isLoading} />
+          <Information graphData={graphData} isLoading={graphLoading} />
         </RightBox>
       </FlexBox>
 

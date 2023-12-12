@@ -1,31 +1,138 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Accordion from '@mui/material/Accordion'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import {styled} from '@mui/system'
+import {InformationProps} from './information-interface'
+
 import ChartBar from './ChartBar'
 import FlexBox from '@layouts/flex-box'
-import {styled} from '@mui/system'
-import {Box} from '@mui/material'
 
-const arrayTest = Array.from({length: 5}, (_, index) => index)
-
-const AccordionChart = () => {
+const AccordionChart = ({graphData}: InformationProps) => {
   const [expanded, setExpanded] = useState<string | false>(false)
+  const [accordionData, setAccordionData] = useState([
+    {
+      title: '무게감',
+
+      statisticsData: [
+        {subTitle: '약함', data: 0},
+        {subTitle: '보통', data: 0},
+        {subTitle: '강함', data: 0},
+      ],
+    },
+    {
+      title: '지속력',
+
+      statisticsData: [
+        {subTitle: '약함', data: 0},
+        {subTitle: '보통', data: 0},
+        {subTitle: '강함', data: 0},
+      ],
+    },
+    {
+      title: '계절',
+
+      statisticsData: [
+        {subTitle: '봄', data: 0},
+        {subTitle: '여름', data: 0},
+        {subTitle: '가을', data: 0},
+        {subTitle: '겨울', data: 0},
+      ],
+    },
+    {
+      title: '확산력',
+
+      statisticsData: [
+        {subTitle: '약함', data: 0},
+        {subTitle: '보통', data: 0},
+        {subTitle: '강함', data: 0},
+      ],
+    },
+    {
+      title: '성별',
+
+      statisticsData: [
+        {subTitle: '여성', data: 0},
+        {subTitle: '공용', data: 0},
+        {subTitle: '남성', data: 0},
+      ],
+    },
+  ])
+
+  const getMaximumData = statisticsData => {
+    const maxItem = statisticsData.reduce(
+      (max, item) => (item.data > max.data ? item : max),
+      {data: -Infinity},
+    )
+    return maxItem
+  }
 
   const handleChange =
     (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
-      console.log(panel)
       setExpanded(isExpanded ? panel : false)
     }
 
+  console.log(accordionData)
+
+  useEffect(() => {
+    setAccordionData(prevData => {
+      const updatedData = [...prevData]
+
+      // 무게감
+      updatedData[0].statisticsData = [
+        {subTitle: '약함', data: graphData.dayType.DAILY},
+        {subTitle: '보통', data: graphData.dayType.REST},
+        {
+          subTitle: '강함',
+          data: graphData.dayType.SPECIAL + graphData.dayType.TRAVEL,
+        },
+      ]
+
+      // 지속력
+      updatedData[1].statisticsData = [
+        {
+          subTitle: '약함',
+          data: graphData.duration.SHORT + graphData.duration.TOO_SHORT,
+        },
+        {subTitle: '보통', data: graphData.duration.MEDIUM},
+        {
+          subTitle: '강함',
+          data: graphData.duration.LONG,
+        },
+      ]
+
+      // 계절
+      updatedData[2].statisticsData = [
+        {subTitle: '봄', data: graphData.season.SPRING},
+        {subTitle: '여름', data: graphData.season.SUMMER},
+        {subTitle: '가을', data: graphData.season.FALL},
+        {subTitle: '겨울', data: graphData.season.WINTER},
+      ]
+
+      // 확산력
+      updatedData[3].statisticsData = [
+        {subTitle: '약함', data: graphData.strength.LIGHT},
+        {subTitle: '보통', data: graphData.strength.MODERATE},
+        {subTitle: '강함', data: graphData.strength.HEAVY},
+      ]
+
+      // 성별
+      updatedData[4].statisticsData = [
+        {subTitle: '여성', data: graphData.sex.FEMALE},
+        {subTitle: '공용', data: graphData.sex.OTHER},
+        {subTitle: '남성', data: graphData.sex.MALE},
+      ]
+
+      return updatedData
+    })
+  }, [graphData])
+
   return (
     <div>
-      {arrayTest.map((item, index) => (
+      {accordionData.map((item, index) => (
         <div key={index}>
-          {/* 지워야됨 */}
-          <Box sx={{display: 'none'}}>{item}</Box>
           <Accordion
             expanded={expanded === `panel${index}`}
             onChange={handleChange(`panel${index}`)}
@@ -36,7 +143,7 @@ const AccordionChart = () => {
               border: '.75px solid #EDEDED',
               borderRadius: '7.5px !important',
               marginBottom:
-                index === arrayTest.length - 1
+                index === accordionData.length - 1
                   ? '0px !important'
                   : '12px !important',
               boxShadow: 'none',
@@ -60,44 +167,62 @@ const AccordionChart = () => {
                 alignItems="center"
                 style={{width: '100%'}}
               >
-                <MUIText sx={{color: '#A9A9A9'}}>지속력</MUIText>
+                <MUIText sx={{color: '#A9A9A9', width: '20%'}}>
+                  {item.title}
+                </MUIText>
 
-                <MUIText sx={{color: '#000', fontWeight: '500'}}>강함</MUIText>
+                <MUIText sx={{color: '#000', fontWeight: '500'}}>
+                  {getMaximumData(item.statisticsData).subTitle}
+                </MUIText>
 
-                <ChartBar percent={50} />
+                <ChartBar percent={getMaximumData(item.statisticsData).data} />
 
-                <MUIText sx={{color: '#000', fontWeight: '500'}}>20%</MUIText>
+                <MUIText sx={{color: '#000', fontWeight: '500'}}>
+                  {getMaximumData(item.statisticsData).data}%
+                </MUIText>
               </FlexBox>
             </AccordionSummary>
 
             <AccordionDetails
               sx={{
-                paddingLeft: '2.2rem',
+                paddingLeft: '2.9rem',
+
+                textAlign: 'right',
+                position: 'relative',
               }}
             >
-              <FlexBox justifyContent="center" alignItems="center" gap="11px">
-                <MUIText sx={{color: '#000', fontWeight: '500'}}>강함</MUIText>
+              {item.statisticsData.map((statisticsItem, index) => (
+                <FlexBox
+                  justifyContent="center"
+                  alignItems="center"
+                  gap="5px"
+                  style={{}}
+                  key={index}
+                >
+                  <MUIText
+                    sx={{
+                      color: '#000',
+                      fontWeight: '500',
+                      textAlign: 'left',
+                      width: '11%',
+                    }}
+                  >
+                    {statisticsItem.subTitle}
+                  </MUIText>
 
-                <ChartBar percent={50} />
+                  <ChartBar percent={statisticsItem.data} />
 
-                <MUIText sx={{color: '#000', fontWeight: '500'}}>20%</MUIText>
-              </FlexBox>
-
-              <FlexBox justifyContent="center" alignItems="center" gap="11px">
-                <MUIText sx={{color: '#000', fontWeight: '500'}}>보통</MUIText>
-
-                <ChartBar percent={50} />
-
-                <MUIText sx={{color: '#000', fontWeight: '500'}}>20%</MUIText>
-              </FlexBox>
-
-              <FlexBox justifyContent="center" alignItems="center" gap="11px">
-                <MUIText sx={{color: '#000', fontWeight: '500'}}>약함</MUIText>
-
-                <ChartBar percent={50} />
-
-                <MUIText sx={{color: '#000', fontWeight: '500'}}>20%</MUIText>
-              </FlexBox>
+                  <MUIText
+                    sx={{
+                      color: '#000',
+                      fontWeight: '500',
+                      width: '33px',
+                    }}
+                  >
+                    {statisticsItem.data}%
+                  </MUIText>
+                </FlexBox>
+              ))}
             </AccordionDetails>
           </Accordion>
         </div>
