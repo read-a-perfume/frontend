@@ -4,12 +4,12 @@ import styled from '@emotion/styled'
 import {theme} from '../../theme'
 import FormAgreement from './sign-up-agreement'
 import {formData} from './data.constant'
-import IndividualSignupInputs from './individual/individual-signup-inputs'
 import {useNavigate} from 'react-router-dom'
 import useMutation from 'src/store/server/use-mutation'
 import {fetchSignUp} from 'src/store/server/auth/mutations'
 import SignUpHeader from './sign-up-header'
 import SignUpFooter from './sign-up-footer'
+import SignupInputsIndividual from './sign-up-inputs-individual'
 
 const SignUpForm = () => {
   const {
@@ -42,7 +42,7 @@ const SignUpForm = () => {
     <>
       <SignUpFormContainer onSubmit={handleSubmit(onSubmit)}>
         <SignUpHeader title="회원가입" />
-        <IndividualSignupInputs
+        <SignupInputsIndividual
           formData={formData}
           register={register}
           errors={errors}
