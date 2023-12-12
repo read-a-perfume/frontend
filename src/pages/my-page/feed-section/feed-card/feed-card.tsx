@@ -1,14 +1,13 @@
 import {Box, Divider, Typography, styled} from '@mui/material'
-
 import FeedAuthor from './feed-author'
 import FeedImg from './feed-img'
 import FeedTag from './feed-tag'
 import FeedFooterContent from './feed-footer-content'
 import CustomIcons from '../../../../assets/icons/custom-Icons'
-import {eachReviewType} from 'types/api-res-type'
+import {EachReviewType} from 'types/api-res-type'
 
 interface proptype {
-  data: eachReviewType
+  data: EachReviewType
 }
 
 const FeedCard = ({data}: proptype) => {

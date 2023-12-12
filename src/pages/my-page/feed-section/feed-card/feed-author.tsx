@@ -1,8 +1,8 @@
 import {Avatar, Box, Typography, styled} from '@mui/material'
-import { userType } from 'types/api-res-type'
+import { UserType } from 'types/api-res-type'
 
 interface proptype {
-  user: userType
+  user: UserType
 }
 
 const FeedAuthor = ({user}: proptype) => {
