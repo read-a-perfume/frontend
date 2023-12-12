@@ -11,16 +11,17 @@ const FeedFooterContent = ({icon, title, value}: proptype) => {
   return (
     <Box sx={{display: 'flex', alignItems: 'center'}}>
       {icon}
-      <FooterText variant="body3">{`${title} ${value}개`}</FooterText>
+      <FooterText>{`${title} ${value}개`}</FooterText>
     </Box>
   )
 }
 
 export default FeedFooterContent
 
-const FooterText = styled(Typography)(({ theme }) => ({
+const FooterText = styled(Typography)(({theme}) => ({
   fontFamily: 'Pretendard',
   fontWeight: 500,
   color: theme.palette.grey['700'],
   marginLeft: '8px',
-}));
+  fontSize: theme.typography.body3.fontSize,
+}))
