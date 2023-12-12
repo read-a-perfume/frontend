@@ -5,7 +5,7 @@ import FeedImg from './feed-img'
 import FeedTag from './feed-tag'
 import FeedFooterContent from './feed-footer-content'
 import CustomIcons from '../../../../assets/icons/custom-Icons'
-import {eachReviewType} from 'src/type/api-res-type'
+import {eachReviewType} from 'types/api-res-type'
 
 interface proptype {
   data: eachReviewType
@@ -49,7 +49,7 @@ const FeedCardContainer = styled(Box)(() => ({
 }))
 
 const FeedContent = styled(Typography)(({theme}) => ({
-  fontSize:theme.typography.body2.fontSize,
+  fontSize: theme.typography.body2.fontSize,
   lineHeight: 1.5,
   textAlign: 'left',
   color: '#131313',

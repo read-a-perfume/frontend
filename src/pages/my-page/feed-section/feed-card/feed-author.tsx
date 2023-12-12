@@ -1,5 +1,5 @@
 import {Avatar, Box, Typography, styled} from '@mui/material'
-import {userType} from 'src/type/api-res-type'
+import { userType } from 'types/api-res-type'
 
 interface proptype {
   user: userType

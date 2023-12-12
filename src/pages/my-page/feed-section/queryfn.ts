@@ -1,11 +1,13 @@
+
 import instance from '@api/instance'
 import {AxiosResponse} from 'axios'
-import {eachReviewType} from 'src/type/api-res-type'
+import { eachReviewType } from 'types/api-res-type'
 
-export const getReviews = async (page:number): Promise<eachReviewType[]> => {
+export const getReviews = async (page: number): Promise<eachReviewType[]> => {
   try {
     const res: AxiosResponse<eachReviewType[]> = await instance.get(
-        `/reviews`,{params:{page:page,size:6}}
+      `/reviews`,
+      {params: {page: page, size: 6}},
     )
     return res.data
   } catch (error: any) {
