@@ -9,7 +9,7 @@ interface FormInputListProps {
   errors: FieldErrors<any>
 }
 
-const IndividualSignupInputs: React.FC<FormInputListProps> = ({
+const SignupInputsIndividual: React.FC<FormInputListProps> = ({
   formData,
   register,
   errors,
@@ -39,4 +39,4 @@ const IndividualSignupInputs: React.FC<FormInputListProps> = ({
   )
 }
 
-export default IndividualSignupInputs
+export default SignupInputsIndividual

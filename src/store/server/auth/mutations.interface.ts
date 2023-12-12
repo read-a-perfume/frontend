@@ -1,4 +1,4 @@
 export interface FetchLoginProps {
-    username: any
-    password: any
-  }
+  username: string
+  password: string
+}
