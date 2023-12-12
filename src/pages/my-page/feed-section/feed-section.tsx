@@ -1,10 +1,10 @@
-import {Box, Stack} from '@mui/material'
+import {Box, Stack, styled} from '@mui/material'
 import FeedChip from '../base/feed-chip'
-import {TEMP_EACH_FEED} from '../data/each-feed-data'
-import FeedCard from './feed-card/feed-card'
 import PageNumber from '../../../components/base/page-number-button'
-import styled from '@emotion/styled'
-import Card from '@components/base/card'
+import { getReviews } from './queryfn'
+import { useQuery } from '@tanstack/react-query'
+import FeedCard from './feed-card/feed-card'
+
 
 const FeedSection = () => {
   /*
@@ -14,6 +14,7 @@ const FeedSection = () => {
   페이지네이션: 각 페이지넘버를 클릭할때 마다 페이지넘버를 active해준다. 해당하는 페이지의 카드들의 데이터를 받고 렌더링해준다.
  
   */
+  const {data: reviews} = useQuery(['reviews'], () => getReviews(1))
 
   return (
     <div>
@@ -22,15 +23,9 @@ const FeedSection = () => {
         <FeedChip label="내가 작성한 피드" clickable active></FeedChip>
         <FeedChip label="좋아요" clickable active={false}></FeedChip>
       </Stack>
-      <FeedCard data={TEMP_EACH_FEED} />
-      <Card
-        coverImage={`/images/perfume.png`}
-        profileImage={`/images/perfume.png`}
-        title="안녕"
-        content={TEMP_EACH_FEED.content}
-        hashTags={TEMP_EACH_FEED.tag}
-        onClick={() => {}}
-      />
+      <ReviewsContainer>
+       {reviews && reviews.map((e,i)=><FeedCard data={e} key={i}/>)} 
+      </ReviewsContainer>
       <TestPageNumber>
         <PageNumber active={true} number={1} />
         <PageNumber active={false} number={2} />
@@ -48,3 +43,11 @@ const TestPageNumber = styled(Box)(() => ({
   justifyContent: 'center',
   marginTop: '130px',
 }))
+
+const ReviewsContainer = styled(Box)(()=>(
+  {
+    display:'flex',
+    gap: '32px',
+    flexWrap: 'wrap',
+  }
+))

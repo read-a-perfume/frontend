@@ -7,9 +7,7 @@ interface proptype {
 const FeedTag = ({tags}: proptype) => {
   return (
     <FeedTagContainer>
-      <TagText variant="body3" color="primary">
-        {'#' + tags.join(' #')}
-      </TagText>
+      <TagText color="primary">{'#' + tags.join(' #')}</TagText>
     </FeedTagContainer>
   )
 }
@@ -20,6 +18,6 @@ const FeedTagContainer = styled(Box)(() => ({
   margin: '16px 0',
 }))
 
-const TagText = styled(Typography)(() => ({
-  fontFamily: 'Pretendard',
+const TagText = styled(Typography)(({theme}) => ({
+  fontSize: theme.typography.body3.fontSize,
 }))

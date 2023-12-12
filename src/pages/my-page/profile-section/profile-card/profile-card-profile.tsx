@@ -71,9 +71,7 @@ export const Introduction = styled(Typography)(() => ({
   margin: '11px 0 10px',
   fontFamily: 'Pretendard',
   fontWeight: 500,
-
   lineHeight: 1.6,
-
   textAlign: 'left',
   color: '#000',
 }))

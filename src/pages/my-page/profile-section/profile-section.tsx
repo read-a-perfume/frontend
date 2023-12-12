@@ -39,7 +39,7 @@ const ProfileSection = () => {
           introduction={userInfo.introduction}
           follower={followCount.followerCount}
           following={followCount.followingCount}
-          mytype={[{name:'asdf',id:1,thumbnail:'',description:'asdf'}]}
+          mytype={[{name:'test',id:1,thumbnail:'',description:'test'}]}
           thumbnail={curUser.thumbnail}
         />
       )}
