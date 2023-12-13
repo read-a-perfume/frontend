@@ -1,8 +1,9 @@
 import {Avatar, Box, Typography, styled} from '@mui/material'
-import { mytypeType } from '../queryfn'
+import { UserTasteType } from 'types/reviews'
+
 
 interface proptype {
-  mytype:mytypeType[]
+  mytype:UserTasteType[]
 }
 
 const ProfileCardType = ({mytype}: proptype) => {

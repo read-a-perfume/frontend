@@ -1,15 +1,10 @@
 import instance from '@api/instance'
 import {AxiosResponse} from 'axios'
+import { FollowCountType, ReviewCountType, UserTasteType, UserType } from 'types/reviews'
 
-export interface curUserType {
-  userId: number
-  username: string
-  thumbnail: string
-}
-
-export const getCurUser = async (): Promise<curUserType> => {
+export const getCurUser = async (): Promise<UserType> => {
   try {
-    const res: AxiosResponse<curUserType> = await instance.get(`/me`)
+    const res: AxiosResponse<UserType> = await instance.get(`/me`)
     return res.data
   } catch (error: any) {
     console.log(error)
@@ -17,13 +12,9 @@ export const getCurUser = async (): Promise<curUserType> => {
   }
 }
 
-export interface reviewCountType {
-  reviewCount: number
-}
-
-export const getReviewCount = async (): Promise<reviewCountType> => {
+export const getReviewCount = async (): Promise<ReviewCountType> => {
   try {
-    const res: AxiosResponse<reviewCountType> = await instance.get(
+    const res: AxiosResponse<ReviewCountType> = await instance.get(
       `/mypage/reviews`,
     )
     return res.data
@@ -33,14 +24,9 @@ export const getReviewCount = async (): Promise<reviewCountType> => {
   }
 }
 
-export interface followCountType {
-  followerCount: number
-  followingCount: number
-}
-
-export const getFollowCount = async (): Promise<followCountType> => {
+export const getFollowCount = async (): Promise<FollowCountType> => {
   try {
-    const res: AxiosResponse<followCountType> = await instance.get(
+    const res: AxiosResponse<FollowCountType> = await instance.get(
       `/mypage/follows`,
     )
     return res.data
@@ -50,16 +36,11 @@ export const getFollowCount = async (): Promise<followCountType> => {
   }
 }
 
-export interface mytypeType {
-  id: number
-  name: string
-  description: string
-  thumbnail: string
-}
-
-export const getMytype = async (): Promise<mytypeType[]> => {
+export const getMytype = async (): Promise<UserTasteType[]> => {
   try {
-    const res: AxiosResponse<mytypeType[]> = await instance.get(`/user/tastes`)
+    const res: AxiosResponse<UserTasteType[]> = await instance.get(
+      `/user/tastes`,
+    )
     return res.data
   } catch (error: any) {
     console.log(error)

@@ -5,14 +5,15 @@ import {CreateOutlined} from '@mui/icons-material'
 import {useNavigate} from 'react-router-dom'
 import ProfileCardType from './profile-card-type'
 import ProfileCardProfile from './profile-card-profile'
-import { mytypeType } from '../queryfn'
+import { UserTasteType } from 'types/reviews'
+
 
 interface proptype {
   name: string
   introduction: string
   follower: number
   following: number
-  mytype: mytypeType[]
+  mytype: UserTasteType[]
   thumbnail:string
 }
 
