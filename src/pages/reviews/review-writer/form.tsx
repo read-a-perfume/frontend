@@ -1,5 +1,4 @@
 import {Box, styled} from '@mui/material'
-import useMutation from 'src/store/server/use-mutation'
 import ReviewFormFirst from './review-form-first'
 import ReviewFormSecond from './review-form-second'
 import ReviewFormLast from './review-form-last'
@@ -7,18 +6,20 @@ import ReviewFormProgassState from './review-form-prograss-state'
 import useReviewFormPreNext from './hooks/use-review-form-pre-nex'
 import ReviewFormPreNext from './review-form-pre-next'
 import useReviewForm from './hooks/use-review-form'
-import {fetchReviewCreate} from 'src/store/server/reviews/mutations'
+import {ReviewWriterFormProps} from './form.interface'
+// import useMutation from 'src/store/server/use-mutation'
+// import {fetchReviewCreate} from 'src/store/server/reviews/mutations'
 
-const formData = {
-  perfumeId: '',
+const formData: ReviewWriterFormProps = {
+  perfumeId: 1,
   dayType: '',
   strength: '',
   season: '',
-  duration: 0,
+  duration: '',
   shortReview: '',
-  feeling: '',
-  tags: [],
-  files: [],
+  fullReview: '',
+  keywords: [],
+  thumbnails: [],
 }
 
 const Form = () => {
@@ -37,24 +38,15 @@ const Form = () => {
   //리뷰 이미지 업로드
   //리뷰 이미지 삭제
 
-  const {mutate} = useMutation({
-    mutationFn: fetchReviewCreate,
-    mutationKey: ['post'],
-  })
+  // const {mutate} = useMutation({
+  //   mutationFn: fetchReviewCreate,
+  //   mutationKey: ['post'],
+  // })
 
   const handleSubmit = event => {
     event.preventDefault()
     // 선택된 값에 따른 작업 수행
-    mutate({
-      perfumeId: 1,
-      dayType: 'DAILY',
-      strength: 'LIGHT',
-      season: 'SPRING',
-      duration: 100,
-      shortReview: '',
-      feeling: '',
-      tags: [1, 2, 3, 4, 5],
-    })
+
     const formData = new FormData(event.current.target)
 
     // 다른 formValues를 append하는 부분
@@ -66,7 +58,7 @@ const Form = () => {
     formData.append('feeling', formValues.feeling)
 
     // files 배열을 append하는 부분
-    formValues.files.forEach((file, index) => {
+    formValues.thumbnails.forEach((file, index) => {
       formData.append(`file-${index + 1}`, file)
     })
     for (const pair of formData.entries()) {

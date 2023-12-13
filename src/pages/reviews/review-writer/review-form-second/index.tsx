@@ -2,19 +2,28 @@ import {FormControl, RadioGroup, TextField, styled} from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
 import SliderRating from './slider'
 import RadioRoundedButton from '../radio-rounded-button'
-import {top100Films} from './form-writer-start.constant'
-
+import {useState} from 'react'
+import useReviewFormSearch from '../hooks/use-review-form-search'
 const durations = ['1~3시간 정도', '4~6시간 정도', '7~9시간 정도', '9시간 이상']
-
+const inputLabelProps = {
+  style: {
+    fontSize: 14, // Adjust the font size as needed
+  },
+}
 const ReviewFormSecond = ({
   handleFormDataChange,
   formValues,
   handleAutoComplete,
 }: any) => {
-  const inputLabelProps = {
-    style: {
-      fontSize: 14, // Adjust the font size as needed
-    },
+  const [search, setSearch] = useState('')
+  const {options} = useReviewFormSearch({search})
+
+  const handleChangeInput = (event: any) => {
+    const target = event.target
+    const value: string = target.value
+    if (target && value && value.length > 0) {
+      setSearch(value)
+    }
   }
 
   return (
@@ -22,12 +31,14 @@ const ReviewFormSecond = ({
       <FormControl component="fieldset">
         <section>
           <Title>리뷰하고싶은 제품을 찾아주세요</Title>
-          <PerfumeSearch
+          <CustomAutoComplete
             disablePortal
             id="search"
-            options={top100Films}
+            options={options}
+            onInputChange={event => handleChangeInput(event)}
             onChange={handleAutoComplete}
             sx={{width: 411}}
+            autoHighlight
             renderInput={params => (
               <TextField
                 {...params}
@@ -36,9 +47,10 @@ const ReviewFormSecond = ({
                 InputLabelProps={inputLabelProps}
               />
             )}
-            renderOption={(props, option: any) => (
+            getOptionLabel={option => option.title}
+            renderOption={(props, option) => (
               <>
-                <Item {...props}>{option.label}</Item>
+                <Item {...props}>{option.title}</Item>
               </>
             )}
           />
@@ -119,28 +131,29 @@ const CustomRadioGroup = styled(RadioGroup)({
   },
 })
 
-const PerfumeSearch = styled(Autocomplete)`
-  box-sizing: border-box !important;
-  background: #fff;
+const CustomAutoComplete = styled(Autocomplete)({
+  '&': {
+    boxSizing: 'border-box !important',
+    background: ' #fff',
+  },
 
-  .MuiInputBase-root {
-    position: relative;
-    border-radius: 10px;
-    padding: 0;
-    height: 40px;
-  }
-
-  .MuiInputBase-input {
-    border: none;
-    padding: 0;
-  }
-  .MuiOutlinedInput-root .MuiAutocomplete-input {
-    padding: 0;
-    font-size: 14px;
-    padding-left: 24px;
-  }
-  .MuiInputLabel-root {
+  '.MuiInputBase-root': {
+    position: 'relative',
+    borderRadius: '10px',
+    padding: 0,
+    height: '40px',
+  },
+  '.MuiInputBase-input ': {
+    border: 'none',
+    padding: 0,
+  },
+  '.MuiOutlinedInput-root .MuiAutocomplete-input': {
+    padding: 0,
+    fontSize: '14px',
+    paddingLeft: '24px',
+  },
+  ' .MuiInputLabel-root': {
     /* top: 50%;
     transform: translateY(-50%); */
-  }
-`
+  },
+}) as typeof Autocomplete

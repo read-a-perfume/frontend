@@ -1,7 +1,9 @@
 import {Avatar, Box, Typography, styled} from '@mui/material'
+import { UserTasteType } from 'types/reviews'
+
 
 interface proptype {
-  mytype: string
+  mytype:UserTasteType[]
 }
 
 const ProfileCardType = ({mytype}: proptype) => {
@@ -16,8 +18,8 @@ const ProfileCardType = ({mytype}: proptype) => {
         </Typography>
       </TitleContainer>
       <MytypeContainer>
-        <TypeAvatar>F</TypeAvatar>
-        <TypeText variant="body3">{mytype}</TypeText>
+        <TypeAvatar src={mytype[0].thumbnail} alt={mytype[0].name}/>
+        <TypeText variant="body3">{mytype[0].name}</TypeText>
       </MytypeContainer>
     </TypeContainer>
   )
@@ -47,10 +49,6 @@ const TypeText = styled(Typography)(() => ({
   flexGrow: 0,
   fontFamily: 'Arita-buri',
   fontWeight: 500,
-  fontStretch: 'normal',
-  fontStyle: 'normal',
-  lineHeight: 'normal',
-  letterSpacing: 'normal',
   textAlign: 'left',
   color: '#000',
   marginBottom: '9px',

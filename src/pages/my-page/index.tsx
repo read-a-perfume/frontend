@@ -6,12 +6,12 @@ const MyPage = () => {
   return (
     <div>
       <Banner>
-        <BannerText variant="h1">마이페이지 관련 멘트</BannerText>
+        <BannerText>마이페이지 관련 멘트</BannerText>
       </Banner>
       <ContentSection>
-        <Title variant="h1">마이페이지</Title>
+        <Title>마이페이지</Title>
         <ProfileSection />
-        <Title variant="h1">피드모아보기</Title>
+        <Title>피드모아보기</Title>
         <FeedSection />
       </ContentSection>
     </div>
