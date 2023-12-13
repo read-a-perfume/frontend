@@ -26,7 +26,6 @@ const Information = ({isLoading, graphData}: InformationProps) => {
       data: [0, 0, 0, 0, 0],
     },
   ])
-  console.log(setSeries)
   const sumData = (graphData: graphDataType) => {
     // 무게감
     const dayType =

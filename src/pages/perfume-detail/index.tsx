@@ -1,9 +1,10 @@
 import {useEffect, useState} from 'react'
 import {Link, useParams} from 'react-router-dom'
-import {useQuery} from '@tanstack/react-query'
+import {useQueries} from '@tanstack/react-query'
 import {
-  getPerfume,
-  getPerfumeGraph,
+  fetchPerfume,
+  fetchPerfumeGraph,
+  fetchPerfumeReviewData,
 } from 'src/store/server/perfume-datail/queries'
 
 import Carousel from './carousel'
@@ -213,46 +214,40 @@ const isLoadingData = Array.from({length: 4}, (_, index) => index + 1)
 const PerfumeDetail = () => {
   const params = useParams()
 
-  // 마지막 페이지
-  const LAST_PAGE =
-    dummydata.length % 6 === 0
-      ? parseInt((dummydata.length / 6) as any)
-      : parseInt((dummydata.length / 6) as any) + 1
-
   const [page, setPage] = useState(1) // 처음 페이지는 1
-  const [reviewData, setReviewData] = useState<string[]>([])
   const [perfumes, setPerfumes] = useState<string[]>([])
 
-  const {isLoading, error, data} = useQuery({
-    queryKey: ['perfume'],
-    queryFn: () => getPerfume(params.id as string),
+  const results = useQueries({
+    queries: [
+      {
+        queryKey: ['post', 1],
+        queryFn: () => fetchPerfume(params.id as string),
+      },
+      {
+        queryKey: ['post', 2],
+        queryFn: () => fetchPerfumeGraph(params.id as string),
+      },
+      {
+        queryKey: ['post', 3],
+        queryFn: () => fetchPerfumeReviewData(params.id as string),
+      },
+    ],
   })
-  const {isLoading: graphLoading, data: graphData} = useQuery({
-    queryKey: ['perfume-detail-graph'],
-    queryFn: () => getPerfumeGraph(params.id as string),
-  })
+  const {isLoading, error, data} = results[0]
+  const {isLoading: graphLoading, data: graphData} = results[1]
+  const {isLoading: reviewLoading, data: reviewData} = results[2]
 
   const handlePage = (event: any) => {
     const nowPageInt = parseInt(event.target.outerText)
     setPage(nowPageInt)
   }
 
-  useEffect(() => {
-    // 한 페이지에 6개씩 보여줍니다.
-    if (page === LAST_PAGE) {
-      setReviewData(dummydata.slice(6 * (page - 1)) as any)
-    } else {
-      setReviewData(dummydata.slice(6 * (page - 1), 6 * (page - 1) + 6) as any)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page])
+  console.log('error!:', error)
 
   // 임시
   useEffect(() => {
     setPerfumes(dummydata.slice(0, 4) as any)
   }, [])
-  console.log(graphData)
-  if (error) return 'An error has occurred: ' + error
   return (
     <Container>
       <FlexBox>
@@ -331,11 +326,12 @@ const PerfumeDetail = () => {
 
       {/* 향수 리뷰 */}
       <Box sx={{marginTop: '200px'}}>
-        <DetailReviewList reviewData={reviewData} isLoading={isLoading} />
+        <DetailReviewList reviewData={reviewData} isLoading={reviewLoading} />
 
         <Footer>
           <Pagination
-            count={LAST_PAGE}
+            count={reviewData?.totalPages}
+            page={page}
             defaultPage={1}
             boundaryCount={2}
             color="standard"

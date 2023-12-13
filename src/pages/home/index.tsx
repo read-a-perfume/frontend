@@ -6,7 +6,7 @@ import Button from '@components/base/button.js'
 import Products from './products.js'
 import {useNavigate} from 'react-router-dom'
 import {CategoryNameType} from '@components/category/interfaces.js'
-import {fetchGetCategories} from 'src/store/server/categories/queries.js'
+import {fetchCategories} from 'src/store/server/categories/queries.js'
 import {useQuery} from '@tanstack/react-query'
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
     data: categories,
   } = useQuery<CategoryNameType[]>({
     queryKey: ['categories'],
-    queryFn: fetchGetCategories,
+    queryFn: fetchCategories,
     staleTime: 99999,
   })
 

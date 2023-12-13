@@ -74,8 +74,6 @@ const AccordionChart = ({graphData}: InformationProps) => {
       setExpanded(isExpanded ? panel : false)
     }
 
-  console.log(accordionData)
-
   useEffect(() => {
     setAccordionData(prevData => {
       const updatedData = [...prevData]
