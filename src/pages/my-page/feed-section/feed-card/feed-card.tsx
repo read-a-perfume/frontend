@@ -4,7 +4,7 @@ import FeedImg from './feed-img'
 import FeedTag from './feed-tag'
 import FeedFooterContent from './feed-footer-content'
 import CustomIcons from '../../../../assets/icons/custom-Icons'
-import { IfReview } from 'types/reviews'
+import { IfReview } from 'types/review.interface'
 
 interface proptype {
   data: IfReview

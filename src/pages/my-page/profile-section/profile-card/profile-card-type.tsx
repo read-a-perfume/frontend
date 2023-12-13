@@ -1,9 +1,10 @@
 import {Avatar, Box, Typography, styled} from '@mui/material'
-import { UserTasteType } from 'types/reviews'
+import { IfUserType } from 'types/user.interface'
+
 
 
 interface proptype {
-  mytype:UserTasteType[]
+  mytype:IfUserType[]
 }
 
 const ProfileCardType = ({mytype}: proptype) => {

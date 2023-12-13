@@ -1,32 +1,15 @@
-// 임시 타입
-export interface UserType {
-  id: number
-  username: string
-  thumbnail: string
-}
-
-export interface AuthorType {
+// api와 통신하진 않지만 api 데이터내에 포함된 리뷰 작성자
+export interface IfReviewAuthor {
   id: number
   name: string
 }
 
-export interface UserTasteType {
+// api와 통신하진 않지만 api 대이터내에 포함된 리뷰 작성자
+export interface IfReviewUser{
   id: number
-  name: string
-  description: string
-  thumbnail: string
+  username:string
+  thumbnail:string
 }
-
-export interface ReviewCountType {
-  reviewCount: number
-}
-
-export interface FollowCountType {
-  followerCount: number
-  followingCount: number
-}
-
-// ----------------
 
 interface IfReviewBase {
   shortReview: string
@@ -46,7 +29,7 @@ interface IfReviewBaseDetail {
 // 리뷰 목록 조회
 export interface IfReview extends IfReviewBase {
   id: number
-  user: UserType // 수정 예정
+  user: IfReviewUser
   likeCount: number
   commentCount: number
 }
@@ -56,11 +39,11 @@ export interface IfReviewDetail extends IfReviewBase, IfReviewBaseDetail {
   id: number
   likeCount: number
   commentCount: number
-  author: AuthorType // 수정 예정
+  author: IfReviewAuthor 
 }
 
 // 리뷰 생성
-export interface IfReviewPost extends IfReviewBase, IfReviewBaseDetail {}
+export interface IfReviewRequest extends IfReviewBase, IfReviewBaseDetail {}
 
 // 리뷰 삭제
 export interface IfReviewDelete {

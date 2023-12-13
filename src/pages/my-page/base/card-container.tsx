@@ -1,8 +1,8 @@
 import {Box, styled} from '@mui/material'
 
 const CardContainer = styled(Box)(() => ({
-  flex: 1,
   maxWidth: '512px',
+  minWidth: '512px',
   borderRadius: '15px',
   border: 'solid 1px #dbdbdb',
   padding: '24px 24px 0 24px',

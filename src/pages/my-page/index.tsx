@@ -11,7 +11,7 @@ const MyPage = () => {
       <ContentSection>
         <Title>마이페이지</Title>
         <ProfileSection />
-        <Title>피드모아보기</Title>
+        <Title sx={{marginTop: '88px'}}>피드모아보기</Title>
         <FeedSection />
       </ContentSection>
     </div>
@@ -45,12 +45,12 @@ const BannerText = styled(Typography)(() => ({
 
 const ContentSection = styled(Box)(({theme}) => ({
   flexGrow: 0,
-  padding: '0 160px 78px 160px',
+  padding: '88px 160px 78px 160px',
   backgroundColor: theme.palette.grey[100],
 }))
 
 const Title = styled(Typography)(() => ({
-  marginTop: '88px',
+ 
   marginBottom: '64px',
   fontFamily: 'Arita-buri(OTF)',
   fontSize: '32px',

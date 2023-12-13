@@ -36,6 +36,6 @@ export default ProfileSection
 
 const Container = styled(Box)(() => ({
   display: 'flex',
-  justifyContent: 'space-between',
+  flexWrap: 'wrap',
   gap: '32px',
 }))
