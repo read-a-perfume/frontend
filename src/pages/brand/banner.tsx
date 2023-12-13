@@ -18,10 +18,12 @@ const Banner = ({fileURL, fileRef, setFILEURL, enterprise}: proptype) => {
       setFILEURL(newFileURL)
     }
   }
+
+
   return (
-    <BannerContainer>
+    <BannerContainer flag={enterprise || (fileURL !== '')}>
       {fileURL && (
-        <BannerImage src={fileURL} alt="banner" enterprise={enterprise} />
+        <BannerImage src={fileURL} alt="banner" enterprise={enterprise}/>
       )}
       <input
         type="file"
@@ -53,12 +55,14 @@ const Banner = ({fileURL, fileRef, setFILEURL, enterprise}: proptype) => {
 
 export default Banner
 
-const BannerContainer = styled(Box)(() => ({
+
+
+const BannerContainer = styled(Box)<{flag:boolean}>(({flag}) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   width: '100%',
-  height: '470px',
+  height: flag ? '470px' : '235px',
   backgroundColor: '#F1F1F1',
   position: 'relative',
   top: 0,

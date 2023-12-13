@@ -1,5 +1,5 @@
 import {Avatar, Box, Typography, styled} from '@mui/material'
-import { UserTasteType } from 'types/api-res-type'
+import { UserTasteType } from 'types/reviews'
 
 
 interface proptype {

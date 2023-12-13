@@ -1,11 +1,6 @@
 import instance from '@api/instance'
 import {AxiosResponse} from 'axios'
-import {
-  FollowCountType,
-  ReviewCountType,
-  UserTasteType,
-  UserType,
-} from 'types/api-res-type'
+import { FollowCountType, ReviewCountType, UserTasteType, UserType } from 'types/reviews'
 
 export const getCurUser = async (): Promise<UserType> => {
   try {

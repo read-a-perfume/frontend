@@ -5,7 +5,7 @@ import {CreateOutlined} from '@mui/icons-material'
 import {useNavigate} from 'react-router-dom'
 import ProfileCardType from './profile-card-type'
 import ProfileCardProfile from './profile-card-profile'
-import { UserTasteType } from 'types/api-res-type'
+import { UserTasteType } from 'types/reviews'
 
 
 interface proptype {

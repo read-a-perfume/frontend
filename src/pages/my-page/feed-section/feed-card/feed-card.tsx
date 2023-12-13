@@ -4,10 +4,10 @@ import FeedImg from './feed-img'
 import FeedTag from './feed-tag'
 import FeedFooterContent from './feed-footer-content'
 import CustomIcons from '../../../../assets/icons/custom-Icons'
-import {EachReviewType} from 'types/api-res-type'
+import { IfReview } from 'types/reviews'
 
 interface proptype {
-  data: EachReviewType
+  data: IfReview
 }
 
 const FeedCard = ({data}: proptype) => {
