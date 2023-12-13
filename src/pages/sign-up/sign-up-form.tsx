@@ -6,7 +6,7 @@ import FormAgreement from './sign-up-agreement'
 import {formData} from './data.constant'
 import {useNavigate} from 'react-router-dom'
 import useMutation from 'src/store/server/use-mutation'
-import {fetchSignUp} from 'src/store/server/auth/mutations'
+import {postSignUp} from 'src/store/server/auth/mutations'
 import SignUpHeader from './sign-up-header'
 import SignUpFooter from './sign-up-footer'
 import SignupInputsIndividual from './sign-up-inputs-individual'
@@ -23,7 +23,7 @@ const SignUpForm = () => {
   const nav = useNavigate()
 
   const {mutate} = useMutation({
-    mutationFn: fetchSignUp,
+    mutationFn: postSignUp,
     mutationKey: ['sign-up'],
   })
 
@@ -32,6 +32,8 @@ const SignUpForm = () => {
       username: data.username,
       password: data.password,
       email: data.email,
+      marketingConsent: false,
+      promotionConsent: false,
     }
     mutate(newData, {
       onSuccess: () => nav('/'),

@@ -12,7 +12,7 @@ import useMutation from 'src/store/server/use-mutation'
 import {useNavigate} from 'react-router-dom'
 import SignInOptions from './sign-in-options'
 import SignInButtonGroup from './sign-in-button-group'
-import {fetchLogin} from 'src/store/server/auth/mutations'
+import {postLogin} from 'src/store/server/auth/mutations'
 
 const SignInForm = () => {
   const [value, setValue] = useState(0)
@@ -27,7 +27,7 @@ const SignInForm = () => {
   const nav = useNavigate()
 
   const {mutate} = useMutation({
-    mutationFn: fetchLogin,
+    mutationFn: postLogin,
     mutationKey: ['sign-in'],
     options: {
       onError: error => alert(error),

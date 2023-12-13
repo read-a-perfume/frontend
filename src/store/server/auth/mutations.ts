@@ -1,17 +1,25 @@
 import instance from '@api/instance'
-import {FetchLoginProps} from './mutations.interface'
+import {IfLogin, IfSignUp} from 'types/auth.interface'
 
-export const fetchLogin = async (data: FetchLoginProps) => {
+export const postLogin = async (data: IfLogin) => {
   return await instance.post('/login', {...data})
 }
 
-export const fetchUserProfile = async () => {
-  return await instance.get('/me')
+export const postSignUp: (
+  signUpdata: IfSignUp,
+) => Promise<IfLogin> = async signUpdata => {
+  const API_URL = '/signup/email'
+  const res = await instance.post(API_URL, {
+    ...signUpdata,
+  })
+  const data = await res.data
+  return data
 }
 
-export const fetchSignUp = async data => {
-  const API_URL = '/signup/email'
-  return await instance.post(API_URL, {
-    ...data,
+export const postSignUpIdDuplicationCheck = async (userId: string) => {
+  const res = await instance.post('/signup/check-username', {
+    userId,
   })
+  const data = await res.data
+  return data
 }

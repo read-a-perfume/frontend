@@ -1,23 +1,15 @@
-// import {useMutation} from '@tanstack/react-query'
-import axios, {AxiosResponse} from 'axios'
+import axios from 'axios'
 import {useCallback} from 'react'
 import {useNavigate} from 'react-router-dom'
-import {fetchUserProfile} from 'src/store/server/auth/mutations'
+import {fetchUserProfile} from 'src/store/server/auth/queries'
 import useMutation from 'src/store/server/use-mutation'
-
-interface Data {
-  userId: number
-  username: string
-  thumbnail: string
-}
 
 const useAuthRedirect = () => {
   const navigate = useNavigate()
   const redirectAuth = async () => {
     try {
       const res = await fetchUserProfile()
-      const data = await res.data
-      return data
+      return res
     } catch (error) {
       // 에러코드별로 에러 처리
       if (axios.isAxiosError(error) && error.response) {
@@ -48,7 +40,7 @@ const useAuthRedirect = () => {
     }
   }
 
-  const {mutate} = useMutation<AxiosResponse<Data>>({
+  const {mutate} = useMutation({
     mutationKey: ['userProfile'],
     mutationFn: redirectAuth,
     options: {
