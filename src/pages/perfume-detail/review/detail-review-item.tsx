@@ -66,7 +66,7 @@ const DetailReviewItem = ({item}: IfDetailReviewItemProps) => {
               aria-label="유저이미지"
             ></Avatar>
           }
-          // 유저 닉네임 혹은 아이디
+          // 유저 닉네임, 아이디
           title={
             <Typography variant="body4" sx={{fontWeight: '600', color: '#000'}}>
               {item?.user?.username}
