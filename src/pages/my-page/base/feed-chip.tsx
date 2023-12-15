@@ -1,23 +1,36 @@
 import {Chip, styled} from '@mui/material'
+import {ShowBenchmarkType} from '../feed-section/type'
 
 interface proptype {
-  active: boolean
+  reference: ShowBenchmarkType
+  benchmark: ShowBenchmarkType
+  onClick: React.MouseEventHandler<HTMLDivElement>
+  label: string
 }
 
-const FeedChip = styled(Chip)<proptype>(({theme, active}) => ({
+const FeedChip = ({reference, benchmark, label, onClick}: proptype) => {
+  
+  return (
+    <_FeedChip
+      active={benchmark === reference}
+      label={label}
+      onClick={onClick}
+      clickable={benchmark !== reference}
+    />
+  )
+}
+
+export default FeedChip
+
+const _FeedChip = styled(Chip)<{active: boolean}>(({theme, active}) => ({
   margin: '0 28px 0 0',
   fontFamily: 'Pretendard',
   fontSize: '16px',
   fontWeight: '600',
-  fontStretch: 'normal',
-  fontStyle: 'normal',
   lineHeight: '1.6',
-  letterSpacing: 'normal',
   textAlign: 'left',
   color: active ? '#fff' : '#a9a9a9',
   padding: '12px 0',
   height: '42px',
   backgroundColor: active ? theme.palette.primary.main : '',
 }))
-
-export default FeedChip

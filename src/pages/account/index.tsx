@@ -1,124 +1,65 @@
-import styled from '@emotion/styled'
-import FlexBox from '@layouts/flex-box.js'
-import Header from '@layouts/header.js'
-import {Typography} from '@mui/material'
-import {Banner, BannerImage, SettingsTitle} from '@pages/brand/brand.style.js'
-import {BannerBox} from '@pages/brand/magazine-content.js'
-import {Title} from '@pages/home/index.style.js'
-import {useRef, useState} from 'react'
-import AccountSettings from './account-settings.js'
-import Privacy from './privacy.js'
-import PublicProfile from './public-profile.js'
+import Banner from '@components/base/banner'
+import {
+  Box,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+  styled,
+} from '@mui/material'
+import Title from './base/Title'
+import MuiButton from '@components/base/mui-button'
+import Calendar from 'react-calendar'
+import { useState } from 'react'
+import "./calendar.css";
 
-export const Item = styled(Typography)(({clicked}: {clicked: boolean}) => ({
-  width: 87,
-  fontSize: 18,
-  cursor: 'pointer',
-  lineHeight: '20px',
-  fontWeight: clicked ? 600 : 500,
-  color: clicked ? '#FE7156' : '#191919',
-  borderBottom: clicked ? '2px solid #FE7156' : '2px solid white',
-  textAlign: 'left',
-  paddingBottom: 8,
-  marginRight: 48,
-}))
+type ValuePiece = Date | null;
 
-export interface InputProps {
-  introduction: string
-  type: string[]
-  birth: string
-  gender: string
-  email: string
-  password: string
-}
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const Account = () => {
-  const [navClicked, setNavClicked] = useState<string>('public')
-  const firstBlock = useRef<HTMLDivElement>(null)
-  const secondBlock = useRef<HTMLDivElement>(null)
-  const thirdBlock = useRef<HTMLDivElement>(null)
-  const [inputs, setInputs] = useState<InputProps>({
-    introduction: '',
-    type: [],
-    birth: '',
-    gender: 'male',
-    email: '',
-    password: '',
-  })
 
-  const clickHandler = (type: string) => {
-    setNavClicked(type)
-    secondBlock.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    })
-  }
+  const [value, onChange] = useState<Value>(new Date());
+
+  console.log(value);
+
 
   return (
-    <>
-      <Header />
-      <Banner>
-        <BannerImage src="/images/banner.png" alt="banner" />
-        <BannerBox>
-          <Title>
-            REED A PERFUME에 오신것을 환영합니다.
-            <br />
-            ~~마이페이지관련멘트~~
-          </Title>
-        </BannerBox>
-      </Banner>
-      <FlexBox
-        style={{
-          width: '100%',
-          height: '100%',
-          paddingTop: 54,
-          background: '#FAFAFA',
-        }}
-      >
-        <FlexBox
-          direction="column"
-          alignItems="flex-end"
-          style={{
-            width: '35.5%',
-            paddingRight: 138,
-          }}
-        >
-          <SettingsTitle>설정 및 관리</SettingsTitle>
-          <FlexBox gap="16px" direction="column">
-            <Item
-              onClick={() => clickHandler('public')}
-              clicked={navClicked === 'public'}
-            >
-              공개 프로필
-            </Item>
-            <Item
-              onClick={() => clickHandler('private')}
-              clicked={navClicked === 'private'}
-            >
-              개인정보
-            </Item>
-            <Item
-              onClick={() => clickHandler('account')}
-              clicked={navClicked === 'account'}
-            >
-              계정관리
-            </Item>
-          </FlexBox>
-        </FlexBox>
-        <FlexBox style={{width: '336px', height: '100%'}} direction="column">
-          <div ref={firstBlock}>
-            <PublicProfile inputs={inputs} setInputs={setInputs} />
-          </div>
-          <div ref={secondBlock}>
-            <Privacy inputs={inputs} setInputs={setInputs} />
-          </div>
-          <div ref={thirdBlock}>
-            <AccountSettings inputs={inputs} setInputs={setInputs} />
-          </div>
-        </FlexBox>
-      </FlexBox>
-    </>
+    <Container>
+      <Banner />
+      <Title title="자기 소개" />
+      <textarea />
+      <Title title="성별" />
+      <FormControl>
+        <RadioGroup defaultValue="female" name="radio-buttons-group" row>
+          <FormControlLabel value="남성" control={<Radio />} label="남성" />
+          <FormControlLabel value="여성" control={<Radio />} label="여성" />
+          <FormControlLabel
+            value="선택하지 않음"
+            control={<Radio />}
+            label="선택하지 않음"
+          />
+        </RadioGroup>
+      </FormControl>
+      <Title title="생년월일" />
+      <h1>{`${value?.toString()}`}</h1>
+      <Calendar value={value} onChange={onChange}/>
+      <MuiButton title="저장하기" type="primary"/>
+      <Title title="이메일" />
+      <TextField label="이메일" variant="filled" />
+      <MuiButton title="저장하기" type="primary"/>
+      <Title title="비밀번호" />
+      <TextField label="현재 비밀번호" variant="filled" />
+      <TextField label="새 비밀번호" variant="filled" />
+      <TextField label="새 비밀번호 확인" variant="filled" />
+      <MuiButton title="저장하기" type="primary"/>
+    </Container>
   )
 }
 
 export default Account
+
+const Container = styled(Box)(({theme}) => ({
+  backgroundColor: theme.palette.grey[100],
+}))

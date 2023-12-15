@@ -3,16 +3,16 @@ import ProfileCard from './profile-card/profile-card'
 import ReviewCard from './review-card/review-card'
 import FavoriteCard from './favorite-card/favorite-card'
 import {useQuery} from '@tanstack/react-query'
-import {getCurUser, getFollowCount, getMytype, getReviewCount} from './queryfn'
+import {fetchCurUser, getFollowCount, fetchMytype, fetchReviewCount} from './queryfn'
 
 const ProfileSection = () => {
-  const {data: curUser} = useQuery(['curuser'], () => getCurUser())
+  const {data: curUser} = useQuery(['curuser'], () => fetchCurUser())
 
-  const {data: reviewCount} = useQuery(['reviewcount'], () => getReviewCount())
+  const {data: reviewCount} = useQuery(['reviewcount'], () => fetchReviewCount())
 
   const {data: followCount} = useQuery(['followcount'], () => getFollowCount())
 
-  const {data: mytype} = useQuery(['mytype'], () => getMytype())
+  const {data: mytype} = useQuery(['mytype'], () => fetchMytype())
 
   return (
     <Container>
