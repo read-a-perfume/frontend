@@ -22,12 +22,6 @@ export default function Home() {
     staleTime: 99999,
   })
 
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     navigate('/sign-in')
-  //   }
-  // }, [])
-
   return (
     <>
       <Banner>
