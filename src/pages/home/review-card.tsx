@@ -1,6 +1,7 @@
 import FlexBox from '@layouts/flex-box.js'
 import CustomIcons from '@assets/icons/custom-Icons.js'
 import {
+  ContentsBox,
   HashTags,
   ImageBox,
   MainImageCover,
@@ -17,47 +18,58 @@ import {
   SingleImageCover,
 } from './review-card.styles.js'
 import Avatar from '@components/base/avatar.js'
+import {Reviews} from './review.js'
 
-const ReviewCard = ({width}: {width: string}) => {
-  const images = ['']
-  const hash = ['플로랄', '플로랄', '고급짐']
+interface ReviewCardProps {
+  width: string
+  item: Reviews
+}
 
+const ReviewCard = ({width, item}: ReviewCardProps) => {
   return (
-    <ReviewLayout width={width}>
+    <ReviewLayout
+      width={width}
+      height={item.shortReview.length <= 30 ? '408px' : '428px'}
+    >
       <FlexBox alignItems="center">
-        <Avatar size="32px" url={undefined} />
-        <ReviewerID>hwang_yo92</ReviewerID>
+        <Avatar size="32px" url={item.user.thumbnail || 'images/banner.png'} />
+        <ReviewerID>{item.user.username}</ReviewerID>
       </FlexBox>
       <ImageBox>
-        {images.length == 1 ? (
+        {!item.thumbnails.length && (
           <SingleImageCover>
             <ReviewSingleImage src="images/perfume-detail/review-preview02.jpg" />
           </SingleImageCover>
-        ) : (
+        )}
+        {item.thumbnails.length == 1 && (
+          <SingleImageCover>
+            <ReviewSingleImage src={item.thumbnails[0]} />
+          </SingleImageCover>
+        )}
+        {item.thumbnails.length > 0 && (
           <FlexBox justifyContent="space-between" gap="12px">
             <MainImageCover>
-              <ReviewMainImage src="images/perfume-detail/review-preview02.jpg" />
+              <ReviewMainImage src={item.thumbnails[0]} />
             </MainImageCover>
             <OtherImages>
-              <OtherImagesTypo>+ {images.length - 1}</OtherImagesTypo>
-              <ReviewImage src="images/perfume-detail/review-preview03.jpg" />
+              <OtherImagesTypo>+ {item.thumbnails.length - 1}</OtherImagesTypo>
+              <ReviewImage src={item.thumbnails[1]} />
             </OtherImages>
           </FlexBox>
         )}
       </ImageBox>
-      <ReviewText>
-        이 향수는 우아하고 로맨틱한 플로랄 향으로, 꽃 향기의 매력과 여성스러움을
-        감추고 있습니다.
-      </ReviewText>
-      <HashTags>{'#' + hash.join(' #')}</HashTags>
+      <ContentsBox>
+        <ReviewText>{item.shortReview}</ReviewText>
+        <HashTags>{'#' + item.keywords.join(' #')}</HashTags>
+      </ContentsBox>
       <Options>
         <FlexBox>
           <CustomIcons.HeartIcon />
-          <OptionsText>좋아요 172개</OptionsText>
+          <OptionsText>좋아요 {item.likeCount}개</OptionsText>
         </FlexBox>
         <FlexBox>
           <CustomIcons.CommentIcon2 />
-          <OptionsText>댓글 40개</OptionsText>
+          <OptionsText>댓글 {item.commentCount}개</OptionsText>
         </FlexBox>
       </Options>
     </ReviewLayout>
