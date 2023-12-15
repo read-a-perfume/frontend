@@ -47,6 +47,7 @@ const SignUpForm = () => {
         <SignupInputsIndividual
           formData={formData}
           register={register}
+          control={control}
           errors={errors}
         />
         <FormAgreement control={control} setValue={setValue} watch={watch} />

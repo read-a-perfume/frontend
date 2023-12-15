@@ -1,6 +1,8 @@
-import {OutlinedInput, Typography} from '@mui/material'
+import {TextField, Typography} from '@mui/material'
 import {styled, Box} from '@mui/material'
-import {theme} from '@theme/index'
+import {Controller, ControllerFieldState} from 'react-hook-form'
+import SignUpIdCheck from '../sign-up-id-check'
+import useSignUpIdCheck from '../hooks/use-sign-up-id-check'
 
 interface FormTextFiledValidationProps {
   label: string // 라벨
@@ -9,33 +11,63 @@ interface FormTextFiledValidationProps {
   placeholder: string // 입력 전 값
   showPassword?: boolean // 패스워드 보이게 할지 말지 설정 값
   register: any
+  control: any
 }
-
 const SignUpValidation = ({
   label,
-  errors,
   placeholder,
   name,
   showPassword,
   register,
+  control,
 }: FormTextFiledValidationProps) => {
+  const {mutateCheckUserId, idCheckMessage} = useSignUpIdCheck({
+    success: '아이디가 인증되었습니다',
+    failed: '아이디 사용이 불가능합니다',
+  })
+
+  const helperTextService = (filedState: ControllerFieldState) => {
+    if (filedState.error && filedState.error.message) {
+      return filedState.error.message
+    }
+    if (!filedState.error && idCheckMessage) {
+      return idCheckMessage
+    }
+  }
+
   return (
-    <TextFiledWrapper sx={{width: '342px'}}>
+    <TextFiledWrapper sx={{width: '342px', position: 'relative'}}>
       <Typography variant="body3" mb={2}>
         {label}
       </Typography>
-      <TextFiled
+      <Controller
+        hiddenLabel
         name={name}
-        placeholder={placeholder}
-        type={showPassword ? 'password' : 'text'}
-        color="info"
+        control={control}
         {...register}
+        render={({field, fieldState}) => (
+          <>
+            <CustomTextFiled
+              hiddenLabel
+              InputLabelProps={{shrink: false}}
+              type={showPassword ? 'password' : 'text'}
+              value={field.value}
+              onChange={field.onChange}
+              onBlur={field.onBlur}
+              error={!!fieldState.error}
+              helperText={helperTextService(fieldState)}
+              placeholder={placeholder}
+            />
+            {label === '아이디' && (
+              <SignUpIdCheck
+                title="중복확인"
+                value={field.value}
+                checkUserId={mutateCheckUserId}
+              />
+            )}
+          </>
+        )}
       />
-      {errors && (
-        <Typography variant="body5" color={theme.palette.error.main} mt={1}>
-          {errors.message}
-        </Typography>
-      )}
     </TextFiledWrapper>
   )
 }
@@ -48,9 +80,11 @@ const TextFiledWrapper = styled(Box)(({theme}) => ({
   },
 }))
 
-const TextFiled = styled(OutlinedInput)(({theme}) => ({
-  fontSize: theme.typography.body3.fontSize,
-  background: '#ffff',
-  borderRadius: '10px',
-  height: '48px',
+const CustomTextFiled = styled(TextField)(({theme}) => ({
+  '& > .MuiOutlinedInput-root': {
+    fontSize: theme.typography.body3.fontSize,
+    background: '#ffff',
+    borderRadius: '10px',
+    height: '48px',
+  },
 }))

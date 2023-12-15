@@ -1,20 +1,22 @@
-import {useCallback, useState} from 'react'
+import {useCallback} from 'react'
 import {fetchUserProfile} from 'src/store/server/auth/queries'
 import {useRouter} from './use-router'
+import {useRecoilState} from 'recoil'
+import {UserAtom} from 'src/store/client/auth/atoms'
 
 const useAuthRedirect = () => {
-  const [isLoggined, setIsLoggined] = useState(false)
+  const [isLoggined, setIsLoggined] = useRecoilState(UserAtom)
   const {routeTo} = useRouter()
   const redirectAuth = useCallback(async () => {
-    try {
-      await fetchUserProfile()
-      setIsLoggined(true)
-      routeTo('/')
-    } catch {
-      setIsLoggined(false)
-      routeTo('/sign-in')
+    const userProfile = await fetchUserProfile()
+
+    if (userProfile === null) {
+      routeTo("/sign-in");
+      return null
     }
-  }, [routeTo])
+    setIsLoggined(userProfile)
+
+  }, [])
 
   return {redirectAuth, isLoggined, routeTo}
 }
