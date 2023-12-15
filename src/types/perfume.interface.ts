@@ -20,12 +20,16 @@ export interface IfPerfume {
   duration: string
 }
 
-// 자세한 향수 조회
-export interface IfPerfumeDetail {
+
+interface IfPerfumeBase {
   name: string
   story: string
   concentration: string
   perfumeShopUrl: string
+}
+
+// 자세한 향수 조회
+export interface IfPerfumeDetail extends IfPerfumeBase {
   brandName: string
   categoryName: string
   categoryTags: string
@@ -33,6 +37,16 @@ export interface IfPerfumeDetail {
   topNotes: IfPerfumeNote[]
   middleNotes: IfPerfumeNote[]
   baseNotes: IfPerfumeNote[]
+}
+
+// 향수 생성
+export interface IfPerfumeRequest extends IfPerfumeBase {
+  brandId: number
+  categoryId: number
+  thumbnailId: number
+  topNoteIds: number[]
+  middleNoteIds: number[]
+  baseNoteIds: number[]
 }
 
 // 선호 향수

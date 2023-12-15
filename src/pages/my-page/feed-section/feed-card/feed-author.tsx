@@ -1,8 +1,8 @@
 import {Avatar, Box, Typography, styled} from '@mui/material'
-import { UserType } from 'types/reviews'
+import { IfReviewUser } from 'types/review.interface'
 
 interface proptype {
-  user: UserType
+  user: IfReviewUser
 }
 
 const FeedAuthor = ({user}: proptype) => {

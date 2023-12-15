@@ -1,10 +1,10 @@
 import instance from '@api/instance'
 import {AxiosResponse} from 'axios'
-import { FollowCountType, ReviewCountType, UserTasteType, UserType } from 'types/reviews'
+import { IfFollowResponse, IfReviewCount, IfMe, IfUserType } from 'types/user.interface'
 
-export const getCurUser = async (): Promise<UserType> => {
+export const getCurUser = async (): Promise<IfMe> => {
   try {
-    const res: AxiosResponse<UserType> = await instance.get(`/me`)
+    const res: AxiosResponse<IfMe> = await instance.get(`/me`)
     return res.data
   } catch (error: any) {
     console.log(error)
@@ -12,9 +12,9 @@ export const getCurUser = async (): Promise<UserType> => {
   }
 }
 
-export const getReviewCount = async (): Promise<ReviewCountType> => {
+export const getReviewCount = async (): Promise<IfReviewCount> => {
   try {
-    const res: AxiosResponse<ReviewCountType> = await instance.get(
+    const res: AxiosResponse<IfReviewCount> = await instance.get(
       `/mypage/reviews`,
     )
     return res.data
@@ -24,9 +24,9 @@ export const getReviewCount = async (): Promise<ReviewCountType> => {
   }
 }
 
-export const getFollowCount = async (): Promise<FollowCountType> => {
+export const getFollowCount = async (): Promise<IfFollowResponse> => {
   try {
-    const res: AxiosResponse<FollowCountType> = await instance.get(
+    const res: AxiosResponse<IfFollowResponse> = await instance.get(
       `/mypage/follows`,
     )
     return res.data
@@ -36,9 +36,9 @@ export const getFollowCount = async (): Promise<FollowCountType> => {
   }
 }
 
-export const getMytype = async (): Promise<UserTasteType[]> => {
+export const getMytype = async (): Promise<IfUserType[]> => {
   try {
-    const res: AxiosResponse<UserTasteType[]> = await instance.get(
+    const res: AxiosResponse<IfUserType[]> = await instance.get(
       `/user/tastes`,
     )
     return res.data

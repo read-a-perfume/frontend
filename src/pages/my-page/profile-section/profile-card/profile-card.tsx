@@ -5,7 +5,7 @@ import {CreateOutlined} from '@mui/icons-material'
 import {useNavigate} from 'react-router-dom'
 import ProfileCardType from './profile-card-type'
 import ProfileCardProfile from './profile-card-profile'
-import { UserTasteType } from 'types/reviews'
+import { IfUserType } from 'types/user.interface'
 
 
 interface proptype {
@@ -13,7 +13,7 @@ interface proptype {
   introduction: string
   follower: number
   following: number
-  mytype: UserTasteType[]
+  mytype: IfUserType[]
   thumbnail:string
 }
 

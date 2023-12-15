@@ -48,6 +48,8 @@ const ProfileContainer = styled(Box)(() => ({
   display: 'flex',
   height: '136px',
   marginBottom: '24px',
+  width: '100%',
+  paddingRight: '55px',
 }))
 
 const AavatarContainer = styled(Box)(() => ({
@@ -60,6 +62,7 @@ const InfoContainer = styled(Box)(() => ({
   maxWidth: '350px',
   marginLeft: '24px',
   flexGrow: 0,
+  width: '100%',
 }))
 
 const Name = styled(Typography)(() => ({
@@ -67,16 +70,19 @@ const Name = styled(Typography)(() => ({
   color: '#000',
 }))
 
-export const Introduction = styled(Typography)(() => ({
+const Introduction = styled(Typography)(() => ({
   margin: '11px 0 10px',
   fontFamily: 'Pretendard',
   fontWeight: 500,
   lineHeight: 1.6,
   textAlign: 'left',
   color: '#000',
+  minHeight: '58px',
+
 }))
 
-export const FollowContainer = styled('div')(() => ({
+const FollowContainer = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'space-between',
+  width: '100%',
 }))

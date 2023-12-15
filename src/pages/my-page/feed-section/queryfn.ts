@@ -1,7 +1,7 @@
 
 import instance from '@api/instance'
 import {AxiosResponse} from 'axios'
-import { IfReview } from 'types/reviews'
+import { IfReview } from 'types/review.interface'
 
 
 export const getReviews = async (page: number): Promise<IfReview[]> => {
