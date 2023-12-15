@@ -4,8 +4,8 @@ import {useQuery} from '@tanstack/react-query'
 import {useSearchParams} from 'react-router-dom'
 import {CategoryNameType} from '@components/category/interfaces'
 import {
-  fetchGetCategories,
-  getPerfumeList,
+  fetchCategories,
+  fetchPerfumeList,
 } from 'src/store/server/categories/queries'
 
 import FlexBox from '@layouts/flex-box'
@@ -15,7 +15,7 @@ import {Box, Skeleton, Stack, Typography} from '@mui/material'
 import brandDummyData from './dummyData'
 import PerfumesItem, {ItemType} from './perfumes-item'
 
-const isLoadingData = Array.from({length: 12}, (_, index) => index + 1)
+const skeletons = Array.from({length: 12}, (_, index) => index + 1)
 
 const Perfumes = () => {
   const [clickedCategory, setClickedCategory] = useState<string>('프루티')
@@ -38,7 +38,7 @@ const Perfumes = () => {
     data: perfumeList,
   } = useQuery({
     queryKey: ['perfumeList', queryCategoryId, queryPageNumber],
-    queryFn: () => getPerfumeList(queryCategoryId, currentPage),
+    queryFn: () => fetchPerfumeList(queryCategoryId, currentPage),
   })
 
   const {
@@ -47,7 +47,7 @@ const Perfumes = () => {
     data: categories,
   } = useQuery<CategoryNameType[]>({
     queryKey: ['categories'],
-    queryFn: fetchGetCategories,
+    queryFn: fetchCategories,
     staleTime: 99999,
   })
 
@@ -61,7 +61,7 @@ const Perfumes = () => {
     setCurrentPage(nowPageInt)
   }
 
-  console.log(perfumesError)
+  console.log('perfumesError:', perfumesError)
 
   return (
     <>
@@ -135,7 +135,7 @@ const Perfumes = () => {
         <ProductList>
           {prefumesLoading ? (
             <>
-              {isLoadingData.map((_, index) => (
+              {skeletons.map((_, index) => (
                 <Stack spacing={1} key={index}>
                   <Skeleton
                     sx={{bgcolor: 'grey.200'}}
