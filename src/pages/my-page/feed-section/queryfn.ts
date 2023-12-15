@@ -4,7 +4,7 @@ import {AxiosResponse} from 'axios'
 import { IfReview } from 'types/review.interface'
 
 
-export const getReviews = async (page: number): Promise<IfReview[]> => {
+export const fetchReviews = async (page: number): Promise<IfReview[]> => {
   try {
     const res: AxiosResponse<IfReview[]> = await instance.get(
       `/reviews`,
@@ -16,3 +16,4 @@ export const getReviews = async (page: number): Promise<IfReview[]> => {
     throw error
   }
 }
+

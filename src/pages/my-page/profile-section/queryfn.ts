@@ -2,7 +2,7 @@ import instance from '@api/instance'
 import {AxiosResponse} from 'axios'
 import { IfFollowResponse, IfReviewCount, IfMe, IfUserType } from 'types/user.interface'
 
-export const getCurUser = async (): Promise<IfMe> => {
+export const fetchCurUser = async (): Promise<IfMe> => {
   try {
     const res: AxiosResponse<IfMe> = await instance.get(`/me`)
     return res.data
@@ -12,7 +12,7 @@ export const getCurUser = async (): Promise<IfMe> => {
   }
 }
 
-export const getReviewCount = async (): Promise<IfReviewCount> => {
+export const fetchReviewCount = async (): Promise<IfReviewCount> => {
   try {
     const res: AxiosResponse<IfReviewCount> = await instance.get(
       `/mypage/reviews`,
@@ -36,7 +36,7 @@ export const getFollowCount = async (): Promise<IfFollowResponse> => {
   }
 }
 
-export const getMytype = async (): Promise<IfUserType[]> => {
+export const fetchMytype = async (): Promise<IfUserType[]> => {
   try {
     const res: AxiosResponse<IfUserType[]> = await instance.get(
       `/user/tastes`,

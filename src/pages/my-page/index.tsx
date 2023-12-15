@@ -1,17 +1,17 @@
 import {Box, Typography, styled} from '@mui/material'
 import ProfileSection from './profile-section/profile-section'
 import FeedSection from './feed-section/feed-section'
+import Banner from '@components/base/banner'
+
 
 const MyPage = () => {
   return (
     <div>
-      <Banner>
-        <BannerText>마이페이지 관련 멘트</BannerText>
-      </Banner>
+      <Banner/>
       <ContentSection>
         <Title>마이페이지</Title>
         <ProfileSection />
-        <Title sx={{marginTop: '88px'}}>피드모아보기</Title>
+        <Title sx={{marginTop: '88px'}}>리뷰 모아보기</Title>
         <FeedSection />
       </ContentSection>
     </div>
@@ -20,28 +20,7 @@ const MyPage = () => {
 
 export default MyPage
 
-const Banner = styled(Box)(() => ({
-  width: '100%',
-  height: '470px',
-  display: 'flex',
-  alignItems: 'center',
-  paddingLeft: '160px',
-  backgroundColor: 'black',
-}))
 
-const BannerText = styled(Typography)(() => ({
-  width: '681px',
-  height: '116px',
-  fontFamily: 'Arita-buri',
-  fontSize: '36px',
-  fontWeight: 600,
-  fontStretch: 'normal',
-  fontStyle: 'normal',
-  lineHeight: 1.6,
-  letterSpacing: 'normal',
-  textAlign: 'left',
-  color: '#fff',
-}))
 
 const ContentSection = styled(Box)(({theme}) => ({
   flexGrow: 0,
