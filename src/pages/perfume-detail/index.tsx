@@ -35,15 +35,15 @@ const PerfumeDetail = () => {
   const results = useQueries({
     queries: [
       {
-        queryKey: ['post', 1],
+        queryKey: ['perfume-detail', params.id],
         queryFn: () => fetchPerfume(params.id as string),
       },
       {
-        queryKey: ['post', 2],
+        queryKey: ['perfume-graph', params.id],
         queryFn: () => fetchPerfumeGraph(params.id as string),
       },
       {
-        queryKey: ['post', 3],
+        queryKey: ['perfume-review-data', params.id],
         queryFn: () => fetchPerfumeReviewData(params.id as string),
       },
     ],
