@@ -24,7 +24,6 @@ interface IfDetailReviewListProps {
 const skeletons = Array.from({length: 6}, (_, index) => index + 1)
 
 const DetailReviewList = ({reviewData, isLoading}: IfDetailReviewListProps) => {
-  console.log(reviewData)
   return (
     <Container>
       <Wrapper>
