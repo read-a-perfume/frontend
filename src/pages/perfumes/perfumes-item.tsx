@@ -23,7 +23,10 @@ const PerfumesItem = ({item}: IfPerfumesItemProps) => {
 
   return (
     <Wrapper>
-      <Link to={`/perfume/${id}`}>
+      <Link
+        to={`/perfume/${id}`}
+        state={{duration: item.duration, strength: item.strength}}
+      >
         <ProductWrapper>
           {thumbnailUrl ? (
             <img src={thumbnailUrl} alt="img" />
