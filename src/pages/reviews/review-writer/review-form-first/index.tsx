@@ -9,12 +9,12 @@ import {
   FormControl,
   styled as muiStyled,
 } from '@mui/material'
+import useReviewForm from '../hooks/use-review-form'
 
-const ReviewFormFirst = ({
-  handleThumbnailDelete,
-  handleThumbnailUpload,
-  formValues,
-}: any) => {
+const ReviewFormFirst = () => {
+  const {formValues, handleThumbnailUpload, handleThumbnailDelete} =
+    useReviewForm()
+
   const ImageLength = ({formValues}: any) => {
     const files = formValues.thumbnails.length
     return (
