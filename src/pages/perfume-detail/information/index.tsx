@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import Chart from 'react-apexcharts'
-import {InformationProps, graphDataType} from './information-interface'
+import {IfInformationProps, IfGraphDataType} from './information-interface'
 
 import AccordionGraph from './accordion-chart'
 import {Box, Skeleton, styled} from '@mui/material'
@@ -19,14 +19,14 @@ const options = {
   },
 }
 
-const Information = ({isLoading, graphData}: InformationProps) => {
+const Information = ({isLoading, graphData}: IfInformationProps) => {
   const [series, setSeries] = useState([
     {
       name: '특성',
       data: [0, 0, 0, 0, 0],
     },
   ])
-  const sumData = (graphData: graphDataType) => {
+  const sumData = (graphData: IfGraphDataType) => {
     // 무게감
     const dayType =
       graphData.dayType.DAILY +

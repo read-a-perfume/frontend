@@ -5,12 +5,12 @@ import AccordionSummary from '@mui/material/AccordionSummary'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import {styled} from '@mui/system'
-import {InformationProps} from './information-interface'
+import {IfInformationProps} from './information-interface'
 
 import ChartBar from './ChartBar'
 import FlexBox from '@layouts/flex-box'
 
-const AccordionChart = ({graphData}: InformationProps) => {
+const AccordionChart = ({graphData}: IfInformationProps) => {
   const [expanded, setExpanded] = useState<string | false>(false)
   const [accordionData, setAccordionData] = useState([
     {

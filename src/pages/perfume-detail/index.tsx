@@ -58,6 +58,8 @@ const PerfumeDetail = () => {
 
   console.log('error!:', error)
 
+  console.log(data)
+
   useEffect(() => {
     // 임시데이터
     const arrayData = Array.from({length: 4}, (_, index) => index + 1)
