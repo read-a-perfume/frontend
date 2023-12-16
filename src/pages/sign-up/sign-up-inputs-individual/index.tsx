@@ -1,7 +1,6 @@
 import {List, ListItem} from '@mui/material'
 import {FieldErrors, UseFormRegister} from 'react-hook-form'
 import SignUpValidation from '../sign-up-validation'
-import SignUpIdCheck from '../sign-up-id-check'
 
 interface FormInputListProps {
   formData: any

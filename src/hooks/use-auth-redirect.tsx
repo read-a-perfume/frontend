@@ -11,11 +11,10 @@ const useAuthRedirect = () => {
     const userProfile = await fetchUserProfile()
 
     if (userProfile === null) {
-      routeTo("/sign-in");
+      routeTo('/sign-in')
       return null
     }
     setIsLoggined(userProfile)
-
   }, [])
 
   return {redirectAuth, isLoggined, routeTo}
