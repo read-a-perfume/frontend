@@ -4,14 +4,14 @@ import FlexBox from '@layouts/flex-box'
 import {Box, Skeleton, Tab, Tabs, Typography, styled} from '@mui/material'
 import NoteCarouselItem from './Note-carousel-item'
 
-interface NotesProps {
-  topNotes: notesType[]
-  middleNotes: notesType[]
-  baseNotes: notesType[]
+interface IfNotesProps {
+  topNotes: IfNotesType[]
+  middleNotes: IfNotesType[]
+  baseNotes: IfNotesType[]
   isLoading: boolean
 }
 
-export type notesType = {
+interface IfNotesType {
   id: number
   name: string
   thumbnailUrl: string
@@ -30,7 +30,7 @@ function a11yProps(index: number) {
   }
 }
 
-const Notes = ({topNotes, middleNotes, baseNotes, isLoading}: NotesProps) => {
+const Notes = ({topNotes, middleNotes, baseNotes, isLoading}: IfNotesProps) => {
   const [activeTab, setActiveTab] = useState<string>('탑노트')
   const [value, setValue] = useState<number>(0)
 

@@ -2,7 +2,7 @@ import {useState} from 'react'
 import styled from '@emotion/styled'
 import {useQuery} from '@tanstack/react-query'
 import {useSearchParams} from 'react-router-dom'
-import {CategoryNameType} from '@components/category/interfaces'
+import {IfCategoryNameType} from '@components/category/interfaces'
 import {
   fetchCategories,
   fetchPerfumeList,
@@ -45,7 +45,7 @@ const Perfumes = () => {
     isLoading: categoryLoading,
     error: categoryError,
     data: categories,
-  } = useQuery<CategoryNameType[]>({
+  } = useQuery<IfCategoryNameType[]>({
     queryKey: ['categories'],
     queryFn: fetchCategories,
     staleTime: 99999,
