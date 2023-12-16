@@ -23,7 +23,13 @@ interface UserAccessibleRouterElement extends RouterBase {
   withAuth?: boolean // 인증이 필요한 페이지 여부
 }
 
-type RouterElement = UserAccessibleRouterElement
+type RouterElement = UserAccessibleRouterElement | AdminAccessibleRouterElement
+
+interface AdminAccessibleRouterElement extends RouterBase {
+  withAuth: true; // 인증이 필요한 페이지 여부
+  isAdminPage?: boolean; // 어드민 페이지 여부
+}
+
 
 const routerData: RouterElement[] = [
   {
@@ -32,6 +38,7 @@ const routerData: RouterElement[] = [
     path: '/',
     element: <Home />,
     isLayout: true,
+    withAuth: true,
   },
   {
     id: 1,
@@ -39,6 +46,7 @@ const routerData: RouterElement[] = [
     path: '/sign-in',
     element: <SignIn />,
     isLayout: true,
+    withAuth: false,
   },
   {
     id: 2,
@@ -46,6 +54,7 @@ const routerData: RouterElement[] = [
     path: '/sign-up',
     element: <SignUp />,
     isLayout: false,
+    withAuth: false,
   },
   {
     id: 3,
@@ -53,13 +62,15 @@ const routerData: RouterElement[] = [
     path: '/brand',
     element: <Brand />,
     isLayout: true,
+    withAuth: true,
   },
   {
     id: 4,
     label: '리뷰 작성 페지',
     path: '/reviews/review-writer',
     element: <ReviewWriter />,
-    isLayout: false,
+    isLayout: true,
+    withAuth: true,
   },
   {
     id: 5,
@@ -67,6 +78,7 @@ const routerData: RouterElement[] = [
     path: '/perfumes',
     element: <Perfumes />,
     isLayout: true,
+    withAuth: true,
   },
   {
     id: 6,
@@ -74,6 +86,7 @@ const routerData: RouterElement[] = [
     path: '/perfume/:id',
     element: <PerfumeDetail />,
     isLayout: true,
+    withAuth: true,
   },
   {
     id: 7,
@@ -81,6 +94,7 @@ const routerData: RouterElement[] = [
     path: '/test',
     element: <EditOptions />,
     isLayout: true,
+    withAuth: true,
   },
   {
     id: 6,
@@ -88,6 +102,8 @@ const routerData: RouterElement[] = [
     path: '/mypage',
     element: <MyPage />,
     isLayout: true,
+    withAuth: true,
+    isAdminPage:true
   },
   {
     id: 7,
@@ -95,57 +111,15 @@ const routerData: RouterElement[] = [
     path: '/settings',
     element: <Account />,
     isLayout: true,
+    withAuth: true,
+    isAdminPage:true
   },
-
-  //   {
-  //     label: "test",
-  //     key: "test-key",
-  //     route: "/test",
-  //     component: <Test />,
-  //   },
-  // {
-  //   type: 'collapse',
-  //   label: 'test',
-  //   key: 'test-key',
-  //   collapse: [
-  //     {
-  //       label: 'test-first',
-  //       key: 'test-first-key',
-  //       route: '/test-first',
-  //       component: <TestFirst />,
-  //     },
-  //   ],
-  // },
-  //   {
-  //     label: "brand",
-  //     key: "brand-key",
-  //     route: "/brand/:id",
-  //     component: <Brand />,
-  //   },
-  //   {
-  //     label: "brand-settings",
-  //     key: "brand-settings-key",
-  //     route: "/brand/:id/settings",
-  //     component: <BrandSettings />,
-  //   },
-  //   {
-  //     label: "magazine-detail",
-  //     key: "magazine-detail-key",
-  //     route: "/brand/:id/magazine/:id",
-  //     component: <MagazineContent />,
-  //   },
-  //   {
-  //     label: "post-magazine",
-  //     key: "post-magazine-key",
-  //     route: "/brand/:id/magazine/post",
-  //     component: <PostMagazine />,
-  //   },
 ]
 
 export const router: RemixRouter = createBrowserRouter(
   routerData.map(router => {
     /// 공통 레이아웃이 필요하다면 공통 레이아웃 부여
-    if (router.isLayout) {
+    if (router.withAuth) {
       return {
         path: router.path,
         element: <GeneralLayout>{router.element}</GeneralLayout>,

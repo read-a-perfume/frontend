@@ -8,6 +8,7 @@ export interface IfLoginRequeset {
 
 export interface IfLoginUserProfileResponse
   extends Omit<IfLoginRequeset, 'password'> {
+  data: any
   userId: string
   thumbnail: string
 }
