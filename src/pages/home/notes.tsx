@@ -51,16 +51,7 @@ const Notes = ({categoryLoading, categoryError, categories}: any) => {
 
       <FlexBox gap="32px">
         <NoteBox>
-          <img
-            src={`images/note-images/note-${image}.png`}
-            alt="note"
-            style={{
-              background:
-                'linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%), lightgray 50% / cover no-repeat',
-              borderRadius: 16,
-              position: 'absolute',
-            }}
-          />
+          <Image src={`images/note-images/note-${image}.png`} alt="note" />
           <NoteTitle>
             {clickedNote.toUpperCase()}
             <br />
@@ -103,8 +94,16 @@ const NoteSubTitle = styled(Typography)({
 })
 
 const NoteBox = styled.div({
-  height: 600,
-  width: 376,
+  height: 450,
+  width: 282,
   borderRadius: 16,
-  overflow: 'hidden',
+})
+
+const Image = styled.img({
+  background:
+    'linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%), lightgray 50% / cover no-repeat',
+  borderRadius: 16,
+  position: 'absolute',
+  width: 282,
+  height: 450,
 })
