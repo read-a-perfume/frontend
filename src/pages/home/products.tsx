@@ -69,9 +69,7 @@ const Products = () => {
             >
               <GridItem width={(screenWidth - 720 - 100) / 4 + 'px'}>
                 <Product>
-                  <ProductImage
-                    src={item.thumbnail || 'public/images/Rectangle7217(5).png'}
-                  />
+                  <ProductImage src={item.thumbnail || 'images/perfume.png'} />
                   <FlexBox direction="column" alignItems="center" gap="8px">
                     <BrandName>{item.brandName}</BrandName>
                     <ProductName>{item.name}</ProductName>
@@ -153,7 +151,7 @@ const Product = styled.div({
 const ProductImage = styled.img({
   height: '341px',
   width: '100%',
-  objectFit: 'contain',
+  objectFit: 'cover',
 })
 
 const BrandName = styled(Typography)({
