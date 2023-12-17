@@ -64,8 +64,8 @@ const Products = () => {
             <FlexBox
               key={item.id}
               direction="column"
-              gap="32px"
-              onClick={() => navigate('/perfume/:id')}
+              gap="24px"
+              onClick={() => navigate(`/perfume/${item.id}`)}
             >
               <GridItem width={(screenWidth - 720 - 100) / 4 + 'px'}>
                 <Product>
@@ -130,15 +130,14 @@ const ProductsContainer = styled.div({
 
 const ProductBox = styled.div({
   display: 'grid',
-  gridTemplateColumns: 'repeat(4, 1fr)',
-  gridTemplateRows: 'repeat(2, 1fr)',
+  gridTemplateColumns: `repeat(4, 1fr)`,
+  gridTemplateRows: `repeat(2, 1fr))`,
   rowGap: '88px',
-  columnGap: '10px',
+  columnGap: '24px',
 })
 
 const GridItem = styled.div<{width: string}>(({width}) => ({
   width: width,
-  height: '100%',
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
