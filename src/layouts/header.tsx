@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import {Button, OutlinedInput, Typography} from '@mui/material'
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import FlexBox from './flex-box.js'
 import NotificationModal from '@components/modal/notification-modal/index.js'
@@ -10,6 +10,8 @@ import {useRecoilValue} from 'recoil'
 import HeaderNavigations from '@components/header/header-navigations.js'
 import LoggedInHeader from '@components/header/logged-in-header.js'
 import {UserAtom} from 'src/store/client/auth/atoms.js'
+import useQuery from 'src/store/server/use-query.js'
+import {fetchUserProfile} from 'src/store/server/auth/queries.js'
 
 const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
   const navigate = useNavigate()
@@ -17,13 +19,10 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [notificationOpen, setNotificationOpen] = useState<boolean>(false)
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate('/sign-in')
-    }
-  }, [isLoggedIn])
-
-  console.log(isLoggedIn)
+  const {data: profile} = useQuery({
+    queryKey: ['user-profile'],
+    queryFn: () => fetchUserProfile(),
+  })
 
   return (
     <>
@@ -35,7 +34,7 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
       <HeaderLayout>
         {isLoggedIn ? (
           <LoggedInHeader
-            thumbnail={'/images/Rectangle7370.png'}
+            thumbnail={profile.thumbnail}
             isLoggedIn={isLoggedIn}
             onOpenLoginModal={() => setIsOpen(true)}
             onOpenNotification={() => setNotificationOpen(true)}
