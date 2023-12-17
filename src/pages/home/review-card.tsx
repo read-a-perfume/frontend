@@ -68,11 +68,11 @@ const ReviewCard = ({width, item}: ReviewCardProps) => {
         <HashTags>{'#' + item.keywords.join(' #')}</HashTags>
       </ContentsBox>
       <Options>
-        <FlexBox>
+        <FlexBox alignItems="center">
           <CustomIcons.HeartIcon />
           <OptionsText>좋아요 {item.likeCount}개</OptionsText>
         </FlexBox>
-        <FlexBox>
+        <FlexBox alignItems="center">
           <CustomIcons.CommentIcon2 />
           <OptionsText>댓글 {item.commentCount}개</OptionsText>
         </FlexBox>
