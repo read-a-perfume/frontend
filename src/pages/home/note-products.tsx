@@ -123,17 +123,17 @@ const ProductInfoBox = styled.div({
 
 const ProductName = styled(Typography)({
   color: '#191919',
-  fontSize: theme.typography.body3,
+  fontSize: theme.typography.body3.fontSize,
   fontWeight: '500',
 })
 
 const BrandName = styled(Typography)({
   color: '#A9A9A9',
-  fontSize: theme.typography.body5,
+  fontSize: theme.typography.body5.fontSize,
 })
 
-const ThumbNail = styled.img({
-  objectFit: 'center',
-  width: '100%',
-  height: '75%',
-})
+const ThumbNail = styled.img`
+  object-fit: center;
+  width: 100%;
+  height: 75%;
+`
