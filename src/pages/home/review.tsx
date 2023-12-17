@@ -85,10 +85,10 @@ const Review = () => {
             </button>
           ))}
         </FlexBox>
-        <FlexBox gap="2px" alignItems="center">
+        <MoreReviewsButton>
           <MoreReviewsText>향수 리뷰 전체보기</MoreReviewsText>
           <CustomIcons.AfterIcon color="#707070" size="22" />
-        </FlexBox>
+        </MoreReviewsButton>
       </FlexBox>
       <ReviewBox>
         {reviews?.map(item => (
@@ -141,3 +141,11 @@ const Chip = styled.div(({isClicked}: {isClicked: boolean}) => ({
   backgroundColor: isClicked ? '#FE7156' : '#F1F1F5',
   color: isClicked ? 'white' : '#A9A9A9',
 }))
+
+const MoreReviewsButton = styled.button({
+  display: 'flex',
+  flexDirection: 'row',
+  alingItems: 'center',
+  gap: '2px',
+  cursor: 'pointer',
+})
