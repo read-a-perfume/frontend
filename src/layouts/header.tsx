@@ -6,29 +6,24 @@ import FlexBox from './flex-box.js'
 import NotificationModal from '@components/modal/notification-modal/index.js'
 import LoginModal from '@components/modal/login-modal/index.js'
 import {theme} from '@theme/index.js'
-import {fetchUserProfile} from 'src/store/server/auth/queries.js'
-import {useQuery} from '@tanstack/react-query'
+import {useRecoilValue} from 'recoil'
 import HeaderNavigations from '@components/header/header-navigations.js'
 import LoggedInHeader from '@components/header/logged-in-header.js'
+import {UserAtom} from 'src/store/client/auth/atoms.js'
 
 const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
   const navigate = useNavigate()
+  const isLoggedIn = useRecoilValue(UserAtom)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [notificationOpen, setNotificationOpen] = useState<boolean>(false)
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
-  const [thumbnail, setThumbnail] = useState<string>('')
-
-  const {data} = useQuery({
-    queryKey: ['auth'],
-    queryFn: fetchUserProfile,
-  })
 
   useEffect(() => {
-    if (data) {
-      setIsLoggedIn(data.userId ? true : false)
-      setThumbnail(data?.thumbnail)
+    if (!isLoggedIn) {
+      navigate('/sign-in')
     }
-  }, [data])
+  }, [isLoggedIn])
+
+  console.log(isLoggedIn)
 
   return (
     <>
@@ -40,7 +35,7 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
       <HeaderLayout>
         {isLoggedIn ? (
           <LoggedInHeader
-            thumbnail={thumbnail}
+            thumbnail={'/images/Rectangle7370.png'}
             isLoggedIn={isLoggedIn}
             onOpenLoginModal={() => setIsOpen(true)}
             onOpenNotification={() => setNotificationOpen(true)}
