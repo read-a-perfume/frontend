@@ -1,3 +1,4 @@
+import {useCallback} from 'react'
 import {useRecoilState} from 'recoil'
 import {reviewWriteFormAtom} from 'src/store/client/reviews/atoms'
 const keywords = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -80,6 +81,42 @@ const useReviewForm = () => {
     return
   }
 
+  // const handleSlider = useCallback(
+  //   (sliderValue: number) => {
+  //     (sliderValue: number) => {
+
+  //     }
+  //   },
+  //   [formValues, setFormValues],
+  // )
+
+  const handleSlider = useCallback(
+    sliderValue => {
+      if (sliderValue === 0) {
+        setFormValues({
+          ...formValues,
+          ['strength']: 'LIGHT',
+        })
+        return
+      }
+      if (sliderValue === 50) {
+        setFormValues({
+          ...formValues,
+          ['strength']: 'MODERATE',
+        })
+        return
+      }
+      if (sliderValue === 100) {
+        setFormValues({
+          ...formValues,
+          ['strength']: 'HEAVY',
+        })
+        return
+      }
+    },
+    [formValues, setFormValues],
+  )
+
   return {
     formValues,
     handleThumbnailDelete,
@@ -87,6 +124,7 @@ const useReviewForm = () => {
     handleFormDataChange,
     handleMultipleCheckBox,
     handleAutoComplete,
+    handleSlider,
   }
 }
 

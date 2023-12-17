@@ -27,6 +27,8 @@ const ReviewWriteForm = () => {
     event.preventDefault()
     // 선택된 값에 따른 작업 수행
 
+    formValues
+
     createReview(formValues)
   }
 
