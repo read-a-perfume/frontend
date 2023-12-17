@@ -19,6 +19,7 @@ import {
 } from './review-card.styles.js'
 import Avatar from '@components/base/avatar.js'
 import {Reviews} from './review.js'
+import {NoAvatar} from '@components/header/logged-in-header.js'
 
 interface ReviewCardProps {
   width: string
@@ -32,7 +33,11 @@ const ReviewCard = ({width, item}: ReviewCardProps) => {
       height={item.shortReview.length <= 30 ? '408px' : '428px'}
     >
       <FlexBox alignItems="center">
-        <Avatar size="32px" url={item.user.thumbnail || 'images/banner.png'} />
+        {item.user.thumbnail ? (
+          <Avatar size="32px" url={item.user.thumbnail} />
+        ) : (
+          <NoAvatar />
+        )}
         <ReviewerID>{item.user.username}</ReviewerID>
       </FlexBox>
       <ImageBox>

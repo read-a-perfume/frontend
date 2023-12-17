@@ -143,7 +143,7 @@ const Divider = styled.div({
   backgroundColor: '#D2D2D2',
 })
 
-const NoAvatar = styled.div({
+export const NoAvatar = styled.div({
   height: 26,
   width: 26,
   borderRadius: 20,
