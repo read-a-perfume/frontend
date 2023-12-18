@@ -1,16 +1,25 @@
+import {useState} from 'react'
 import {postSignUpIdDuplicationCheck} from 'src/store/server/auth/mutations'
 import useMutation from 'src/store/server/use-mutation'
 
-const useSignUpIdCheck = () => {
-  const {mutate} = useMutation({
+interface IfProps {
+  success: string
+  failed: string
+}
+
+const useSignUpIdCheck = ({success, failed}: IfProps) => {
+  const [idCheckMessage, setIdCheckMessage] = useState('')
+
+  const {mutate: mutateCheckUserId} = useMutation({
     mutationFn: postSignUpIdDuplicationCheck,
-    mutationKey: ['test'],
+    mutationKey: ['userIdCheck'],
     options: {
-      onError: () => console.log('d'),
+      onSuccess: () => setIdCheckMessage(success),
+      onError: () => setIdCheckMessage(failed),
     },
   })
 
-  return {mutate}
+  return {mutateCheckUserId, idCheckMessage}
 }
 
 export default useSignUpIdCheck

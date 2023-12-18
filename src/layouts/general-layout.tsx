@@ -7,10 +7,16 @@ interface GeneralLayoutProps {
 }
 
 const GeneralLayout: React.FC<GeneralLayoutProps> = ({children}) => {
-  const {loginAuthGuard} = useAuthRedirect()
+  const {isLoggined, routeTo, redirectAuth} = useAuthRedirect()
+
   useEffect(() => {
-    loginAuthGuard()
-  }, [loginAuthGuard])
+    redirectAuth()
+  }, [redirectAuth])
+
+  if (!isLoggined) {
+    routeTo('/sign-in')
+    return <></>
+  }
 
   return (
     <>
