@@ -1,4 +1,3 @@
-
 //import {useQuery} from '@tanstack/react-query'
 //import {fetchBrands} from './queryfn'
 import {useState} from 'react'
@@ -26,12 +25,11 @@ const Kor = [
 ]
 
 const BrandList = () => {
-
   //const {data: brands} = useQuery(['brands'], () => fetchBrands())
 
-  const [korClass, setKorClass] = useState<string>('')
-
   //const classifyBrands = useClassifyKorean(brands)
+
+  const [korClass,setKorClass] = useState('');
 
   return (
     <>
