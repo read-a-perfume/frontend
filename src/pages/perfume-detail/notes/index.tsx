@@ -1,17 +1,26 @@
 import {useState} from 'react'
+import instance from '@api/instance'
 
 import FlexBox from '@layouts/flex-box'
-import {Box, Skeleton, Tab, Tabs, Typography, styled} from '@mui/material'
+import {
+  Box,
+  Popover,
+  Skeleton,
+  Tab,
+  Tabs,
+  Typography,
+  styled,
+} from '@mui/material'
 import NoteCarouselItem from './Note-carousel-item'
 
-interface NotesProps {
-  topNotes: notesType[]
-  middleNotes: notesType[]
-  baseNotes: notesType[]
+interface IfNotesProps {
+  topNotes: IfNotesType[]
+  middleNotes: IfNotesType[]
+  baseNotes: IfNotesType[]
   isLoading: boolean
 }
 
-export type notesType = {
+interface IfNotesType {
   id: number
   name: string
   thumbnailUrl: string
@@ -30,9 +39,30 @@ function a11yProps(index: number) {
   }
 }
 
-const Notes = ({topNotes, middleNotes, baseNotes, isLoading}: NotesProps) => {
+const Notes = ({topNotes, middleNotes, baseNotes, isLoading}: IfNotesProps) => {
   const [activeTab, setActiveTab] = useState<string>('탑노트')
   const [value, setValue] = useState<number>(0)
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
+  const [noteDescription, setNoteDescription] = useState<string>('')
+
+  // 노트에 마우스 올렸을때
+  const handlePopoverOpen = async (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget)
+
+    try {
+      const res = await instance.get(`/notes/${event.currentTarget.className}`)
+
+      const data = res.data
+
+      setNoteDescription(data?.description)
+    } catch (error: any) {
+      console.log(error)
+    }
+  }
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null)
+  }
 
   const handleTabsChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(() => {
@@ -40,6 +70,8 @@ const Notes = ({topNotes, middleNotes, baseNotes, isLoading}: NotesProps) => {
       return newValue
     })
   }
+
+  const open = Boolean(anchorEl)
 
   return (
     <>
@@ -97,6 +129,7 @@ const Notes = ({topNotes, middleNotes, baseNotes, isLoading}: NotesProps) => {
                   topNotes?.map((note, index) => (
                     <FlexBox
                       direction="column"
+                      justifyContent="center"
                       alignItems="center"
                       style={{
                         textAlign: 'center',
@@ -104,15 +137,49 @@ const Notes = ({topNotes, middleNotes, baseNotes, isLoading}: NotesProps) => {
                       }}
                       key={index}
                     >
-                      <img
-                        src="/images/perfume-detail/자몽.png"
-                        alt="note-img"
-                      />
-                      <NotesName>{note?.name}</NotesName>
+                      <div
+                        onMouseEnter={handlePopoverOpen}
+                        onMouseLeave={handlePopoverClose}
+                        className={`${note.id}`}
+                      >
+                        <img
+                          src="/images/perfume-detail/자몽.png"
+                          alt="note-img"
+                        />
+                        <NotesName>{note?.name}</NotesName>
+                      </div>
+
+                      <StyledPopover
+                        id="mouse-over-popover"
+                        sx={{
+                          pointerEvents: 'none',
+                        }}
+                        open={open}
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                          vertical: 'center',
+                          horizontal: 'center',
+                        }}
+                        transformOrigin={{
+                          vertical: 'bottom',
+                          horizontal: 'left',
+                        }}
+                        onClose={handlePopoverClose}
+                        disableRestoreFocus
+                      >
+                        <PopoverText sx={{p: 1}}>{noteDescription}</PopoverText>
+                      </StyledPopover>
                     </FlexBox>
                   ))
                 ) : (
-                  <NoteCarouselItem notes={topNotes} />
+                  <NoteCarouselItem
+                    notes={baseNotes}
+                    anchorEl={anchorEl}
+                    noteDescription={noteDescription}
+                    handlePopoverOpen={handlePopoverOpen}
+                    handlePopoverClose={handlePopoverClose}
+                    open={open}
+                  />
                 ))}
 
               {activeTab === '미들노트' &&
@@ -120,21 +187,57 @@ const Notes = ({topNotes, middleNotes, baseNotes, isLoading}: NotesProps) => {
                   middleNotes?.map((note, index) => (
                     <FlexBox
                       direction="column"
+                      justifyContent="center"
                       alignItems="center"
                       style={{
                         textAlign: 'center',
+                        width: '100%',
                       }}
                       key={index}
                     >
-                      <img
-                        src="/images/perfume-detail/자몽.png"
-                        alt="note-img"
-                      />
-                      <NotesName>{note?.name}</NotesName>
+                      <div
+                        onMouseEnter={handlePopoverOpen}
+                        onMouseLeave={handlePopoverClose}
+                        className={`${note.id}`}
+                      >
+                        <img
+                          src="/images/perfume-detail/자몽.png"
+                          alt="note-img"
+                        />
+                        <NotesName>{note?.name}</NotesName>
+                      </div>
+
+                      <StyledPopover
+                        id="mouse-over-popover"
+                        sx={{
+                          pointerEvents: 'none',
+                        }}
+                        open={open}
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                          vertical: 'center',
+                          horizontal: 'center',
+                        }}
+                        transformOrigin={{
+                          vertical: 'bottom',
+                          horizontal: 'left',
+                        }}
+                        onClose={handlePopoverClose}
+                        disableRestoreFocus
+                      >
+                        <PopoverText sx={{p: 1}}>{noteDescription}</PopoverText>
+                      </StyledPopover>
                     </FlexBox>
                   ))
                 ) : (
-                  <NoteCarouselItem notes={middleNotes} />
+                  <NoteCarouselItem
+                    notes={baseNotes}
+                    anchorEl={anchorEl}
+                    noteDescription={noteDescription}
+                    handlePopoverOpen={handlePopoverOpen}
+                    handlePopoverClose={handlePopoverClose}
+                    open={open}
+                  />
                 ))}
 
               {activeTab === '베이스노트' &&
@@ -142,21 +245,57 @@ const Notes = ({topNotes, middleNotes, baseNotes, isLoading}: NotesProps) => {
                   baseNotes?.map((note, index) => (
                     <FlexBox
                       direction="column"
+                      justifyContent="center"
                       alignItems="center"
                       style={{
                         textAlign: 'center',
+                        width: '100%',
                       }}
                       key={index}
                     >
-                      <img
-                        src="/images/perfume-detail/자몽.png"
-                        alt="note-img"
-                      />
-                      <NotesName>{note?.name}</NotesName>
+                      <div
+                        onMouseEnter={handlePopoverOpen}
+                        onMouseLeave={handlePopoverClose}
+                        className={`${note.id}`}
+                      >
+                        <img
+                          src="/images/perfume-detail/자몽.png"
+                          alt="note-img"
+                        />
+                        <NotesName>{note?.name}</NotesName>
+                      </div>
+
+                      <StyledPopover
+                        id="mouse-over-popover"
+                        sx={{
+                          pointerEvents: 'none',
+                        }}
+                        open={open}
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                          vertical: 'center',
+                          horizontal: 'center',
+                        }}
+                        transformOrigin={{
+                          vertical: 'bottom',
+                          horizontal: 'left',
+                        }}
+                        onClose={handlePopoverClose}
+                        disableRestoreFocus
+                      >
+                        <PopoverText sx={{p: 1}}>{noteDescription}</PopoverText>
+                      </StyledPopover>
                     </FlexBox>
                   ))
                 ) : (
-                  <NoteCarouselItem notes={baseNotes} />
+                  <NoteCarouselItem
+                    notes={baseNotes}
+                    anchorEl={anchorEl}
+                    noteDescription={noteDescription}
+                    handlePopoverOpen={handlePopoverOpen}
+                    handlePopoverClose={handlePopoverClose}
+                    open={open}
+                  />
                 ))}
             </>
           )}
@@ -193,6 +332,7 @@ const Wrapper = styled('div')({
   '& img': {
     width: '81px',
     borderRadius: '50%',
+    margin: '0 auto',
   },
 })
 
@@ -203,6 +343,24 @@ const NotesName = styled(Typography)({
   color: '#000',
   marginTop: '13px',
   width: '100px',
+})
+
+const StyledPopover = styled(Popover)({
+  '& .MuiPopover-paper': {
+    width: '200px',
+    padding: '10px',
+    background: '#FE7156',
+    color: '#fff',
+    borderRadius: '30.5px 30.5px 30.5px 0px',
+    boxShadow: 'none',
+  },
+})
+
+const PopoverText = styled(Typography)({
+  fontSize: '11px',
+  fontWeight: '500',
+  lineHeight: '16px',
+  fontFamily: 'Arita-buri(OTF)',
 })
 
 export default Notes
