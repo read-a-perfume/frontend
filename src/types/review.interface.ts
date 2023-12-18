@@ -27,7 +27,7 @@ interface IfReviewBaseDetail {
 }
 
 // 리뷰 목록 조회
-export interface IfReview extends IfReviewBase {
+export interface IfReviewResponse extends IfReviewBase {
   id: number
   user: IfReviewUser
   likeCount: number
@@ -35,7 +35,7 @@ export interface IfReview extends IfReviewBase {
 }
 
 // 리뷰 상세보기
-export interface IfReviewDetail extends IfReviewBase, IfReviewBaseDetail {
+export interface IfReviewDetailResponse extends IfReviewBase, IfReviewBaseDetail {
   id: number
   likeCount: number
   commentCount: number
@@ -43,25 +43,29 @@ export interface IfReviewDetail extends IfReviewBase, IfReviewBaseDetail {
 }
 
 // 리뷰 생성
-export interface IfReviewRequest extends IfReviewBase, IfReviewBaseDetail {}
+export interface IfReviewRequest extends IfReviewBaseDetail {
+  shortReview: string
+  thumbnails: number[]
+  keywords: number[]
+}
 
 // 리뷰 삭제
-export interface IfReviewDelete {
+export interface IfReviewDeleteRequest {
   id: number
 }
 
 // 댓글 생성
-export interface IfComment {
+export interface IfCommentRequest {
   content: string
 }
 
 // 댓글 삭제
-export interface IfCommentDelete {
+export interface IfCommentDeleteRequset {
   id: number
 }
 
 // 좋아요 표시/취소
-export interface IfLike {
+export interface IfLikeRequest {
   id: number
 }
 
