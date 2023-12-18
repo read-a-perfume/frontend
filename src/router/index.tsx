@@ -11,6 +11,8 @@ import {Router as RemixRouter} from '@remix-run/router/dist/router'
 import ReviewWriter from '@pages/reviews/review-writer'
 import PerfumeDetail from '@pages/perfume-detail'
 import SignIn from '@pages/sign-in'
+import MagazineUpload from '@pages/brand/magazine-upload'
+import BrandList from '@pages/brand/brand-list'
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
   path: string // 페이지 경로
@@ -96,6 +98,21 @@ const routerData: RouterElement[] = [
     element: <Account />,
     isLayout: true,
   },
+  {
+    id: 8,
+    label: '매거진 업로드',
+    path: '/brand/upload',
+    element: <MagazineUpload />,
+    isLayout: true,
+  },
+  {
+    id: 9,
+    label: '브랜드 목록',
+    path: '/brands',
+    element: <BrandList />,
+    isLayout: true,
+  },
+
 
   //   {
   //     label: "test",
