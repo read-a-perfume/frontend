@@ -1,6 +1,6 @@
 import {RadioGroup, styled} from '@mui/material'
 import RadioRoundedButton from '../base/radio-rounded-button'
-import {REVIEW_OPTIONS} from '@pages/reviews/data/review-options'
+import {REVIEW_OPTIONS} from '@pages/reviews/review-writer/data/review-options'
 import {ReviewWriterFormProps} from '../types/review-writer.interface'
 import ReviewFormSubTitle from '../base/review-form-sub-title'
 

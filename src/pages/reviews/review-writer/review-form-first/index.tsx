@@ -1,15 +1,13 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import DeleteIcon from '@mui/icons-material/HighlightOff'
 import {
   Box,
   List,
   Typography,
-  ListItem,
-  ListItemIcon,
   FormControl,
   styled as muiStyled,
 } from '@mui/material'
 import useReviewForm from '../hooks/use-review-form'
+import MainPreviewImage from './main-preview-image'
+import SubPreviewImage from './sub-preview-image'
 
 const ReviewFormFirst = () => {
   const {formValues, handleThumbnailUpload, handleThumbnailDelete} =
@@ -38,65 +36,20 @@ const ReviewFormFirst = () => {
     <main>
       <FormControl component="fieldset" sx={{width: '100%', margin: 'auto'}}>
         <Box sx={{position: 'relative', margin: 'auto', width: '420px'}}>
-          <MainPreview>
-            <MainPreviewFileLabel htmlFor="thumbnails">
-              <Figure
-                sx={{
-                  backgroundImage: `url(${formValues.thumbnails[0]})`,
-                  backgroundSize: '100% 100%',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                }}
-              >
-                <TextBox>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '5px',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <AddCircleIcon />
-                    <Typography
-                      variant="h3"
-                      fontStyle={{textAlign: 'center', color: '#dbdbdb'}}
-                    >
-                      리뷰에서 보여줄 <br />
-                      사진이나 영상을 추가해주세요.
-                    </Typography>
-                  </Box>
-                </TextBox>
-              </Figure>
-            </MainPreviewFileLabel>
-            {formValues.thumbnails[0] && (
-              <CustomDeleteButton
-                onClick={() => handleThumbnailDelete(formValues.thumbnails[0])}
-              />
-            )}
-          </MainPreview>
+          <MainPreviewImage
+            formValues={formValues}
+            handleThumbnailDelete={handleThumbnailDelete}
+          />
           <SubPreview>
             <Box>
               <SubPreviewList>
                 {[1, 2, 3, 4].map(value => (
                   <>
-                    <SubPreviewItem
-                      sx={{
-                        //프리뷰 이미지
-                        backgroundImage: `url(${formValues.thumbnails[value]})`,
-                      }}
-                    >
-                      <ListItemIcon
-                        sx={{display: 'flex', justifyContent: 'center'}}
-                      />
-                      {formValues.thumbnails[value] && (
-                        <CustomDeleteButton
-                          onClick={() =>
-                            handleThumbnailDelete(formValues.thumbnails[value])
-                          }
-                        />
-                      )}
-                    </SubPreviewItem>
+                    <SubPreviewImage
+                      formValues={formValues}
+                      handleThumbnailDelete={handleThumbnailDelete}
+                      value={value}
+                    />
                   </>
                 ))}
               </SubPreviewList>
@@ -118,34 +71,8 @@ const ReviewFormFirst = () => {
 
 export default ReviewFormFirst
 
-const Figure = muiStyled('figure')({
-  position: 'relative',
-  height: '100%',
-})
-
-const TextBox = muiStyled('div')({
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  width: '100%',
-  transform: 'translate(-50%,-50%)',
-})
-
-const MainPreview = muiStyled(Box)({
-  marginTop: '20px',
-  height: '420px',
-  borderRadius: '20px',
-  border: '2px dashed #dbdbdb',
-  position: 'relative',
-})
-
 const MainPreviewFileInput = muiStyled('input')({
   display: 'none',
-})
-
-const MainPreviewFileLabel = muiStyled('label')({
-  width: '100%',
-  cursor: 'pointer',
 })
 
 const SubPreview = muiStyled(Box)({
@@ -155,26 +82,4 @@ const SubPreview = muiStyled(Box)({
 const SubPreviewList = muiStyled(List)({
   display: 'flex',
   justifyContent: 'space-between',
-})
-
-const SubPreviewItem = muiStyled(ListItem)({
-  position: 'relative',
-  width: '96px',
-  height: '96px',
-  borderRadius: '10px',
-  border: ' solid 1px #dbdbdb',
-  backgroundColor: '#fff',
-  justifyContent: 'center',
-  //이미지
-  backgroundSize: '100% 100%',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-})
-
-const CustomDeleteButton = muiStyled(DeleteIcon)({
-  position: 'absolute',
-  top: -20,
-  right: -20,
-  border: '1px solid #fff',
-  color: '#000;',
 })

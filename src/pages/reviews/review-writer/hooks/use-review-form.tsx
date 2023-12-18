@@ -5,16 +5,15 @@ const keywords = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 const useReviewForm = () => {
   const [formValues, setFormValues] = useRecoilState(reviewWriteFormAtom)
-
+  console.log(formValues, 'formvalues')
   const handleThumbnailUpload = event => {
     const target = event.target
     const file = target.files[0]
     const fileSizeLimit = 1 * 1024 * 1024
-    const url = URL.createObjectURL(file)
     if (file && file.size <= fileSizeLimit) {
       setFormValues({
         ...formValues,
-        ['thumbnails']: [url, ...formValues.thumbnails],
+        ['thumbnails']: [file, ...formValues.thumbnails],
       })
       return
     } else {

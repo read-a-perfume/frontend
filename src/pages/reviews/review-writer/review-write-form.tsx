@@ -5,31 +5,27 @@ import ReviewFormLast from './review-form-last'
 import ReviewFormProgassState from './review-form-prograss-state'
 import useReviewFormPreNext from './hooks/use-review-form-pre-nex'
 import ReviewFormPreNext from './review-form-pre-next'
-import useReviewForm from './hooks/use-review-form'
-import {fetchReviewCreate} from 'src/store/server/reviews/mutations'
-import useMutation from 'src/store/server/use-mutation'
+import usePostReviewCreate from './hooks/use-post-review-create'
+
 
 const ReviewWriteForm = () => {
   const {handleNextPage, handlePrevPage, prograss} = useReviewFormPreNext({
     index: 0,
   })
-  const {formValues} = useReviewForm()
+  const {uploadeFiles,formValues} =usePostReviewCreate()
 
-  const {mutate: createReview} = useMutation({
-    mutationFn: fetchReviewCreate,
-    mutationKey: ['review-write'],
-    options: {
-      onError: error => console.log(error, 'error'),
-    },
-  })
-
-  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault()
     // 선택된 값에 따른 작업 수행
-
-    formValues
-
-    createReview(formValues)
+    for (const item in formValues) {
+      if (formValues[item] === undefined || formValues[item] === '') {
+        alert(` 프로퍼티가 비어 있습니다.`)
+        return
+      }
+    }
+    const formData = new FormData()
+    formData.append('file', formValues.thumbnails[0])
+    uploadeFiles(formData)
   }
 
   return (

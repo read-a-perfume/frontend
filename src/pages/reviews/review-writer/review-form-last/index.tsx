@@ -7,7 +7,7 @@ import {
   Typography,
   styled,
 } from '@mui/material'
-import {REVIEW_OPTIONS} from '@pages/reviews/data/review-options'
+import {REVIEW_OPTIONS} from '@pages/reviews/review-writer/data/review-options'
 import useReviewForm from '../hooks/use-review-form'
 
 const ReviewFormLast = () => {
