@@ -5,16 +5,16 @@ export interface IfReviewAuthor {
 }
 
 // api와 통신하진 않지만 api 대이터내에 포함된 리뷰 작성자
-export interface IfReviewUser{
+export interface IfReviewUser {
   id: number
-  username:string
-  thumbnail:string
+  username: string
+  thumbnail: string
 }
 
 interface IfReviewBase {
   shortReview: string
-  thumbnails: string[]
-  keywords: string[]
+  thumbnails: string[] | number[] //생성할땐 키워드가 넘버형식이고 받을때는 string 형식임.
+  keywords: string[] | number[] //생성할땐 키워드가 넘버형식이고 받을때는 string 형식임.
 }
 
 interface IfReviewBaseDetail {
@@ -39,7 +39,7 @@ export interface IfReviewDetail extends IfReviewBase, IfReviewBaseDetail {
   id: number
   likeCount: number
   commentCount: number
-  author: IfReviewAuthor 
+  author: IfReviewAuthor
 }
 
 // 리뷰 생성
@@ -69,4 +69,10 @@ export interface IfLike {
 export interface IfReviewOption {
   name: string
   code: string
+}
+
+//리뷰 페이지 향수 검색
+export interface IfReviewPerFumeSearch {
+  perfumeNameWithBrand: string
+  perfumeId: number
 }
