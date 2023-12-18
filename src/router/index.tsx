@@ -123,6 +123,7 @@ const routerData: RouterElement[] = [
     path: '/brand/upload',
     element: <MagazineUpload />,
     isLayout: true,
+    withAuth: true,
   },
   {
     id: 9,
@@ -130,6 +131,7 @@ const routerData: RouterElement[] = [
     path: '/brands',
     element: <BrandList />,
     isLayout: true,
+    withAuth: true,
   },
 
 
