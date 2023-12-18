@@ -27,8 +27,9 @@ const Kor = [
 const BrandList = () => {
   //const {data: brands} = useQuery(['brands'], () => fetchBrands())
 
-
   //const classifyBrands = useClassifyKorean(brands)
+
+  const [korClass,setKorClass] = useState('');
 
   return (
     <>
