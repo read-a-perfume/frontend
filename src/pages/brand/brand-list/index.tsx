@@ -1,3 +1,4 @@
+
 //import {useQuery} from '@tanstack/react-query'
 //import {fetchBrands} from './queryfn'
 import {useState} from 'react'
@@ -5,6 +6,7 @@ import {useState} from 'react'
 import {Box, Stack, Typography, styled} from '@mui/material'
 import BrandCard from './brand-card'
 import Banner from '@components/base/banner'
+
 
 const Kor = [
   'ㄱ',
@@ -24,6 +26,7 @@ const Kor = [
 ]
 
 const BrandList = () => {
+
   //const {data: brands} = useQuery(['brands'], () => fetchBrands())
 
   const [korClass, setKorClass] = useState<string>('')
@@ -66,9 +69,11 @@ const BrandList = () => {
 
 export default BrandList
 
+
 const Container = styled(Box)(() => ({
   padding: '0 160px',
 }))
+
 
 const Title = styled(Typography)(() => ({
   fontFamily: 'AritaBuri',
@@ -91,3 +96,4 @@ const CardContainer = styled(Box)(() => ({
   flexWrap: 'wrap',
   gap: '32.6px 24px',
 }))
+
