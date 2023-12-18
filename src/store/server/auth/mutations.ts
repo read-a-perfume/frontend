@@ -1,13 +1,13 @@
 import instance from '@api/instance'
-import {IfLogin, IfSignUp} from 'types/auth.interface'
+import {IfLoginRequeset, IfSignUpRequest} from 'types/auth.interface'
 
-export const postLogin = async (data: IfLogin) => {
+export const postLogin = async (data: IfLoginRequeset) => {
   return await instance.post('/login', {...data})
 }
 
 export const postSignUp: (
-  signUpdata: IfSignUp,
-) => Promise<IfLogin> = async signUpdata => {
+  signUpdata: IfSignUpRequest,
+) => Promise<IfLoginRequeset> = async signUpdata => {
   const API_URL = '/signup/email'
   const res = await instance.post(API_URL, {
     ...signUpdata,
@@ -18,8 +18,7 @@ export const postSignUp: (
 
 export const postSignUpIdDuplicationCheck = async (userId: string) => {
   const res = await instance.post('/signup/check-username', {
-    userId,
+    username: userId,
   })
-  const data = await res.data
-  return data
+  return res
 }

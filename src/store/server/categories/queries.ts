@@ -1,7 +1,7 @@
 import instance from '@api/instance'
 
 /** 카테고리 목록 조회 */
-export const fetchGetCategories = async () => {
+export const fetchCategories = async () => {
   try {
     const res = await instance.get('/categories')
     const data = res.data
@@ -14,7 +14,10 @@ export const fetchGetCategories = async () => {
 }
 
 // 카테고리별 향수 조회
-export const getPerfumeList = async (queryCategoryId: number, page: number) => {
+export const fetchPerfumeList = async (
+  queryCategoryId: number,
+  page: number,
+) => {
   try {
     console.log(queryCategoryId, page)
 

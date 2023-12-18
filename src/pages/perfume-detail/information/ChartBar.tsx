@@ -23,6 +23,8 @@ const ChartBar = ({percent}: ProgressBarProp) => {
     }
 
     animate()
+
+    return () => cancelAnimationFrame(animate as any)
   }, [percent])
 
   return (

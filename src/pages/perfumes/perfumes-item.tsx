@@ -3,11 +3,11 @@ import {Link, useLocation} from 'react-router-dom'
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined'
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined'
 
-interface PerfumesItemProps {
-  item: ItemType
+interface IfPerfumesItemProps {
+  item: IfItemType
 }
 
-export type ItemType = {
+export interface IfItemType {
   brandName: string
   duration: string
   id: number
@@ -16,14 +16,17 @@ export type ItemType = {
   thumbnailUrl?: string
 }
 
-const PerfumesItem = ({item}: PerfumesItemProps) => {
+const PerfumesItem = ({item}: IfPerfumesItemProps) => {
   const location = useLocation()
 
   const {id, brandName, duration, name, strength, thumbnailUrl} = item
 
   return (
     <Wrapper>
-      <Link to={`/perfume/${id}`}>
+      <Link
+        to={`/perfume/${id}`}
+        state={{duration: item.duration, strength: item.strength}}
+      >
         <ProductWrapper>
           {thumbnailUrl ? (
             <img src={thumbnailUrl} alt="img" />
