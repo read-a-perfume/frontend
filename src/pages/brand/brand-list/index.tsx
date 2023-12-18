@@ -6,6 +6,7 @@ import {Box, Stack, Typography, styled} from '@mui/material'
 import BrandCard from './brand-card'
 import Banner from '@components/base/banner'
 
+
 const Kor = [
   'ㄱ',
   'ㄴ',
@@ -26,7 +27,6 @@ const Kor = [
 const BrandList = () => {
   //const {data: brands} = useQuery(['brands'], () => fetchBrands())
 
-  const [korClass, setKorClass] = useState<string>('')
 
   //const classifyBrands = useClassifyKorean(brands)
 
@@ -66,9 +66,11 @@ const BrandList = () => {
 
 export default BrandList
 
+
 const Container = styled(Box)(() => ({
   padding: '0 160px',
 }))
+
 
 const Title = styled(Typography)(() => ({
   fontFamily: 'AritaBuri',
@@ -91,3 +93,4 @@ const CardContainer = styled(Box)(() => ({
   flexWrap: 'wrap',
   gap: '32.6px 24px',
 }))
+
