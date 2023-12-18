@@ -2,16 +2,17 @@ import {FormControlLabel, Radio, styled} from '@mui/material'
 
 interface Props {
   title: string
+  value: any
 }
 
-const RadioRoundedButton = ({title}: Props) => {
+const RadioRoundedButton = ({title, value}: Props) => {
   return (
     <>
       <MuIFormControlLabel
         sx={{
           color: '#a9a9a9',
         }}
-        value={`${title}`}
+        value={value}
         control={<Radio />}
         label={`${title}`}
       />

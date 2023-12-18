@@ -1,32 +1,19 @@
-import {useState} from 'react'
-import {ReviewWriterFormProps} from '../form.interface'
-const keywords = [
-  '자연적인',
-  '달달한',
-  '여름',
-  '상큼한',
-  '과일',
-  '가을',
-  '우아한',
-  '고급진',
-]
+import {useCallback} from 'react'
+import {useRecoilState} from 'recoil'
+import {reviewWriteFormAtom} from 'src/store/client/reviews/atoms'
+const keywords = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-interface Props {
-  formData: ReviewWriterFormProps
-}
-
-const useReviewForm = ({formData}: Props) => {
-  const [formValues, setFormValues] = useState<any>(formData)
-  console.log(formValues.keywords)
+const useReviewForm = () => {
+  const [formValues, setFormValues] = useRecoilState(reviewWriteFormAtom)
+  console.log(formValues, 'formvalues')
   const handleThumbnailUpload = event => {
     const target = event.target
     const file = target.files[0]
     const fileSizeLimit = 1 * 1024 * 1024
-    const url = URL.createObjectURL(file)
     if (file && file.size <= fileSizeLimit) {
       setFormValues({
         ...formValues,
-        ['thumbnails']: [url, ...formValues.thumbnails],
+        ['thumbnails']: [file, ...formValues.thumbnails],
       })
       return
     } else {
@@ -55,24 +42,24 @@ const useReviewForm = ({formData}: Props) => {
     })
   }
 
-  const handleAutoComplete = (_event, value) => {
-    console.log(value, 'vlaue')
-    setFormValues({
-      ...formValues,
-      ['perfumeId']: value.id,
-    })
+  const handleAutoComplete = (_event, value: {id: number}) => {
+    if (value) {
+      setFormValues({
+        ...formValues,
+        ['perfumeId']: value.id,
+      })
+    }
   }
 
   //최대 3개까지 가능한 체크박스
   const handleMultipleCheckBox = event => {
     const target = event.target
-    const name = target.name
-    //체크박스 최대 3개까지 선택가능
-    if (keywords.includes(event.target.name)) {
+    const value = Number(target.value)
+    if (keywords.includes(value)) {
       //중복 체크는 취소하도록 필터링
       const filter = formValues.keywords.filter(
-        keyword => keyword.name !== name,
-      )
+        keywordId => keywordId !== value,
+      ) //1,2,3,4,5,6
 
       if (formValues.keywords.length !== filter.length) {
         setFormValues({
@@ -81,25 +68,53 @@ const useReviewForm = ({formData}: Props) => {
         })
         return
       }
-      //최대 3개까지
-      if (formValues.keywords.length < 3) {
+
+      //최대 3개까지만 출력
+    }
+    if (formValues.keywords.length < 3) {
+      setFormValues({
+        ...formValues,
+        ['keywords']: [value, ...formValues.keywords],
+      })
+    }
+    return
+  }
+
+  // const handleSlider = useCallback(
+  //   (sliderValue: number) => {
+  //     (sliderValue: number) => {
+
+  //     }
+  //   },
+  //   [formValues, setFormValues],
+  // )
+
+  const handleSlider = useCallback(
+    sliderValue => {
+      if (sliderValue === 0) {
         setFormValues({
           ...formValues,
-          ['keywords']: [name, ...formValues.keywords],
-        })
-      }
-      //3개이상이면 마지막께 취소되고 새로운 키워드가 선택
-      if (formValues.keywords.length >= 3) {
-        const updatedkeywords = [...formValues.keywords.slice(0, 2), name]
-        setFormValues({
-          ...formValues,
-          ['keywords']: updatedkeywords,
+          ['strength']: 'LIGHT',
         })
         return
       }
-      return
-    }
-  }
+      if (sliderValue === 50) {
+        setFormValues({
+          ...formValues,
+          ['strength']: 'MODERATE',
+        })
+        return
+      }
+      if (sliderValue === 100) {
+        setFormValues({
+          ...formValues,
+          ['strength']: 'HEAVY',
+        })
+        return
+      }
+    },
+    [formValues, setFormValues],
+  )
 
   return {
     formValues,
@@ -108,6 +123,7 @@ const useReviewForm = ({formData}: Props) => {
     handleFormDataChange,
     handleMultipleCheckBox,
     handleAutoComplete,
+    handleSlider,
   }
 }
 
