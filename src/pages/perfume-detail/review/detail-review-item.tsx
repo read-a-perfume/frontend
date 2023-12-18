@@ -10,21 +10,23 @@ import FlexBox from '@layouts/flex-box'
 import {useEffect, useState} from 'react'
 
 interface IfDetailReviewItemProps {
-  item: ItemType
+  item: IfItem
 }
 
-type ItemType = {
+interface IfItem {
   commentCount: number
   id: number
   keywords: string[]
   likeCount: number
   shortReview: string
   thumbnails: string[]
-  user: {
-    id: number
-    username: string
-    thumbnail: string
-  }
+  user: IfUser
+}
+
+interface IfUser {
+  id: number
+  username: string
+  thumbnail: string
 }
 
 const DetailReviewItem = ({item}: IfDetailReviewItemProps) => {

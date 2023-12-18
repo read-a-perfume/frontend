@@ -2,7 +2,7 @@ import {useState} from 'react'
 import styled from '@emotion/styled'
 import {useQuery} from '@tanstack/react-query'
 import {useSearchParams} from 'react-router-dom'
-import {CategoryNameType} from '@components/category/interfaces'
+import {IfCategoryNameType} from '@components/category/interfaces'
 import {
   fetchCategories,
   fetchPerfumeList,
@@ -13,7 +13,7 @@ import Category from '@components/category'
 import Pagination from '@mui/material/Pagination'
 import {Box, Skeleton, Stack, Typography} from '@mui/material'
 import brandDummyData from './dummyData'
-import PerfumesItem, {ItemType} from './perfumes-item'
+import PerfumesItem, {IfItemType} from './perfumes-item'
 
 const skeletons = Array.from({length: 12}, (_, index) => index + 1)
 
@@ -45,7 +45,7 @@ const Perfumes = () => {
     isLoading: categoryLoading,
     error: categoryError,
     data: categories,
-  } = useQuery<CategoryNameType[]>({
+  } = useQuery<IfCategoryNameType[]>({
     queryKey: ['categories'],
     queryFn: fetchCategories,
     staleTime: 99999,
@@ -152,7 +152,7 @@ const Perfumes = () => {
           ) : (
             <>
               {perfumeList?.content?.length > 0 &&
-                perfumeList?.content?.map((item: ItemType, index: number) => (
+                perfumeList?.content?.map((item: IfItemType, index: number) => (
                   <PerfumesItem item={item} key={index} />
                 ))}
             </>

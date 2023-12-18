@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {Link, useParams} from 'react-router-dom'
+import {Link, useLocation, useParams} from 'react-router-dom'
 import {useQueries} from '@tanstack/react-query'
 import {
   fetchPerfume,
@@ -26,6 +26,7 @@ import {
 const isLoadingData = Array.from({length: 4}, (_, index) => index + 1)
 
 const PerfumeDetail = () => {
+  const location = useLocation()
   const params = useParams()
 
   const [page, setPage] = useState(1) // 처음 페이지는 1
@@ -34,15 +35,15 @@ const PerfumeDetail = () => {
   const results = useQueries({
     queries: [
       {
-        queryKey: ['post', 1],
+        queryKey: ['perfume-detail', params.id],
         queryFn: () => fetchPerfume(params.id as string),
       },
       {
-        queryKey: ['post', 2],
+        queryKey: ['perfume-graph', params.id],
         queryFn: () => fetchPerfumeGraph(params.id as string),
       },
       {
-        queryKey: ['post', 3],
+        queryKey: ['perfume-review-data', params.id],
         queryFn: () => fetchPerfumeReviewData(params.id as string),
       },
     ],
@@ -125,6 +126,20 @@ const PerfumeDetail = () => {
           <Link to={data?.perfumeShopUrl} target="_blank">
             <BuyButton>향수 구매 사이트로 이동하기</BuyButton>
           </Link>
+
+          <PerfumeInformation>
+            <TextWrap>
+              <Type>강도</Type>
+              {location?.state?.strength}
+            </TextWrap>
+
+            <div className="vertical-line" />
+
+            <TextWrap>
+              <Type>지속력</Type>
+              {location?.state?.duration}
+            </TextWrap>
+          </PerfumeInformation>
 
           {/* 향수 노트 */}
           <Notes
@@ -247,11 +262,46 @@ const Description = styled('div')({
   lineHeight: ' 170%',
 })
 
+const PerfumeInformation = styled('div')({
+  width: '100%',
+  height: '46px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: '7.5px',
+  backgroundColor: '#F1F1F1',
+  fontWeight: '500',
+  color: '#333333',
+  marginTop: '15px',
+  marginBottom: '42px',
+  padding: '0 32px',
+
+  '& .vertical-line': {
+    borderLeft: '1px solid #BDBDBD',
+    margin: '6px 21px 6px 16.25px',
+    width: '0.75px',
+    height: '22.5px',
+  },
+})
+
+const TextWrap = styled('p')({
+  width: '100%',
+  color: '#191919',
+  fontFamily: 'Pretendard',
+  fontSize: '14px',
+  letterSpacing: '0.21px',
+  whiteSpace: 'nowrap',
+})
+
+const Type = styled('span')({
+  color: '#A9A9A9',
+  marginRight: '11.75px',
+})
+
 const BuyButton = styled(Button)({
   width: '486px',
-  height: '36px',
-  marginTop: '89.25px',
-  marginBottom: '33px',
+  height: '46px',
+  marginTop: '15px',
   borderRadius: '7.5px',
   color: 'white',
   backgroundColor: '#202020',
