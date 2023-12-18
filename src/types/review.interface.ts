@@ -13,8 +13,8 @@ export interface IfReviewUser {
 
 interface IfReviewBase {
   shortReview: string
-  thumbnails: string[] | number[] //생성할땐 키워드가 넘버형식이고 받을때는 string 형식임.
-  keywords: string[] | number[] //생성할땐 키워드가 넘버형식이고 받을때는 string 형식임.
+  thumbnails: string[] //생성할땐 키워드가 넘버형식이고 받을때는 string 형식임.
+  keywords: string[] //생성할땐 키워드가 넘버형식이고 받을때는 string 형식임.
 }
 
 interface IfReviewBaseDetail {
