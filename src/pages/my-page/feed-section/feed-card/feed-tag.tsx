@@ -7,7 +7,7 @@ interface proptype {
 const FeedTag = ({tags}: proptype) => {
   return (
     <FeedTagContainer>
-      <TagText color="primary">{'#' + tags.join(' #')}</TagText>
+      <TagText color="primary">{tags.map(e => `#${e}`).join(' ')}</TagText>
     </FeedTagContainer>
   )
 }
