@@ -24,7 +24,7 @@ const CarouselWithStepper = () => {
   }, [])
 
   const sliceContent = (content: string) => {
-    return content.slice(0, 45) + '...'
+    return content.slice(0, 20) + '...'
   }
 
   return (
@@ -48,7 +48,7 @@ const CarouselWithStepper = () => {
               height="442px"
               coverImageHeight={'240px'}
               coverImage={data.image}
-              profileImage=""
+              profileImage="images/Rectangle7370.png"
               title={data.title}
               content={sliceContent(data.content)}
               hashTags={data.hashtag}

@@ -1,172 +1,58 @@
 import styled from '@emotion/styled'
 import {Button, OutlinedInput, Typography} from '@mui/material'
-import {FormControl, IconButton, InputAdornment} from '@mui/material'
-import {useEffect, useState} from 'react'
-import {useLocation, useNavigate} from 'react-router-dom'
-import RoundButton from '@components/base/round-button.js'
+import {useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 import FlexBox from './flex-box.js'
-import CustomIcons from '@assets/icons/custom-Icons.js'
 import NotificationModal from '@components/modal/notification-modal/index.js'
 import LoginModal from '@components/modal/login-modal/index.js'
 import {theme} from '@theme/index.js'
+import {useRecoilValue} from 'recoil'
+import HeaderNavigations from '@components/header/header-navigations.js'
+import LoggedInHeader from '@components/header/logged-in-header.js'
+import {UserAtom} from 'src/store/client/auth/atoms.js'
+import useQuery from 'src/store/server/use-query.js'
+import {fetchUserProfile} from 'src/store/server/auth/queries.js'
 
 const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
   const navigate = useNavigate()
-  const isLoggedIn = true
-  const isUploading = true
+  const isLoggedIn = useRecoilValue(UserAtom)
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [popOpen, setPopOpen] = useState<boolean>(false)
-  const [keyword, setKeyword] = useState<string>('')
-  const location = useLocation()
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+  const [notificationOpen, setNotificationOpen] = useState<boolean>(false)
 
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth)
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-  const colorsWhenDisabled = !editorPostCompleted ? '#F1F1F5' : '#FE7156'
-
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!isLoggedIn) {
-      setIsOpen(true)
-    } else {
-      setKeyword(event?.target.value)
-    }
-  }
-
-  const rightComponent = () => {
-    if (location.pathname.split('/').includes('post')) {
-      return (
-        <div>
-          {isUploading ? (
-            <FlexBox justifyContent="flex-end">
-              <RoundButton
-                text="업로드 중"
-                borderColor="#FE7156"
-                width="218px"
-                backgroundColor="#FE7156"
-                style={{color: 'white'}}
-              />
-            </FlexBox>
-          ) : (
-            <FlexBox gap="16px">
-              <RoundButton
-                text="취소"
-                borderColor="#DBDBDB"
-                width="184px"
-                backgroundColor="white"
-              />
-              <RoundButton
-                text="매거진 업로드"
-                borderColor={colorsWhenDisabled}
-                width="248px"
-                backgroundColor={colorsWhenDisabled}
-                style={{color: !editorPostCompleted ? '#A9A9A9' : 'white'}}
-                disabled={!editorPostCompleted}
-              />
-            </FlexBox>
-          )}
-        </div>
-      )
-    } else {
-      return (
-        <FormControl>
-          <Input
-            placeholder="향수,브랜드,뉴스 무엇이든 검색해보세요!"
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton style={{marginRight: '-5px'}}>
-                  <CustomIcons.SearchIcon />
-                </IconButton>
-              </InputAdornment>
-            }
-            onChange={changeHandler}
-            value={keyword}
-          />
-        </FormControl>
-      )
-    }
-  }
+  const {data: profile} = useQuery({
+    queryKey: ['user-profile'],
+    queryFn: () => fetchUserProfile(),
+  })
 
   return (
     <>
-      <NotificationModal isOpen={popOpen} setIsOpen={setPopOpen} />
+      <NotificationModal
+        isOpen={notificationOpen}
+        setIsOpen={setNotificationOpen}
+      />
       <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} />
       <HeaderLayout>
-        <HeaderNavigation height="58px">
-          <NavTop
-            onClick={() => (!isLoggedIn ? setIsOpen(true) : setPopOpen(true))}
-          >
-            알림
-          </NavTop>
-          <NavTop
-            onClick={() =>
-              !isLoggedIn ? setIsOpen(true) : navigate('/mypage')
-            }
-          >
-            마이페이지
-          </NavTop>
-        </HeaderNavigation>
-        <HeaderNavigation height="94px">
-          <FlexBox
-            justifyContent="space-between"
-            style={{width: screenWidth - 720}}
-          >
-            <FlexBox alignItems="center">
-              <Logo
-                src={'/images/logo-text.png'}
-                alt="logo"
-                onClick={() => navigate('/')}
-              />
+        {isLoggedIn ? (
+          <LoggedInHeader
+            thumbnail={profile ? profile.thumbnail : ''}
+            isLoggedIn={isLoggedIn}
+            onOpenLoginModal={() => setIsOpen(true)}
+            onOpenNotification={() => setNotificationOpen(true)}
+          />
+        ) : (
+          <HeaderNavigation height="58px">
+            <FlexBox gap="4px">
+              <NavTop onClick={() => navigate('/sign-up')}>회원가입</NavTop>
+              <NavTop>/</NavTop>
+              <NavTop onClick={() => navigate('/sign-in')}>{' 로그인'}</NavTop>
             </FlexBox>
-            <FlexBox style={{width: '588px'}} justifyContent="center">
-              <FlexBox alignItems="center" gap="54px">
-                <NavBottom
-                  onClick={() =>
-                    !isLoggedIn ? setIsOpen(true) : navigate('/')
-                  }
-                >
-                  홈
-                </NavBottom>
-                <NavBottom
-                  onClick={() =>
-                    !isLoggedIn ? setIsOpen(true) : console.log('')
-                  }
-                >
-                  리뷰
-                </NavBottom>
-                <NavBottom
-                  onClick={() =>
-                    !isLoggedIn ? setIsOpen(true) : navigate('/brand')
-                  }
-                >
-                  브랜드
-                </NavBottom>
-                <NavBottom
-                  onClick={() =>
-                    !isLoggedIn ? setIsOpen(true) : navigate('/perfumes')
-                  }
-                >
-                  제품
-                </NavBottom>
-                <NavBottom
-                  onClick={() =>
-                    !isLoggedIn ? setIsOpen(true) : console.log('')
-                  }
-                >
-                  뉴스
-                </NavBottom>
-              </FlexBox>
-            </FlexBox>
-            {rightComponent()}
-          </FlexBox>
-        </HeaderNavigation>
+          </HeaderNavigation>
+        )}
+        <HeaderNavigations
+          editorPostCompleted={editorPostCompleted}
+          isLoggedIn={isLoggedIn}
+          onOpen={() => setIsOpen(true)}
+        />
       </HeaderLayout>
     </>
   )
@@ -182,7 +68,7 @@ const HeaderLayout = styled.div({
   borderBottom: '1px solid black',
 })
 
-const HeaderNavigation = styled.div(({height}: {height: string}) => ({
+export const HeaderNavigation = styled.div(({height}: {height: string}) => ({
   width: '100%',
   height: height,
   paddingLeft: 360,
@@ -197,7 +83,7 @@ const HeaderNavigation = styled.div(({height}: {height: string}) => ({
   },
 }))
 
-const NavTop = styled(Typography)({
+export const NavTop = styled(Typography)({
   fontSize: theme.typography.body3.fontSize,
   fontWeight: 500,
   lineHeight: '150%',
