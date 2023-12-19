@@ -5,16 +5,16 @@ export interface IfReviewAuthor {
 }
 
 // api와 통신하진 않지만 api 대이터내에 포함된 리뷰 작성자
-export interface IfReviewUser{
+export interface IfReviewUser {
   id: number
-  username:string
-  thumbnail:string
+  username: string
+  thumbnail: string
 }
 
 interface IfReviewBase {
   shortReview: string
-  thumbnails: string[]
-  keywords: string[]
+  thumbnails: string[] //생성할땐 키워드가 넘버형식이고 받을때는 string 형식임.
+  keywords: string[] //생성할땐 키워드가 넘버형식이고 받을때는 string 형식임.
 }
 
 interface IfReviewBaseDetail {
@@ -27,7 +27,7 @@ interface IfReviewBaseDetail {
 }
 
 // 리뷰 목록 조회
-export interface IfReview extends IfReviewBase {
+export interface IfReviewResponse extends IfReviewBase {
   id: number
   user: IfReviewUser
   likeCount: number
@@ -35,33 +35,37 @@ export interface IfReview extends IfReviewBase {
 }
 
 // 리뷰 상세보기
-export interface IfReviewDetail extends IfReviewBase, IfReviewBaseDetail {
+export interface IfReviewDetailResponse extends IfReviewBase, IfReviewBaseDetail {
   id: number
   likeCount: number
   commentCount: number
-  author: IfReviewAuthor 
+  author: IfReviewAuthor
 }
 
 // 리뷰 생성
-export interface IfReviewRequest extends IfReviewBase, IfReviewBaseDetail {}
+export interface IfReviewRequest extends IfReviewBaseDetail {
+  shortReview: string
+  thumbnails: number[]
+  keywords: number[]
+}
 
 // 리뷰 삭제
-export interface IfReviewDelete {
+export interface IfReviewDeleteRequest {
   id: number
 }
 
 // 댓글 생성
-export interface IfComment {
+export interface IfCommentRequest {
   content: string
 }
 
 // 댓글 삭제
-export interface IfCommentDelete {
+export interface IfCommentDeleteRequset {
   id: number
 }
 
 // 좋아요 표시/취소
-export interface IfLike {
+export interface IfLikeRequest {
   id: number
 }
 
@@ -69,4 +73,10 @@ export interface IfLike {
 export interface IfReviewOption {
   name: string
   code: string
+}
+
+//리뷰 페이지 향수 검색
+export interface IfReviewPerFumeSearch {
+  perfumeNameWithBrand: string
+  perfumeId: number
 }

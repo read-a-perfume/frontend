@@ -4,7 +4,7 @@ import {
   // BannerBlur,
   // BannerImage,
   BrandContents,
-  CardBox,
+  // CardBox,
   Tab,
   Tabs,
 } from './brand.style.js'
@@ -17,6 +17,7 @@ import {useNavigate} from 'react-router-dom'
 import {magazineData} from '../home/constants.js'
 import MuiButton from '@components/base/mui-button.js'
 import Banner from './banner.js'
+import { Box, styled } from '@mui/material'
 
 const Brand = () => {
   const navigate = useNavigate()
@@ -27,7 +28,12 @@ const Brand = () => {
 
   return (
     <>
-    <Banner fileURL={fileURL} fileRef={fileRef} enterprise={enterprise} setFILEURL={setFILEURL}/>
+      <Banner
+        fileURL={fileURL}
+        fileRef={fileRef}
+        enterprise={enterprise}
+        setFILEURL={setFILEURL}
+      />
       <BrandInfoDetail enterprise={enterprise} />
       {/* 추후 삭제 */}
       <MuiButton
@@ -58,7 +64,7 @@ const Brand = () => {
               <MuiButton
                 title="매거진 글쓰기"
                 type="dark"
-                handleClick={() => navigate(`/brand/:id/magazine/post`)}
+                handleClick={() => navigate(`/brand/upload`)}
                 width="137px"
                 height="34px"
               />
@@ -74,8 +80,17 @@ const Brand = () => {
       </BrandContents>
       {current === 'magazine' ? (
         <CardBox>
-          {magazineData.map(data => (
-            <Magazine key={data.id} enterprise={enterprise} data={data} />
+          {magazineData.map((_, i) => (
+            <Magazine
+              key={i}
+              data={{
+                title: `심플한 디자인이 돋보이는 전설적인 향수 N°5 빠르펭`,
+                content: `심플한 디자인이 돋보이는 전설적인 향수 N°5 빠르펭. 시간을 초월하여 사랑받는 아이콘으로 여성의 진정한 아름다움을 표현합니다. 알데하이드 플로랄 부케는 "여성의 향기를 담은 여성미의 진수"를 만들어 달라고 부탁한 가브리엘...`,
+                thumbnail: '',
+                coverThumbnail: '',
+                tags: ['플로랄','여름신작','슬로우섬머'],
+              }}
+            />
           ))}
         </CardBox>
       ) : (
@@ -86,3 +101,11 @@ const Brand = () => {
 }
 
 export default Brand
+
+const CardBox = styled(Box)(()=>({
+  display: 'flex',
+  flexWrap: 'wrap',
+  padding: '33px 160px 178px 160px',
+  gap: '44.5px 24px',
+  
+}))

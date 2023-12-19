@@ -7,23 +7,12 @@ import {
   Typography,
   styled,
 } from '@mui/material'
+import {REVIEW_OPTIONS} from '@pages/reviews/review-writer/data/review-options'
+import useReviewForm from '../hooks/use-review-form'
 
-const data = [
-  '자연적인',
-  '달달한',
-  '여름',
-  '상큼한',
-  '과일',
-  '가을',
-  '우아한',
-  '고급진',
-]
-
-const ReviewFormLast = ({
-  formValues,
-  handleFormDataChange,
-  handleMultipleCheckBox,
-}: any) => {
+const ReviewFormLast = () => {
+  const {formValues, handleFormDataChange, handleMultipleCheckBox} =
+    useReviewForm()
   return (
     <FormControl component="fieldset">
       <OneLineReview>
@@ -54,21 +43,21 @@ const ReviewFormLast = ({
       </div>
       <Title>향수와 어울리는 키워드를 선택해주세요. (최대 3개)</Title>
       <Group>
-        {data.map(it => (
+        {REVIEW_OPTIONS.keywords.map(keywords => (
           <MuIFormControlLabel
             sx={{
               margin: 0,
             }}
             control={
               <CustomCheckBox
-                checked={formValues.keywords.includes(`${it}`)}
+                checked={formValues.keywords.includes(keywords.code)}
                 onChange={handleMultipleCheckBox}
-                value={it}
-                key={it}
-                name={it}
+                value={keywords.code}
+                key={keywords.name}
+                name={keywords.name}
               />
             }
-            label={it}
+            label={keywords.name}
           />
         ))}
       </Group>

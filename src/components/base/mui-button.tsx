@@ -51,7 +51,7 @@ const MuiButton: React.FC<ButtonProps> = ({
           width: `${width ? width : '100%'}`,
           borderRadius: '10px',
           fontWeight: 500,
-
+          padding: 0,
           height: height,
 
           boxShadow: 'none',

@@ -9,5 +9,6 @@ export const fetchUserProfile: () => Promise<IfLoginUserProfileResponse> =
   async () => {
     const res = await instance.get('/me')
     const data = await res.data
+
     return data
   }

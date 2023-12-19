@@ -1,4 +1,4 @@
-export type CategoryNameType = {
+export interface IfCategoryNameType {
   id: number
   name: string
   description: string

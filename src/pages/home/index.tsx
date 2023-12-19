@@ -5,7 +5,7 @@ import {Banner, BannerBox, BannerImage, Content, Title} from './index.style'
 import Button from '@components/base/button.js'
 import Products from './products.js'
 import {useNavigate} from 'react-router-dom'
-import {CategoryNameType} from '@components/category/interfaces.js'
+import {IfCategoryNameType} from '@components/category/interfaces.js'
 import {fetchCategories} from 'src/store/server/categories/queries.js'
 import {useQuery} from '@tanstack/react-query'
 
@@ -16,7 +16,7 @@ export default function Home() {
     isLoading: categoryLoading,
     error: categoryError,
     data: categories,
-  } = useQuery<CategoryNameType[]>({
+  } = useQuery<IfCategoryNameType[]>({
     queryKey: ['categories'],
     queryFn: fetchCategories,
     staleTime: 99999,

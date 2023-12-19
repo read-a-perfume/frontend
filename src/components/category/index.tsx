@@ -2,13 +2,13 @@ import React from 'react'
 import {URLSearchParamsInit, useSearchParams} from 'react-router-dom'
 import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box'
-import {CategoryNameType} from './interfaces'
+import {IfCategoryNameType} from './interfaces'
 
 import CustomIcons from '@assets/icons/custom-Icons'
 import {Box, Skeleton, Stack, Typography} from '@mui/material'
 
-interface CategoryProps {
-  categories: CategoryNameType[] | undefined
+interface IfCategoryProps {
+  categories: IfCategoryNameType[] | undefined
   loading: boolean
   error: string | unknown
   currentCategory: string
@@ -29,7 +29,7 @@ const Category = ({
   setCurrentCategory,
   setCategoryId,
   setDescription,
-}: CategoryProps) => {
+}: IfCategoryProps) => {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const query = searchParams.get('categoryId')

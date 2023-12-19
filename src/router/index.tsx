@@ -11,9 +11,12 @@ import {Router as RemixRouter} from '@remix-run/router/dist/router'
 import ReviewWriter from '@pages/reviews/review-writer'
 import PerfumeDetail from '@pages/perfume-detail'
 import SignIn from '@pages/sign-in'
+import MagazineUpload from '@pages/brand/magazine-upload'
+import BrandList from '@pages/brand/brand-list'
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
   path: string // 페이지 경로
+  
   label: string // 사이드바에 표시할 페이지 이름
   element: React.ReactNode // 페이지 엘리먼트
   isLayout: boolean // 공통 레이아웃 컴포넌트 필요 여부.
@@ -114,6 +117,67 @@ const routerData: RouterElement[] = [
     withAuth: true,
     isAdminPage:true
   },
+  {
+    id: 8,
+    label: '매거진 업로드',
+    path: '/brand/upload',
+    element: <MagazineUpload />,
+    isLayout: true,
+    withAuth: true,
+  },
+  {
+    id: 9,
+    label: '브랜드 목록',
+    path: '/brands',
+    element: <BrandList />,
+    isLayout: true,
+    withAuth: true,
+  },
+
+
+  //   {
+  //     label: "test",
+  //     key: "test-key",
+  //     route: "/test",
+  //     component: <Test />,
+  //   },
+  // {
+  //   type: 'collapse',
+  //   label: 'test',
+  //   key: 'test-key',
+  //   collapse: [
+  //     {
+  //       label: 'test-first',
+  //       key: 'test-first-key',
+  //       route: '/test-first',
+  //       component: <TestFirst />,
+  //     },
+  //   ],
+  // },
+  //   {
+  //     label: "brand",
+  //     key: "brand-key",
+  //     route: "/brand/:id",
+  //     component: <Brand />,
+  //   },
+  //   {
+  //     label: "brand-settings",
+  //     key: "brand-settings-key",
+  //     route: "/brand/:id/settings",
+  //     component: <BrandSettings />,
+  //   },
+  //   {
+  //     label: "magazine-detail",
+  //     key: "magazine-detail-key",
+  //     route: "/brand/:id/magazine/:id",
+  //     component: <MagazineContent />,
+  //   },
+  //   {
+  //     label: "post-magazine",
+  //     key: "post-magazine-key",
+  //     route: "/brand/:id/magazine/post",
+  //     component: <PostMagazine />,
+  //   },
 ]
 
 export const router: RemixRouter = createBrowserRouter(

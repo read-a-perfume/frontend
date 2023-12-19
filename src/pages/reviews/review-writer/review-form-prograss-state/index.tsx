@@ -1,10 +1,22 @@
-import {List, ListItem, ListItemText, Typography, styled} from '@mui/material'
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+  styled,
+} from '@mui/material'
 
 const category = ['향수 이미지 업로드', '향수 특징 선택', '상세 리뷰 작성']
 
 const ReviewFormProgassState = ({prograss}: any) => {
   return (
-    <header>
+    <Box
+      component="header"
+      sx={{
+        marginTop: '74px',
+      }}
+    >
       <div>
         <Typography
           variant="h2"
@@ -63,7 +75,7 @@ const ReviewFormProgassState = ({prograss}: any) => {
           ))}
         </List>
       </div>
-    </header>
+    </Box>
   )
 }
 
