@@ -3,6 +3,7 @@ import FeedTag from './feed-tag'
 import FeedFooterContent from './feed-footer-content'
 import CustomIcons from '../../../../assets/icons/custom-Icons'
 import {IfReviewResponse} from 'types/review.interface'
+import FeedCardContainer from './feed-card-container'
 
 interface proptype {
   data: IfReviewResponse
@@ -33,14 +34,6 @@ const FeedCard = ({data}: proptype) => {
 
 export default FeedCard
 
-const FeedCardContainer = styled(Box)(() => ({
-  width: '384px',
-  height: '286px',
-  padding: '17px 18px 0 18px',
-  borderRadius: '12px',
-  border: 'solid 1px #ededed',
-  backgroundColor: '#fff',
-}))
 
 const FeedImg = styled('img')(() => ({
   width: '348px',
