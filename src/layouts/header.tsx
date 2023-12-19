@@ -34,7 +34,7 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
       <HeaderLayout>
         {isLoggedIn ? (
           <LoggedInHeader
-            thumbnail={profile.thumbnail}
+            thumbnail={profile ? profile.thumbnail : undefined}
             isLoggedIn={isLoggedIn}
             onOpenLoginModal={() => setIsOpen(true)}
             onOpenNotification={() => setNotificationOpen(true)}
