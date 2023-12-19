@@ -6,13 +6,13 @@ import ReviewFormProgassState from './review-form-prograss-state'
 import useReviewFormPreNext from './hooks/use-review-form-pre-nex'
 import ReviewFormPreNext from './review-form-pre-next'
 import usePostReviewCreate from './hooks/use-post-review-create'
-
+import BaseModal from '@components/modal/base-modal'
 
 const ReviewWriteForm = () => {
   const {handleNextPage, handlePrevPage, prograss} = useReviewFormPreNext({
     index: 0,
   })
-  const {uploadeFiles,formValues} =usePostReviewCreate()
+  const {uploadeFiles, formValues, isOpen, handleClose} = usePostReviewCreate()
 
   const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -41,6 +41,13 @@ const ReviewWriteForm = () => {
           prograss={prograss}
         />
       </Container>
+      <BaseModal
+        open={isOpen}
+        handleClose={handleClose}
+        title="리뷰 작성 완료!"
+        description="이제 내가 올린 리뷰를 확인할 수 있어요"
+        buttonText="확인"
+      />
     </form>
   )
 }

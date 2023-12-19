@@ -19,7 +19,6 @@ const useAuthRedirect = () => {
     options: {
       onSuccess: () => {
         setIsLoggined(data)
-        routeTo('/')
       },
       onError: () => routeTo('/sign-in'),
       retry: 2,
