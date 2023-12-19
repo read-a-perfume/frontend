@@ -9,9 +9,9 @@ const MyPage = () => {
     <div>
       <Banner/>
       <ContentSection>
-        <Title>마이페이지</Title>
+        <Title>내 프로필</Title>
         <ProfileSection />
-        <Title sx={{marginTop: '88px'}}>리뷰 모아보기</Title>
+        <Title sx={{marginTop: '88px'}}>내 리뷰</Title>
         <FeedSection />
       </ContentSection>
     </div>

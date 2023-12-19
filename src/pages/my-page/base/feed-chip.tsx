@@ -31,6 +31,6 @@ const _FeedChip = styled(Chip)<{active: boolean}>(({theme, active}) => ({
   textAlign: 'left',
   color: active ? '#fff' : '#a9a9a9',
   padding: '12px 0',
-  height: '42px',
-  backgroundColor: active ? theme.palette.primary.main : '',
+  height: '30px',
+  backgroundColor: active ? theme.palette.primary.main : theme.palette.grey[200],
 }))
