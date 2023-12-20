@@ -1,7 +1,8 @@
-import {Box, Typography, styled} from '@mui/material'
+import {Box, Modal, Typography, styled} from '@mui/material'
 import {IfUserType} from 'types/user.interface'
 import TypeInfoCard from './type-info-card'
 import TypeAddCard from './type-add-card'
+import { useState } from 'react'
 
 interface proptype {
   data: IfUserType[]
@@ -10,12 +11,18 @@ interface proptype {
 const indexArr: number[] = [0, 1, 2]
 
 const ProfileType = ({data}: proptype) => {
+
+  const [isOpen,setIsOpen] = useState<boolean>(false)
+
   return (
     <Box sx={{marginLeft: 'auto',}}>
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        <></>
+      </Modal>
       <Title>MY TYPE</Title>
       <TypeContainer>
         {indexArr.map(i =>
-          i < data.length ? <TypeInfoCard data={data[i]} /> : <TypeAddCard />,
+          i < data.length ? <TypeInfoCard data={data[i]} /> : <TypeAddCard setIsOpen={setIsOpen}/>,
         )}
       </TypeContainer>
     </Box>

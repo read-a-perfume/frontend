@@ -1,28 +1,35 @@
 import {Button, styled} from '@mui/material'
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from '@mui/icons-material/Add'
 
-const TypeAddCard = () => {
-    return(
-        <Container>
-            <Add/>
-        </Container>
-    )
+
+interface proptype{
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
-export default TypeAddCard;
+const TypeAddCard = ({setIsOpen}:proptype) => {
+  
 
-const Container = styled(Button)(({theme})=>({
-    width: '180px',
-    height: '180px',
-    display:'flex',
-    alignItems:'center',
-    justifyContent:'center',
-    backgroundColor:theme.palette.grey[200],
-    borderRadius:'16px',
+  return (
+    <Container onClick={() => setIsOpen(true)}>
+      <Add />
+    </Container>
+  )
+}
+
+export default TypeAddCard
+
+const Container = styled(Button)(({theme}) => ({
+  width: '180px',
+  height: '180px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: theme.palette.grey[200],
+  borderRadius: '16px',
 }))
 
-const Add = styled(AddIcon)(({theme})=>({
-    color: theme.palette.primary.main,
-    width: '28px',
-    height: '28px',
+const Add = styled(AddIcon)(({theme}) => ({
+  color: theme.palette.primary.main,
+  width: '28px',
+  height: '28px',
 }))
