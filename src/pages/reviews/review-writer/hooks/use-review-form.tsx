@@ -5,7 +5,7 @@ const keywords = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 const useReviewForm = () => {
   const [formValues, setFormValues] = useRecoilState(reviewWriteFormAtom)
-  console.log(formValues, 'formvalues')
+  console.log(formValues, 'form')
   const handleThumbnailUpload = event => {
     const target = event.target
     const file = target.files[0]

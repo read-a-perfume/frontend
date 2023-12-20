@@ -7,7 +7,6 @@ export const fetchPerfumeSearch: (
   keyword?: string,
 ) => Promise<IfReviewPerFumeSearch[]> = async (keyword?: string) => {
   const res = await instance.get(`/perfumes/search?query=${keyword}`)
-  console.log(res, 'Res')
   const data = await res.data
   return data
 }

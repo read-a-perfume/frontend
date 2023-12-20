@@ -32,6 +32,9 @@ const ReviewFormFirst = () => {
       </Box>
     )
   }
+
+
+  
   return (
     <main>
       <FormControl component="fieldset" sx={{width: '100%', margin: 'auto'}}>
@@ -44,13 +47,11 @@ const ReviewFormFirst = () => {
             <Box>
               <SubPreviewList>
                 {[1, 2, 3, 4].map(value => (
-                  <>
-                    <SubPreviewImage
-                      formValues={formValues}
-                      handleThumbnailDelete={handleThumbnailDelete}
-                      value={value}
-                    />
-                  </>
+                  <SubPreviewImage
+                    formValues={formValues}
+                    handleThumbnailDelete={handleThumbnailDelete}
+                    value={value}
+                  />
                 ))}
               </SubPreviewList>
             </Box>

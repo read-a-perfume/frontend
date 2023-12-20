@@ -1,7 +1,7 @@
 import {Autocomplete, TextField, styled} from '@mui/material'
 import ReviewFormSubTitle from '../base/review-form-sub-title'
-import useReviewFormSearch from '../hooks/use-review-form-search'
 import {useState} from 'react'
+import useFetchPerfumeSearch from '../hooks/use-fetch-perfume-search'
 const inputLabelProps = {
   style: {
     fontSize: 14, // Adjust the font size as needed
@@ -10,11 +10,9 @@ const inputLabelProps = {
 const PerfumeSearch = ({handleAutoComplete}) => {
   const [search, setSearch] = useState('')
 
-  const {options} = useReviewFormSearch({search})
-  const handleChangeInput = (event: any) => {
-    const target = event.target
-    const value: string = target.value
-    if (target && value && value.length > 0) {
+  const {options} = useFetchPerfumeSearch({search})
+  const handleChangeInput = (_event: any, value) => {
+    if (value && value.length > 0) {
       setSearch(value)
     }
   }
@@ -25,7 +23,8 @@ const PerfumeSearch = ({handleAutoComplete}) => {
         disablePortal
         id="search"
         options={options}
-        onInputChange={event => handleChangeInput(event)}
+        inputValue={search}
+        onInputChange={handleChangeInput}
         onChange={handleAutoComplete}
         sx={{width: 411}}
         autoHighlight

@@ -9,7 +9,7 @@ interface IfBaseModalProps {
   handleClose?: () => void
 }
 
-const BaseModal = ({
+const AlertModal = ({
   title,
   description,
   buttonText,
@@ -61,4 +61,4 @@ const BaseModal = ({
   )
 }
 
-export default BaseModal
+export default AlertModal
