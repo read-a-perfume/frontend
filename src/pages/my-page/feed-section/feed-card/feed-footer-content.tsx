@@ -9,19 +9,22 @@ interface proptype {
 
 const FeedFooterContent = ({icon, title, value}: proptype) => {
   return (
-    <Box sx={{display: 'flex', alignItems: 'center'}}>
+    <Container>
       {icon}
       <FooterText>{`${title} ${value}개`}</FooterText>
-    </Box>
+    </Container>
   )
 }
 
 export default FeedFooterContent
 
 const FooterText = styled(Typography)(({theme}) => ({
-  fontFamily: 'Pretendard',
   fontWeight: 500,
   color: theme.palette.grey['700'],
-  marginLeft: '8px',
-  fontSize: theme.typography.body3.fontSize,
+  marginLeft: '5.5px',
+  fontSize: theme.typography.body4.fontSize,
+}))
+
+const Container = styled(Box)(()=>({
+  display: 'flex', alignItems: 'center', width:'120px',height: '40px',
 }))

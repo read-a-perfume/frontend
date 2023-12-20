@@ -1,18 +1,14 @@
-import {Box, Pagination, Stack, styled} from '@mui/material'
+import {Stack} from '@mui/material'
 import FeedChip from '../base/feed-chip'
 import {fetchReviews} from './queryfn'
 import {useQuery} from '@tanstack/react-query'
-import FeedCard from './feed-card/feed-card'
 import {useState} from 'react'
 import {ShowBenchmarkType} from './type'
+import BranchoutReviews from './branch-out-reviews'
 
 const FeedSection = () => {
   const [page, setPage] = useState<number>(1)
   const [benchmark, setBenchmark] = useState<ShowBenchmarkType>('latest')
-
-  const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value)
-  }
 
   const handleChipClick = (ref: ShowBenchmarkType) => {
     setBenchmark(ref)
@@ -27,7 +23,7 @@ const FeedSection = () => {
     <div>
       <Stack direction="row" sx={{marginBottom: '48px'}}>
         <FeedChip
-          label="최신순"
+          label="최신 순"
           benchmark={benchmark}
           reference="latest"
           onClick={() => {
@@ -35,7 +31,7 @@ const FeedSection = () => {
           }}
         />
         <FeedChip
-          label="좋아요"
+          label="좋아요 순"
           benchmark={benchmark}
           reference="likes"
           onClick={() => {
@@ -43,33 +39,11 @@ const FeedSection = () => {
           }}
         />
       </Stack>
-      <ReviewsContainer>
-        {reviews && reviews.map((e, i) => <FeedCard data={e} key={i} />)}
-      </ReviewsContainer>
-      <TestPageNumber>
-        <Pagination
-          count={5}
-          shape="rounded"
-          size="large"
-          page={page}
-          onChange={handlePageChange}
-        />
-      </TestPageNumber>
+      <BranchoutReviews reviews={reviews} />
     </div>
   )
 }
 
 export default FeedSection
 
-const TestPageNumber = styled(Box)(() => ({
-  display: 'flex',
-  justifyContent: 'center',
-  marginTop: '130px',
-}))
 
-const ReviewsContainer = styled(Box)(() => ({
-  display: 'flex',
-  gap: '32px',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-}))
