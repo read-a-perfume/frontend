@@ -1,14 +1,17 @@
 import styled from '@emotion/styled'
 import {Typography} from '@mui/material'
 
-export const ReviewLayout = styled.div<{width: string}>(({width}) => ({
-  maxWidth: 512,
-  width: width,
-  borderRadius: 16,
-  border: '1px solid #EDEDED',
-  background: 'white',
-  padding: '17px 24px 0px 24px',
-}))
+export const ReviewLayout = styled.div<{width: string; height: string}>(
+  ({width, height}) => ({
+    maxWidth: 512,
+    width,
+    height,
+    borderRadius: 16,
+    border: '1px solid #EDEDED',
+    background: 'white',
+    padding: '17px 24px 0px 24px',
+  }),
+)
 
 export const ReviewerID = styled(Typography)({
   fontSize: 16,
@@ -63,8 +66,6 @@ export const ReviewText = styled(Typography)({
 export const HashTags = styled(Typography)({
   fontSize: 14,
   color: '#FE7156',
-  marginTop: 16,
-  marginBottom: 17,
 })
 
 export const Options = styled.div({
@@ -104,4 +105,17 @@ export const ReviewSingleImage = styled.img({
   height: '100%',
   objectFit: 'cover',
   borderRadius: 15,
+})
+
+export const MoreReviewsText = styled(Typography)({
+  fontWeight: '500',
+  color: '#707070',
+})
+
+export const ContentsBox = styled.div({
+  // height: 100,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 16,
+  paddingBottom: 17,
 })

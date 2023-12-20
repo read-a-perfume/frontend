@@ -7,15 +7,14 @@ interface GeneralLayoutProps {
 }
 
 const GeneralLayout: React.FC<GeneralLayoutProps> = ({children}) => {
-  const {isLoggined, routeTo, redirectAuth} = useAuthRedirect()
+  const {redirectAuth, isLoading} = useAuthRedirect()
 
   useEffect(() => {
     redirectAuth()
   }, [redirectAuth])
-
-  if (!isLoggined) {
-    routeTo('/sign-in')
-    return <></>
+  //유저 프로필 API 요청중일때는 컴포넌트가 안보이게 함.
+  if (isLoading) {
+    return
   }
 
   return (

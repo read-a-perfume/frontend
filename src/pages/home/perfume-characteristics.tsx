@@ -53,23 +53,23 @@ export const InfoBox = styled.div<{width: string}>(({width}) => ({
 }))
 
 export const BoxContent = styled.div(({left}: {left: boolean}) => ({
-  width: '188px',
+  width: '75%',
   borderRight: left ? '1px solid #BDBDBD' : 'none',
-  paddingLeft: left ? '32px' : '28px',
+  paddingLeft: left ? '32px' : '13px',
   display: 'flex',
 }))
 
 export const Categories = styled(Typography)(
   ({color = '#949494'}: {color?: string}) => ({
     color: color,
-    fontSize: theme.typography.body3.fontSize,
+    fontSize: theme.typography.body4.fontSize,
     fontWeight: 500,
   }),
 )
 
 export const Types = styled(Typography)({
   color: '#333',
-  fontSize: theme.typography.body3.fontSize,
+  fontSize: theme.typography.body4.fontSize,
   fontWeight: 500,
   marginLeft: '16px',
 })

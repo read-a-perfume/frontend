@@ -1,4 +1,3 @@
-import EditOptions from '@layouts/edit-options.js'
 import GeneralLayout from '@layouts/general-layout.js'
 import Brand from '@pages/brand/index.js'
 import Home from '@pages/home/index.js'
@@ -13,10 +12,11 @@ import PerfumeDetail from '@pages/perfume-detail'
 import SignIn from '@pages/sign-in'
 import MagazineUpload from '@pages/brand/magazine-upload'
 import BrandList from '@pages/brand/brand-list'
+
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
   path: string // 페이지 경로
-  
+
   label: string // 사이드바에 표시할 페이지 이름
   element: React.ReactNode // 페이지 엘리먼트
   isLayout: boolean // 공통 레이아웃 컴포넌트 필요 여부.
@@ -29,10 +29,9 @@ interface UserAccessibleRouterElement extends RouterBase {
 type RouterElement = UserAccessibleRouterElement | AdminAccessibleRouterElement
 
 interface AdminAccessibleRouterElement extends RouterBase {
-  withAuth: true; // 인증이 필요한 페이지 여부
-  isAdminPage?: boolean; // 어드민 페이지 여부
+  withAuth: true // 인증이 필요한 페이지 여부
+  isAdminPage?: boolean // 어드민 페이지 여부
 }
-
 
 const routerData: RouterElement[] = [
   {
@@ -92,21 +91,13 @@ const routerData: RouterElement[] = [
     withAuth: true,
   },
   {
-    id: 7,
-    label: '테스트',
-    path: '/test',
-    element: <EditOptions />,
-    isLayout: true,
-    withAuth: true,
-  },
-  {
     id: 6,
     label: '마이페이지',
     path: '/mypage',
     element: <MyPage />,
     isLayout: true,
     withAuth: true,
-    isAdminPage:true
+    isAdminPage: true,
   },
   {
     id: 7,
@@ -115,7 +106,7 @@ const routerData: RouterElement[] = [
     element: <Account />,
     isLayout: true,
     withAuth: true,
-    isAdminPage:true
+    isAdminPage: true,
   },
   {
     id: 8,
@@ -133,7 +124,6 @@ const routerData: RouterElement[] = [
     isLayout: true,
     withAuth: true,
   },
-
 
   //   {
   //     label: "test",

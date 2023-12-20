@@ -1,23 +1,32 @@
-import {useCallback} from 'react'
 import {fetchUserProfile} from 'src/store/server/auth/queries'
-import {useRouter} from './use-router'
 import {useRecoilState} from 'recoil'
 import {UserAtom} from 'src/store/client/auth/atoms'
+import {useRouter} from './use-router'
+import useMutation from 'src/store/server/use-mutation'
 
 const useAuthRedirect = () => {
   const [isLoggined, setIsLoggined] = useRecoilState(UserAtom)
+
   const {routeTo} = useRouter()
-  const redirectAuth = useCallback(async () => {
-    const userProfile = await fetchUserProfile()
 
-    if (userProfile === null) {
-      routeTo('/sign-in')
-      return null
-    }
-    setIsLoggined(userProfile)
-  }, [])
+  const {
+    mutate: redirectAuth,
+    isLoading,
+    data,
+  } = useMutation({
+    mutationFn: fetchUserProfile,
+    mutationKey: ['auth'],
+    options: {
+      onSuccess: () => {
+        setIsLoggined(data)
+      },
+      onError: () => routeTo('/sign-in'),
+      retry: 2,
+      cacheTime: 1500,
+    },
+  })
 
-  return {redirectAuth, isLoggined, routeTo}
+  return {redirectAuth, isLoggined, isLoading}
 }
 
 export default useAuthRedirect
