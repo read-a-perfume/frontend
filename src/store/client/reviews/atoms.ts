@@ -16,7 +16,7 @@ export const reviewWriteFormAtom = atom<ReviewWriterFormProps>({
     dayType: '',
     strength: 'LIGHT',
     season: '',
-    duration: '50%',
+    duration: '',
     shortReview: '',
     fullReview: '',
     keywords: [],

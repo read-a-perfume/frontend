@@ -1,20 +1,21 @@
 import {Autocomplete, TextField, styled} from '@mui/material'
 import ReviewFormSubTitle from '../base/review-form-sub-title'
-import {useMemo, useState} from 'react'
+import {useState} from 'react'
 import useFetchPerfumeSearch from '../hooks/use-fetch-perfume-search'
-import {useController, useFormContext} from 'react-hook-form'
+import useGetCustomForms from '../hooks/use-get-custom-forms'
+import ErrorMessage from '@components/base/error-message'
 const inputLabelProps = {
   style: {
     fontSize: 14, // Adjust the font size as needed
   },
 }
-const PerfumeSearch = ({handleAutoComplete}: any) => {
+const PerfumeSearch = () => {
   const [search, setSearch] = useState('')
-  const {control} = useFormContext()
-  const {field: perfume} = useController({
-    name: 'perfume',
-    control,
-  })
+  const {perfume} = useGetCustomForms()
+  const {
+    field,
+    formState: {errors},
+  } = perfume
   const {options, isLoading} = useFetchPerfumeSearch({
     search: search,
   })
@@ -27,11 +28,11 @@ const PerfumeSearch = ({handleAutoComplete}: any) => {
         id="perfume"
         options={options}
         onChange={(_event, newValue) => {
-          perfume.onChange(newValue)
+          field.onChange(newValue)
         }}
         inputValue={search}
         onInputChange={(_evt, newValue) => setSearch(newValue)}
-        value={perfume.value}
+        value={field.value}
         sx={{width: 411}}
         autoHighlight
         loading={isLoading}
@@ -59,6 +60,7 @@ const PerfumeSearch = ({handleAutoComplete}: any) => {
           </>
         )}
       />
+      <ErrorMessage errorMessage={errors.perfume?.message} />
     </section>
   )
 }

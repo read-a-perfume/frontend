@@ -1,5 +1,4 @@
 import {useRouter} from '@hooks/use-router'
-import useReviewForm from './use-review-form'
 import useMutation from 'src/store/server/use-mutation'
 import {
   postReviewCreate,
@@ -10,7 +9,6 @@ import {useState} from 'react'
 const usePostReviewCreate = () => {
   const [isOpen, setIsOepn] = useState(false)
 
-  const {formValues} = useReviewForm()
   const {routeTo} = useRouter()
 
   const {mutate: createReview} = useMutation({
@@ -30,22 +28,17 @@ const usePostReviewCreate = () => {
     },
   })
 
-  const onSubmit = async (data: any) => {
-    console.log(data, 'Data')
+  const onSubmit = async (formAllData: any) => {
+    console.log(formAllData, 'Data')
     // event.preventDefault()
     // 선택된 값에 따른 작업 수행
-    for (const item in formValues) {
-      if (formValues[item] === undefined || formValues[item] === '') {
-        alert(` 프로퍼티가 비어 있습니다.`)
-        return
-      }
-    }
+
     const formData = new FormData()
-    formData.append('file', formValues.thumbnails[0])
+    formData.append('file', formAllData.thumbnails[0])
     uploadeFiles(formData, {
       onSuccess: data => {
         const copyData = {
-          ...formValues,
+          ...formAllData,
           ['thumbnails']: [data.id],
         }
         createReview(copyData)

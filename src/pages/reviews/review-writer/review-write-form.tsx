@@ -8,17 +8,34 @@ import ReviewFormPreNext from './review-form-pre-next'
 import usePostReviewCreate from './hooks/use-post-review-create'
 import BaseModal from '@components/modal/alert-modal'
 import {FormProvider, useForm} from 'react-hook-form'
-import {useRecoilValue} from 'recoil'
-import {reviewWriteFormAtom} from 'src/store/client/reviews/atoms'
+import {IfReviewRequest} from 'types/review.interface'
+
+interface IfFormData extends Omit<IfReviewRequest, 'thumbnails'> {
+  thumbnails: File[] | number[]
+}
 
 const ReviewWriteForm = () => {
-  const formData = useRecoilValue(reviewWriteFormAtom)
   const {handleNextPage, handlePrevPage, prograss} = useReviewFormPreNext({
     index: 0,
   })
   const {onSubmit, isOpen, handleClose} = usePostReviewCreate()
 
-  const methods = useForm({defaultValues: formData})
+  const methods = useForm<IfFormData>({
+    defaultValues: {
+      perfume: {
+        id: 0,
+        name: '',
+      },
+      dayType: '',
+      strength: 'LIGHT',
+      season: '',
+      duration: '',
+      shortReview: '',
+      fullReview: '',
+      keywords: [],
+      thumbnails: [],
+    },
+  })
 
   return (
     <FormProvider {...methods}>

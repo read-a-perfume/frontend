@@ -5,11 +5,6 @@ interface UseReviewFormSearchProps {
   search?: string
 }
 
-interface Option {
-  id: number
-  name: string
-}
-
 const useFetchPerfumeSearch = ({search}: UseReviewFormSearchProps) => {
   const {data, isLoading} = useQuery({
     queryFn: () => fetchPerfumeSearch(search),
