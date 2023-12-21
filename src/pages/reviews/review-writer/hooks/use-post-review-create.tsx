@@ -30,8 +30,9 @@ const usePostReviewCreate = () => {
     },
   })
 
-  const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault()
+  const onSubmit = async (data: any) => {
+    console.log(data, 'Data')
+    // event.preventDefault()
     // 선택된 값에 따른 작업 수행
     for (const item in formValues) {
       if (formValues[item] === undefined || formValues[item] === '') {
@@ -57,7 +58,7 @@ const usePostReviewCreate = () => {
     routeTo('/')
   }
 
-  return {handleSubmit, formValues, isOpen, handleClose}
+  return {onSubmit, isOpen, handleClose}
 }
 
 export default usePostReviewCreate

@@ -42,11 +42,14 @@ const useReviewForm = () => {
     })
   }
 
-  const handleAutoComplete = (_event, value: {id: number}) => {
+  const handleAutoComplete = (_event, value: {id: number; name: string}) => {
     if (value) {
       setFormValues({
         ...formValues,
-        ['perfumeId']: value.id,
+        ['perfume']: {
+          id: value.id,
+          name: value.name,
+        },
       })
     }
   }

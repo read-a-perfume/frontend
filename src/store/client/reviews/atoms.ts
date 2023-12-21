@@ -9,7 +9,10 @@ export const test = atom({
 export const reviewWriteFormAtom = atom<ReviewWriterFormProps>({
   key: 'reviewWriteFormAtom',
   default: {
-    perfumeId: 1,
+    perfume: {
+      id: 0,
+      name: '',
+    },
     dayType: '',
     strength: 'LIGHT',
     season: '',

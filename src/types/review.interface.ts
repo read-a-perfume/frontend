@@ -35,7 +35,9 @@ export interface IfReviewResponse extends IfReviewBase {
 }
 
 // 리뷰 상세보기
-export interface IfReviewDetailResponse extends IfReviewBase, IfReviewBaseDetail {
+export interface IfReviewDetailResponse
+  extends IfReviewBase,
+    IfReviewBaseDetail {
   id: number
   likeCount: number
   commentCount: number
@@ -43,10 +45,19 @@ export interface IfReviewDetailResponse extends IfReviewBase, IfReviewBaseDetail
 }
 
 // 리뷰 생성
-export interface IfReviewRequest extends IfReviewBaseDetail {
+export interface IfReviewRequest {
   shortReview: string
   thumbnails: number[]
   keywords: number[]
+  fullReview: string
+  dayType: string
+  strength: string
+  season: string
+  duration: string
+  perfume: {
+    id: number
+    name: string
+  }
 }
 
 // 리뷰 삭제

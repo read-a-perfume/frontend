@@ -7,12 +7,12 @@ import PerfumeSeasons from './perfume-seasons'
 import useReviewForm from '../hooks/use-review-form'
 
 const ReviewFormSecond = () => {
-  const {formValues, handleFormDataChange, handleAutoComplete} = useReviewForm()
+  const {formValues, handleFormDataChange} = useReviewForm()
 
   return (
     <>
       <FormControl component="fieldset">
-        <PerfumeSearch handleAutoComplete={handleAutoComplete} />
+        <PerfumeSearch />
         <PerfumeDailys
           formValues={formValues}
           handleFormDataChange={handleFormDataChange}
