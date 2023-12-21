@@ -1,11 +1,10 @@
-//import {useQuery} from '@tanstack/react-query'
-//import {fetchBrands} from './queryfn'
+import {useQuery} from '@tanstack/react-query'
+import {fetchBrands} from './queryfn'
 import {useState} from 'react'
-//import useClassifyKorean from './hook/use-classify-korean'
+import useClassifyKorean from './hook/use-classify-korean'
 import {Box, Stack, Typography, styled} from '@mui/material'
 import BrandCard from './brand-card'
 import Banner from '@components/base/banner'
-
 
 const Kor = [
   'ㄱ',
@@ -22,21 +21,24 @@ const Kor = [
   'ㅌ',
   'ㅍ',
   'ㅎ',
+  '기타',
 ]
 
 const BrandList = () => {
-  //const {data: brands} = useQuery(['brands'], () => fetchBrands())
+  const {data: brands} = useQuery(['brands'], () => fetchBrands())
 
-  //const classifyBrands = useClassifyKorean(brands)
+  const classifyBrands = useClassifyKorean(brands)
 
-  const [korClass,setKorClass] = useState('');
+  const [korClass, setKorClass] = useState('')
+
+  console.log(classifyBrands)
 
   return (
     <>
       <Banner />
       <Container>
         <Title>브랜드</Title>
-        <Stack direction="row" spacing={2} sx={{marginBottom: '97px'}}>
+        <Stack direction="row" sx={{marginBottom: '97px'}} justifyContent="space-between">
           {Kor.map((e, i) => (
             <KorButton
               key={i}
@@ -50,15 +52,10 @@ const BrandList = () => {
           ))}
         </Stack>
         <CardContainer>
-          <BrandCard
-            data={{
-              id: 0,
-              name: '딥디크',
-              story: `1961년, 파리의 생동감 넘치는 생 제르망가에서
-탄생한 Diptyque는 유니크한 향수와 향기로운 바디 케어 제품 및 세련된 데코레이션 오브제를 선보입니다.`,
-              thumbnail: '',
-            }}
-          />
+          {brands !== undefined &&
+            (korClass === '' ? brands : classifyBrands[korClass]).map(e => (
+              <BrandCard data={e} key={e.id} />
+            ))}
         </CardContainer>
       </Container>
     </>
@@ -67,11 +64,9 @@ const BrandList = () => {
 
 export default BrandList
 
-
 const Container = styled(Box)(() => ({
-  padding: '0 160px',
+  padding: '0 160px 143.6px 160px',
 }))
-
 
 const Title = styled(Typography)(() => ({
   fontFamily: 'AritaBuri',
@@ -82,16 +77,16 @@ const Title = styled(Typography)(() => ({
 }))
 
 const KorButton = styled('button')<{active: boolean}>(({active, theme}) => ({
-  width: '75px',
-  height: '75px',
+  width: '70px',
+  height: '70px',
   border: `2px solid ${active ? theme.palette.primary.main : 'black'}`,
   fontFamily: 'Pretendard',
-  fontSize: '28px',
+  fontSize: '24px',
 }))
 
 const CardContainer = styled(Box)(() => ({
   display: 'flex',
   flexWrap: 'wrap',
   gap: '32.6px 24px',
+  minHeight: '500px',
 }))
-

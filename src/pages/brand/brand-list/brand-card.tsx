@@ -1,3 +1,4 @@
+import {useRouter} from '@hooks/use-router'
 import {Box, Typography, styled} from '@mui/material'
 import {IfBrandListResponse} from 'types/brand.interface'
 
@@ -6,8 +7,10 @@ interface proptype {
 }
 
 const BrandCard = ({data}: proptype) => {
+  const {routeTo} = useRouter()
+
   return (
-    <Container>
+    <Container onClick={() => routeTo(`/brand/${data.id}`)}>
       <BrandThumbnail src={data.thumbnail} alt="brand image" />
       <BrandName>{data.name}</BrandName>
       <BrandStory>{data.story}</BrandStory>
@@ -19,6 +22,7 @@ export default BrandCard
 
 const Container = styled(Box)(() => ({
   width: '282px',
+  cursor: 'pointer',
 }))
 
 const BrandThumbnail = styled('img')(() => ({
