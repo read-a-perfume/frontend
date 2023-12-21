@@ -10,17 +10,13 @@ import BaseModal from '@components/modal/alert-modal'
 import {FormProvider, useForm} from 'react-hook-form'
 import {IfReviewRequest} from 'types/review.interface'
 
-interface IfFormData extends Omit<IfReviewRequest, 'thumbnails'> {
-  thumbnails: File[] | number[]
-}
-
 const ReviewWriteForm = () => {
   const {handleNextPage, handlePrevPage, prograss} = useReviewFormPreNext({
     index: 0,
   })
   const {onSubmit, isOpen, handleClose} = usePostReviewCreate()
 
-  const methods = useForm<IfFormData>({
+  const methods = useForm<IfReviewRequest>({
     defaultValues: {
       perfume: {
         id: 0,

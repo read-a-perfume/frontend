@@ -45,15 +45,12 @@ export interface IfReviewDetailResponse
 }
 
 // 리뷰 생성
-export interface IfReviewRequest {
+// 리뷰 생성
+
+export interface IfReviewRequest extends Omit<IfReviewBaseDetail, 'perfumeId'> {
   shortReview: string
-  thumbnails: number[]
+  thumbnails: File[] | number[]
   keywords: number[]
-  fullReview: string
-  dayType: string
-  strength: string
-  season: string
-  duration: string
   perfume: {
     id: number
     name: string

@@ -2,12 +2,9 @@ import {useController, useFormContext} from 'react-hook-form'
 import {IfReviewRequest} from 'types/review.interface'
 import reviwFormValidation from '../data/review-form-validation'
 
-interface IfFormData extends Omit<IfReviewRequest, 'thumbnails'> {
-  thumbnails: File[] | number[]
-}
 //useForm 커스텀
 const useGetCustomForms = () => {
-  const {control} = useFormContext<IfFormData>()
+  const {control} = useFormContext<IfReviewRequest>()
 
   const thumbnails = useController({
     name: 'thumbnails', // defaultsvalues 저장한 객체 키
