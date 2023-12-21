@@ -22,7 +22,7 @@ const FIRST: string[] = [
   'ㅍ',
   'ㅎ',
 ] // 초성으로 오는 모든 글자
-const FIRST_CONVERT = {
+const FIRST_CONVERT: object = {
   ㄱ: 'ㄱ',
   ㄲ: 'ㄱ',
   ㄴ: 'ㄴ',
@@ -48,24 +48,28 @@ const KOR_START: number = 44032 // 한국어 시작 유니코드
 const getFirstKorString = (str: string): string => {
   const unicode = str.charCodeAt(0) - KOR_START
   const first = FIRST[Math.floor(unicode / 588)]
+  if (!(first in FIRST_CONVERT)) {
+    return '기타'
+  }
   return FIRST_CONVERT[first]
 }
 
 interface ReturnType {
-  ㄱ: string[]
-  ㄴ: string[]
-  ㄷ: string[]
-  ㄹ: string[]
-  ㅁ: string[]
-  ㅂ: string[]
-  ㅅ: string[]
-  ㅇ: string[]
-  ㅈ: string[]
-  ㅊ: string[]
-  ㅋ: string[]
-  ㅌ: string[]
-  ㅍ: string[]
-  ㅎ: string[]
+  ㄱ: IfBrandListResponse[]
+  ㄴ: IfBrandListResponse[]
+  ㄷ: IfBrandListResponse[]
+  ㄹ: IfBrandListResponse[]
+  ㅁ: IfBrandListResponse[]
+  ㅂ: IfBrandListResponse[]
+  ㅅ: IfBrandListResponse[]
+  ㅇ: IfBrandListResponse[]
+  ㅈ: IfBrandListResponse[]
+  ㅊ: IfBrandListResponse[]
+  ㅋ: IfBrandListResponse[]
+  ㅌ: IfBrandListResponse[]
+  ㅍ: IfBrandListResponse[]
+  ㅎ: IfBrandListResponse[]
+  기타: IfBrandListResponse[]
 }
 
 const classifyKorean = (data: IfBrandListResponse[] | undefined) => {
@@ -84,13 +88,15 @@ const classifyKorean = (data: IfBrandListResponse[] | undefined) => {
     ㅌ: [],
     ㅍ: [],
     ㅎ: [],
+    기타: [],
   }
   if (data === undefined) {
     return result
   }
   for (let i = 0; i < data.length; i++) {
     const name = data[i].name
-    result[getFirstKorString(name)].push(name)
+
+    result[getFirstKorString(name)].push(data[i])
   }
   return result
 }

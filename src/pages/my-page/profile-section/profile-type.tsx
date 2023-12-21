@@ -3,6 +3,7 @@ import {IfUserType} from 'types/user.interface'
 import TypeInfoCard from './type-info-card'
 import TypeAddCard from './type-add-card'
 import { useState } from 'react'
+import TypeModal from './modal/type-modal'
 
 interface proptype {
   data: IfUserType[]
@@ -17,7 +18,7 @@ const ProfileType = ({data}: proptype) => {
   return (
     <Box sx={{marginLeft: 'auto',}}>
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        <></>
+        <TypeModal/>
       </Modal>
       <Title>MY TYPE</Title>
       <TypeContainer>
