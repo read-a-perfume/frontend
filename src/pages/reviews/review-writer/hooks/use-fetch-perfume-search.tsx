@@ -9,7 +9,7 @@ interface Option {
   title: string
 }
 
-const useReviewFormSearch = ({search}: UseReviewFormSearchProps) => {
+const useFetchPerfumeSearch = ({search}: UseReviewFormSearchProps) => {
   const {data} = useQuery({
     queryFn: () => fetchPerfumeSearch(search),
     queryKey: [`search/${search}-key`],
@@ -32,4 +32,4 @@ const useReviewFormSearch = ({search}: UseReviewFormSearchProps) => {
   }
 }
 
-export default useReviewFormSearch
+export default useFetchPerfumeSearch

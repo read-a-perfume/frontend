@@ -6,27 +6,13 @@ import ReviewFormProgassState from './review-form-prograss-state'
 import useReviewFormPreNext from './hooks/use-review-form-pre-nex'
 import ReviewFormPreNext from './review-form-pre-next'
 import usePostReviewCreate from './hooks/use-post-review-create'
-import BaseModal from '@components/modal/base-modal'
+import BaseModal from '@components/modal/alert-modal'
 
 const ReviewWriteForm = () => {
   const {handleNextPage, handlePrevPage, prograss} = useReviewFormPreNext({
     index: 0,
   })
-  const {uploadeFiles, formValues, isOpen, handleClose} = usePostReviewCreate()
-
-  const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    // 선택된 값에 따른 작업 수행
-    for (const item in formValues) {
-      if (formValues[item] === undefined || formValues[item] === '') {
-        alert(` 프로퍼티가 비어 있습니다.`)
-        return
-      }
-    }
-    const formData = new FormData()
-    formData.append('file', formValues.thumbnails[0])
-    uploadeFiles(formData)
-  }
+  const {handleSubmit, isOpen, handleClose} = usePostReviewCreate()
 
   return (
     <form onSubmit={handleSubmit}>

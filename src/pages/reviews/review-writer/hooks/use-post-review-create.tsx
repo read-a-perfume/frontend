@@ -9,6 +9,7 @@ import {useState} from 'react'
 
 const usePostReviewCreate = () => {
   const [isOpen, setIsOepn] = useState(false)
+
   const {formValues} = useReviewForm()
   const {routeTo} = useRouter()
 
@@ -25,6 +26,22 @@ const usePostReviewCreate = () => {
     mutationFn: postReviewImageFileUpload,
     mutationKey: ['file-uploade'],
     options: {
+      onError: () => alert('이미지 업로드 실패했습니다.'),
+    },
+  })
+
+  const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    // 선택된 값에 따른 작업 수행
+    for (const item in formValues) {
+      if (formValues[item] === undefined || formValues[item] === '') {
+        alert(` 프로퍼티가 비어 있습니다.`)
+        return
+      }
+    }
+    const formData = new FormData()
+    formData.append('file', formValues.thumbnails[0])
+    uploadeFiles(formData, {
       onSuccess: data => {
         const copyData = {
           ...formValues,
@@ -32,16 +49,15 @@ const usePostReviewCreate = () => {
         }
         createReview(copyData)
       },
-      onError: () => alert('이미지 업로드 실패했습니다.'),
-    },
-  })
+    })
+  }
 
   const handleClose = () => {
     setIsOepn(false)
     routeTo('/')
   }
 
-  return {uploadeFiles, formValues, isOpen, handleClose}
+  return {handleSubmit, formValues, isOpen, handleClose}
 }
 
 export default usePostReviewCreate
