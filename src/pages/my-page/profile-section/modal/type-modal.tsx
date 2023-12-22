@@ -6,7 +6,7 @@ const TypeModal = () => {
     <ModalContainer>
       <Bar>마이 타입</Bar>
       <TestBox>
-        {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(e => (
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(e => (
           <TestCard key={e}></TestCard>
         ))}
       </TestBox>
@@ -67,6 +67,8 @@ const TestBox = styled(Box)(() => ({
   flexWrap: 'wrap',
   justifyContent: 'space-between',
   gap: '20.5px 0',
+  overflowY: 'scroll',
+  maxHeight: '559.4px',
 }))
 
 const TestCard = styled(Box)(() => ({
