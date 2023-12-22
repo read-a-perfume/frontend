@@ -23,7 +23,7 @@ const ProfileType = ({data}: proptype) => {
       <Title>MY TYPE</Title>
       <TypeContainer>
         {indexArr.map(i =>
-          i < data.length ? <TypeInfoCard data={data[i]} /> : <TypeAddCard setIsOpen={setIsOpen}/>,
+          i < data.length ? <TypeInfoCard data={data[i]} key={data[i].id}/> : <TypeAddCard setIsOpen={setIsOpen} key={i}/>,
         )}
       </TypeContainer>
     </Box>

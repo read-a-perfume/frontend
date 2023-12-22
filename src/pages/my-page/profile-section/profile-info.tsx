@@ -15,8 +15,8 @@ const ProfileInfo = ({username, following, follower}: proptype) => {
     <Container>
       <Username>{username}</Username>
       <Stack direction="row">
-        <FollowText title="팔로워" count={follower} />
-        <FollowText title="팔로잉" count={following} />
+        <FollowText title="팔로워" count={follower} label="follower"/>
+        <FollowText title="팔로잉" count={following} label="following"/>
       </Stack>
       <SettingButton onClick={() => routeTo('/settings')}>
         <Typography sx={{fontSize: '20.8px', fontWeight: 500}}>설정</Typography>

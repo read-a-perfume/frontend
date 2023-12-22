@@ -31,8 +31,6 @@ const BrandList = () => {
 
   const [korClass, setKorClass] = useState('')
 
-  console.log(classifyBrands)
-
   return (
     <>
       <Banner />
