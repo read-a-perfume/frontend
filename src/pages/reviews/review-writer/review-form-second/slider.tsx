@@ -1,6 +1,5 @@
-import React from 'react'
+import {useState} from 'react'
 import {Slider, useTheme} from '@mui/material'
-import useReviewForm from '../hooks/use-review-form'
 
 const marks = [
   {
@@ -18,13 +17,11 @@ const marks = [
 ]
 
 export default function SliderRating() {
-  const [value, setValue] = React.useState(50)
+  const [value, setValue] = useState(50)
 
   const handleChange = (_event: Event, newValue) => {
     setValue(newValue)
-    handleSlider(newValue)
   }
-  const {handleSlider} = useReviewForm()
 
   const theme = useTheme()
 

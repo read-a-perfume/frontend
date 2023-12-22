@@ -7,34 +7,55 @@ import useReviewFormPreNext from './hooks/use-review-form-pre-nex'
 import ReviewFormPreNext from './review-form-pre-next'
 import usePostReviewCreate from './hooks/use-post-review-create'
 import BaseModal from '@components/modal/alert-modal'
+import {FormProvider, useForm} from 'react-hook-form'
+import {IfReviewRequest} from 'types/review.interface'
 
 const ReviewWriteForm = () => {
   const {handleNextPage, handlePrevPage, prograss} = useReviewFormPreNext({
     index: 0,
   })
-  const {handleSubmit, isOpen, handleClose} = usePostReviewCreate()
+  const {onSubmit, isOpen, handleClose} = usePostReviewCreate()
+
+  const methods = useForm<IfReviewRequest>({
+    defaultValues: {
+      perfume: {
+        id: 0,
+        name: '',
+      },
+      dayType: '',
+      strength: 'LIGHT',
+      season: '',
+      duration: '',
+      shortReview: '',
+      fullReview: '',
+      keywords: [],
+      thumbnails: [],
+    },
+  })
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Container>
-        <ReviewFormProgassState prograss={prograss} />
-        {prograss === 0 && <ReviewFormFirst />}
-        {prograss === 1 && <ReviewFormSecond />}
-        {prograss === 2 && <ReviewFormLast />}
-        <ReviewFormPreNext
-          handleNextPage={handleNextPage}
-          handlePrevPage={handlePrevPage}
-          prograss={prograss}
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <Container>
+          <ReviewFormProgassState prograss={prograss} />
+          {prograss === 0 && <ReviewFormFirst />}
+          {prograss === 1 && <ReviewFormSecond />}
+          {prograss === 2 && <ReviewFormLast />}
+          <ReviewFormPreNext
+            handleNextPage={handleNextPage}
+            handlePrevPage={handlePrevPage}
+            prograss={prograss}
+          />
+        </Container>
+        <BaseModal
+          open={isOpen}
+          handleClose={handleClose}
+          title="리뷰 작성 완료!"
+          description="이제 내가 올린 리뷰를 확인할 수 있어요"
+          buttonText="확인"
         />
-      </Container>
-      <BaseModal
-        open={isOpen}
-        handleClose={handleClose}
-        title="리뷰 작성 완료!"
-        description="이제 내가 올린 리뷰를 확인할 수 있어요"
-        buttonText="확인"
-      />
-    </form>
+      </form>
+    </FormProvider>
   )
 }
 

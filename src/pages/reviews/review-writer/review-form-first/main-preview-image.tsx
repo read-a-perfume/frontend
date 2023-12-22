@@ -3,12 +3,12 @@ import {Box, Typography, styled} from '@mui/material'
 import DeleteIcon from '@mui/icons-material/HighlightOff'
 import {useEffect, useState} from 'react'
 interface IfMainPreviewImageProps {
-  formValues: any
+  thumbnailsFiles: any
   handleThumbnailDelete: any
 }
 
 const MainPreviewImage = ({
-  formValues,
+  thumbnailsFiles,
   handleThumbnailDelete,
 }: IfMainPreviewImageProps) => {
   const [image, setImage] = useState('')
@@ -16,21 +16,21 @@ const MainPreviewImage = ({
   const deleteAll = () => {
     URL.revokeObjectURL(image)
     setImage('')
-    handleThumbnailDelete(formValues.thumbnails[0])
+    handleThumbnailDelete(thumbnailsFiles[0])
   }
 
   useEffect(() => {
     const transformFile = () => {
-      const url = URL.createObjectURL(formValues.thumbnails[0])
+      const url = URL.createObjectURL(thumbnailsFiles[0])
 
       setImage(url)
     }
-    if (formValues.thumbnails[0]) {
+    if (thumbnailsFiles[0]) {
       transformFile()
     } else {
       setImage('')
     }
-  }, [formValues.thumbnails, image.length])
+  }, [thumbnailsFiles, image.length])
 
   return (
     <MainPreview>
@@ -64,7 +64,7 @@ const MainPreviewImage = ({
           </TextBox>
         </ViewImage>
       </MainPreviewFileLabel>
-      {formValues.thumbnails[0] && <CustomDeleteButton onClick={deleteAll} />}
+      {thumbnailsFiles[0] && <CustomDeleteButton onClick={deleteAll} />}
     </MainPreview>
   )
 }

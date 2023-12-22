@@ -2,13 +2,13 @@ import {ListItem, ListItemIcon, styled} from '@mui/material'
 import {useEffect, useState} from 'react'
 import DeleteIcon from '@mui/icons-material/HighlightOff'
 interface IfMainPreviewImageProps {
-  formValues: any
+  thumbnailsFiles: any
   handleThumbnailDelete: any
-  value: any
+  value: number
 }
 
 const SubPreviewImage = ({
-  formValues,
+  thumbnailsFiles,
   handleThumbnailDelete,
   value,
 }: IfMainPreviewImageProps) => {
@@ -17,20 +17,20 @@ const SubPreviewImage = ({
   const deleteAll = () => {
     URL.revokeObjectURL(image)
     setImage('')
-    handleThumbnailDelete(formValues.thumbnails[value])
+    handleThumbnailDelete(thumbnailsFiles[value])
   }
   useEffect(() => {
     const transformFile = () => {
-      const url = URL.createObjectURL(formValues.thumbnails[value])
+      const url = URL.createObjectURL(thumbnailsFiles[value])
 
       setImage(url)
     }
-    if (formValues.thumbnails[value]) {
+    if (thumbnailsFiles[value]) {
       transformFile()
     } else {
       setImage('')
     }
-  }, [formValues.thumbnails, image.length, value])
+  }, [thumbnailsFiles, value])
 
   return (
     <ViewImage

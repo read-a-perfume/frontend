@@ -2,47 +2,65 @@ import {Autocomplete, TextField, styled} from '@mui/material'
 import ReviewFormSubTitle from '../base/review-form-sub-title'
 import {useState} from 'react'
 import useFetchPerfumeSearch from '../hooks/use-fetch-perfume-search'
+import useGetCustomForms from '../hooks/use-get-custom-forms'
+import ErrorMessage from '@components/base/error-message'
 const inputLabelProps = {
   style: {
     fontSize: 14, // Adjust the font size as needed
   },
 }
-const PerfumeSearch = ({handleAutoComplete}) => {
+const PerfumeSearch = () => {
   const [search, setSearch] = useState('')
+  const {perfume} = useGetCustomForms()
+  const {
+    field,
+    formState: {errors},
+  } = perfume
+  const {options, isLoading} = useFetchPerfumeSearch({
+    search: search,
+  })
 
-  const {options} = useFetchPerfumeSearch({search})
-  const handleChangeInput = (_event: any, value) => {
-    if (value && value.length > 0) {
-      setSearch(value)
-    }
-  }
   return (
     <section>
       <ReviewFormSubTitle title="리뷰하고싶은 제품을 찾아주세요" />
       <CustomAutoComplete
         disablePortal
-        id="search"
+        id="perfume"
         options={options}
+        onChange={(_event, newValue) => {
+          field.onChange(newValue)
+        }}
         inputValue={search}
-        onInputChange={handleChangeInput}
-        onChange={handleAutoComplete}
+        onInputChange={(_evt, newValue) => setSearch(newValue)}
+        value={field.value}
         sx={{width: 411}}
         autoHighlight
+        loading={isLoading}
+        loadingText="로딩중입니다"
         renderInput={params => (
           <TextField
             {...params}
+            key={params.id}
             name="perfumeId"
             placeholder="향수를 선택해주세요."
             InputLabelProps={inputLabelProps}
+            inputProps={{
+              ...params.inputProps,
+              autoComplete: 'disabled', // disable autocomplete and autofill
+            }}
           />
         )}
-        getOptionLabel={option => option.title}
+        getOptionLabel={option => option.name}
+        isOptionEqualToValue={(option, value) => {
+          return option.id === value.id
+        }}
         renderOption={(props, option) => (
           <>
-            <Item {...props}>{option.title}</Item>
+            <Item {...props}>{option.name}</Item>
           </>
         )}
       />
+      <ErrorMessage errorMessage={errors.perfume?.message} />
     </section>
   )
 }

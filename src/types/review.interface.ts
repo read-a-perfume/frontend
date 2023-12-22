@@ -35,7 +35,9 @@ export interface IfReviewResponse extends IfReviewBase {
 }
 
 // 리뷰 상세보기
-export interface IfReviewDetailResponse extends IfReviewBase, IfReviewBaseDetail {
+export interface IfReviewDetailResponse
+  extends IfReviewBase,
+    IfReviewBaseDetail {
   id: number
   likeCount: number
   commentCount: number
@@ -43,10 +45,16 @@ export interface IfReviewDetailResponse extends IfReviewBase, IfReviewBaseDetail
 }
 
 // 리뷰 생성
-export interface IfReviewRequest extends IfReviewBaseDetail {
+// 리뷰 생성
+
+export interface IfReviewRequest extends Omit<IfReviewBaseDetail, 'perfumeId'> {
   shortReview: string
-  thumbnails: number[]
+  thumbnails: File[] | number[]
   keywords: number[]
+  perfume: {
+    id: number
+    name: string
+  }
 }
 
 // 리뷰 삭제
