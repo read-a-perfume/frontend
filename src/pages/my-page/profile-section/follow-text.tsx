@@ -11,8 +11,6 @@ interface proptype {
 const FollowText = ({title, count, label}: proptype) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
-  console.log(isOpen)
-
   return (
     <>
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
