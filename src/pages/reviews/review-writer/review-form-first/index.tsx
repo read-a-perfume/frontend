@@ -1,116 +1,81 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import DeleteIcon from '@mui/icons-material/HighlightOff'
 import {
   Box,
   List,
-  Typography,
-  ListItem,
-  ListItemIcon,
   FormControl,
   styled as muiStyled,
+  TextField,
 } from '@mui/material'
+import MainPreviewImage from './main-preview-image'
+import SubPreviewImage from './sub-preview-image'
+import useGetCustomForms from '../hooks/use-get-custom-forms'
+import {useWatch} from 'react-hook-form'
+import FileLengthView from './file-length-view'
 
-const ReviewFormFirst = ({
-  handleThumbnailDelete,
-  handleThumbnailUpload,
-  formValues,
-}: any) => {
-  const ImageLength = ({formValues}: any) => {
-    const files = formValues.thumbnails.length
-    return (
-      <Box
-        sx={{
-          position: 'absolute',
-          right: 0,
-          top: 400,
-          padding: '4px 12px',
-          borderRadius: ' 13.5px;',
-          width: '49px',
-          height: ' 27px',
-          backgroundColor: '#fff',
-        }}
-      >
-        <Typography variant="body2"> {files}/5</Typography>
-      </Box>
-    )
+const ReviewFormFirst = () => {
+  const {thumbnails, control} = useGetCustomForms()
+  const {field} = thumbnails
+  //업로드한 파일 데이터 목록 
+  const thumbnailsFiles = useWatch({control: control, name: 'thumbnails'}) || []
+
+  //파일 업로드 
+  const handleUpload = event => {
+    const target = event.target
+    const file = target.files[0]
+    // const fileSizeLimit = 1 * 1024 * 1024
+    const newArray = [...thumbnailsFiles]
+
+    const item = file
+
+    if (newArray.length > 0) {
+      const index = newArray.findIndex(x => x === item)
+
+      if (index === -1) {
+        newArray.push(item)
+      } else {
+        newArray.splice(index, 1)
+      }
+    } else {
+      newArray.push(item)
+    }
+
+    field.onChange(newArray)
   }
+
+  //파일 삭제 
+  const handleDelete = file => {
+    const filteredItems = thumbnailsFiles.filter(it => it !== file && it)
+    field.onChange(filteredItems)
+  }
+
+
   return (
     <main>
       <FormControl component="fieldset" sx={{width: '100%', margin: 'auto'}}>
         <Box sx={{position: 'relative', margin: 'auto', width: '420px'}}>
-          <MainPreview>
-            <MainPreviewFileLabel htmlFor="thumbnails">
-              <Figure
-                sx={{
-                  backgroundImage: `url(${formValues.thumbnails[0]})`,
-                  backgroundSize: '100% 100%',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                }}
-              >
-                <TextBox>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '5px',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <AddCircleIcon />
-                    <Typography
-                      variant="h3"
-                      fontStyle={{textAlign: 'center', color: '#dbdbdb'}}
-                    >
-                      리뷰에서 보여줄 <br />
-                      사진이나 영상을 추가해주세요.
-                    </Typography>
-                  </Box>
-                </TextBox>
-              </Figure>
-            </MainPreviewFileLabel>
-            {formValues.thumbnails[0] && (
-              <CustomDeleteButton
-                onClick={() => handleThumbnailDelete(formValues.thumbnails[0])}
-              />
-            )}
-          </MainPreview>
+          <MainPreviewImage
+            thumbnailsFiles={thumbnailsFiles}
+            handleThumbnailDelete={handleDelete}
+          />
           <SubPreview>
-            <Box>
-              <SubPreviewList>
-                {[1, 2, 3, 4].map(value => (
-                  <>
-                    <SubPreviewItem
-                      sx={{
-                        //프리뷰 이미지
-                        backgroundImage: `url(${formValues.thumbnails[value]})`,
-                      }}
-                    >
-                      <ListItemIcon
-                        sx={{display: 'flex', justifyContent: 'center'}}
-                      />
-                      {formValues.thumbnails[value] && (
-                        <CustomDeleteButton
-                          onClick={() =>
-                            handleThumbnailDelete(formValues.thumbnails[value])
-                          }
-                        />
-                      )}
-                    </SubPreviewItem>
-                  </>
-                ))}
-              </SubPreviewList>
-            </Box>
+            <SubPreviewList>
+              {[1, 2, 3, 4].map(value => (
+                <SubPreviewImage
+                  thumbnailsFiles={thumbnailsFiles}
+                  handleThumbnailDelete={handleDelete}
+                  value={value}
+                />
+              ))}
+            </SubPreviewList>
           </SubPreview>
-          <ImageLength formValues={formValues} />
+          <FileLengthView thumbnailsFiles={thumbnailsFiles} />
         </Box>
       </FormControl>
       <MainPreviewFileInput
         type="file"
-        name="thumbnails"
         id="thumbnails"
-        accept=".jpg, .png"
-        onChange={handleThumbnailUpload}
+        name={field.name}
+        ref={field.ref}
+        onChange={handleUpload}
       />
     </main>
   )
@@ -118,35 +83,9 @@ const ReviewFormFirst = ({
 
 export default ReviewFormFirst
 
-const Figure = muiStyled('figure')({
-  position: 'relative',
-  height: '100%',
-})
-
-const TextBox = muiStyled('div')({
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  width: '100%',
-  transform: 'translate(-50%,-50%)',
-})
-
-const MainPreview = muiStyled(Box)({
-  marginTop: '20px',
-  height: '420px',
-  borderRadius: '20px',
-  border: '2px dashed #dbdbdb',
-  position: 'relative',
-})
-
-const MainPreviewFileInput = muiStyled('input')({
+const MainPreviewFileInput = muiStyled(TextField)({
   display: 'none',
-})
-
-const MainPreviewFileLabel = muiStyled('label')({
-  width: '100%',
-  cursor: 'pointer',
-})
+}) as typeof TextField
 
 const SubPreview = muiStyled(Box)({
   marginTop: '14px',
@@ -155,26 +94,4 @@ const SubPreview = muiStyled(Box)({
 const SubPreviewList = muiStyled(List)({
   display: 'flex',
   justifyContent: 'space-between',
-})
-
-const SubPreviewItem = muiStyled(ListItem)({
-  position: 'relative',
-  width: '96px',
-  height: '96px',
-  borderRadius: '10px',
-  border: ' solid 1px #dbdbdb',
-  backgroundColor: '#fff',
-  justifyContent: 'center',
-  //이미지
-  backgroundSize: '100% 100%',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-})
-
-const CustomDeleteButton = muiStyled(DeleteIcon)({
-  position: 'absolute',
-  top: -20,
-  right: -20,
-  border: '1px solid #fff',
-  color: '#000;',
 })

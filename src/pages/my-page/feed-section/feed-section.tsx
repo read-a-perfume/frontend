@@ -1,53 +1,51 @@
-import {Box, Stack, styled} from '@mui/material'
+import {Stack} from '@mui/material'
 import FeedChip from '../base/feed-chip'
-import PageNumber from '../../../components/base/page-number-button'
-import { getReviews } from './queryfn'
-import { useQuery } from '@tanstack/react-query'
-import FeedCard from './feed-card/feed-card'
-
+import {fetchReviews} from './queryfn'
+import {useQuery} from '@tanstack/react-query'
+import {useState} from 'react'
+import {ShowBenchmarkType} from './type'
+import BranchoutReviews from './branch-out-reviews'
 
 const FeedSection = () => {
-  /*
-  TODO
-  chip은 초기에 ALL,페이지는 초기에 1로 초기화된다.
-  chip을 클릭하면 chip을 active시키고 해당하는 카드 데이터를 받아온다.
-  페이지네이션: 각 페이지넘버를 클릭할때 마다 페이지넘버를 active해준다. 해당하는 페이지의 카드들의 데이터를 받고 렌더링해준다.
- 
-  */
-  const {data: reviews} = useQuery(['reviews'], () => getReviews(1))
+  const [page, setPage] = useState<number>(1)
+  const [benchmark, setBenchmark] = useState<ShowBenchmarkType>('latest')
+
+  const handleChipClick = (ref: ShowBenchmarkType) => {
+    setBenchmark(ref)
+    setPage(1) // 기준이 바뀌면 초기화하기 위함
+  }
+
+  const {data: reviews} = useQuery(['reviews', {page: page}], () =>
+    fetchReviews(page),
+  )
 
   return (
     <div>
       <Stack direction="row" sx={{marginBottom: '48px'}}>
-        <FeedChip label="ALL" clickable active={false}></FeedChip>
-        <FeedChip label="내가 작성한 피드" clickable active></FeedChip>
-        <FeedChip label="좋아요" clickable active={false}></FeedChip>
+        <FeedChip
+          label="최신 순"
+          benchmark={benchmark}
+          reference="latest"
+          onClick={() => {
+            handleChipClick('latest')
+          }}
+        />
+        <FeedChip
+          label="좋아요 순"
+          benchmark={benchmark}
+          reference="likes"
+          onClick={() => {
+            handleChipClick('likes')
+          }}
+        />
       </Stack>
-      <ReviewsContainer>
-       {reviews && reviews.map((e,i)=><FeedCard data={e} key={i}/>)} 
-      </ReviewsContainer>
-      <TestPageNumber>
-        <PageNumber active={true} number={1} />
-        <PageNumber active={false} number={2} />
-        <PageNumber active={false} number={3} />
-      </TestPageNumber>
+      <BranchoutReviews reviews={reviews} />
     </div>
   )
 }
 
 export default FeedSection
 
-const TestPageNumber = styled(Box)(() => ({
-  display: 'flex',
-  gap: '1rem',
-  justifyContent: 'center',
-  marginTop: '130px',
-}))
+// branchout에서 추후 benchmark도 넣어 분기
 
-const ReviewsContainer = styled(Box)(()=>(
-  {
-    display:'flex',
-    gap: '32px',
-    flexWrap: 'wrap',
-  }
-))
+

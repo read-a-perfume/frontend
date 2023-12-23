@@ -2,6 +2,8 @@ import instance from '@api/instance'
 import styled from '@emotion/styled'
 import {Skeleton, Typography} from '@mui/material'
 import {useQuery} from '@tanstack/react-query'
+import {theme} from '@theme/index'
+import {useNavigate} from 'react-router-dom'
 
 type PerfumesType = {
   content: {
@@ -33,6 +35,8 @@ const fetchGetPerfumesByCategory = async (id: number) => {
 }
 
 const NoteProducts = ({categoryId}: {categoryId: number}) => {
+  const navigate = useNavigate()
+
   const {
     isLoading,
     error,
@@ -50,7 +54,10 @@ const NoteProducts = ({categoryId}: {categoryId: number}) => {
       {!isLoading &&
         !error &&
         perfumes!.content.map((perfume, idx) => (
-          <ProductBox key={idx}>
+          <ProductBox
+            key={idx}
+            onClick={() => navigate(`/perfume/${perfume.id}`)}
+          >
             <ThumbNail
               src={
                 perfume.thumbnail
@@ -60,7 +67,11 @@ const NoteProducts = ({categoryId}: {categoryId: number}) => {
               alt="product"
             />
             <ProductInfoBox>
-              <ProductName>{perfume.name}</ProductName>
+              <ProductName>
+                {perfume.name.length > 12
+                  ? perfume.name.slice(0, 12) + '...'
+                  : perfume.name}
+              </ProductName>
               <BrandName>{perfume.brandName}</BrandName>
             </ProductInfoBox>
           </ProductBox>
@@ -97,10 +108,11 @@ const ProductBox = styled.div({
   background: 'white',
   border: '1px solid #DBDBDB',
   overflow: 'hidden',
+  cursor: 'pointer',
 })
 
 const ProductInfoBox = styled.div({
-  paddingLeft: 24,
+  padding: '0px 24px',
   marginTop: -6,
   height: 78,
   display: 'flex',
@@ -111,17 +123,17 @@ const ProductInfoBox = styled.div({
 
 const ProductName = styled(Typography)({
   color: '#191919',
-  fontSize: 18,
+  fontSize: theme.typography.body3.fontSize,
   fontWeight: '500',
 })
 
 const BrandName = styled(Typography)({
   color: '#A9A9A9',
-  fontSize: 14,
+  fontSize: theme.typography.body5.fontSize,
 })
 
-const ThumbNail = styled.img({
-  objectFit: 'contain',
-  width: '100%',
-  height: '75%',
-})
+const ThumbNail = styled.img`
+  object-fit: center;
+  width: 100%;
+  height: 75%;
+`

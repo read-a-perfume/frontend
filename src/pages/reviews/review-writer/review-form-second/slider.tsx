@@ -1,10 +1,10 @@
-import React from 'react'
-import {Slider} from '@mui/material'
+import {useState} from 'react'
+import {Slider, useTheme} from '@mui/material'
 
 const marks = [
   {
     value: 0,
-    label: '느림',
+    label: '약함',
   },
   {
     value: 50,
@@ -12,17 +12,18 @@ const marks = [
   },
   {
     value: 100,
-    label: '빠름',
+    label: '빠람',
   },
 ]
 
 export default function SliderRating() {
-  const [value, setValue] = React.useState(50)
+  const [value, setValue] = useState(50)
 
-  const handleChange = (event, newValue) => {
-    console.log(event)
+  const handleChange = (_event: Event, newValue) => {
     setValue(newValue)
   }
+
+  const theme = useTheme()
 
   return (
     <div>
@@ -33,6 +34,23 @@ export default function SliderRating() {
         aria-labelledby="discrete-slider-custom"
         step={50}
         marks={marks}
+        sx={{
+          '&.MuiSlider-root': {
+            color: '#eee',
+            height: '2px',
+          },
+          '.MuiSlider-thumb::after': {
+            width: '24px',
+            height: '24px',
+            border: `2px solid ${theme.palette.primary.main}`,
+            background: '#fff',
+          },
+
+          '& span.MuiSlider-track': {
+            height: '0px',
+            color: `${theme.palette.primary.main}`,
+          },
+        }}
       />
     </div>
   )

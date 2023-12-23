@@ -64,14 +64,12 @@ const Products = () => {
             <FlexBox
               key={item.id}
               direction="column"
-              gap="32px"
-              onClick={() => navigate('/perfume/:id')}
+              gap="24px"
+              onClick={() => navigate(`/perfume/${item.id}`)}
             >
               <GridItem width={(screenWidth - 720 - 100) / 4 + 'px'}>
                 <Product>
-                  <ProductImage
-                    src={item.thumbnail || 'public/images/Rectangle7217(5).png'}
-                  />
+                  <ProductImage src={item.thumbnail || 'images/perfume.png'} />
                   <FlexBox direction="column" alignItems="center" gap="8px">
                     <BrandName>{item.brandName}</BrandName>
                     <ProductName>{item.name}</ProductName>
@@ -130,15 +128,14 @@ const ProductsContainer = styled.div({
 
 const ProductBox = styled.div({
   display: 'grid',
-  gridTemplateColumns: 'repeat(4, 1fr)',
-  gridTemplateRows: 'repeat(2, 1fr)',
+  gridTemplateColumns: `repeat(4, 1fr)`,
+  gridTemplateRows: `repeat(2, 1fr))`,
   rowGap: '88px',
-  columnGap: '10px',
+  columnGap: '24px',
 })
 
 const GridItem = styled.div<{width: string}>(({width}) => ({
   width: width,
-  height: '100%',
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
@@ -154,7 +151,7 @@ const Product = styled.div({
 const ProductImage = styled.img({
   height: '341px',
   width: '100%',
-  objectFit: 'contain',
+  objectFit: 'cover',
 })
 
 const BrandName = styled(Typography)({

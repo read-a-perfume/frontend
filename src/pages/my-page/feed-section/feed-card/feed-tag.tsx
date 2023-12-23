@@ -1,4 +1,4 @@
-import {Box, Typography, styled} from '@mui/material'
+import {Box, styled,Chip} from '@mui/material'
 
 interface proptype {
   tags: string[]
@@ -7,7 +7,7 @@ interface proptype {
 const FeedTag = ({tags}: proptype) => {
   return (
     <FeedTagContainer>
-      <TagText color="primary">{'#' + tags.join(' #')}</TagText>
+      {tags.map((e,i)=><TagChip label={`#${e}`} key={i}/>)}
     </FeedTagContainer>
   )
 }
@@ -15,9 +15,18 @@ const FeedTag = ({tags}: proptype) => {
 export default FeedTag
 
 const FeedTagContainer = styled(Box)(() => ({
-  margin: '16px 0',
+  display: 'flex',
+  gap: '8px',
+  marginBottom:'11.3px',
+  minHeight: '23px'
 }))
 
-const TagText = styled(Typography)(({theme}) => ({
-  fontSize: theme.typography.body3.fontSize,
+const TagChip = styled(Chip)(({theme})=>({
+  height: '23px',
+  padding: '0',
+  fontSize: theme.typography.body5.fontSize,
+  color:theme.palette.grey[500],
+  border: `solid 1px ${theme.palette.grey[400]}`,
+  backgroundColor: '#fff',
+  borderRadius: '8px',
 }))
