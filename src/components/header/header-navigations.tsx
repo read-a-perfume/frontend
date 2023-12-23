@@ -9,13 +9,11 @@ import {HeaderNavigation, Input, Logo, NavBottom} from '../../layouts/header'
 interface HeaderNavigation {
   editorPostCompleted?: boolean
   isLoggedIn: boolean
-  onOpen: () => void
 }
 
 const HeaderNavigations = ({
   editorPostCompleted,
   isLoggedIn,
-  onOpen,
 }: HeaderNavigation) => {
   const isUploading = true
   const navigate = useNavigate()
@@ -36,7 +34,7 @@ const HeaderNavigations = ({
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!isLoggedIn) {
-      onOpen()
+      navigate('/sign-in')
     } else {
       setKeyword(event?.target.value)
     }
@@ -111,26 +109,38 @@ const HeaderNavigations = ({
         </FlexBox>
         <FlexBox style={{width: '588px'}} justifyContent="center">
           <FlexBox alignItems="center" gap="54px">
-            <NavBottom onClick={() => (!isLoggedIn ? onOpen() : navigate('/'))}>
+            <NavBottom
+              onClick={() =>
+                !isLoggedIn ? navigate('/sign-in') : navigate('/')
+              }
+            >
               홈
             </NavBottom>
             <NavBottom
-              onClick={() => (!isLoggedIn ? onOpen() : console.log(''))}
+              onClick={() =>
+                !isLoggedIn ? navigate('/sign-in') : console.log('')
+              }
             >
               리뷰
             </NavBottom>
             <NavBottom
-              onClick={() => (!isLoggedIn ? onOpen() : navigate('/brand'))}
+              onClick={() =>
+                !isLoggedIn ? navigate('/sign-in') : navigate('/brand')
+              }
             >
               브랜드
             </NavBottom>
             <NavBottom
-              onClick={() => (!isLoggedIn ? onOpen() : navigate('/perfumes'))}
+              onClick={() =>
+                !isLoggedIn ? navigate('/sign-in') : navigate('/perfumes')
+              }
             >
               제품
             </NavBottom>
             <NavBottom
-              onClick={() => (!isLoggedIn ? onOpen() : console.log(''))}
+              onClick={() =>
+                !isLoggedIn ? navigate('/sign-in') : console.log('')
+              }
             >
               뉴스
             </NavBottom>
