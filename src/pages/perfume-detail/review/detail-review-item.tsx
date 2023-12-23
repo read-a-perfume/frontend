@@ -38,6 +38,8 @@ const DetailReviewItem = ({item}: IfDetailReviewItemProps) => {
     setHashTagKeyword(updatedHashtags)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  console.log(item)
   return (
     <>
       <Card
@@ -182,16 +184,19 @@ const DetailReviewItem = ({item}: IfDetailReviewItemProps) => {
         >
           <>
             {/* 향수 설명 */}
-            <Typography variant="body4" sx={{color: '#131313'}}>
+            <Typography
+              variant="body4"
+              sx={{color: '#131313', minHeight: '20px'}}
+            >
               {item?.shortReview}
             </Typography>
 
             {/* 향수 태그 */}
-
             <Typography
               variant="body5"
               sx={{
                 color: theme => theme.palette.primary.main,
+                minHeight: '13px',
               }}
             >
               {hashTagKeyword}
@@ -203,12 +208,13 @@ const DetailReviewItem = ({item}: IfDetailReviewItemProps) => {
           disableSpacing
           sx={{
             borderTop: '1px solid #ededed',
-            padding: item?.keywords.length === 0 ? '20.5px 0px' : '13.5px 0px',
+            paddingLeft: '0',
+            // padding: item?.keywords.length === 0 ? '20.5px 0px' : '13.5px 0px',
           }}
         >
-          <FlexBox alignItems="center" style={{padding: '0px 4.5px'}}>
+          <FlexBox alignItems="center" style={{padding: '0px'}}>
             <CustomIcons.HeartIcon />
-            <FooterText>좋아요 172개</FooterText>
+            <FooterText>좋아요 {item?.likeCount}개</FooterText>
           </FlexBox>
 
           <FlexBox
@@ -216,7 +222,7 @@ const DetailReviewItem = ({item}: IfDetailReviewItemProps) => {
             style={{padding: '0px 4.5px', marginLeft: '16.7px'}}
           >
             <CustomIcons.CommentIcon2 />
-            <FooterText>댓글 40개</FooterText>
+            <FooterText>댓글{item?.commentCount}개</FooterText>
           </FlexBox>
         </CardActions>
       </Card>

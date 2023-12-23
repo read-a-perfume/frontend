@@ -5,7 +5,7 @@ import {
   fetchPerfume,
   fetchPerfumeGraph,
   fetchPerfumeReviewData,
-} from 'src/store/server/perfume-datail/queries'
+} from 'src/store/server/perfumes/queries'
 
 import Carousel from './carousel'
 import FlexBox from '@layouts/flex-box'
