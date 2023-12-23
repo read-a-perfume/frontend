@@ -1,7 +1,7 @@
 import {Checkbox, FormControlLabel, Typography, styled} from '@mui/material'
-import {REVIEW_OPTIONS} from '../data/review-options'
+import {REVIEW_OPTIONS} from '../../data/review-options'
 import {useWatch} from 'react-hook-form'
-import useGetCustomForms from '../hooks/use-get-custom-forms'
+import useGetCustomForms from '../../hooks/use-get-custom-forms'
 import ErrorMessage from '@components/base/error-message'
 
 const PerfumeKeywords = ({title}: {title: string}) => {

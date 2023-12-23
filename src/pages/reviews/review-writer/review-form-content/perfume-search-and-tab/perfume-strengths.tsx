@@ -1,4 +1,4 @@
-import ReviewFormSubTitle from '../base/review-form-sub-title'
+import ReviewFormSubTitle from '../../base/review-form-sub-title'
 import SliderRating from './slider'
 
 const PerfumeStrengths = () => {

@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import {useResetRecoilState} from 'recoil'
 import {reviewWriteFormAtom} from 'src/store/client/reviews/atoms'
 import {useEffect} from 'react'
-import ReviewWriteForm from './review-write-form'
+import ReviewForm from './review-form'
 
 const ReviewWriter = () => {
   const resetReviewForm = useResetRecoilState(reviewWriteFormAtom)
@@ -16,7 +16,7 @@ const ReviewWriter = () => {
 
   return (
     <Wrapper>
-      <ReviewWriteForm />
+      <ReviewForm />
     </Wrapper>
   )
 }

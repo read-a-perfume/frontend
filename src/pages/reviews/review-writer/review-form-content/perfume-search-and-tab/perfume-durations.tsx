@@ -1,8 +1,8 @@
 import {RadioGroup, styled} from '@mui/material'
-import RadioRoundedButton from '../base/radio-rounded-button'
+import RadioRoundedButton from '../../base/radio-rounded-button'
 import {REVIEW_OPTIONS} from '@pages/reviews/review-writer/data/review-options'
-import ReviewFormSubTitle from '../base/review-form-sub-title'
-import useGetCustomForms from '../hooks/use-get-custom-forms'
+import ReviewFormSubTitle from '../../base/review-form-sub-title'
+import useGetCustomForms from '../../hooks/use-get-custom-forms'
 import ErrorMessage from '@components/base/error-message'
 
 const PerfumeDurations = () => {
