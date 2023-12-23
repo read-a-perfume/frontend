@@ -6,7 +6,7 @@ interface ReviewFormPreNextProps {
   prograss: number
 }
 
-const ReviewFormPreNext = ({
+const ReviewFormNavButtons = ({
   handleNextPage,
   handlePrevPage,
   prograss,
@@ -47,7 +47,7 @@ const ReviewFormPreNext = ({
   )
 }
 
-export default ReviewFormPreNext
+export default ReviewFormNavButtons
 const BaseButton = styled(Button)({
   height: '56px;',
   display: ' flex',

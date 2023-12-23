@@ -1,6 +1,6 @@
 import {atom} from 'recoil'
 
-export const UserAtom = atom<any | null>({
+export const UserProfileAtom = atom<any | null>({
   key: 'user-atom',
   default: null,
 })

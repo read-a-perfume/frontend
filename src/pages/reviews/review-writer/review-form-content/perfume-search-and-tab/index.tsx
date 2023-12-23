@@ -5,7 +5,7 @@ import PerfumeDailys from './perfume-dailys'
 import PerfumeStrengths from './perfume-strengths'
 import PerfumeSeasons from './perfume-seasons'
 
-const ReviewFormSecond = () => {
+const PerfumeSearchAndTabs = () => {
   return (
     <>
       <FormControl component="fieldset">
@@ -19,4 +19,4 @@ const ReviewFormSecond = () => {
   )
 }
 
-export default ReviewFormSecond
+export default PerfumeSearchAndTabs

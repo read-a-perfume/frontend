@@ -1,47 +1,43 @@
 import {Box, styled} from '@mui/material'
-import ReviewFormFirst from './review-form-first'
-import ReviewFormSecond from './review-form-second'
-import ReviewFormLast from './review-form-last'
 import ReviewFormProgassState from './review-form-prograss-state'
 import useReviewFormPreNext from './hooks/use-review-form-pre-nex'
-import ReviewFormPreNext from './review-form-pre-next'
 import usePostReviewCreate from './hooks/use-post-review-create'
 import BaseModal from '@components/modal/alert-modal'
 import {FormProvider, useForm} from 'react-hook-form'
 import {IfReviewRequest} from 'types/review.interface'
+import ReviewFormContent from './review-form-content'
+import ReviewFormNavButtons from './review-form-nav-buttons'
 
-const ReviewWriteForm = () => {
+const ReviewRequest = {
+  perfume: {
+    id: 0,
+    name: '',
+  },
+  dayType: '',
+  strength: 'LIGHT',
+  season: '',
+  duration: '',
+  shortReview: '',
+  fullReview: '',
+  keywords: [],
+  thumbnails: [],
+}
+
+const ReviewForm = () => {
   const {handleNextPage, handlePrevPage, prograss} = useReviewFormPreNext({
     index: 0,
   })
   const {onSubmit, isOpen, handleClose} = usePostReviewCreate()
 
-  const methods = useForm<IfReviewRequest>({
-    defaultValues: {
-      perfume: {
-        id: 0,
-        name: '',
-      },
-      dayType: '',
-      strength: 'LIGHT',
-      season: '',
-      duration: '',
-      shortReview: '',
-      fullReview: '',
-      keywords: [],
-      thumbnails: [],
-    },
-  })
+  const methods = useForm<IfReviewRequest>({defaultValues: ReviewRequest})
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Container>
           <ReviewFormProgassState prograss={prograss} />
-          {prograss === 0 && <ReviewFormFirst />}
-          {prograss === 1 && <ReviewFormSecond />}
-          {prograss === 2 && <ReviewFormLast />}
-          <ReviewFormPreNext
+          <ReviewFormContent prograss={prograss} />
+          <ReviewFormNavButtons
             handleNextPage={handleNextPage}
             handlePrevPage={handlePrevPage}
             prograss={prograss}
@@ -59,7 +55,7 @@ const ReviewWriteForm = () => {
   )
 }
 
-export default ReviewWriteForm
+export default ReviewForm
 
 const Container = styled(Box)({
   width: '420px',

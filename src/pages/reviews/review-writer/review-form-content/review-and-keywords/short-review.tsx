@@ -1,5 +1,5 @@
 import {Input, Typography, styled} from '@mui/material'
-import useGetCustomForms from '../hooks/use-get-custom-forms'
+import useGetCustomForms from '../../hooks/use-get-custom-forms'
 import ErrorMessage from '@components/base/error-message'
 
 const ShortReview = ({title}: {title: string}) => {

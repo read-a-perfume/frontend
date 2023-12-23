@@ -9,21 +9,13 @@ import {theme} from '@theme/index.js'
 import {useRecoilValue} from 'recoil'
 import HeaderNavigations from '@components/header/header-navigations.js'
 import LoggedInHeader from '@components/header/logged-in-header.js'
-import {UserAtom} from 'src/store/client/auth/atoms.js'
-import useQuery from 'src/store/server/use-query.js'
-import {fetchUserProfile} from 'src/store/server/auth/queries.js'
-
+import {UserProfileAtom} from 'src/store/client/auth/atoms.js'
 const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
   const navigate = useNavigate()
-  const isLoggedIn = useRecoilValue(UserAtom)
+  const isLoggedIn = useRecoilValue(UserProfileAtom)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [notificationOpen, setNotificationOpen] = useState<boolean>(false)
-
-  const {data: profile} = useQuery({
-    queryKey: ['user-profile'],
-    queryFn: () => fetchUserProfile(),
-  })
-
+  console.log(isLoggedIn, 'isLoggedIn')
   return (
     <>
       <NotificationModal
@@ -34,7 +26,7 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
       <HeaderLayout>
         {isLoggedIn ? (
           <LoggedInHeader
-            thumbnail={profile ? profile.thumbnail : ''}
+            thumbnail={isLoggedIn ? isLoggedIn.thumbnail : ''}
             isLoggedIn={isLoggedIn}
             onOpenLoginModal={() => setIsOpen(true)}
             onOpenNotification={() => setNotificationOpen(true)}

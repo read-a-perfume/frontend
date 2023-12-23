@@ -7,17 +7,17 @@ import {
 } from '@mui/material'
 import MainPreviewImage from './main-preview-image'
 import SubPreviewImage from './sub-preview-image'
-import useGetCustomForms from '../hooks/use-get-custom-forms'
+import useGetCustomForms from '../../hooks/use-get-custom-forms'
 import {useWatch} from 'react-hook-form'
 import FileLengthView from './file-length-view'
 
-const ReviewFormFirst = () => {
+const PhotoUpload = () => {
   const {thumbnails, control} = useGetCustomForms()
   const {field} = thumbnails
-  //업로드한 파일 데이터 목록 
+  //업로드한 파일 데이터 목록
   const thumbnailsFiles = useWatch({control: control, name: 'thumbnails'}) || []
 
-  //파일 업로드 
+  //파일 업로드
   const handleUpload = event => {
     const target = event.target
     const file = target.files[0]
@@ -41,12 +41,11 @@ const ReviewFormFirst = () => {
     field.onChange(newArray)
   }
 
-  //파일 삭제 
+  //파일 삭제
   const handleDelete = file => {
     const filteredItems = thumbnailsFiles.filter(it => it !== file && it)
     field.onChange(filteredItems)
   }
-
 
   return (
     <main>
@@ -81,7 +80,7 @@ const ReviewFormFirst = () => {
   )
 }
 
-export default ReviewFormFirst
+export default PhotoUpload
 
 const MainPreviewFileInput = muiStyled(TextField)({
   display: 'none',

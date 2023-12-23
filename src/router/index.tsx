@@ -12,6 +12,7 @@ import PerfumeDetail from '@pages/perfume-detail'
 import SignIn from '@pages/sign-in'
 import MagazineUpload from '@pages/brand/magazine-upload'
 import BrandList from '@pages/brand/brand-list'
+import ReviewDetails from '@pages/reviews/review-details'
 
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
@@ -124,50 +125,14 @@ const routerData: RouterElement[] = [
     isLayout: true,
     withAuth: true,
   },
-
-  //   {
-  //     label: "test",
-  //     key: "test-key",
-  //     route: "/test",
-  //     component: <Test />,
-  //   },
-  // {
-  //   type: 'collapse',
-  //   label: 'test',
-  //   key: 'test-key',
-  //   collapse: [
-  //     {
-  //       label: 'test-first',
-  //       key: 'test-first-key',
-  //       route: '/test-first',
-  //       component: <TestFirst />,
-  //     },
-  //   ],
-  // },
-  //   {
-  //     label: "brand",
-  //     key: "brand-key",
-  //     route: "/brand/:id",
-  //     component: <Brand />,
-  //   },
-  //   {
-  //     label: "brand-settings",
-  //     key: "brand-settings-key",
-  //     route: "/brand/:id/settings",
-  //     component: <BrandSettings />,
-  //   },
-  //   {
-  //     label: "magazine-detail",
-  //     key: "magazine-detail-key",
-  //     route: "/brand/:id/magazine/:id",
-  //     component: <MagazineContent />,
-  //   },
-  //   {
-  //     label: "post-magazine",
-  //     key: "post-magazine-key",
-  //     route: "/brand/:id/magazine/post",
-  //     component: <PostMagazine />,
-  //   },
+  {
+    id: 10,
+    label: '브랜드 목록',
+    path: '/details',
+    element: <ReviewDetails />,
+    isLayout: false,
+    withAuth: false,
+  },
 ]
 
 export const router: RemixRouter = createBrowserRouter(
