@@ -15,7 +15,7 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
   const isLoggedIn = useRecoilValue(UserProfileAtom)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [notificationOpen, setNotificationOpen] = useState<boolean>(false)
-
+  console.log(isLoggedIn, 'isLoggedIn')
   return (
     <>
       <NotificationModal

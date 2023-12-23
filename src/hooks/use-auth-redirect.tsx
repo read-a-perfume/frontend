@@ -9,11 +9,11 @@ const useAuthRedirect = () => {
 
   const {routeTo} = useRouter()
 
-  const {isLoading, data} = useQuery({
+  const {isLoading} = useQuery({
     queryFn: fetchUserProfile,
     queryKey: ['userProfile'],
     options: {
-      onSuccess: () => {
+      onSuccess: data => {
         setIsLoggined(data)
       },
       onError: () => routeTo('/sign-in'),
