@@ -4,7 +4,7 @@ import ShortReview from './short-review'
 import FullReview from './full-review'
 import PerfumeKeywords from './perfume-keywords'
 
-const ReviewFormLast = () => {
+const ReviewAndKeywords = () => {
   return (
     <FormControl component="fieldset">
       <ShortReview title="한줄 리뷰 *" />
@@ -14,4 +14,4 @@ const ReviewFormLast = () => {
   )
 }
 
-export default ReviewFormLast
+export default ReviewAndKeywords
