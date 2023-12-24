@@ -6,6 +6,13 @@ import {
   Typography,
   styled,
 } from '@mui/material'
+import MainThumbnailPhoto from './main-thumbnail-photo'
+
+const images = [
+  'https://picsum.photos/500/500/?blur',
+  'https://picsum.photos/500/500/?blur',
+  'https://picsum.photos/500/500/?blur',
+]
 
 const ModalPerfumeInfo = ({title}: {title: string}) => {
   return (
@@ -27,7 +34,7 @@ const ReviewDetails = () => {
             sx={{display: 'flex', gap: '24px', justifyContent: 'space-between'}}
           >
             <Box sx={{width: '486px', border: '1px solid blue'}}>
-              <Box sx={{width: '486px', height: '486px'}}>메인 사진 이미지</Box>
+              <MainThumbnailPhoto thumbnail={images} />
               <Box sx={{height: '111px'}}>서브 사진 이미지</Box>
             </Box>
             <Box sx={{width: '486px', border: '1px solid green'}}>
