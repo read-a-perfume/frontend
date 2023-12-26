@@ -27,7 +27,7 @@ const LikeCounter = ({
       )}
 
       <Typography variant="body5" sx={{fontWeight: 500}}>
-        좋아요 {likeNumber} 개
+        좋아요 {likeNumber}개
       </Typography>
     </Wrapper>
   )
@@ -37,6 +37,7 @@ export default LikeCounter
 const Wrapper = styled(Box)({
   display: 'flex',
   alignItems: 'center',
+  gap: '5px',
   '& > .MuiSvgIcon-root': {
     width: '20px',
     height: '20px',

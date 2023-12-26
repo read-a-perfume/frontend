@@ -1,5 +1,9 @@
 import instance from '@api/instance'
-import {IfReviewRequest} from 'types/review.interface'
+import {
+  IfCommentDeleteRequset,
+  IfCommentRequest,
+  IfReviewRequest,
+} from 'types/review.interface'
 
 export const postReviewCreate: (
   data: IfReviewRequest,
@@ -14,6 +18,15 @@ export const postReviewImageFileUpload = async (data: any) => {
       'Content-Type': 'multipart/form-data',
     },
   })
+  return res.data
+}
+
+export const postReviewComment = async ({content}: IfCommentRequest) => {
+  const res = await instance.post('/reviews/11/comments', {content})
+  return res.data
+}
+export const deleteReviewComment = async (id: IfCommentDeleteRequset) => {
+  const res = await instance.delete(`/reviews/6/comments/${id}`)
   return res.data
 }
 
