@@ -88,3 +88,4 @@ export interface IfReviewPerFumeSearch {
   perfumeNameWithBrand: string
   perfumeId: number
 }
+
