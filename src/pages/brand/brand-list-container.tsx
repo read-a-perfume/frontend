@@ -3,10 +3,11 @@ import { Box, styled } from "@mui/material";
 const BrandListContainer = styled(Box)<{col: number}>(({col}) => ({
     marginTop: '44px 0 178px 0',
     display: 'grid',
-    gap: '44.5px 24px',
+    gap: '60px 32px',
     gridTemplateColumns: `repeat(${col},1fr)`,
     justifyItems: 'center',
-    minHeight: '80vh',
+    minHeight: '90vh',
+    paddingTop: '44px',
   }))
   
   export default BrandListContainer;
