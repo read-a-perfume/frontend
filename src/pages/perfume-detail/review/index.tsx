@@ -14,45 +14,44 @@ import {
   Box,
 } from '@mui/material'
 
-import DetailReviewItem from './detail-review-item'
+import ReviewCard from '@components/reviews/review-card'
 
 interface IfDetailReviewListProps {
   reviewData: any
   isLoading: boolean
+  handleChangeSort: (e) => void
 }
 
 const skeletons = Array.from({length: 6}, (_, index) => index + 1)
 
-const DetailReviewList = ({reviewData, isLoading}: IfDetailReviewListProps) => {
+const DetailReviewList = ({
+  reviewData,
+  isLoading,
+  handleChangeSort,
+}: IfDetailReviewListProps) => {
   return (
     <Container>
       <Wrapper>
         <FlexBox alignItems="center">
           <SectionTitle>향수 리뷰</SectionTitle>
           <FlexBox gap="9px">
-            {reviewData?.content?.length > 0 && (
-              <SelectStyle
-                defaultValue="인기상품순"
-                sx={{
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#202020',
-                  },
-                }}
-              >
-                <MenuItemStyle value="인기상품순">
-                  <span className="option-name">인기상품순</span>
-                </MenuItemStyle>
-                <MenuItemStyle value="리뷰순">
-                  <span className="option-name">리뷰순</span>
-                </MenuItemStyle>
-                <MenuItemStyle value="신상품순">
-                  <span className="option-name">신상품순</span>
-                </MenuItemStyle>
-                <MenuItemStyle value="인기찜순">
-                  <span className="option-name">인기찜순</span>
-                </MenuItemStyle>
-              </SelectStyle>
-            )}
+            <SelectStyle
+              defaultValue="RECENT"
+              sx={{
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#202020',
+                },
+              }}
+              onChange={e => handleChangeSort(e)}
+            >
+              <MenuItemStyle value="RECENT">
+                <span className="option-name">최신순</span>
+              </MenuItemStyle>
+
+              <MenuItemStyle value="LIKE">
+                <span className="option-name">좋아요순</span>
+              </MenuItemStyle>
+            </SelectStyle>
 
             <WriteReviewButton>리뷰 작성하기</WriteReviewButton>
           </FlexBox>
@@ -144,7 +143,15 @@ const DetailReviewList = ({reviewData, isLoading}: IfDetailReviewListProps) => {
               <>
                 {reviewData?.content?.length > 0 ? (
                   reviewData.content.map((item, index) => (
-                    <DetailReviewItem item={item} key={index} />
+                    <ReviewCard
+                      username={item?.user?.username}
+                      shortReview={item?.shortReview}
+                      thumbnails={item?.thumbnails}
+                      likeNumber={item?.likeCount}
+                      keywords={item?.keywords}
+                      commnents={item?.commentCount}
+                      key={index}
+                    />
                   ))
                 ) : (
                   <NotReviewText>

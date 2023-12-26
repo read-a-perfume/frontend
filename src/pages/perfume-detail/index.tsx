@@ -1,11 +1,12 @@
 import {useEffect, useState} from 'react'
-import {Link, useLocation, useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import {useQueries} from '@tanstack/react-query'
 import {
   fetchPerfume,
   fetchPerfumeGraph,
   fetchPerfumeReviewData,
 } from 'src/store/server/perfumes/queries'
+import {perfumeQueryKeys} from 'src/react-query-keys/perfume.keys'
 
 import Carousel from './carousel'
 import FlexBox from '@layouts/flex-box'
@@ -26,31 +27,38 @@ import {
 const isLoadingData = Array.from({length: 4}, (_, index) => index + 1)
 
 const PerfumeDetail = () => {
-  const location = useLocation()
   const params = useParams()
 
-  const [page, setPage] = useState(1) // 처음 페이지는 1
+  const [page, setPage] = useState(1)
+  const [sort, setSort] = useState<'RECENT' | 'LIKE'>('RECENT')
   const [perfumes, setPerfumes] = useState<string[]>([])
 
   const results = useQueries({
     queries: [
       {
-        queryKey: ['perfume-detail', params.id],
+        queryKey: [perfumeQueryKeys.perfumeDetail(Number(params.id))],
         queryFn: () => fetchPerfume(params.id as string),
       },
       {
-        queryKey: ['perfume-graph', params.id],
+        queryKey: [perfumeQueryKeys.perfumesStatistics(Number(params.id))],
         queryFn: () => fetchPerfumeGraph(params.id as string),
       },
       {
-        queryKey: ['perfume-review-data', params.id],
-        queryFn: () => fetchPerfumeReviewData(params.id as string),
+        queryKey: [
+          perfumeQueryKeys.perfumesReviews(Number(params.id), page, 6, [sort]),
+        ],
+        queryFn: () => fetchPerfumeReviewData(params.id as string, page, sort),
       },
     ],
   })
   const {isLoading, error, data} = results[0]
   const {isLoading: graphLoading, data: graphData} = results[1]
   const {isLoading: reviewLoading, data: reviewData} = results[2]
+
+  const handleChangeSort = e => {
+    setSort(e.target.value)
+    setPage(1)
+  }
 
   const handlePage = (event: any) => {
     const nowPageInt = parseInt(event.target.outerText)
@@ -64,6 +72,7 @@ const PerfumeDetail = () => {
     const arrayData = Array.from({length: 4}, (_, index) => index + 1)
     setPerfumes(arrayData as any)
   }, [])
+
   return (
     <Container>
       <FlexBox>
@@ -130,14 +139,14 @@ const PerfumeDetail = () => {
           <PerfumeInformation>
             <TextWrap>
               <Type>강도</Type>
-              {location?.state?.strength}
+              {data?.strength}
             </TextWrap>
 
             <div className="vertical-line" />
 
             <TextWrap>
               <Type>지속력</Type>
-              {location?.state?.duration}
+              {data?.duration}
             </TextWrap>
           </PerfumeInformation>
 
@@ -156,7 +165,11 @@ const PerfumeDetail = () => {
 
       {/* 향수 리뷰 */}
       <Box sx={{marginTop: '200px'}}>
-        <DetailReviewList reviewData={reviewData} isLoading={reviewLoading} />
+        <DetailReviewList
+          reviewData={reviewData}
+          isLoading={reviewLoading}
+          handleChangeSort={handleChangeSort}
+        />
 
         <Footer>
           <Pagination

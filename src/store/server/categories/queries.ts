@@ -1,7 +1,8 @@
 import instance from '@api/instance'
+import {IfCategory} from 'types/perfume.interface'
 
 /** 카테고리 목록 조회 */
-export const fetchCategories = async () => {
+export const fetchCategories = async (): Promise<IfCategory[]> => {
   try {
     const res = await instance.get('/categories')
     const data = res.data
@@ -19,12 +20,8 @@ export const fetchPerfumeList = async (
   page: number,
 ) => {
   try {
-    console.log(queryCategoryId, page)
-
-    // 임시,
-    // 백엔드쪽에서 page=1로 설정해주면 page ${page}로 바꿀것
     const res = await instance.get(
-      `/perfumes/category/${queryCategoryId}?page=0&size=10`,
+      `/perfumes/category/${queryCategoryId}?page=${page}&size=10`,
     )
 
     const data = res.data

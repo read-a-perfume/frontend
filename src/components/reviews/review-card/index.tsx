@@ -19,8 +19,8 @@ import CommnetCounter from '../commnet-counter'
 interface IfReviewCard {
   username: string
   shortReview: string
-  hashTagKeyword: string
   thumbnails?: string[]
+  likeNumber: number
   commnents: number
   keywords: any
 }
@@ -28,8 +28,8 @@ interface IfReviewCard {
 const ReviewCard = ({
   username,
   shortReview,
-  hashTagKeyword,
   thumbnails,
+  likeNumber,
   keywords,
   commnents,
 }: IfReviewCard) => {
@@ -96,7 +96,7 @@ const ReviewCard = ({
               color: theme => theme.palette.primary.main,
             }}
           >
-            {hashTagKeyword}
+            {'#' + keywords.join(' #')}
           </Typography>
         </>
       </CardContent>
@@ -110,7 +110,7 @@ const ReviewCard = ({
       >
         <FlexBox alignItems="center" style={{padding: '0px 4.5px'}}>
           <LikeCounter
-            likeNumber={154}
+            likeNumber={likeNumber}
             isActive={isLikeActive}
             handleAcitve={handleLikeActive}
             handleInAcitve={handleLikeInActive}
