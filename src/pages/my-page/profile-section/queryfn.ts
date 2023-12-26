@@ -24,7 +24,7 @@ export const fetchReviewCount = async (): Promise<IfReviewCount> => {
   }
 }
 
-export const getFollowCount = async (): Promise<IfFollowResponse> => {
+export const fetchFollowCount = async (): Promise<IfFollowResponse> => {
   try {
     const res: AxiosResponse<IfFollowResponse> = await instance.get(
       `/mypage/100/follows`,

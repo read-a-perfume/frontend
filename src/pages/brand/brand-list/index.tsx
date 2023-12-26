@@ -83,8 +83,9 @@ const KorButton = styled('button')<{active: boolean}>(({active, theme}) => ({
 }))
 
 const CardContainer = styled(Box)(() => ({
-  display: 'flex',
-  flexWrap: 'wrap',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(4,1fr)',
   gap: '32.6px 24px',
-  minHeight: '500px',
+  minHeight: '100vh',
+  justifyItems:'center',
 }))
