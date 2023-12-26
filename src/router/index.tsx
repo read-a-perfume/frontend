@@ -12,7 +12,6 @@ import PerfumeDetail from '@pages/perfume-detail'
 import SignIn from '@pages/sign-in'
 import MagazineUpload from '@pages/brand/legacy/magazine-upload'
 import BrandList from '@pages/brand/brand-list'
-import ReviewDetails from '@components/reviews/review-details'
 
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
@@ -124,14 +123,6 @@ const routerData: RouterElement[] = [
     element: <BrandList />,
     isLayout: true,
     withAuth: true,
-  },
-  {
-    id: 10,
-    label: '브랜드 목록',
-    path: '/details',
-    element: <ReviewDetails id={5} />,
-    isLayout: false,
-    withAuth: false,
   },
 ]
 
