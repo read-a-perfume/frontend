@@ -51,15 +51,13 @@ const HeaderLayout = styled.div({
   height: '152px',
   display: 'flex',
   flexDirection: 'column',
-  width: '100%',
   borderBottom: '1px solid black',
+  padding: '0px 360px',
 })
 
 export const HeaderNavigation = styled.div(({height}: {height: string}) => ({
   width: '100%',
   height: height,
-  paddingLeft: 360,
-  paddingRight: 360,
   display: 'flex',
   justifyContent: 'end',
   alignItems: 'center',

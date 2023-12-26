@@ -96,10 +96,7 @@ const HeaderNavigations = ({
 
   return (
     <HeaderNavigation height="94px">
-      <FlexBox
-        justifyContent="space-between"
-        style={{width: screenWidth - 720}}
-      >
+      <FlexBox justifyContent="space-between">
         <FlexBox alignItems="center">
           <Logo
             src={'/images/logo-text.png'}

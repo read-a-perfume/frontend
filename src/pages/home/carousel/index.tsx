@@ -31,9 +31,9 @@ const CarouselWithStepper = () => {
         onRealIndexChange={newIndex => setCurrentIndex(newIndex.activeIndex)}
       >
         {magazineData.map(data => (
-          <SwiperSlide key={data.id} style={{width: 384, height: 462}}>
+          <SwiperSlide key={data.id}>
             <Card
-              width={'100%'}
+              width="334px"
               height="442px"
               coverImageHeight={'240px'}
               coverImage={data.image}

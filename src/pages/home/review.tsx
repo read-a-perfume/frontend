@@ -92,7 +92,7 @@ const Review = () => {
       </FlexBox>
       <ReviewBox>
         {reviews?.map(item => (
-          <ReviewCard key={item.id} item={item} width={'384px'} />
+          <ReviewCard key={item.id} item={item} width={'344px'} />
         ))}
         {(isLoading || !reviewData) &&
           new Array(6).fill(0).map((_, idx) => {
@@ -117,8 +117,8 @@ const ReviewBox = styled.div({
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
   gridTemplateRows: 'repeat(2, 1fr)',
-  rowGap: '32px',
-  columnGap: '42px',
+  rowGap: '24px',
+  columnGap: '24px',
   marginTop: 30,
   height: '890px',
 })
