@@ -120,7 +120,7 @@ const HeaderNavigations = ({
               리뷰
             </NavBottom>
             <NavBottom
-              onClick={() => (!isLoggedIn ? onOpen() : navigate('/brand'))}
+              onClick={() => (!isLoggedIn ? onOpen() : navigate('/brands'))}
             >
               브랜드
             </NavBottom>
