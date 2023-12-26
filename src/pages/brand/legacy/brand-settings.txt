@@ -7,8 +7,8 @@ import {
   SettingsNav,
   SettingsNavItems,
   SettingsTitle,
-} from '../brand/brand.style.js'
-import Form from './brand-form.js'
+} from '../brand.style.js'
+import Form from '../brand-form.js'
 
 const BrandSettings = () => {
   const isLogged = true

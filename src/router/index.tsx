@@ -10,7 +10,7 @@ import {Router as RemixRouter} from '@remix-run/router/dist/router'
 import ReviewWriter from '@pages/reviews/review-writer'
 import PerfumeDetail from '@pages/perfume-detail'
 import SignIn from '@pages/sign-in'
-import MagazineUpload from '@pages/brand/magazine-upload'
+import MagazineUpload from '@pages/brand/legacy/magazine-upload'
 import BrandList from '@pages/brand/brand-list'
 import ReviewDetails from '@pages/reviews/review-details'
 
@@ -62,7 +62,7 @@ const routerData: RouterElement[] = [
   {
     id: 3,
     label: '브랜드',
-    path: '/brand',
+    path: '/brand/:brandId',
     element: <Brand />,
     isLayout: true,
     withAuth: true,

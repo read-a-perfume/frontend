@@ -1,63 +1,20 @@
-import MuiButton from '@components/base/mui-button'
 import {Box, styled} from '@mui/material'
-import React from 'react'
-import {AddBannerSpan} from './brand.style'
 
 interface proptype {
   fileURL: string
-  fileRef: React.RefObject<HTMLInputElement>
-  enterprise: boolean
-  setFILEURL: React.Dispatch<React.SetStateAction<string>>
 }
 
-const Banner = ({fileURL, fileRef, setFILEURL, enterprise}: proptype) => {
-  const changeImageHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault()
-    if (event.target.files) {
-      const newFileURL = URL.createObjectURL(event.target.files[0])
-      setFILEURL(newFileURL)
-    }
-  }
-
-
+const Banner = ({fileURL}: proptype) => {
   return (
-    <BannerContainer flag={enterprise || (fileURL !== '')}>
-      {fileURL && (
-        <BannerImage src={fileURL} alt="banner" enterprise={enterprise}/>
-      )}
-      <input
-        type="file"
-        accept="image/jpg,image/png,image/jpeg"
-        hidden
-        ref={fileRef}
-        onChange={changeImageHandler}
-      />
-      {enterprise && (
-        <>
-          <AddBannerSpan imageurl={fileURL} style={{zIndex: 2}}>
-            {fileURL ? '배너 이미지 변경' : '배너 이미지 추가'}
-          </AddBannerSpan>
-          <MuiButton
-            title="컴퓨터에서 가져오기"
-            type={fileURL ? 'white' : 'dark'}
-            width="137px"
-            handleClick={() => {
-              if (fileRef.current) {
-                fileRef.current.click()
-              }
-            }}
-          />
-        </>
-      )}
+    <BannerContainer flag={fileURL !== ''}>
+      {fileURL && <BannerImage src={fileURL} alt="banner" />}
     </BannerContainer>
   )
 }
 
 export default Banner
 
-
-
-const BannerContainer = styled(Box)<{flag:boolean}>(({flag}) => ({
+const BannerContainer = styled(Box)<{flag: boolean}>(({flag}) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -66,9 +23,10 @@ const BannerContainer = styled(Box)<{flag:boolean}>(({flag}) => ({
   backgroundColor: '#F1F1F1',
   position: 'relative',
   top: 0,
+  borderBottom:'0.5px solid #ccc',
 }))
 
-const BannerImage = styled('img')<{enterprise: boolean}>(({enterprise}) => ({
+const BannerImage = styled('img')(() => ({
   position: 'absolute',
   top: 0,
   width: '100%',
@@ -76,5 +34,4 @@ const BannerImage = styled('img')<{enterprise: boolean}>(({enterprise}) => ({
   imageRendering: '-webkit-optimize-contrast',
   backfaceVisibility: 'hidden',
   objectFit: 'fill',
-  filter: enterprise ? 'brightness(65%)' : '',
 }))

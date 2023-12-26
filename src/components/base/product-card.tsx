@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import {PerfumeHamburger} from '@pages/brand/brand.style.js'
+import {PerfumeHamburger} from '@pages/brand/legacy/brand.style.js'
 import FlexBox from '@layouts/flex-box.js'
 import {Typography} from '@mui/material'
 
