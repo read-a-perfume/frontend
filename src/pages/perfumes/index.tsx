@@ -19,7 +19,7 @@ const topSkeletons = Array.from({length: 4}, (_, index) => index + 1)
 const skeletons = Array.from({length: 12}, (_, index) => index + 1)
 
 const Perfumes = () => {
-  const [clickedCategory, setClickedCategory] = useState<string>('프루티')
+  const [clickedCategory, setClickedCategory] = useState<string>('Fruity')
   const [currentPage, setCurrentPage] = useState(0) // 처음 페이지는 0
   const [categoryId, setCategoryId] = useState(1)
 
@@ -126,7 +126,7 @@ const Perfumes = () => {
               >
                 <img
                   src={perfumeThemeData?.thumbnail}
-                  alt="main-img-1"
+                  alt="main-img"
                   className="main-img"
                 />
 
