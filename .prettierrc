@@ -10,5 +10,16 @@
   "trailingComma": "all",
   "useTabs": false,
   "requirePragma": false,
-  "insertPragma": false
+  "insertPragma": false,
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrder": [
+    "types/(.*)$",
+    "base/(.*)$",
+    "hooks/(.*)$",
+    "components/(.*)$",
+    "layouts/(.*)$",
+    "/pages/(.*)$",
+    "^[./]"
+  ]
 }
