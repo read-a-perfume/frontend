@@ -6,13 +6,12 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material'
-import {useState} from 'react'
 
-interface IfCommentListProps {
-  username: string
-  created: string
-  content: string
-}
+// interface IfCommentListProps {
+//   username: string
+//   created: string
+//   content: string
+// }
 
 const CommentList = ({isOpen}: any) => {
   return (
