@@ -24,11 +24,18 @@ const style = {
   px: 4,
   pb: 3,
 }
-const ReviewDetails = ({id = 5}: {id: number}) => {
+
+interface IfProps {
+  id: number
+  handleClose: () => void
+  open: boolean
+}
+
+const ReviewDetails = ({id = 5, handleClose, open}: IfProps) => {
   const {reviewDetails} = useFetchReviewDetails({id: id})
 
   return (
-    <Wrapper open={true}>
+    <Wrapper open={open} onClose={handleClose}>
       <Container sx={style}>
         <Header title={<HeaderSection perfumeId={1} />}></Header>
         <ModalContent>
