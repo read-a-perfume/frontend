@@ -27,8 +27,8 @@ export const perfumeQueryKeys = {
   ],
   perfumesBrand: (
     sort: string = 'brand',
-    brandId: number,
-    lastPerfumeId: number | null = null,
+    brandId: number | string,
+    lastPerfumeId: number | string = '',
     pageSize: number,
   ) => [
     'perfumes',

@@ -4,6 +4,8 @@ import {Box, styled} from '@mui/material'
 import BrandTap from './brand-tap.js'
 import BrandInfo from './brand-info.js'
 import {useParams} from 'react-router-dom'
+import PerfumeList from './perfume-list.js'
+import MagazineList from './magazine-list.js'
 // import { useQuery } from '@tanstack/react-query'
 // import { fetchBrand } from './queryfn.js'
 
@@ -13,14 +15,21 @@ const Brand = () => {
 
   return (
     <>
-      <Banner fileURL={''} />
-      <Container>
-        {brandId !== undefined && <BrandInfo brandId={brandId} />}
-        <BrandTap current={current} setCurrent={setCurrent} />
-        <ListContainer col={current === 'magazine' ? 3 : 4}>
-          {current === 'magazine' ? <>아직 api 없음</> : <></>}
-        </ListContainer>
-      </Container>
+      {brandId !== undefined && (
+        <>
+          <Banner fileURL={''} />
+          <Container>
+            <BrandInfo brandId={brandId} />
+            <BrandTap current={current} setCurrent={setCurrent} />
+
+            {current === 'magazine' ? (
+              <MagazineList brandId={brandId}/>
+            ) : (
+              <PerfumeList brandId={brandId} />
+            )}
+          </Container>
+        </>
+      )}
     </>
   )
 }
@@ -29,13 +38,4 @@ export default Brand
 
 const Container = styled(Box)(() => ({
   padding: '0 160px',
-}))
-
-const ListContainer = styled(Box)<{col: number}>(({col = 3}) => ({
-  marginTop: '44px 0 178px 0',
-  display: 'grid',
-  gap: '44.5px 24px',
-  gridTemplateColumns: `repeat(${col},1fr)`,
-  justifyItems: 'center',
-  minHeight: '80vh',
 }))
