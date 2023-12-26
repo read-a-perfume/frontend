@@ -95,16 +95,16 @@ export default NoteProducts
 const ProductLayout = styled.div({
   display: 'flex',
   flex: 1,
-  height: 600,
-  gap: 32,
+  height: '600px',
+  gap: '32px',
   flexWrap: 'wrap',
   marginBottom: 136,
 })
 
 const ProductBox = styled.div({
   width: '30%',
-  height: 284,
-  borderRadius: 16,
+  height: '284px',
+  borderRadius: '16px',
   background: 'white',
   border: '1px solid #DBDBDB',
   overflow: 'hidden',
@@ -113,8 +113,8 @@ const ProductBox = styled.div({
 
 const ProductInfoBox = styled.div({
   padding: '0px 24px',
-  marginTop: -6,
-  height: 78,
+  marginTop: '-6px',
+  height: '78px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',

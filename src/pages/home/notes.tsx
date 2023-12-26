@@ -74,28 +74,28 @@ const Wrapper = styled.div`
 const NoteTitle = styled(Typography)({
   fontFamily: 'AritaBuri, sans-serif, Arial !important',
   color: 'white',
-  fontSize: 32,
+  fontSize: '32px',
   fontWeight: '500',
   position: 'absolute',
-  paddingLeft: 32,
-  paddingTop: 53,
-  marginBottom: 20,
+  paddingLeft: '32px',
+  paddingTop: '53px',
+  marginBottom: '20px',
 })
 
 const NoteSubTitle = styled(Typography)({
-  fontSize: 18,
+  fontSize: '18px',
   color: 'white',
   position: 'absolute',
-  paddingLeft: 32,
-  paddingTop: 53,
-  marginTop: 100,
+  paddingLeft: '32px',
+  paddingTop: '53px',
+  marginTop: '100px',
   whiteSpace: 'pre-wrap',
-  width: 255,
+  width: '255px',
 })
 
 const NoteBox = styled.div({
-  height: 450,
-  width: 282,
+  height: '450px',
+  width: '282px',
   borderRadius: 16,
 })
 
@@ -104,6 +104,6 @@ const Image = styled.img({
     'linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%), lightgray 50% / cover no-repeat',
   borderRadius: 16,
   position: 'absolute',
-  width: 282,
-  height: 450,
+  width: '282px',
+  height: '450px',
 })

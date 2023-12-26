@@ -27,7 +27,6 @@ const getPerfumesByFavorite = async () => {
 const Products = () => {
   const navigate = useNavigate()
   const [page, setPage] = useState<number>(0)
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
   const [perfumes, setPerfumes] = useState<Product[]>([])
 
   const {data, isLoading} = useQuery(['perfumes'], getPerfumesByFavorite)
@@ -37,16 +36,6 @@ const Products = () => {
       setPerfumes(data.content)
     }
   }, [data])
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth)
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
 
   const handlePage = (_, page: number) => {
     setPage(page)
@@ -67,7 +56,7 @@ const Products = () => {
               gap="24px"
               onClick={() => navigate(`/perfume/${item.id}`)}
             >
-              <GridItem width={(screenWidth - 720 - 100) / 4 + 'px'}>
+              <GridItem width={'282px'}>
                 <Product>
                   <ProductImage src={item.thumbnail || 'images/perfume.png'} />
                   <FlexBox direction="column" alignItems="center" gap="8px">
@@ -77,7 +66,7 @@ const Products = () => {
                 </Product>
               </GridItem>
               <PerfumeCharacteristics
-                width={(screenWidth - 720 - 100) / 4 + 'px'}
+                width={'282px'}
                 firstValue={item.strength}
                 secondValue={item.duration}
               />
@@ -90,7 +79,7 @@ const Products = () => {
                 key={item.id}
                 sx={{borderRadius: 4, animationDuration: '1.2s'}}
                 variant="rectangular"
-                width={(screenWidth - 720 - 100) / 4 + 'px'}
+                width={'282px'}
                 height={'100%'}
               />
             )
@@ -143,7 +132,7 @@ const GridItem = styled.div<{width: string}>(({width}) => ({
 }))
 
 const Product = styled.div({
-  height: 426,
+  height: '426px',
   borderRadius: 16,
   border: '1px solid #EDEDED',
 })

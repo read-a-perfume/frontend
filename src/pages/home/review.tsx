@@ -92,11 +92,7 @@ const Review = () => {
       </FlexBox>
       <ReviewBox>
         {reviews?.map(item => (
-          <ReviewCard
-            key={item.id}
-            item={item}
-            width={(screenWidth - 720 - 100) / 3 + 'px'}
-          />
+          <ReviewCard key={item.id} item={item} width={'384px'} />
         ))}
         {(isLoading || !reviewData) &&
           new Array(6).fill(0).map((_, idx) => {
@@ -105,7 +101,7 @@ const Review = () => {
                 key={idx}
                 sx={{borderRadius: 4, animationDuration: '1.2s'}}
                 variant="rectangular"
-                width={(screenWidth - 720 - 100) / 3 + 'px'}
+                width={'384px'}
                 height={'390px'}
               />
             )
