@@ -12,7 +12,7 @@ import Carousel from './carousel'
 import FlexBox from '@layouts/flex-box'
 import Notes from './notes'
 import Information from './information'
-import DetailReviewList from './review'
+import PerfumeReviewList from './review'
 import {
   Box,
   Button,
@@ -154,7 +154,7 @@ const PerfumeDetail = () => {
 
       {/* 향수 리뷰 */}
       <Box sx={{marginTop: '200px'}}>
-        <DetailReviewList
+        <PerfumeReviewList
           reviewData={reviewData}
           isLoading={reviewLoading}
           handleChangeSort={handleChangeSort}
