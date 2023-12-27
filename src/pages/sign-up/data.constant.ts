@@ -1,12 +1,5 @@
-interface DataProps {
-  label: string // 라벨
-  name: string // formData로 받을 영문이름
-  placeholder: string
-  register: object
-}
-
-export const formData: DataProps[] = [
-  {
+export const formData = {
+  username: {
     label: '아이디',
     name: 'username',
     placeholder: '6~16자 / 영문 소문자, 숫자 사용 가능',
@@ -29,7 +22,7 @@ export const formData: DataProps[] = [
       },
     },
   },
-  {
+  password: {
     label: '비밀번호',
     name: 'password',
     placeholder: '8~16자 / 문자, 숫자, 특수 문자 모두 혼용',
@@ -48,7 +41,7 @@ export const formData: DataProps[] = [
       },
     },
   },
-  {
+  confirmPassword: {
     label: '비밀번호 재확인',
     name: 'confirmPassword',
     placeholder: '8~16자 / 문자, 숫자, 특수 문자 모두 혼용',
@@ -67,7 +60,7 @@ export const formData: DataProps[] = [
       },
     },
   },
-  {
+  email: {
     label: '본인 확인 이메일',
     name: 'email',
     placeholder: '8~16자 / 문자, 숫자, 특수 문자 모두 혼용',
@@ -82,38 +75,38 @@ export const formData: DataProps[] = [
       },
     },
   },
-]
+}
 
-export const formCheckboxData = [
-  {
+export const formCheckboxData = {
+  age: {
     label: '만 14세 이상입니다. (*필수)',
     name: 'age',
     register: {
       required: '만 14세 이상입니다. 동의가 필요합니다.',
     },
   },
-  {
+  terms: {
     label: '이용약관 (*필수)',
     name: 'terms',
     register: {
       required: '이용약관에 동의가 필요합니다.',
     },
   },
-  {
+  privacy: {
     label: '개인정보 수집 및 이용동의 (*필수)',
     name: 'privacy',
     register: {
       required: '개인정보 수집 및 이용에 동의가 필요합니다.',
     },
   },
-  {
+  marketing: {
     label: '개인정보 마케팅 활용 동의 (선택)',
     name: 'marketing',
     register: {},
   },
-  {
+  notification: {
     label: '이벤트, 쿠폰, 특가 알림 메일 수신 (선택)',
     name: 'notification',
     register: {},
   },
-]
+}
