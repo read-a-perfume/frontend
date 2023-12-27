@@ -3,11 +3,19 @@ import {useRouter} from '@hooks/use-router'
 import FlexBox from '@layouts/flex-box'
 import {Button, MenuItem, Select, Typography, styled} from '@mui/material'
 
+interface IfReviewListSelectProps {
+  sectionTitle: string
+  buttonText: string
+  optionName: string[]
+  handleChangeSort: any
+}
+
 const ReviewListSelect = ({
   sectionTitle,
   buttonText,
+  optionName,
   handleChangeSort,
-}: any) => {
+}: IfReviewListSelectProps) => {
   const {routeTo} = useRouter()
 
   return (
@@ -25,11 +33,11 @@ const ReviewListSelect = ({
           onChange={e => handleChangeSort(e)}
         >
           <MenuItemStyle value="RECENT">
-            <span className="option-name">최신순</span>
+            <span className="option-name">{optionName[0]}</span>
           </MenuItemStyle>
 
           <MenuItemStyle value="LIKE">
-            <span className="option-name">좋아요순</span>
+            <span className="option-name">{optionName[1]}</span>
           </MenuItemStyle>
         </SelectStyle>
 
