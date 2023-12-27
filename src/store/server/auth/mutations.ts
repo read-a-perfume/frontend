@@ -5,6 +5,10 @@ export const postLogin = async (data: IfLoginRequeset) => {
   return await instance.post('/login', {...data})
 }
 
+export const postLogout = async () => {
+  return await instance.post('/logout')
+}
+
 export const postSignUp: (
   signUpdata: IfSignUpRequest,
 ) => Promise<IfLoginRequeset> = async signUpdata => {

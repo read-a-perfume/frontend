@@ -4,23 +4,16 @@ import MuiButton from '@components/base/mui-button'
 interface Props {
   title: string
   value: string
-  checkUserId: any
+  handleClick: (id: string) => void
 }
-const SignUpIdCheck = ({title, value, checkUserId}: Props) => {
+const SignUpIdCheck = ({title, value, handleClick}: Props) => {
   return (
     <Box sx={{position: 'absolute', right: '-100px', top: '35px'}}>
       {title === '중복확인' && (
         <MuiButton
           type="dark"
           title={title}
-          handleClick={() => checkUserId(value)}
-        />
-      )}
-      {title === '인증(필수)' && (
-        <MuiButton
-          type="dark"
-          title={title}
-          handleClick={() => checkUserId(value)}
+          handleClick={() => handleClick(value)}
         />
       )}
     </Box>
