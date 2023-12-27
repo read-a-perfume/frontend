@@ -25,8 +25,8 @@ export const perfumeQueryKeys = {
   perfumesCategory: () => ['perfumes-category'],
   perfumesBrand: (
     sort: string = 'brand',
-    brandId: number,
-    lastPerfumeId: number | null = null,
+    brandId: number | string,
+    lastPerfumeId: number | string = '',
     pageSize: number,
   ) => [
     'perfumes',

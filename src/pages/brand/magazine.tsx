@@ -15,7 +15,7 @@ const Magazine = ({data}: proptype) => {
     <Container>
       <CoverImg src={data.coverThumbnail} alt="cover image" />
       <ContentContainer>
-        <Avatar src={data.thumbnail} sx={{width: '30px', height: '30px'}} />
+        <Avatar src={data.thumbnail} sx={{width: '40px', height: '40px'}} />
         <Title>{data.title}</Title>
         <Content>{data.content}</Content>
         <Tag>{data.tags.map(e => `#${e}`).join(' ')}</Tag>
@@ -27,27 +27,29 @@ const Magazine = ({data}: proptype) => {
 export default Magazine
 
 const Container = styled(Box)(({theme}) => ({
-  width: '384px',
-  height: '446px',
-  borderRadius: '12px',
-  border: `0.8px solid ${theme.palette.grey[300]}`,
+  width: '512px',
+  height: '594px',
+  borderRadius: '16px',
+  border: `1px solid ${theme.palette.grey[300]}`,
 }))
 
 const CoverImg = styled('img')(() => ({
-  height: '240px',
-  width: '100%',
-  borderBottom: '1px solid black',
+  minHeight: '320px',
+  minWidth: '100%',
+  maxHeight: '320px',
+  maxWidth: '100%',
+  borderBottom: '1px solid black', // just test
 }))
 
 const ContentContainer = styled(Box)(() => ({
-  padding: '18px 18px 0 18px',
+  padding: '24px 24px 0 24px',
 }))
 
 const Title = styled(Typography)(({theme}) => ({
-  paddingTop: '12px',
-  paddingBottom: '12px',
+  paddingTop: '16px',
+  paddingBottom: '16px',
   fontFamily: 'AritaBuri',
-  fontSize: theme.typography.body2.fontSize,
+  fontSize: theme.typography.h4.fontSize,
   fontWeight: 500,
   whiteSpace: 'nowrap',
   overflow: 'hidden',
@@ -56,16 +58,19 @@ const Title = styled(Typography)(({theme}) => ({
 
 const Content = styled(Typography)(({theme}) => ({
   color: '#707070',
-  fontSize: theme.typography.body4.fontSize,
+  fontSize: theme.typography.body2.fontSize,
   display: '-webkit-box',
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
-  WebkitLineClamp: 4, // 표시할 줄 수 지정
+  WebkitLineClamp: 4,
   textOverflow: 'ellipsis',
+  height: '96px',
+  lineHeight: 1.5,
 }))
 
 const Tag = styled(Typography)(({theme}) => ({
   color: theme.palette.primary.main,
-  fontSize: '10.5px',
-  marginTop: '6px',
+  fontSize: theme.typography.body3.fontSize,
+  marginTop: '8px',
+  minHeight: '1em',
 }))

@@ -1,0 +1,42 @@
+import FlexBox from '../../layouts/flex-box.js'
+import {
+  BrandInfo,
+  BrandInfoBlock,
+  BrandSubTitle,
+  BrandTitle,
+  BrandURL,
+} from './brand.style.js'
+import Avatar from '@components/base/avatar.js'
+
+interface proptype {
+  thumbnail?: string
+}
+
+const BrandInfoDetail = ({thumbnail = ''}: proptype) => {
+  return (
+    <BrandInfoBlock>
+      <Avatar
+        url={thumbnail}
+        size="104px"
+        style={{
+          zIndex: 1,
+          marginTop: '-17px',
+        }}
+      />
+      <BrandInfo>
+        <FlexBox alignItems="center">
+          <BrandTitle>TAMBURINS</BrandTitle>
+        </FlexBox>
+        <BrandSubTitle>
+          제품보다 새로운 경험, 공간 등의 콘텐츠를 통해서 새로운 감성을 전달하는
+          탬버린즈
+        </BrandSubTitle>
+        <BrandURL to="https://www.tamburins.com">
+          https://www.tamburins.com
+        </BrandURL>
+      </BrandInfo>
+    </BrandInfoBlock>
+  )
+}
+
+export default BrandInfoDetail
