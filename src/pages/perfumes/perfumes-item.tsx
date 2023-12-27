@@ -104,7 +104,7 @@ const ProductWrapper = styled('div')({
 })
 
 const BrandTitle = styled(Typography)({
-  fontSize: '10.5px',
+  fontSize: '12px',
   fontWeight: '400',
   lineHeight: 'normal',
   marginBottom: '5px',
@@ -112,7 +112,7 @@ const BrandTitle = styled(Typography)({
 })
 
 const BrandSubTitle = styled(Typography)({
-  fontSize: '13.5px',
+  fontSize: '16px',
   fontWeight: '600',
   lineHeight: '15px',
   marginBottom: '24px',
