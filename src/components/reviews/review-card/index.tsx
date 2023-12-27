@@ -24,6 +24,7 @@ interface IfReviewCard {
   likeNumber: number
   commnents: number
   keywords: any
+  reviewId?: number
 }
 
 const ReviewCard = ({
@@ -33,6 +34,7 @@ const ReviewCard = ({
   likeNumber,
   keywords,
   commnents,
+  reviewId = 5,
 }: IfReviewCard) => {
   const [isLikeActive, setIsLikeActive] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
@@ -142,7 +144,7 @@ const ReviewCard = ({
           </FlexBox>
         </CardActions>
       </ReviewCardWrapper>
-      <ReviewDetails id={5} handleClose={handleClose} open={isOpen} />
+      <ReviewDetails id={reviewId} handleClose={handleClose} open={isOpen} />
     </>
   )
 }
