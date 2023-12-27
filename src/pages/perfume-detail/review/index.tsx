@@ -1,3 +1,5 @@
+import {useRouter} from '@hooks/use-router'
+
 import FlexBox from '@layouts/flex-box'
 import {
   Typography,
@@ -13,7 +15,6 @@ import {
   CardActions,
   Box,
 } from '@mui/material'
-
 import ReviewCard from '@components/reviews/review-card'
 
 interface IfDetailReviewListProps {
@@ -29,6 +30,8 @@ const DetailReviewList = ({
   isLoading,
   handleChangeSort,
 }: IfDetailReviewListProps) => {
+  const {routeTo} = useRouter()
+
   return (
     <Container>
       <Wrapper>
@@ -53,7 +56,11 @@ const DetailReviewList = ({
               </MenuItemStyle>
             </SelectStyle>
 
-            <WriteReviewButton>리뷰 작성하기</WriteReviewButton>
+            <WriteReviewButton
+              onClick={() => routeTo('/reviews/review-writer')}
+            >
+              리뷰 작성하기
+            </WriteReviewButton>
           </FlexBox>
         </FlexBox>
 

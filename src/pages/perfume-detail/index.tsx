@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import {Link, useParams} from 'react-router-dom'
 import {useQueries} from '@tanstack/react-query'
 import {
@@ -13,25 +13,20 @@ import FlexBox from '@layouts/flex-box'
 import Notes from './notes'
 import Information from './information'
 import DetailReviewList from './review'
-import PerfumesItem from '@pages/perfumes/perfumes-item'
 import {
   Box,
   Button,
   Pagination,
   Skeleton,
-  Stack,
   Typography,
   styled,
 } from '@mui/material'
-
-const isLoadingData = Array.from({length: 4}, (_, index) => index + 1)
 
 const PerfumeDetail = () => {
   const params = useParams()
 
   const [page, setPage] = useState(1)
   const [sort, setSort] = useState<'RECENT' | 'LIKE'>('RECENT')
-  const [perfumes, setPerfumes] = useState<string[]>([])
 
   const results = useQueries({
     queries: [
@@ -67,15 +62,9 @@ const PerfumeDetail = () => {
 
   console.log('error!:', error)
 
-  useEffect(() => {
-    // 임시데이터
-    const arrayData = Array.from({length: 4}, (_, index) => index + 1)
-    setPerfumes(arrayData as any)
-  }, [])
-
   return (
     <Container>
-      <FlexBox>
+      <FlexBox justifyContent="space-between">
         <LeftBox>
           <Carousel isLoading={isLoading} />
         </LeftBox>
@@ -197,36 +186,6 @@ const PerfumeDetail = () => {
           />
         </Footer>
       </Box>
-
-      {/* 비슷한 향수 리스트 */}
-      <ProductListTitle>비슷한 향수</ProductListTitle>
-
-      <ProductList>
-        {isLoading ? (
-          <>
-            {isLoadingData.map((_, index) => (
-              <Stack spacing={3} key={index}>
-                <Skeleton
-                  sx={{bgcolor: 'grey.200'}}
-                  variant="rounded"
-                  width={282}
-                  height={319}
-                  key={index}
-                />
-
-                <Skeleton variant="rounded" width={282} height={34.5} />
-              </Stack>
-            ))}
-          </>
-        ) : (
-          <ProductList>
-            {perfumes.length > 0 &&
-              perfumes?.map((item, index) => (
-                <PerfumesItem item={item as any} key={item + index} />
-              ))}
-          </ProductList>
-        )}
-      </ProductList>
     </Container>
   )
 }
@@ -238,13 +197,11 @@ const Container = styled(Box)({
   marginTop: '89px',
 })
 
-const LeftBox = styled(Box)({width: '100%'})
+const LeftBox = styled(Box)({width: '496px'})
 
 const CenterLine = styled(Box)({
   width: '0.75px',
   background: '#EDEDED',
-  marginLeft: '58.5px',
-  marginRight: '67.5px',
 })
 
 const RightBox = styled(Box)({
@@ -308,7 +265,7 @@ const TextWrap = styled('p')({
 
 const Type = styled('span')({
   color: '#A9A9A9',
-  marginRight: '11.75px',
+  marginRight: '53px',
 })
 
 const BuyButton = styled(Button)({
@@ -323,24 +280,6 @@ const BuyButton = styled(Button)({
     color: 'white',
     backgroundColor: '#7d7a7a',
   },
-})
-
-const ProductListTitle = styled(Typography)({
-  marginTop: '66px',
-  marginBottom: '32px',
-  fontWeight: '700',
-  fontFamily: 'AritaBuri, sans-serif, Arial !important',
-  fontSize: '26px',
-  color: '#191919',
-})
-
-const ProductList = styled('ul')({
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'center',
-  gap: '32px',
-  marginBottom: '316px',
-  padding: '0',
 })
 
 const Footer = styled('footer')({

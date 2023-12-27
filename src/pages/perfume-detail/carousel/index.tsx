@@ -21,6 +21,10 @@ import {Skeleton} from '@mui/material'
 
 SwiperCore.use([Navigation, Pagination, Autoplay])
 
+interface IfCarouselProps {
+  isLoading: boolean
+}
+
 const images = [
   {
     src: '/images/perfume-detail/main.jpg',
@@ -39,8 +43,7 @@ const images = [
   },
 ]
 
-// TODO 타입설정
-const Carousel = ({isLoading}: any) => {
+const Carousel = ({isLoading}: IfCarouselProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>()
 
   return (
@@ -105,31 +108,6 @@ const Carousel = ({isLoading}: any) => {
           </CarouselWrapper>
         </>
       )}
-      {/* 
-      <MobileStepper
-        variant="progress"
-        steps={maxSteps}
-        position="static"
-        activeStep={activeStep}
-        nextButton={''}
-        backButton={''}
-        sx={{
-          '.MuiMobileStepper-progress': {
-            width: '100%',
-            backgroundColor: '#DBDBDB',
-          },
-          '.MuiMobileStepper-progressBar': {
-            backgroundColor: '#FE7156',
-          },
-        }}
-      /> */}
-
-      {/* <ThumbGallery
-        images={images}
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
-        isLoading={isLoading}
-      /> */}
     </Container>
   )
 }
