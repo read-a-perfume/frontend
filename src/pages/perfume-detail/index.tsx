@@ -114,7 +114,7 @@ const PerfumeDetail = () => {
               </Skeleton>
             ) : (
               <Typography
-                sx={{fontSize: '12px', fontWeight: '400', lineHeight: '20.4px'}}
+                sx={{fontSize: '14px', fontWeight: '400', lineHeight: '23.8px'}}
               >
                 {data?.story}
               </Typography>
@@ -210,7 +210,7 @@ const RightBox = styled(Box)({
 })
 
 const PerfumeType = styled(Typography)({
-  fontSize: '10.5px',
+  fontSize: '14px',
   '& span': {
     marginLeft: '15px',
     color: '#FE7156',
@@ -275,6 +275,7 @@ const BuyButton = styled(Button)({
   borderRadius: '7.5px',
   color: 'white',
   backgroundColor: '#202020',
+  fontSize: '12px',
 
   '&:hover': {
     color: 'white',
