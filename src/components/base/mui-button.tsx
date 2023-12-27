@@ -6,9 +6,8 @@ export interface ButtonProps {
   width?: string // 구체적인 px이나 퍼센트 적기
   icon?: React.ReactNode // 아이콘 컴포넌트를 주입
   handleClick?: (event: React.MouseEvent<HTMLButtonElement> | any) => void
-
   height?: string
-
+  formType?: 'button' | 'submit'
 }
 
 const MuiButton: React.FC<ButtonProps> = ({
@@ -17,9 +16,8 @@ const MuiButton: React.FC<ButtonProps> = ({
   width,
   icon,
   handleClick,
-
   height = '48px',
-
+  formType = 'button',
 }) => {
   const theme = useTheme()
 
@@ -46,6 +44,7 @@ const MuiButton: React.FC<ButtonProps> = ({
   return (
     <Button
       variant="contained"
+      type={formType}
       sx={{
         '&.MuiButtonBase-root': {
           width: `${width ? width : '100%'}`,

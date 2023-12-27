@@ -29,20 +29,15 @@ const PerfumeKeywords = ({title}: {title: string}) => {
     } else {
       newArray.push(item)
     }
-
-    // if (newArray.length > 3) {
-    //   console.log(newArray, '길이')
-    //   return
-    // }
-
     onChange(newArray)
   }
 
   return (
     <>
       <Typography
-        variant="body3"
-        sx={{display: 'block', fontWeight: '600', marginBottom: '16px'}}
+        variant="body2"
+        fontWeight={600}
+        sx={{display: 'block', marginBottom: '16px'}}
       >
         {title}
       </Typography>

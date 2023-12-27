@@ -1,9 +1,10 @@
 import {RadioGroup, styled} from '@mui/material'
 import RadioRoundedButton from '../../base/radio-rounded-button'
-import ReviewFormSubTitle from '../../base/review-form-sub-title'
 import {REVIEW_OPTIONS} from '@pages/reviews/review-writer/data/review-options'
 import useGetCustomForms from '../../hooks/use-get-custom-forms'
 import ErrorMessage from '@components/base/error-message'
+import SubTitle from '../../base/sub-title'
+
 const PerfumeSeasons = () => {
   const {season} = useGetCustomForms()
   const {
@@ -13,7 +14,7 @@ const PerfumeSeasons = () => {
   console.log(errors.season, '시즌')
   return (
     <section>
-      <ReviewFormSubTitle title="어떤 계절하고 잘 어울린다고 생각하나요?" />
+      <SubTitle title="어떤 계절하고 잘 어울린다고 생각하나요?" />
       <CustomRadioGroup
         row
         aria-label="향수"

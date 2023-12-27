@@ -69,7 +69,7 @@ const routerData: RouterElement[] = [
   {
     id: 4,
     label: '리뷰 작성 페지',
-    path: '/reviews/review-writer',
+    path: '/reviews/writer',
     element: <ReviewWriter />,
     isLayout: true,
     withAuth: true,

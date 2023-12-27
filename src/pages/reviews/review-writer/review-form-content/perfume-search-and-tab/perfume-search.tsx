@@ -1,5 +1,5 @@
 import {Autocomplete, TextField, styled} from '@mui/material'
-import ReviewFormSubTitle from '../../base/review-form-sub-title'
+import SubTitle from '../../base/sub-title'
 import {useState} from 'react'
 import useFetchPerfumeSearch from '../../hooks/use-fetch-perfume-search'
 import useGetCustomForms from '../../hooks/use-get-custom-forms'
@@ -22,7 +22,7 @@ const PerfumeSearch = () => {
 
   return (
     <section>
-      <ReviewFormSubTitle title="리뷰하고싶은 제품을 찾아주세요" />
+      <SubTitle title="리뷰하고싶은 제품을 찾아주세요" />
       <CustomAutoComplete
         disablePortal
         id="perfume"

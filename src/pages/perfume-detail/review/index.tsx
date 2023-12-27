@@ -56,9 +56,7 @@ const DetailReviewList = ({
               </MenuItemStyle>
             </SelectStyle>
 
-            <WriteReviewButton
-              onClick={() => routeTo('/reviews/review-writer')}
-            >
+            <WriteReviewButton onClick={() => routeTo('/reviews/writer')}>
               리뷰 작성하기
             </WriteReviewButton>
           </FlexBox>
