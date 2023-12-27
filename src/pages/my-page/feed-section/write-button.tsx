@@ -6,7 +6,7 @@ const WriteButton = () => {
   return (
     <_WriteButton
       variant="outlined"
-      onClick={() => routeTo('/reviews/review-writer')}
+      onClick={() => routeTo('/reviews/writer')}
     >
       리뷰 작성하기
     </_WriteButton>

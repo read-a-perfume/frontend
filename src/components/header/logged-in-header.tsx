@@ -45,7 +45,7 @@ const LoggedInHeader = ({
     switch (name) {
       case 'review':
         setMyPagePopOpen(false)
-        navigation('/reviews/review-writer')
+        navigation('/reviews/writer')
         break
       case 'profile':
         setMyPagePopOpen(false)

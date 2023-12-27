@@ -1,9 +1,9 @@
 import {RadioGroup, styled} from '@mui/material'
 import {REVIEW_OPTIONS} from '@pages/reviews/review-writer/data/review-options'
 import RadioRoundedButton from '../../base/radio-rounded-button'
-import ReviewFormSubTitle from '../../base/review-form-sub-title'
 import useGetCustomForms from '../../hooks/use-get-custom-forms'
 import ErrorMessage from '@components/base/error-message'
+import SubTitle from '../../base/sub-title'
 
 const PerfumeDailys = () => {
   const {dayType} = useGetCustomForms()
@@ -14,7 +14,7 @@ const PerfumeDailys = () => {
 
   return (
     <section>
-      <ReviewFormSubTitle title="보통 어떤 날에 뿌리나요?" />
+      <SubTitle title="보통 어떤 날에 뿌리나요?" />
       <CustomRadioGroup
         row
         aria-label="향수"
