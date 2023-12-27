@@ -113,7 +113,7 @@ const ReviewCard = ({
                 color: theme => theme.palette.primary.main,
               }}
             >
-              {'#' + keywords.join(' #')}
+              {keywords.length > 0 && <>{'#' + keywords.join(' #')}</>}
             </Typography>
           </>
         </CardContent>

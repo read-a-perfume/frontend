@@ -4,41 +4,41 @@ export interface IfInformationProps {
 }
 
 export interface IfGraphDataType {
-  dayType: DayTypeType
-  duration: DurationType
-  season: SeasonType
-  sex: SexType
-  strength: StrengthType
+  dayType: IfDayType
+  duration: IfDuration
+  season: IfSeason
+  sex: IfSex
+  strength: IfStrength
 }
 
-interface DayTypeType {
+interface IfDayType {
   DAILY: number
   REST: number
   SPECIAL: number
   TRAVEL: number
 }
 
-interface DurationType {
+interface IfDuration {
   LONG: number
   MEDIUM: number
   SHORT: number
   TOO_SHORT: number
 }
 
-interface SeasonType {
+interface IfSeason {
   FALL: number
   SPRING: number
   SUMMER: number
   WINTER: number
 }
 
-interface SexType {
+interface IfSex {
   FEMALE: number
   MALE: number
   OTHER: number
 }
 
-interface StrengthType {
+interface IfStrength {
   HEAVY: number
   LIGHT: number
   MODERATE: number

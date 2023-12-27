@@ -29,29 +29,28 @@ const Information = ({isLoading, graphData}: IfInformationProps) => {
   const sumData = (graphData: IfGraphDataType) => {
     // 무게감
     const dayType =
-      graphData.dayType.DAILY +
-      graphData.dayType.REST +
-      graphData.dayType.SPECIAL +
-      graphData.dayType.TRAVEL
+      Object.values(graphData.dayType).reduce((sum, value) => sum + value, 0) /
+      Object.keys(graphData.dayType).length
+
     // 지속력
     const duration =
-      graphData.duration.LONG +
-      graphData.duration.MEDIUM +
-      graphData.duration.SHORT +
-      graphData.duration.TOO_SHORT
+      Object.values(graphData.duration).reduce((sum, value) => sum + value, 0) /
+      Object.keys(graphData.duration).length
+
     // 계절
     const season =
-      graphData.season.FALL +
-      graphData.season.SPRING +
-      graphData.season.SUMMER +
-      graphData.season.WINTER
+      Object.values(graphData.season).reduce((sum, value) => sum + value, 0) /
+      Object.keys(graphData.season).length
+
     // 향수 강도
     const strength =
-      graphData.strength.HEAVY +
-      graphData.strength.LIGHT +
-      graphData.strength.MODERATE
+      Object.values(graphData.strength).reduce((sum, value) => sum + value, 0) /
+      Object.keys(graphData.strength).length
+
     // 성별
-    const sex = graphData.sex.FEMALE + graphData.sex.MALE + graphData.sex.OTHER
+    const sex =
+      Object.values(graphData.sex).reduce((sum, value) => sum + value, 0) /
+      Object.keys(graphData.sex).length
 
     setSeries([
       {

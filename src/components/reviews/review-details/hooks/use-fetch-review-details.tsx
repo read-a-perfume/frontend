@@ -11,8 +11,6 @@ const useFetchReviewDetails = ({id}: {id: number}) => {
     },
   })
 
-  console.log(reviewDetails)
-
   return {reviewDetails}
 }
 
