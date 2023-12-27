@@ -8,21 +8,38 @@ import {postSignUp} from 'src/store/server/auth/mutations'
 import SignUpHeader from './sign-up-header'
 import SignUpFooter from './sign-up-footer'
 import SignupInputs from './sign-up-inputs'
-import {IfSignUpRequest} from 'types/auth.interface'
 import AlertModal from '@components/modal/alert-modal'
 import {useState} from 'react'
 import {useRouter} from '@hooks/use-router'
+import axios from 'axios'
 
 const SignUpForm = () => {
   const [open, setOpen] = useState(false)
-  const methods = useForm<IfSignUpRequest>()
+  const methods = useForm({
+    defaultValues: {
+      username: '',
+      password: '',
+      email: '',
+      confimrPassword: '',
+      marketingConsent: false,
+      promotionConsent: false,
+    },
+  })
   const {routeTo} = useRouter()
 
   const {mutate} = useMutation({
     mutationFn: postSignUp,
     mutationKey: ['sign-up'],
     options: {
-      onError: () => alert('회원가입에 실패 했습니다.'),
+      onError: error => {
+        if (axios.isAxiosError(error)) {
+          if (error.response?.status === 409) {
+            alert('중복된 아이디입니다')
+          }
+        } else {
+          alert('회원가입에 실패 했습니다.')
+        }
+      },
     },
   })
 
