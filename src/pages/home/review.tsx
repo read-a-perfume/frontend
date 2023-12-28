@@ -3,7 +3,7 @@ import FlexBox from '../../layouts/flex-box'
 import {SectionSubTitle, SectionTitle} from './index.style'
 import ReviewCard from './review-card'
 import styled from '@emotion/styled'
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import {useQuery} from '@tanstack/react-query'
 import {Skeleton} from '@mui/material'
 import {MoreReviewsText} from './review-card.styles'
@@ -63,7 +63,7 @@ const Review = () => {
   }
 
   return (
-    <div>
+    <Wrapper>
       <SectionTitle>향수 리뷰</SectionTitle>
       <SectionSubTitle>다양한 향수 리뷰를 피드에서 살펴보세요</SectionSubTitle>
       <FlexBox justifyContent="space-between">
@@ -96,11 +96,15 @@ const Review = () => {
             )
           })}
       </ReviewBox>
-    </div>
+    </Wrapper>
   )
 }
 
 export default Review
+
+const Wrapper = styled.div({
+  width: 1200,
+})
 
 const ReviewBox = styled.div({
   display: 'grid',
