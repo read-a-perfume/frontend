@@ -21,8 +21,8 @@ const PerfumeReviewList = ({
     <Container>
       <Wrapper>
         <ReviewListSelect
-          sectionTitle={'향수 리뷰'}
-          buttonText={'리뷰 작성하기'}
+          sectionTitle="향수 리뷰"
+          buttonText="리뷰 작성하기"
           optionName={['최신순', '좋아요순']}
           handleChangeSort={handleChangeSort}
         />
