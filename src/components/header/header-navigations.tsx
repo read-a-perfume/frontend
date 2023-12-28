@@ -115,7 +115,7 @@ const HeaderNavigations = ({
               홈
             </NavBottom>
             <NavBottom
-              onClick={() => (!isLoggedIn ? onOpen() : console.log(''))}
+              onClick={() => (!isLoggedIn ? onOpen() : navigate('/reviews'))}
             >
               리뷰
             </NavBottom>

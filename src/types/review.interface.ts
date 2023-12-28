@@ -25,13 +25,24 @@ interface IfReviewBaseDetail {
   duration: string
   perfumeId: number
 }
-
-// 리뷰 목록 조회
-export interface IfReviewResponse extends IfReviewBase {
+//API 구조 변경됨에 따라 기존 IfReviewRespnose데이터는 content로 가게됨.
+export interface IfReviewContent extends IfReviewBase {
   id: number
   user: IfReviewUser
   likeCount: number
   commentCount: number
+}
+
+// 리뷰 목록 조회
+export interface IfReviewResponse {
+  content: IfReviewContent[]
+  first: boolean
+  last: boolean
+  hasNext: boolean
+  totalPages: number
+  totalElements: number
+  pageNumber: number
+  size: number
 }
 
 // 리뷰 상세보기
@@ -88,4 +99,3 @@ export interface IfReviewPerFumeSearch {
   perfumeNameWithBrand: string
   perfumeId: number
 }
-

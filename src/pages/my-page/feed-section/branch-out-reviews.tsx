@@ -1,11 +1,11 @@
 import {Box, styled} from '@mui/material'
-import {IfReviewResponse} from 'types/review.interface'
+import {IfReviewContent} from 'types/review.interface'
 import ThereAreNoReviews from './there-is-are-reviews'
 import FeedCard from './feed-card/feed-card'
 import FeedAddCard from './feed-card/feed-add-card'
 
 interface proptype {
-  reviews: IfReviewResponse[] | undefined
+  reviews: IfReviewContent[] | undefined
 }
 
 const BranchoutReviews = ({reviews}: proptype) => {

@@ -16,24 +16,18 @@ import CardThumbnailTwo from './card-thumbanail-two'
 import CardThumbnailThree from './card-thumbanail-three'
 import CommnetCounter from '../commnet-counter'
 import ReviewDetails from '../review-details'
+import {IfReviewContent} from 'types/review.interface'
 
-interface IfReviewCard {
-  username: string
-  shortReview: string
-  thumbnails?: string[]
-  likeNumber: number
-  commnents: number
-  keywords: any
-}
-
-const ReviewCard = ({
-  username,
-  shortReview,
-  thumbnails,
-  likeNumber,
-  keywords,
-  commnents,
-}: IfReviewCard) => {
+const ReviewCard = ({...rest}: IfReviewContent) => {
+  const {
+    id = 5,
+    user,
+    likeCount,
+    commentCount,
+    shortReview,
+    thumbnails,
+    keywords,
+  } = rest
   const [isLikeActive, setIsLikeActive] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const handleLikeActive = () => {
@@ -62,7 +56,7 @@ const ReviewCard = ({
           // 유저 닉네임, 아이디
           title={
             <Typography variant="body4" sx={{fontWeight: '600', color: '#000'}}>
-              {username}
+              {user?.username}
             </Typography>
           }
         />
@@ -127,7 +121,7 @@ const ReviewCard = ({
         >
           <FlexBox alignItems="center" style={{padding: '0px 4.5px'}}>
             <LikeCounter
-              likeNumber={likeNumber}
+              likeNumber={likeCount}
               isActive={isLikeActive}
               handleAcitve={handleLikeActive}
               handleInAcitve={handleLikeInActive}
@@ -138,11 +132,13 @@ const ReviewCard = ({
             alignItems="center"
             style={{padding: '0px 4.5px', marginLeft: '16.7px'}}
           >
-            <CommnetCounter commentCounter={commnents} />
+            <CommnetCounter commentCounter={commentCount} />
           </FlexBox>
         </CardActions>
       </ReviewCardWrapper>
-      <ReviewDetails id={5} handleClose={handleClose} open={isOpen} />
+      {isOpen && (
+        <ReviewDetails id={id} handleClose={handleClose} open={isOpen} />
+      )}
     </>
   )
 }
@@ -150,7 +146,6 @@ export default ReviewCard
 
 const ReviewCardWrapper = styled(Card)({
   width: '384px',
-  maxWidth: 384,
   height: '315px',
   padding: '0 18px',
   borderRadius: '12px',

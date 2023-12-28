@@ -42,9 +42,9 @@ const Review = () => {
     queryFn: () => getReviews(),
   })
 
-  useEffect(() => {
-    setReviews(reviewData?.sort((a, b) => a.id - b.id).slice(0, 6))
-  }, [reviewData])
+  // useEffect(() => {
+  //   setReviews(reviewData?.sort((a, b) => a.id - b.id).slice(0, 6))
+  // }, [reviewData])
 
   useEffect(() => {
     const handleResize = () => {
