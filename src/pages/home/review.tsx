@@ -8,6 +8,7 @@ import {useQuery} from '@tanstack/react-query'
 import {Skeleton} from '@mui/material'
 import {MoreReviewsText} from './review-card.styles'
 import CustomIcons from '@assets/icons/custom-Icons'
+import {useNavigate} from 'react-router-dom'
 
 export type Reviews = {
   id: number
@@ -33,6 +34,7 @@ const getReviews = async () => {
 }
 
 const Review = () => {
+  const navigate = useNavigate()
   const [clickedChip, setClickedChip] = useState<number>(0)
   const [reviews, setReviews] = useState<Reviews[]>()
 
@@ -74,7 +76,7 @@ const Review = () => {
             </button>
           ))}
         </FlexBox>
-        <MoreReviewsButton>
+        <MoreReviewsButton onClick={() => navigate('/reviews')}>
           <MoreReviewsText>향수 리뷰 전체보기</MoreReviewsText>
           <CustomIcons.AfterIcon color="#707070" size="22" />
         </MoreReviewsButton>
