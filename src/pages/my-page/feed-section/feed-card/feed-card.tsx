@@ -2,11 +2,11 @@ import {Box, Divider, Typography, styled} from '@mui/material'
 import FeedTag from './feed-tag'
 import FeedFooterContent from './feed-footer-content'
 import CustomIcons from '../../../../assets/icons/custom-Icons'
-import {IfReviewResponse} from 'types/review.interface'
+import {IfReviewContent} from 'types/review.interface'
 import FeedCardContainer from './feed-card-container'
 
 interface proptype {
-  data: IfReviewResponse
+  data: IfReviewContent
 }
 
 const FeedCard = ({data}: proptype) => {
@@ -20,12 +20,12 @@ const FeedCard = ({data}: proptype) => {
         <FeedFooterContent
           title="좋아요"
           value={data.likeCount}
-          icon={<HeartIcon/>}
+          icon={<HeartIcon />}
         />
         <FeedFooterContent
           title="댓글"
           value={data.commentCount}
-          icon={<CommentIcon size="15px"/>}
+          icon={<CommentIcon size="15px" />}
         />
       </FeedFooterContainer>
     </FeedCardContainer>
@@ -33,7 +33,6 @@ const FeedCard = ({data}: proptype) => {
 }
 
 export default FeedCard
-
 
 const FeedImg = styled('img')(() => ({
   width: '348px',
@@ -58,13 +57,11 @@ const FeedContent = styled(Typography)(({theme}) => ({
 
 const FeedFooterContainer = styled(Box)(() => ({
   display: 'flex',
-  
 }))
 
-const HeartIcon = styled(CustomIcons.HeartIcon)(()=>({
+const HeartIcon = styled(CustomIcons.HeartIcon)(() => ({
   width: '15px',
   height: '15px',
 }))
 
-const CommentIcon = styled(CustomIcons.CommentIcon2)(()=>({
-}))
+const CommentIcon = styled(CustomIcons.CommentIcon2)(() => ({}))

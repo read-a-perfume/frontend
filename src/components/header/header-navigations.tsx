@@ -97,9 +97,11 @@ const HeaderNavigations = ({
           <FlexBox alignItems="center" gap="54px">
             <NavBottom onClick={() => navigate('/')}>홈</NavBottom>
             <NavBottom
+
               onClick={() =>
-                !isLoggedIn ? navigate('/sign-in') : console.log('')
+                !isLoggedIn ? navigate('/sign-in') : navigate('/reviews')
               }
+
             >
               리뷰
             </NavBottom>

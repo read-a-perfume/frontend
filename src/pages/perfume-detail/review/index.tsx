@@ -21,8 +21,8 @@ const PerfumeReviewList = ({
     <Container>
       <Wrapper>
         <ReviewListSelect
-          sectionTitle={'향수 리뷰'}
-          buttonText={'리뷰 작성하기'}
+          sectionTitle="향수 리뷰"
+          buttonText="리뷰 작성하기"
           optionName={['최신순', '좋아요순']}
           handleChangeSort={handleChangeSort}
         />
@@ -34,17 +34,7 @@ const PerfumeReviewList = ({
             ) : (
               <>
                 {reviewData?.content?.length > 0 ? (
-                  reviewData.content.map((item, index) => (
-                    <ReviewCard
-                      username={item?.user?.username}
-                      shortReview={item?.shortReview}
-                      thumbnails={item?.thumbnails}
-                      likeNumber={item?.likeCount}
-                      keywords={item?.keywords}
-                      commnents={item?.commentCount}
-                      key={index}
-                    />
-                  ))
+                  reviewData.content.map(item => <ReviewCard {...item} />)
                 ) : (
                   <NotReviewText>
                     아직 리뷰가 없습니다! 리뷰를 채워주세요!
