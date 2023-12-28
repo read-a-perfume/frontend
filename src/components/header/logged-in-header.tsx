@@ -17,14 +17,12 @@ import {postLogout} from 'src/store/server/auth/mutations'
 interface LoggedInHeaderProps {
   thumbnail: string
   isLoggedIn: boolean
-  onOpenLoginModal: () => void
   onOpenNotification: () => void
 }
 
 const LoggedInHeader = ({
   thumbnail,
   isLoggedIn,
-  onOpenLoginModal,
   onOpenNotification,
 }: LoggedInHeaderProps) => {
   const anchorRef = useRef<HTMLButtonElement>(null)
@@ -71,9 +69,11 @@ const LoggedInHeader = ({
   return (
     <HeaderNavigation height="58px">
       <NavTop
-        onClick={() =>
-          !isLoggedIn ? onOpenLoginModal() : onOpenNotification()
-        }
+        onClick={() => {
+          if (isLoggedIn) {
+            onOpenNotification()
+          }
+        }}
       >
         알림
       </NavTop>

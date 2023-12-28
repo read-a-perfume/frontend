@@ -11,30 +11,42 @@ type Story = StoryObj<typeof ReviewCard>
 
 export const Default: Story = {
   args: {
-    username: '어드민',
+    user: {
+      username: '어드민',
+      id: 0,
+      thumbnail: '',
+    },
     shortReview: '한줄 평',
     keywords: ['안녕'],
-    commnents: 146,
+    commentCount: 146,
     thumbnails: [],
   },
 }
 
 export const One: Story = {
   args: {
-    username: '어드민',
+    user: {
+      username: '어드민',
+      id: 0,
+      thumbnail: '',
+    },
     shortReview: '한줄 평',
     keywords: ['안녕'],
-    commnents: 146,
+    commentCount: 146,
     thumbnails: ['https://picsum.photos/200/300/?blur'],
   },
 }
 
 export const Two: Story = {
   args: {
-    username: '어드민',
+    user: {
+      username: '어드민',
+      id: 0,
+      thumbnail: '',
+    },
     shortReview: '한줄 평',
     keywords: ['안녕'],
-    commnents: 146,
+    commentCount: 146,
     thumbnails: [
       'https://picsum.photos/200/300/?blur',
       'https://picsum.photos/200/300/?blur',
@@ -44,10 +56,14 @@ export const Two: Story = {
 
 export const Three: Story = {
   args: {
-    username: '어드민',
+    user: {
+      username: '어드민',
+      id: 0,
+      thumbnail: '',
+    },
     shortReview: '한줄 평',
     keywords: ['안녕'],
-    commnents: 146,
+    commentCount: 146,
     thumbnails: [
       'https://picsum.photos/200/300/?blur',
       'https://picsum.photos/200/300/?blur',

@@ -14,7 +14,6 @@ const SkeletonCard = () => {
     <Card
       sx={{
         width: '384px',
-        maxWidth: 384,
         height: '315px',
         padding: '0 18px',
         borderRadius: '12px',
