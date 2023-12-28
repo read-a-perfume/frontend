@@ -17,7 +17,7 @@ const Brand = () => {
   useGoTop()
 
   return (
-    <>
+    <Box sx ={{display:'flex',flexDirection:'column',alignItems:'center'}}>
       {brandId !== undefined && (
         <>
           <Banner fileURL={''} />
@@ -33,12 +33,12 @@ const Brand = () => {
           </Container>
         </>
       )}
-    </>
+    </Box>
   )
 }
 
 export default Brand
 
 const Container = styled(Box)(() => ({
-  padding: '0 160px',
+  iwidth: '1200px'
 }))

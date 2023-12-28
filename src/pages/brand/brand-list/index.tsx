@@ -3,8 +3,8 @@ import {fetchBrands} from './queryfn'
 import {useState, useEffect} from 'react'
 import useClassifyKorean from './hook/use-classify-korean'
 import {Box, Stack, Typography, styled} from '@mui/material'
-import BrandCard from './brand-card'
 import Banner from '@components/base/banner'
+import BranchBrandList from './branch-brand-list.'
 
 const Kor = [
   'ㄱ',
@@ -36,7 +36,7 @@ const BrandList = () => {
   }, [])
 
   return (
-    <>
+    <Box sx ={{display:'flex',flexDirection:'column',alignItems:'center'}}>
       <Banner />
       <Container>
         <Title>브랜드</Title>
@@ -57,21 +57,16 @@ const BrandList = () => {
             </KorButton>
           ))}
         </Stack>
-        <CardContainer>
-          {brands !== undefined &&
-            (korClass === '' ? brands : classifyBrands[korClass]).map(e => (
-              <BrandCard data={e} key={e.id} />
-            ))}
-        </CardContainer>
+        <BranchBrandList korClass={korClass} classifyBrands={classifyBrands} brands={brands}/>
       </Container>
-    </>
+    </Box>
   )
 }
 
 export default BrandList
 
 const Container = styled(Box)(() => ({
-  padding: '0 160px 143.6px 160px',
+  width: '1200px'
 }))
 
 const Title = styled(Typography)(() => ({
@@ -90,10 +85,3 @@ const KorButton = styled('button')<{active: boolean}>(({active, theme}) => ({
   fontSize: '24px',
 }))
 
-const CardContainer = styled(Box)(() => ({
-  display: 'grid',
-  gridTemplateColumns: 'repeat(4,1fr)',
-  gap: '32.6px 24px',
-  minHeight: '100vh',
-  justifyItems: 'center',
-}))

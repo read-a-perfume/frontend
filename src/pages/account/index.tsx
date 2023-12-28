@@ -25,6 +25,7 @@ const Account = () => {
   }, [curUser])
 
   return (
+    <Box sx ={{display:'flex',flexDirection:'column',alignItems:'center'}}>
     <Container>
       <Left
         setIsProfileSection={setIsProfileSection}
@@ -36,6 +37,7 @@ const Account = () => {
         <EditAccount />
       )}
     </Container>
+    </Box>
   )
 }
 
@@ -43,5 +45,5 @@ export default Account
 
 const Container = styled(Box)(() => ({
   display: 'flex',
-  paddingLeft: '160px',
+  width: '1200px',
 }))

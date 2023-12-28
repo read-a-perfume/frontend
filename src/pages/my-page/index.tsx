@@ -1,12 +1,15 @@
-import {Box, Typography, styled} from '@mui/material'
+import {Box, Typography, styled, useTheme} from '@mui/material'
 import ProfileSection from './profile-section/profile-section'
 import FeedSection from './feed-section/feed-section'
 import Banner from '@components/base/banner'
 
 
 const MyPage = () => {
+
+  const theme = useTheme()
+
   return (
-    <div>
+    <Box sx ={{display:'flex',flexDirection:'column',alignItems:'center', backgroundColor: theme.palette.grey[100],}}>
       <Banner/>
       <ContentSection>
         <Title>내 프로필</Title>
@@ -14,7 +17,7 @@ const MyPage = () => {
         <Title sx={{marginTop: '88px'}}>내 리뷰</Title>
         <FeedSection />
       </ContentSection>
-    </div>
+    </Box>
   )
 }
 
@@ -22,10 +25,10 @@ export default MyPage
 
 
 
-const ContentSection = styled(Box)(({theme}) => ({
+const ContentSection = styled(Box)(() => ({
   flexGrow: 0,
-  padding: '88px 160px 78px 160px',
-  backgroundColor: theme.palette.grey[100],
+  width: '1200px',
+  padding: '71px 0 184px 0',
 }))
 
 const Title = styled(Typography)(() => ({
