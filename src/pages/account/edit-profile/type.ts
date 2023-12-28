@@ -1,7 +1,7 @@
 export interface FormDataType {
-    thumbnail: File | null
+    thumbnail: File | null | string
     username: string
     bio: string
-    sex: 'male' | 'female' | 'other'
+    sex: 'MALE' | 'FEMALE' | 'OTHER'
   }
   

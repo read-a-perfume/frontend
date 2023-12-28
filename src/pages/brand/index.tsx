@@ -6,12 +6,15 @@ import BrandInfo from './brand-info.js'
 import {useParams} from 'react-router-dom'
 import PerfumeList from './perfume-list.js'
 import MagazineList from './magazine-list.js'
+import useGoTop from '@hooks/use-go-top.js'
 // import { useQuery } from '@tanstack/react-query'
 // import { fetchBrand } from './queryfn.js'
 
 const Brand = () => {
   const [current, setCurrent] = useState<'magazine' | 'perfume'>('magazine')
   const {brandId} = useParams()
+
+  useGoTop()
 
   return (
     <>

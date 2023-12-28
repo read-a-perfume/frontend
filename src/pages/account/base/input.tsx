@@ -16,6 +16,8 @@ export const PwInput = styled(Input)(({theme}) => ({
   '& .MuiOutlinedInput-root': {
     backgroundColor: theme.palette.grey[200],
     borderColor: theme.palette.grey[300],
+    marginBottom: 0,
+    
   },
   '& .Mui-focused': {
     backgroundColor: '#fff',

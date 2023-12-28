@@ -13,5 +13,6 @@ type Story = StoryObj<typeof ErrorMessage>
 export const Example: Story = {
   args: {
     errorMessage: '최소 20자는 작성해주세요',
+    sx: {},
   },
 }

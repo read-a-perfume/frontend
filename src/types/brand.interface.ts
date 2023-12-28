@@ -24,3 +24,19 @@ export interface IfBrandPerfumeResponse {
   duration: string
   hasNext: boolean
 }
+
+export interface IfMagazineResponse {
+  id: number
+  title: string
+  content: string
+  coverThumbnailId: string
+  tags: string[]
+}
+
+export interface IfMagazineListResponse {
+  items: IfMagazineResponse[]
+  hasNext: boolean
+  hasPrev: boolean
+  nextCursor: string
+  prevCursor: string
+}

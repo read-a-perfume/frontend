@@ -14,7 +14,7 @@ const PerfumeList = ({brandId}: proptype) => {
     () => fetchBrandPerfumes(brandId, ''),
   )
 
-  console.log(perfumeList)
+ 
 
   return (
     <BrandListContainer col={4}>
