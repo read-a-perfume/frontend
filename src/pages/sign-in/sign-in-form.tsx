@@ -9,14 +9,14 @@ import {
 } from '@mui/material'
 import {SyntheticEvent, useCallback, useState} from 'react'
 import useMutation from 'src/store/server/use-mutation'
-import {useNavigate} from 'react-router-dom'
 import SignInOptions from './sign-in-options'
 import SignInButtonGroup from './sign-in-button-group'
 import {postLogin} from 'src/store/server/auth/mutations'
+import {useRouter} from '@hooks/use-router'
 
 const SignInForm = () => {
   const [value, setValue] = useState(0)
-
+  const {routeTo} = useRouter()
   const handleChange = useCallback(
     (event: SyntheticEvent, newValue: number) => {
       console.log(event, 'event')
@@ -24,14 +24,13 @@ const SignInForm = () => {
     },
     [],
   )
-  const nav = useNavigate()
 
   const {mutate} = useMutation({
     mutationFn: postLogin,
     mutationKey: ['sign-in'],
     options: {
       onError: error => alert(error),
-      onSuccess: () => nav('/'),
+      onSuccess: () => routeTo('/'),
     },
   })
 

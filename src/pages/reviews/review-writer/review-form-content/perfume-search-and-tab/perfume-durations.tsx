@@ -1,9 +1,9 @@
 import {RadioGroup, styled} from '@mui/material'
 import RadioRoundedButton from '../../base/radio-rounded-button'
 import {REVIEW_OPTIONS} from '@pages/reviews/review-writer/data/review-options'
-import ReviewFormSubTitle from '../../base/review-form-sub-title'
 import useGetCustomForms from '../../hooks/use-get-custom-forms'
 import ErrorMessage from '@components/base/error-message'
+import SubTitle from '../../base/sub-title'
 
 const PerfumeDurations = () => {
   const {duration} = useGetCustomForms()
@@ -14,8 +14,7 @@ const PerfumeDurations = () => {
   console.log(errors, '듀레이션')
   return (
     <section>
-      <button type="submit">출출</button>
-      <ReviewFormSubTitle title="이 향수의 지속력은 어떤가요?" />
+      <SubTitle title="이 향수의 지속력은 어떤가요?" />
       <CustomRadioGroup
         row
         aria-label="향수"

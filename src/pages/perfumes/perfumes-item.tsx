@@ -1,5 +1,5 @@
 import {Typography, styled} from '@mui/material'
-import {Link, useLocation} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined'
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined'
 
@@ -17,16 +17,11 @@ export interface IfItemType {
 }
 
 const PerfumesItem = ({item}: IfPerfumesItemProps) => {
-  const location = useLocation()
-
   const {id, brandName, duration, name, strength, thumbnailUrl} = item
 
   return (
     <Wrapper>
-      <Link
-        to={`/perfume/${id}`}
-        state={{duration: item.duration, strength: item.strength}}
-      >
+      <Link to={`/perfume/${id}`}>
         <ProductWrapper>
           {thumbnailUrl ? (
             <img src={thumbnailUrl} alt="img" />
@@ -109,7 +104,7 @@ const ProductWrapper = styled('div')({
 })
 
 const BrandTitle = styled(Typography)({
-  fontSize: '10.5px',
+  fontSize: '12px',
   fontWeight: '400',
   lineHeight: 'normal',
   marginBottom: '5px',
@@ -117,7 +112,7 @@ const BrandTitle = styled(Typography)({
 })
 
 const BrandSubTitle = styled(Typography)({
-  fontSize: '13.5px',
+  fontSize: '16px',
   fontWeight: '600',
   lineHeight: '15px',
   marginBottom: '24px',

@@ -19,7 +19,7 @@ const FileLengthView = ({
         backgroundColor: '#fff',
       }}
     >
-      <Typography variant="body2"> {files}/5</Typography>
+      <Typography variant="body2"> {files}/4</Typography>
     </Box>
   )
 }

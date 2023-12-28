@@ -13,7 +13,6 @@ export const Default: Story = {
   args: {
     username: '어드민',
     shortReview: '한줄 평',
-    hashTagKeyword: '키워드',
     keywords: ['안녕'],
     commnents: 146,
     thumbnails: [],
@@ -24,7 +23,6 @@ export const One: Story = {
   args: {
     username: '어드민',
     shortReview: '한줄 평',
-    hashTagKeyword: '키워드',
     keywords: ['안녕'],
     commnents: 146,
     thumbnails: ['https://picsum.photos/200/300/?blur'],
@@ -35,7 +33,6 @@ export const Two: Story = {
   args: {
     username: '어드민',
     shortReview: '한줄 평',
-    hashTagKeyword: '키워드',
     keywords: ['안녕'],
     commnents: 146,
     thumbnails: [
@@ -49,7 +46,6 @@ export const Three: Story = {
   args: {
     username: '어드민',
     shortReview: '한줄 평',
-    hashTagKeyword: '키워드',
     keywords: ['안녕'],
     commnents: 146,
     thumbnails: [

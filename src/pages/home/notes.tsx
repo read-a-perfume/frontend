@@ -8,7 +8,7 @@ import NoteProducts from './note-products'
 
 const Notes = ({categoryLoading, categoryError, categories}: any) => {
   const [categoryId, setCategoryId] = useState<number>(1)
-  const [clickedNote, setClickedNote] = useState<string>('프루티')
+  const [clickedNote, setClickedNote] = useState<string>('Fruity')
   const [image, setImage] = useState<string>('default')
   const [description, setDescription] = useState<string>(
     '달콤한 과일의 향이 지속되어 생동감과 매력적인 느낌을 줍니다.',

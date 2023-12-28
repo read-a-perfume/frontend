@@ -1,43 +1,25 @@
 import {Box, Button, Checkbox, Typography, styled} from '@mui/material'
 import {
-  Control,
-  Controller,
-  FieldValues,
-  UseFormSetValue,
-  UseFormWatch,
+  useFormContext,
 } from 'react-hook-form'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import CheckBoxList from './checkbox-list'
-import {formCheckboxData} from '../data.constant'
-import useSignUpAgreement from '../hooks/use-sign-up-agreement'
+import useValidationForm from '../hooks/use-validation-form'
+import CheckBoxItem from './checkbox-item'
 
-interface FormAgreementProps {
-  control: Control<FieldValues, any>
-  setValue: UseFormSetValue<FieldValues>
-  watch: UseFormWatch<FieldValues>
-}
+const SignUpAgreement = () => {
+  const {watch, setValue} = useFormContext()
+  const {allCheck, age, promotionConsent, marketingConsent} =
+    useValidationForm()
 
-const isChecks = {
-  age: false,
-  terms: false,
-  privacy: false,
-  marketing: false,
-  notification: false,
-}
-
-const SignUpAgreement = ({control, setValue, watch}: FormAgreementProps) => {
-  const {checkedItems, handleCheckAll, handleCheckboxChange} =
-    useSignUpAgreement(isChecks)
-  const allChecked = watch('allChecked', false)
   const handleUseFormAllCheck = () => {
-    const newValue = !allChecked
+    const newValue = watch('allCheck')
     setValue('allChecked', newValue)
     setValue('terms', newValue)
     setValue('age', newValue)
     setValue('privacy', newValue)
-    setValue('marketing', newValue)
-    setValue('notification', newValue)
+    setValue('marketingConsent', newValue)
+    setValue('promotionConsent', newValue)
     //useState는 UI적 체크업데이트
     //useForm은 회원가입 시 실제 체크여부가 되었는지 확인해주는 역할
   }
@@ -57,31 +39,26 @@ const SignUpAgreement = ({control, setValue, watch}: FormAgreementProps) => {
             borderBottom: '1px solid #E7E7E7',
           }}
         >
-          <Controller
-            name="allChecked" // 폼 데이터의 이름
-            control={control} // react-hook-form의 control 객체
-            defaultValue={false} // 기본값
-            render={({field}) => (
-              <Checkbox
-                {...field}
-                icon={<RadioButtonUncheckedIcon />} // 미선택 시 아이콘
-                checkedIcon={<CheckCircleIcon sx={{color: '#131313'}} />} // 선택 시 아이콘
-                checked={allChecked}
-                onChange={e => {
-                  field.onChange(e) // 기존 onChange 이벤트 호출
-                  handleUseFormAllCheck()
-                  handleCheckAll(e) // 사용자 정의 onChange 호출
-                }}
-              />
-            )}
+          <Checkbox
+            {...allCheck.field}
+            icon={<RadioButtonUncheckedIcon />} // 미선택 시 아이콘
+            checkedIcon={<CheckCircleIcon sx={{color: '#131313'}} />} // 선택 시 아이콘
+            checked={allCheck.field.value}
+            onChange={e => {
+              allCheck.field.onChange(e) // 기존 onChange 이벤트 호출
+              handleUseFormAllCheck()
+            }}
           />
           <Typography variant="body3">전체 동의</Typography>
         </Box>
-        <CheckBoxList
-          handleCheckboxChange={handleCheckboxChange}
-          formCheckboxData={formCheckboxData}
-          control={control}
-          checkedItems={checkedItems}
+        <CheckBoxItem label="만 14세 이상입니다." method={age} />
+        <CheckBoxItem
+          label="개인정보 마케팅 활용 동의"
+          method={marketingConsent}
+        />
+        <CheckBoxItem
+          label="이벤트, 쿠폰, 특가 알림 메일 수신"
+          method={promotionConsent}
         />
         <Button
           type="submit"

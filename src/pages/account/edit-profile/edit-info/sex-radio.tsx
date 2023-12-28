@@ -8,16 +8,15 @@ import useEditProfileForms from '@pages/account/hook/use-edit-profile-forms'
 
 const Arr: {
   label: '남성' | '여성' | '선택하지않음'
-  value: 'male' | 'female' | 'other'
+  value: 'MALE' | 'FEMALE' | 'OTHER'
 }[] = [
-  {label: '남성', value: 'male'},
-  {label: '여성', value: 'female'},
-  {label: '선택하지않음', value: 'other'},
+  {label: '남성', value: 'MALE'},
+  {label: '여성', value: 'FEMALE'},
+  {label: '선택하지않음', value: 'OTHER'},
 ]
 
 const SexRadio = () => {
   const {sex} = useEditProfileForms()
- 
 
   return (
     <RadioGroup
@@ -25,13 +24,13 @@ const SexRadio = () => {
       sx={{
         marginBottom: '52px',
       }}
+      {...sex.field}
     >
       {Arr.map((e, i) => (
         <FormControlLabel
           key={i}
-          control={<Radio size="small"/>}
+          control={<Radio size="small" />}
           label={e.label}
-          {...sex.field}
           value={e.value}
         />
       ))}

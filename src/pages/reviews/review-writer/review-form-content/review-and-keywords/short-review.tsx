@@ -13,8 +13,9 @@ const ShortReview = ({title}: {title: string}) => {
     <>
       <OneLineReview>
         <Typography
-          variant="body3"
-          sx={{display: 'block', fontWeight: '600', marginBottom: '16px'}}
+          variant="body2"
+          fontWeight={600}
+          sx={{display: 'block', marginBottom: '16px'}}
         >
           {title}
         </Typography>

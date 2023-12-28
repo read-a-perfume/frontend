@@ -5,6 +5,7 @@ import {
   postReviewImageFileUpload,
 } from 'src/store/server/reviews/mutations'
 import {useState} from 'react'
+import {IfReviewRequest} from 'types/review.interface'
 
 const usePostReviewCreate = () => {
   const [isOpen, setIsOepn] = useState(false)
@@ -28,22 +29,31 @@ const usePostReviewCreate = () => {
     },
   })
 
-  const onSubmit = async (formAllData: any) => {
-    console.log(formAllData, 'Data')
+  const onSubmit = async (formAllData: IfReviewRequest) => {
     // event.preventDefault()
     // 선택된 값에 따른 작업 수행
 
     const formData = new FormData()
-    formData.append('file', formAllData.thumbnails[0])
-    uploadeFiles(formData, {
-      onSuccess: data => {
-        const copyData = {
-          ...formAllData,
-          ['thumbnails']: [data.id],
-        }
-        createReview(copyData)
-      },
-    })
+    if (formAllData.thumbnails.length > 0) {
+      for (const file of formAllData.thumbnails as File[]) {
+        formData.append('files', file)
+      }
+      uploadeFiles(formData, {
+        onSuccess: data => {
+          const copyData = {
+            ...formAllData,
+            ['thumbnails']: data.map(item => item.id),
+          }
+          createReview(copyData)
+        },
+      })
+      return
+    }
+    const copyData = {
+      ...formAllData,
+    }
+
+    createReview(copyData)
   }
 
   const handleClose = () => {

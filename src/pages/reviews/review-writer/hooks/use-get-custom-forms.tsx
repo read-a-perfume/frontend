@@ -60,9 +60,6 @@ const useGetCustomForms = () => {
   const fullReview = useController({
     name: 'fullReview',
     control,
-    rules: {
-      ...reviwFormValidation.fullReview,
-    },
   })
 
   const keywordMethods = useController({

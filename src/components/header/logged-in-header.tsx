@@ -12,6 +12,7 @@ import {
   Popper,
 } from '@mui/material'
 import {useNavigate} from 'react-router-dom'
+import {postLogout} from 'src/store/server/auth/mutations'
 
 interface LoggedInHeaderProps {
   thumbnail: string
@@ -28,7 +29,10 @@ const LoggedInHeader = ({
   const navigation = useNavigate()
   const [myPagePop, setMyPagePopOpen] = useState<boolean>(false)
 
-  const handleClose = (event: Event | React.SyntheticEvent, name: string) => {
+  const handleClose = async (
+    event: Event | React.SyntheticEvent,
+    name: string,
+  ) => {
     if (
       anchorRef.current &&
       anchorRef.current.contains(event.target as HTMLElement)
@@ -39,7 +43,7 @@ const LoggedInHeader = ({
     switch (name) {
       case 'review':
         setMyPagePopOpen(false)
-        navigation('/reviews/review-writer')
+        navigation('/reviews/writer')
         break
       case 'profile':
         setMyPagePopOpen(false)
@@ -48,6 +52,7 @@ const LoggedInHeader = ({
       case 'logout':
         console.log('logout!')
         setMyPagePopOpen(false)
+        await postLogout()
         break
     }
   }

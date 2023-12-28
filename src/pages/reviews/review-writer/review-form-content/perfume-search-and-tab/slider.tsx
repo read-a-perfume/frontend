@@ -4,15 +4,15 @@ import {Slider, useTheme} from '@mui/material'
 const marks = [
   {
     value: 0,
-    label: '약함',
+    label: '약함 0%',
   },
   {
     value: 50,
-    label: '보통',
+    label: '보통 50%',
   },
   {
     value: 100,
-    label: '빠람',
+    label: '강함 100%',
   },
 ]
 
@@ -35,7 +35,10 @@ export default function SliderRating() {
         step={50}
         marks={marks}
         sx={{
-          '&.MuiSlider-root': {
+          '& span.MuiSlider-markLabel': {
+            color: '#A9A9A9',
+          },
+          '& .MuiSlider-root': {
             color: '#eee',
             height: '2px',
           },

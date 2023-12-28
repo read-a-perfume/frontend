@@ -19,7 +19,6 @@ const reviwFormValidation = {
   },
   perfume: {
     validate: (item: {id: number; name: string}) => {
-      console.log(item, '이름')
       return item.id !== 0 || '향수를 선택해주세요'
     },
   },
@@ -36,16 +35,6 @@ const reviwFormValidation = {
     maxLength: {
       value: 20,
       message: '최대 20자까지만 가능합니다',
-    },
-  },
-  fullReview: {
-    minLength: {
-      value: 20,
-      message: '최소 20자는 작성부탁드립니다.',
-    },
-    maxLength: {
-      value: 150,
-      message: '최대 150자까지만 가능합니다',
     },
   },
 }

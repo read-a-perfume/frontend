@@ -6,7 +6,7 @@
       "@pages/*": ["src/pages/*"],
       "@layouts/*": ["src/layouts/*"],
       "@theme/*": ["src/theme/*"],
-      "@common/*": ["src/common/*"],
+      "@base/*": ["src/base/*"],
       "@hooks/*": ["src/hooks/*"],
       "types/*": ["src/types/*"],
       "@api/*": ["src/api/*"],

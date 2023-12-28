@@ -1,55 +1,69 @@
-import FlexBox from '../../layouts/flex-box.js'
-import {
-  BrandInfo,
-  BrandInfoBlock,
-  BrandSubTitle,
-  BrandTitle,
-  BrandURL,
-  Follows,
-} from './brand.style.js'
-import {useNavigate} from 'react-router-dom'
-import Avatar from '@components/base/avatar.js'
-import MuiButton from '@components/base/mui-button.js'
+import Avatar from '@components/base/avatar'
+import {Box, Link, Typography, styled} from '@mui/material'
+import {useQuery} from '@tanstack/react-query'
+import {fetchBrand} from './queryfn'
 
-const BrandInfoDetail = ({enterprise}: {enterprise: boolean}) => {
-  const navigation = useNavigate()
-  const url = ''
+interface proptype {
+  brandId: string
+}
+
+const BrandInfo = ({brandId}: proptype) => {
+  const {data: brandData} = useQuery(['aklfdsj'], () => fetchBrand(brandId))
+
+  if (brandData === undefined) {
+    return <Container />
+  }
 
   return (
-    <BrandInfoBlock>
+    <Container>
       <Avatar
-        url={url}
+        url={brandData.thumbnail}
         size="104px"
         style={{
           zIndex: 1,
-          marginTop: '-17px',
+          marginTop: '-18px',
         }}
       />
-      <BrandInfo>
-        <FlexBox alignItems="center">
-          <BrandTitle>TAMBURINS</BrandTitle>
-          <Follows color="red">2480</Follows>
-          <Follows>팔로워</Follows>
-        </FlexBox>
-        <BrandSubTitle>
-          제품보다 새로운 경험, 공간 등의 콘텐츠를 통해서 새로운 감성을 전달하는
-          탬버린즈
-        </BrandSubTitle>
-        <BrandURL to="https://www.tamburins.com">
-          https://www.tamburins.com
-        </BrandURL>
-        {enterprise && (
-          <MuiButton
-            title="설정 및 관리"
-            type="white"
-            handleClick={() => navigation('/brand/:id/settings')}
-            width="92px"
-            height="34px"
-          />
-        )}
-      </BrandInfo>
-    </BrandInfoBlock>
+      <TextContainer>
+        <BrandName>{brandData.name}</BrandName>
+        <BrandStory>{brandData.story}</BrandStory>
+        <BrandLink underline="hover" href={brandData.brandUrl}>
+          {brandData.brandUrl}
+        </BrandLink>
+      </TextContainer>
+    </Container>
   )
 }
 
-export default BrandInfoDetail
+export default BrandInfo
+
+const BrandName = styled(Typography)(({theme}) => ({
+  fontSize: theme.typography.h3.fontSize,
+  margin: '31px 0 8px 0',
+  color: 'black',
+}))
+
+const BrandStory = styled(Typography)(({theme}) => ({
+  fontSize: theme.typography.body2.fontSize,
+  minHeight: '1em',
+  color: '#606060',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  maxWidth: '800px',
+}))
+
+const BrandLink = styled(Link)(({theme}) => ({
+  color: theme.palette.primary.main,
+  marginTop: '6px',
+  fontSize: theme.typography.body3.fontSize,
+}))
+
+const Container = styled(Box)(() => ({
+  display: 'flex',
+  marginBottom: '100px',
+}))
+
+const TextContainer = styled(Box)(() => ({
+  marginLeft: '30px',
+}))

@@ -1,56 +1,59 @@
-import {useEffect, useState} from 'react'
-import {Link, useLocation, useParams} from 'react-router-dom'
+import {useState} from 'react'
+import {Link, useParams} from 'react-router-dom'
 import {useQueries} from '@tanstack/react-query'
 import {
   fetchPerfume,
   fetchPerfumeGraph,
   fetchPerfumeReviewData,
-} from 'src/store/server/perfume-datail/queries'
+} from 'src/store/server/perfumes/queries'
+import {perfumeQueryKeys} from 'src/react-query-keys/perfume.keys'
 
 import Carousel from './carousel'
 import FlexBox from '@layouts/flex-box'
 import Notes from './notes'
 import Information from './information'
-import DetailReviewList from './review'
-import PerfumesItem from '@pages/perfumes/perfumes-item'
+import PerfumeReviewList from './review'
 import {
   Box,
   Button,
   Pagination,
   Skeleton,
-  Stack,
   Typography,
   styled,
 } from '@mui/material'
 
-const isLoadingData = Array.from({length: 4}, (_, index) => index + 1)
-
 const PerfumeDetail = () => {
-  const location = useLocation()
   const params = useParams()
 
-  const [page, setPage] = useState(1) // 처음 페이지는 1
-  const [perfumes, setPerfumes] = useState<string[]>([])
+  const [page, setPage] = useState(1)
+  const [sort, setSort] = useState<'RECENT' | 'LIKE'>('RECENT')
 
   const results = useQueries({
     queries: [
       {
-        queryKey: ['perfume-detail', params.id],
+        queryKey: [perfumeQueryKeys.perfumeDetail(Number(params.id))],
         queryFn: () => fetchPerfume(params.id as string),
       },
       {
-        queryKey: ['perfume-graph', params.id],
+        queryKey: [perfumeQueryKeys.perfumesStatistics(Number(params.id))],
         queryFn: () => fetchPerfumeGraph(params.id as string),
       },
       {
-        queryKey: ['perfume-review-data', params.id],
-        queryFn: () => fetchPerfumeReviewData(params.id as string),
+        queryKey: [
+          perfumeQueryKeys.perfumesReviews(Number(params.id), page, 6, [sort]),
+        ],
+        queryFn: () => fetchPerfumeReviewData(params.id as string, page, sort),
       },
     ],
   })
   const {isLoading, error, data} = results[0]
   const {isLoading: graphLoading, data: graphData} = results[1]
   const {isLoading: reviewLoading, data: reviewData} = results[2]
+
+  const handleChangeSort = e => {
+    setSort(e.target.value)
+    setPage(1)
+  }
 
   const handlePage = (event: any) => {
     const nowPageInt = parseInt(event.target.outerText)
@@ -59,14 +62,9 @@ const PerfumeDetail = () => {
 
   console.log('error!:', error)
 
-  useEffect(() => {
-    // 임시데이터
-    const arrayData = Array.from({length: 4}, (_, index) => index + 1)
-    setPerfumes(arrayData as any)
-  }, [])
   return (
     <Container>
-      <FlexBox>
+      <FlexBox justifyContent="space-between">
         <LeftBox>
           <Carousel isLoading={isLoading} />
         </LeftBox>
@@ -116,7 +114,7 @@ const PerfumeDetail = () => {
               </Skeleton>
             ) : (
               <Typography
-                sx={{fontSize: '12px', fontWeight: '400', lineHeight: '20.4px'}}
+                sx={{fontSize: '14px', fontWeight: '400', lineHeight: '23.8px'}}
               >
                 {data?.story}
               </Typography>
@@ -130,14 +128,14 @@ const PerfumeDetail = () => {
           <PerfumeInformation>
             <TextWrap>
               <Type>강도</Type>
-              {location?.state?.strength}
+              {data?.strength}
             </TextWrap>
 
             <div className="vertical-line" />
 
             <TextWrap>
               <Type>지속력</Type>
-              {location?.state?.duration}
+              {data?.duration}
             </TextWrap>
           </PerfumeInformation>
 
@@ -156,7 +154,11 @@ const PerfumeDetail = () => {
 
       {/* 향수 리뷰 */}
       <Box sx={{marginTop: '200px'}}>
-        <DetailReviewList reviewData={reviewData} isLoading={reviewLoading} />
+        <PerfumeReviewList
+          reviewData={reviewData}
+          isLoading={reviewLoading}
+          handleChangeSort={handleChangeSort}
+        />
 
         <Footer>
           <Pagination
@@ -184,36 +186,6 @@ const PerfumeDetail = () => {
           />
         </Footer>
       </Box>
-
-      {/* 비슷한 향수 리스트 */}
-      <ProductListTitle>비슷한 향수</ProductListTitle>
-
-      <ProductList>
-        {isLoading ? (
-          <>
-            {isLoadingData.map((_, index) => (
-              <Stack spacing={3} key={index}>
-                <Skeleton
-                  sx={{bgcolor: 'grey.200'}}
-                  variant="rounded"
-                  width={282}
-                  height={319}
-                  key={index}
-                />
-
-                <Skeleton variant="rounded" width={282} height={34.5} />
-              </Stack>
-            ))}
-          </>
-        ) : (
-          <ProductList>
-            {perfumes.length > 0 &&
-              perfumes?.map((item, index) => (
-                <PerfumesItem item={item as any} key={item + index} />
-              ))}
-          </ProductList>
-        )}
-      </ProductList>
     </Container>
   )
 }
@@ -225,13 +197,11 @@ const Container = styled(Box)({
   marginTop: '89px',
 })
 
-const LeftBox = styled(Box)({width: '100%'})
+const LeftBox = styled(Box)({width: '496px'})
 
 const CenterLine = styled(Box)({
   width: '0.75px',
   background: '#EDEDED',
-  marginLeft: '58.5px',
-  marginRight: '67.5px',
 })
 
 const RightBox = styled(Box)({
@@ -240,7 +210,7 @@ const RightBox = styled(Box)({
 })
 
 const PerfumeType = styled(Typography)({
-  fontSize: '10.5px',
+  fontSize: '14px',
   '& span': {
     marginLeft: '15px',
     color: '#FE7156',
@@ -295,7 +265,7 @@ const TextWrap = styled('p')({
 
 const Type = styled('span')({
   color: '#A9A9A9',
-  marginRight: '11.75px',
+  marginRight: '53px',
 })
 
 const BuyButton = styled(Button)({
@@ -305,29 +275,12 @@ const BuyButton = styled(Button)({
   borderRadius: '7.5px',
   color: 'white',
   backgroundColor: '#202020',
+  fontSize: '12px',
 
   '&:hover': {
     color: 'white',
     backgroundColor: '#7d7a7a',
   },
-})
-
-const ProductListTitle = styled(Typography)({
-  marginTop: '66px',
-  marginBottom: '32px',
-  fontWeight: '700',
-  fontFamily: 'AritaBuri, sans-serif, Arial !important',
-  fontSize: '26px',
-  color: '#191919',
-})
-
-const ProductList = styled('ul')({
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'center',
-  gap: '32px',
-  marginBottom: '316px',
-  padding: '0',
 })
 
 const Footer = styled('footer')({

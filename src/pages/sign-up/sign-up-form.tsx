@@ -1,30 +1,46 @@
 import {Box, ButtonBase} from '@mui/material'
-import {useForm} from 'react-hook-form'
+import {FormProvider, useForm} from 'react-hook-form'
 import styled from '@emotion/styled'
 import {theme} from '../../theme'
 import FormAgreement from './sign-up-agreement'
-import {formData} from './data.constant'
-import {useNavigate} from 'react-router-dom'
 import useMutation from 'src/store/server/use-mutation'
 import {postSignUp} from 'src/store/server/auth/mutations'
 import SignUpHeader from './sign-up-header'
 import SignUpFooter from './sign-up-footer'
-import SignupInputsIndividual from './sign-up-inputs-individual'
+import SignupInputs from './sign-up-inputs'
+import AlertModal from '@components/modal/alert-modal'
+import {useState} from 'react'
+import {useRouter} from '@hooks/use-router'
+import axios from 'axios'
 
 const SignUpForm = () => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: {errors},
-    watch,
-    setValue,
-  } = useForm()
-  const nav = useNavigate()
+  const [open, setOpen] = useState(false)
+  const methods = useForm({
+    defaultValues: {
+      username: '',
+      password: '',
+      email: '',
+      confimrPassword: '',
+      marketingConsent: false,
+      promotionConsent: false,
+    },
+  })
+  const {routeTo} = useRouter()
 
   const {mutate} = useMutation({
     mutationFn: postSignUp,
     mutationKey: ['sign-up'],
+    options: {
+      onError: error => {
+        if (axios.isAxiosError(error)) {
+          if (error.response?.status === 409) {
+            alert('중복된 아이디입니다')
+          }
+        } else {
+          alert('회원가입에 실패 했습니다.')
+        }
+      },
+    },
   })
 
   const onSubmit = data => {
@@ -32,28 +48,34 @@ const SignUpForm = () => {
       username: data.username,
       password: data.password,
       email: data.email,
-      marketingConsent: false,
-      promotionConsent: false,
+      marketingConsent: data.marketingConsent,
+      promotionConsent: data.promotionConsent,
     }
-    mutate(newData, {
-      onSuccess: () => nav('/'),
-    })
+    console.log(data, 'Data')
+    mutate(newData)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+    routeTo('/')
   }
 
   return (
-    <>
-      <SignUpFormContainer onSubmit={handleSubmit(onSubmit)}>
+    <FormProvider {...methods}>
+      <SignUpFormContainer onSubmit={methods.handleSubmit(onSubmit)}>
         <SignUpHeader title="회원가입" />
-        <SignupInputsIndividual
-          formData={formData}
-          register={register}
-          control={control}
-          errors={errors}
-        />
-        <FormAgreement control={control} setValue={setValue} watch={watch} />
+        <SignupInputs />
+        <FormAgreement />
         <SignUpFooter subText="이미 회원이신가요?" title="로그인하기" />
+        <AlertModal
+          open={open}
+          handleClose={handleClose}
+          title="회원가입"
+          description="완료되었습니다."
+          buttonText="확인"
+        />
       </SignUpFormContainer>
-    </>
+    </FormProvider>
   )
 }
 

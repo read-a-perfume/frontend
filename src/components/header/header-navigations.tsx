@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import FlexBox from '../../layouts/flex-box'
 import {useLocation, useNavigate} from 'react-router-dom'
 import RoundButton from '@components/base/round-button'
@@ -20,17 +20,6 @@ const HeaderNavigations = ({
   const location = useLocation()
   const [keyword, setKeyword] = useState<string>('')
   const colorsWhenDisabled = !editorPostCompleted ? '#F1F1F5' : '#FE7156'
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth)
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!isLoggedIn) {
@@ -122,7 +111,7 @@ const HeaderNavigations = ({
             </NavBottom>
             <NavBottom
               onClick={() =>
-                !isLoggedIn ? navigate('/sign-in') : navigate('/brand')
+                !isLoggedIn ? navigate('/sign-in') : navigate('/brands')
               }
             >
               브랜드

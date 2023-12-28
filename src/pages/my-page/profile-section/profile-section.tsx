@@ -1,12 +1,12 @@
 import {Avatar, Box, styled} from '@mui/material'
 import {useQuery} from '@tanstack/react-query'
-import {fetchCurUser, fetchMytype, getFollowCount} from './queryfn'
+import {fetchCurUser, fetchMytype, fetchFollowCount} from './queryfn'
 import ProfileInfo from './profile-info'
 import ProfileType from './profile-type'
 
 const ProfileSection = () => {
   const {data: curUser} = useQuery(['curuser'], () => fetchCurUser())
-  const {data: followCount} = useQuery(['followcount'], () => getFollowCount())
+  const {data: followCount} = useQuery(['followcount'], () => fetchFollowCount())
   const {data: mytype} = useQuery(['mytype'], () => fetchMytype())
   return (
     <Container>

@@ -1,6 +1,6 @@
-import {ListItem, ListItemIcon, styled} from '@mui/material'
+import {ListItem, ListItemIcon, createSvgIcon, styled} from '@mui/material'
 import {useEffect, useState} from 'react'
-import DeleteIcon from '@mui/icons-material/HighlightOff'
+
 interface IfMainPreviewImageProps {
   thumbnailsFiles: any
   handleThumbnailDelete: any
@@ -40,7 +40,12 @@ const SubPreviewImage = ({
       }}
     >
       <ListItemIcon sx={{display: 'flex', justifyContent: 'center'}} />
-      {image.length > 0 && <CustomDeleteButton onClick={deleteAll} />}
+      {image.length > 0 && (
+        <CancelIcon
+          sx={{position: 'absolute', top: 0, right: 0}}
+          onClick={deleteAll}
+        />
+      )}
     </ViewImage>
   )
 }
@@ -60,10 +65,20 @@ const ViewImage = styled(ListItem)({
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
 })
-const CustomDeleteButton = styled(DeleteIcon)({
-  position: 'absolute',
-  top: -20,
-  right: -20,
-  border: '1px solid #fff',
-  color: '#000;',
-})
+
+const CancelIcon = createSvgIcon(
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+  >
+    <rect width="24" height="24" rx="12" fill="white" />
+    <path
+      d="M17 8.00714L15.9929 7L12 10.9929L8.00714 7L7 8.00714L10.9929 12L7 15.9929L8.00714 17L12 13.0071L15.9929 17L17 15.9929L13.0071 12L17 8.00714Z"
+      fill="#191919"
+    />
+  </svg>,
+  'Cancel',
+)

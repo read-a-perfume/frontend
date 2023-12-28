@@ -1,31 +1,19 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle'
 import {Box, Typography, styled} from '@mui/material'
-import DeleteIcon from '@mui/icons-material/HighlightOff'
 import {useEffect, useState} from 'react'
 interface IfMainPreviewImageProps {
   thumbnailsFiles: any
-  handleThumbnailDelete: any
 }
 
-const MainPreviewImage = ({
-  thumbnailsFiles,
-  handleThumbnailDelete,
-}: IfMainPreviewImageProps) => {
+const MainPreviewImage = ({thumbnailsFiles}: IfMainPreviewImageProps) => {
   const [image, setImage] = useState('')
-
-  const deleteAll = () => {
-    URL.revokeObjectURL(image)
-    setImage('')
-    handleThumbnailDelete(thumbnailsFiles[0])
-  }
 
   useEffect(() => {
     const transformFile = () => {
-      const url = URL.createObjectURL(thumbnailsFiles[0])
+      const url = URL.createObjectURL(thumbnailsFiles)
 
       setImage(url)
     }
-    if (thumbnailsFiles[0]) {
+    if (thumbnailsFiles) {
       transformFile()
     } else {
       setImage('')
@@ -34,7 +22,7 @@ const MainPreviewImage = ({
 
   return (
     <MainPreview>
-      <MainPreviewFileLabel htmlFor="thumbnails">
+      <MainPreviewFileLabel>
         <ViewImage
           sx={{
             backgroundImage: `url(${image})`,
@@ -52,7 +40,6 @@ const MainPreviewImage = ({
                 alignItems: 'center',
               }}
             >
-              <AddCircleIcon />
               <Typography
                 variant="h3"
                 fontStyle={{textAlign: 'center', color: '#dbdbdb'}}
@@ -64,7 +51,6 @@ const MainPreviewImage = ({
           </TextBox>
         </ViewImage>
       </MainPreviewFileLabel>
-      {thumbnailsFiles[0] && <CustomDeleteButton onClick={deleteAll} />}
     </MainPreview>
   )
 }
@@ -74,6 +60,7 @@ export default MainPreviewImage
 const ViewImage = styled('figure')({
   position: 'relative',
   height: '100%',
+  margin: 0,
 })
 
 const TextBox = styled('div')({
@@ -82,6 +69,7 @@ const TextBox = styled('div')({
   left: '50%',
   width: '100%',
   transform: 'translate(-50%,-50%)',
+  zIndex: -1,
 })
 
 const MainPreview = styled(Box)({
@@ -94,12 +82,4 @@ const MainPreview = styled(Box)({
 
 const MainPreviewFileLabel = styled('label')({
   width: '100%',
-  cursor: 'pointer',
-})
-const CustomDeleteButton = styled(DeleteIcon)({
-  position: 'absolute',
-  top: -20,
-  right: -20,
-  border: '1px solid #fff',
-  color: '#000;',
 })

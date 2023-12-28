@@ -10,9 +10,8 @@ import {Router as RemixRouter} from '@remix-run/router/dist/router'
 import ReviewWriter from '@pages/reviews/review-writer'
 import PerfumeDetail from '@pages/perfume-detail'
 import SignIn from '@pages/sign-in'
-import MagazineUpload from '@pages/brand/magazine-upload'
+import MagazineUpload from '@pages/brand/legacy/magazine-upload'
 import BrandList from '@pages/brand/brand-list'
-import ReviewDetails from '@pages/reviews/review-details'
 
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
@@ -62,7 +61,7 @@ const routerData: RouterElement[] = [
   {
     id: 3,
     label: '브랜드',
-    path: '/brand',
+    path: '/brand/:brandId',
     element: <Brand />,
     isLayout: true,
     withAuth: true,
@@ -70,7 +69,7 @@ const routerData: RouterElement[] = [
   {
     id: 4,
     label: '리뷰 작성 페지',
-    path: '/reviews/review-writer',
+    path: '/reviews/writer',
     element: <ReviewWriter />,
     isLayout: true,
     withAuth: true,
@@ -124,14 +123,6 @@ const routerData: RouterElement[] = [
     element: <BrandList />,
     isLayout: true,
     withAuth: true,
-  },
-  {
-    id: 10,
-    label: '브랜드 목록',
-    path: '/details',
-    element: <ReviewDetails />,
-    isLayout: false,
-    withAuth: false,
   },
 ]
 

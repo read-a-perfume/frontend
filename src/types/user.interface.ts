@@ -9,6 +9,10 @@ export interface IfMe{
     userId:number
     username:string
     thumbnail:string
+    sex:'MALE' | 'FEMALE' | 'OTHER'
+    birthday:string
+    bio:string
+    email:string
 }
 
 export interface IfFollowRequest {

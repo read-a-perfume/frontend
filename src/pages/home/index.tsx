@@ -5,9 +5,10 @@ import {Banner, BannerBox, BannerImage, Content, Title} from './index.style'
 import Button from '@components/base/button.js'
 import Products from './products.js'
 import {useNavigate} from 'react-router-dom'
-import {IfCategoryNameType} from '@components/category/interfaces.js'
 import {fetchCategories} from 'src/store/server/categories/queries.js'
 import {useQuery} from '@tanstack/react-query'
+import {IfCategory} from 'types/perfume.interface.js'
+import {perfumeQueryKeys} from 'src/react-query-keys/perfume.keys.js'
 
 export default function Home() {
   const navigate = useNavigate()
@@ -16,8 +17,8 @@ export default function Home() {
     isLoading: categoryLoading,
     error: categoryError,
     data: categories,
-  } = useQuery<IfCategoryNameType[]>({
-    queryKey: ['categories'],
+  } = useQuery<IfCategory[]>({
+    queryKey: [perfumeQueryKeys.perfumesCategory()],
     queryFn: fetchCategories,
     staleTime: 99999,
   })
@@ -39,7 +40,7 @@ export default function Home() {
             color="white"
             backgroundColor="transparent"
             fontSize="lg"
-            onClick={() => navigate('/reviews/review-writer')}
+            onClick={() => navigate('/reviews/writer')}
             style={{marginTop: '79px', zIndex: 2, border: '1px solid white'}}
           />
         </BannerBox>

@@ -2,13 +2,13 @@ import React from 'react'
 import {URLSearchParamsInit, useSearchParams} from 'react-router-dom'
 import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box'
-import {IfCategoryNameType} from './interfaces'
+import {IfCategory} from 'types/perfume.interface'
 
 import CustomIcons from '@assets/icons/custom-Icons'
 import {Box, Skeleton, Stack, Typography} from '@mui/material'
 
 interface IfCategoryProps {
-  categories: IfCategoryNameType[] | undefined
+  categories: IfCategory[] | undefined
   loading: boolean
   error: string | unknown
   currentCategory: string
@@ -117,7 +117,7 @@ const Category = ({
                         ? 'true'
                         : ''
                     }
-                    src={category.img}
+                    src={category.thumbnail}
                     alt="category 이미지"
                   />
                 ) : (
