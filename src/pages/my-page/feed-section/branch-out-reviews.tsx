@@ -15,6 +15,7 @@ const BranchoutReviews = ({reviews}: proptype) => {
   if (reviews.length === 0) {
     return <ThereAreNoReviews />
   }
+  console.log(reviews)
   return (
     <ReviewsContainer>
       {reviews.map((e, i) => (

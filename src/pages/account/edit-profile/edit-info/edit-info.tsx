@@ -1,6 +1,4 @@
 import EditTitle from '../../base/edit-title'
-import {useQuery} from '@tanstack/react-query'
-import {fetchCurUser} from '../../queryfn'
 import useEditProfileForms from '../../hook/use-edit-profile-forms'
 import EditThumbnail from './edit-thumbnail'
 import SexRadio from './sex-radio'
@@ -8,14 +6,14 @@ import SaveButton from '@pages/account/base/save-button'
 import FormLabel from '@pages/account/base/form-label'
 import {Input} from '@pages/account/base/input'
 
+
+
+
 const EditInfo = () => {
-  const {data: curUser} = useQuery(['curuser'], () => fetchCurUser())
+  
 
   const {username, bio} = useEditProfileForms()
 
-  if (curUser === undefined) {
-    return <></>
-  }
 
   return (
     <>
