@@ -27,7 +27,7 @@ const skeletons = new Array(6).fill(0).map((_, idx) => idx + 1)
 
 const fetchGetPerfumesByCategory = async (id: number) => {
   try {
-    const res = await instance.get(`/perfumes/category/${id}?page=0&size=3`)
+    const res = await instance.get(`/perfumes/category/${id}?page=0&size=6`)
     return res.data
   } catch (error) {
     throw new Error(error as string)
@@ -43,7 +43,7 @@ const NoteProducts = ({categoryId}: {categoryId: number}) => {
     data: perfumes,
   } = useQuery<PerfumesType>(
     ['perfumes-by-note', categoryId],
-    () => fetchGetPerfumesByCategory(categoryId - 1),
+    () => fetchGetPerfumesByCategory(categoryId),
     {
       keepPreviousData: false,
     },

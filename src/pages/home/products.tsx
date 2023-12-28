@@ -19,7 +19,7 @@ type Product = {
 
 const getPerfumesByFavorite = async () => {
   const res = await instance.get(
-    '/perfumes?sort=favorite&lastPerfumeId=6&pageSize=3',
+    '/perfumes?sort=favorite&lastPerfumeId=8&pageSize=8',
   )
   return res.data
 }
