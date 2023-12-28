@@ -34,7 +34,6 @@ const getReviews = async () => {
 
 const Review = () => {
   const [clickedChip, setClickedChip] = useState<number>(0)
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
   const [reviews, setReviews] = useState<Reviews[]>()
 
   const {data: reviewData, isLoading} = useQuery<Reviews[]>({
@@ -45,16 +44,6 @@ const Review = () => {
   useEffect(() => {
     setReviews(reviewData?.sort((a, b) => a.id - b.id).slice(0, 6))
   }, [reviewData])
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth)
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
 
   const onChipClick = (index: number) => {
     setClickedChip(index)

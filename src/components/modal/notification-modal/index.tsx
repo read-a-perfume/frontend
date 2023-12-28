@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box.js'
 import {Box, Modal, Typography} from '@mui/material'
-import {ModalProps} from '../login-modal/login-modal.interface.js'
 import CloseIcon from '@mui/icons-material/Close'
 export const ModalStyle = styled(Modal)({
   width: 350,
@@ -61,7 +60,12 @@ const testData = [
   },
 ]
 
-function NotificationModal({isOpen, setIsOpen}: ModalProps) {
+interface NotificationProps {
+  isOpen: boolean
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+function NotificationModal({isOpen, setIsOpen}: NotificationProps) {
   return (
     <ModalStyle open={isOpen} onClose={() => setIsOpen(false)}>
       <ModalLayout>

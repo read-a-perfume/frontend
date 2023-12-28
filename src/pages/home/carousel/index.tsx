@@ -1,6 +1,6 @@
 import {MobileStepper} from '@mui/material'
 import 'react-multi-carousel/lib/styles.css'
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import Card from '@components/base/card.js'
 import {magazineData} from '../constants'
 import {Swiper, SwiperSlide} from 'swiper/react'
