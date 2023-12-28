@@ -1,6 +1,9 @@
 import instance from '@api/instance'
 import {AxiosResponse} from 'axios'
-import {IfBrandListResponse} from 'types/brand.interface'
+import {
+  IfBrandListResponse,
+  IfMagazineListResponse,
+} from 'types/brand.interface'
 import {IfPerfume} from 'types/perfume.interface'
 
 export const fetchBrand = async (id: string): Promise<IfBrandListResponse> => {
@@ -29,6 +32,26 @@ export const fetchBrandPerfumes = async (
           pageSize: 1000,
         },
       })
+    return res.data
+  } catch (error: any) {
+    console.log(error)
+    throw error
+  }
+}
+
+export const fetchBrandMagazines = async (
+  id: string,
+): Promise<IfMagazineListResponse> => {
+  try {
+    const res: AxiosResponse<IfMagazineListResponse> = await instance.get(
+      `/${id}/magazines`,
+      {
+        params: {
+          after: '',
+          pageSize: 1000,
+        },
+      },
+    )
     return res.data
   } catch (error: any) {
     console.log(error)

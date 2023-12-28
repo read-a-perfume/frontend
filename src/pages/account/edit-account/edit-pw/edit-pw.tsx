@@ -4,9 +4,15 @@ import FormLabel from '@pages/account/base/form-label'
 import {PwInput} from '@pages/account/base/input'
 import SaveButton from '@pages/account/base/save-button'
 import useEditPwForms from '../hook/use-edit-pw-forms'
+import ErrorMessage from '@components/base/error-message'
 
 const EditPw = () => {
   const {oldPassword, newPassword, confirmPassword} = useEditPwForms()
+
+  const {errors: oldPwErrors} = oldPassword.formState
+  const {errors: newPwErrors} = newPassword.formState
+  const {errors: confirmPwErrors} = confirmPassword.formState
+
 
   return (
     <>
@@ -21,16 +27,28 @@ const EditPw = () => {
             type="password"
             autoComplete="new-password"
             {...oldPassword.field}
+            helperText={
+              <ErrorMessage errorMessage={oldPwErrors.oldPassword?.message} />
+            }
           />
           <PwInput
             placeholder="새 비밀번호"
             type="password"
+            autoComplete="new-password"
             {...newPassword.field}
+            helperText={
+              <ErrorMessage errorMessage={newPwErrors.newPassword?.message} />
+            }
           />
+
           <PwInput
             placeholder="세 비밀번호 확인"
             type="password"
+            autoComplete="new-password"
             {...confirmPassword.field}
+            helperText={
+              <ErrorMessage errorMessage={confirmPwErrors.confirmPassword?.message} />
+            }
           />
         </Stack>
       </EditTitle>

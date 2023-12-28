@@ -1,6 +1,6 @@
 import EditTitle from '../../base/edit-title'
 import {useQuery} from '@tanstack/react-query'
-import {fetchCurUser} from '../queryfn'
+import {fetchCurUser} from '../../queryfn'
 import useEditProfileForms from '../../hook/use-edit-profile-forms'
 import EditThumbnail from './edit-thumbnail'
 import SexRadio from './sex-radio'
@@ -21,8 +21,8 @@ const EditInfo = () => {
     <>
       <EditThumbnail />
       <EditTitle title="닉네임">
-        <FormLabel>닉네임 수정</FormLabel>
-        <Input width="257px" placeholder="닉네임 수정" {...username.field} />
+        <FormLabel>닉네임*</FormLabel>
+        <Input width="257px" placeholder="닉네임 수정" {...username.field} disabled/>
         <FormLabel>내 소개</FormLabel>
         <Input width="717px" placeholder="내 소개" {...bio.field} />
         <FormLabel>성별</FormLabel>

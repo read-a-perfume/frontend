@@ -2,15 +2,20 @@ import {Box, styled} from '@mui/material'
 import EditInfo from './edit-info/edit-info'
 import {FormProvider, useForm} from 'react-hook-form'
 import usePostProfile from '../hook/use-post-profile'
-import { FormDataType } from './type'
+import {FormDataType} from './type'
+import {IfMe} from 'types/user.interface'
 
-const EditProfile = () => {
+interface proptype {
+  data: IfMe
+}
+
+const EditProfile = ({data}: proptype) => {
   const methods = useForm<FormDataType>({
     defaultValues: {
-      thumbnail: null,
-      username: '',
-      bio: '',
-      sex: 'male',
+      thumbnail: data.thumbnail,
+      username: data.username,
+      bio: data.bio,
+      sex: data.sex,
     },
   })
 

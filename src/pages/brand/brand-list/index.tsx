@@ -1,6 +1,6 @@
 import {useQuery} from '@tanstack/react-query'
 import {fetchBrands} from './queryfn'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import useClassifyKorean from './hook/use-classify-korean'
 import {Box, Stack, Typography, styled} from '@mui/material'
 import BrandCard from './brand-card'
@@ -31,12 +31,20 @@ const BrandList = () => {
 
   const [korClass, setKorClass] = useState('')
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <>
       <Banner />
       <Container>
         <Title>브랜드</Title>
-        <Stack direction="row" sx={{marginBottom: '97px'}} justifyContent="space-between">
+        <Stack
+          direction="row"
+          sx={{marginBottom: '97px'}}
+          justifyContent="space-between"
+        >
           {Kor.map((e, i) => (
             <KorButton
               key={i}
@@ -87,5 +95,5 @@ const CardContainer = styled(Box)(() => ({
   gridTemplateColumns: 'repeat(4,1fr)',
   gap: '32.6px 24px',
   minHeight: '100vh',
-  justifyItems:'center',
+  justifyItems: 'center',
 }))

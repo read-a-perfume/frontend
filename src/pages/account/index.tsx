@@ -3,14 +3,17 @@ import Left from './left'
 import EditProfile from './edit-profile'
 import {useState} from 'react'
 import EditAccount from './edit-account'
+import { useQuery } from '@tanstack/react-query'
+import { fetchCurUser } from './queryfn'
 
 const Account = () => {
   const [isProfileSection, setIsProfileSection] = useState<boolean>(true)
+  const {data: curUser} = useQuery(['curuser'], () => fetchCurUser())
 
   return (
     <Container>
       <Left setIsProfileSection={setIsProfileSection} isProfileSection={isProfileSection}/>
-      {isProfileSection ? <EditProfile /> : <EditAccount/>}
+      {curUser !== undefined && isProfileSection ? <EditProfile data={curUser}/> : <EditAccount/>}
     </Container>
   )
 }

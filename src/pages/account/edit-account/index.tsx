@@ -1,5 +1,4 @@
 import {Box, styled} from '@mui/material'
-
 import {FormDataType} from './type'
 import {FormProvider, useForm} from 'react-hook-form'
 import usePostPw from './hook/use-post-pw'
@@ -14,7 +13,7 @@ const EditAccount = () => {
     },
   })
 
-  const {onSubmit} = usePostPw()
+  const {onSubmit} = usePostPw(methods.reset)
 
   return (
     <Container>

@@ -1,11 +1,14 @@
-import { FormDataType } from "../type"
+import { UseFormReset } from 'react-hook-form'
+import {FormDataType} from '../type'
 
-const usePostPw = () => {
-    const onSubmit = (data: FormDataType) => {
-      console.log(data)
-    }
+const usePostPw = (reset:UseFormReset<FormDataType>) => {
   
-    return {onSubmit}
+  const onSubmit = (data: FormDataType) => {
+    console.log(data)
+    reset()
   }
-  
-  export default usePostPw
+
+  return {onSubmit}
+}
+
+export default usePostPw
