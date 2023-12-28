@@ -10,18 +10,20 @@ interface proptype {
     tags: string[]
   }
   */
- data:any
+  data: any
 }
 
 const Magazine = ({data}: proptype) => {
+  console.log(data)
+
   return (
     <Container>
-      <CoverImg src={data.coverThumbnail} alt="cover image" />
+      <CoverImg src={'/coverThumbnail'} alt="cover image" />
       <ContentContainer>
-        <Avatar src={data.thumbnail} sx={{width: '40px', height: '40px'}} />
-        <Title>{data.title}</Title>
-        <Content>{data.content}</Content>
-        <Tag>{data.tags.map(e => `#${e}`).join(' ')}</Tag>
+        <Avatar src={'/thumbnail'} sx={{width: '40px', height: '40px'}} />
+        <Title>{'title'}</Title>
+        <Content>{'content'}</Content>
+        <Tag>{['tags'].map(e => `#${e}`).join(' ')}</Tag>
       </ContentContainer>
     </Container>
   )
