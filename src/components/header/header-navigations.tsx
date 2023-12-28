@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import FlexBox from '../../layouts/flex-box'
 import {useLocation, useNavigate} from 'react-router-dom'
 import RoundButton from '@components/base/round-button'
@@ -9,34 +9,21 @@ import {HeaderNavigation, Input, Logo, NavBottom} from '../../layouts/header'
 interface HeaderNavigation {
   editorPostCompleted?: boolean
   isLoggedIn: boolean
-  onOpen: () => void
 }
 
 const HeaderNavigations = ({
   editorPostCompleted,
   isLoggedIn,
-  onOpen,
 }: HeaderNavigation) => {
   const isUploading = true
   const navigate = useNavigate()
   const location = useLocation()
   const [keyword, setKeyword] = useState<string>('')
   const colorsWhenDisabled = !editorPostCompleted ? '#F1F1F5' : '#FE7156'
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth)
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!isLoggedIn) {
-      onOpen()
+      navigate('/sign-in')
     } else {
       setKeyword(event?.target.value)
     }
@@ -98,10 +85,7 @@ const HeaderNavigations = ({
 
   return (
     <HeaderNavigation height="94px">
-      <FlexBox
-        justifyContent="space-between"
-        style={{width: screenWidth - 720}}
-      >
+      <FlexBox justifyContent="space-between">
         <FlexBox alignItems="center">
           <Logo
             src={'/images/logo-text.png'}
@@ -111,26 +95,34 @@ const HeaderNavigations = ({
         </FlexBox>
         <FlexBox style={{width: '588px'}} justifyContent="center">
           <FlexBox alignItems="center" gap="54px">
-            <NavBottom onClick={() => (!isLoggedIn ? onOpen() : navigate('/'))}>
-              홈
-            </NavBottom>
+            <NavBottom onClick={() => navigate('/')}>홈</NavBottom>
             <NavBottom
-              onClick={() => (!isLoggedIn ? onOpen() : navigate('/reviews'))}
+
+              onClick={() =>
+                !isLoggedIn ? navigate('/sign-in') : navigate('/reviews')
+              }
+
             >
               리뷰
             </NavBottom>
             <NavBottom
-              onClick={() => (!isLoggedIn ? onOpen() : navigate('/brands'))}
+              onClick={() =>
+                !isLoggedIn ? navigate('/sign-in') : navigate('/brands')
+              }
             >
               브랜드
             </NavBottom>
             <NavBottom
-              onClick={() => (!isLoggedIn ? onOpen() : navigate('/perfumes'))}
+              onClick={() =>
+                !isLoggedIn ? navigate('/sign-in') : navigate('/perfumes')
+              }
             >
               제품
             </NavBottom>
             <NavBottom
-              onClick={() => (!isLoggedIn ? onOpen() : console.log(''))}
+              onClick={() =>
+                !isLoggedIn ? navigate('/sign-in') : console.log('')
+              }
             >
               뉴스
             </NavBottom>

@@ -113,9 +113,8 @@ export const MoreReviewsText = styled(Typography)({
 })
 
 export const ContentsBox = styled.div({
-  // height: 100,
   display: 'flex',
   flexDirection: 'column',
-  gap: 16,
+  gap: 25,
   paddingBottom: 17,
 })

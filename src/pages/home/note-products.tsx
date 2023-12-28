@@ -27,7 +27,7 @@ const skeletons = new Array(6).fill(0).map((_, idx) => idx + 1)
 
 const fetchGetPerfumesByCategory = async (id: number) => {
   try {
-    const res = await instance.get(`/perfumes/category/${id}?page=0&size=3`)
+    const res = await instance.get(`/perfumes/category/${id}?page=0&size=6`)
     return res.data
   } catch (error) {
     throw new Error(error as string)
@@ -43,7 +43,7 @@ const NoteProducts = ({categoryId}: {categoryId: number}) => {
     data: perfumes,
   } = useQuery<PerfumesType>(
     ['perfumes-by-note', categoryId],
-    () => fetchGetPerfumesByCategory(categoryId - 1),
+    () => fetchGetPerfumesByCategory(categoryId),
     {
       keepPreviousData: false,
     },
@@ -95,16 +95,16 @@ export default NoteProducts
 const ProductLayout = styled.div({
   display: 'flex',
   flex: 1,
-  height: 600,
-  gap: 32,
+  height: '600px',
+  gap: '32px',
   flexWrap: 'wrap',
   marginBottom: 136,
 })
 
 const ProductBox = styled.div({
   width: '30%',
-  height: 284,
-  borderRadius: 16,
+  height: '284px',
+  borderRadius: '16px',
   background: 'white',
   border: '1px solid #DBDBDB',
   overflow: 'hidden',
@@ -113,8 +113,8 @@ const ProductBox = styled.div({
 
 const ProductInfoBox = styled.div({
   padding: '0px 24px',
-  marginTop: -6,
-  height: 78,
+  marginTop: '-6px',
+  height: '78px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',

@@ -19,9 +19,9 @@ export const BannerImage = styled.img({
 export const Title = styled(Typography)({
   fontSize: '36px',
   color: 'white',
-  lineHeight: '150%',
   fontWeight: '600',
   zIndex: 0,
+  width: '724px',
   fontFamily: 'AritaBuri, sans-serif, Arial !important',
 })
 
@@ -31,7 +31,6 @@ export const BannerBox = styled.div({
   justifyContent: 'center',
   height: '100%',
   paddingLeft: '360px',
-  paddingRight: '360px',
 })
 
 export const Content = styled.section({

@@ -34,7 +34,6 @@ const getReviews = async () => {
 
 const Review = () => {
   const [clickedChip, setClickedChip] = useState<number>(0)
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
   const [reviews, setReviews] = useState<Reviews[]>()
 
   const {data: reviewData, isLoading} = useQuery<Reviews[]>({
@@ -45,16 +44,6 @@ const Review = () => {
   // useEffect(() => {
   //   setReviews(reviewData?.sort((a, b) => a.id - b.id).slice(0, 6))
   // }, [reviewData])
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth)
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
 
   const onChipClick = (index: number) => {
     setClickedChip(index)
@@ -92,11 +81,7 @@ const Review = () => {
       </FlexBox>
       <ReviewBox>
         {reviews?.map(item => (
-          <ReviewCard
-            key={item.id}
-            item={item}
-            width={(screenWidth - 720 - 100) / 3 + 'px'}
-          />
+          <ReviewCard key={item.id} item={item} width={'344px'} />
         ))}
         {(isLoading || !reviewData) &&
           new Array(6).fill(0).map((_, idx) => {
@@ -105,7 +90,7 @@ const Review = () => {
                 key={idx}
                 sx={{borderRadius: 4, animationDuration: '1.2s'}}
                 variant="rectangular"
-                width={(screenWidth - 720 - 100) / 3 + 'px'}
+                width={'384px'}
                 height={'390px'}
               />
             )
@@ -121,8 +106,8 @@ const ReviewBox = styled.div({
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
   gridTemplateRows: 'repeat(2, 1fr)',
-  rowGap: '32px',
-  columnGap: '42px',
+  rowGap: '24px',
+  columnGap: '24px',
   marginTop: 30,
   height: '890px',
 })

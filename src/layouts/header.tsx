@@ -4,7 +4,6 @@ import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import FlexBox from './flex-box.js'
 import NotificationModal from '@components/modal/notification-modal/index.js'
-import LoginModal from '@components/modal/login-modal/index.js'
 import {theme} from '@theme/index.js'
 import {useRecoilValue} from 'recoil'
 import HeaderNavigations from '@components/header/header-navigations.js'
@@ -13,7 +12,6 @@ import {UserProfileAtom} from 'src/store/client/auth/atoms.js'
 const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
   const navigate = useNavigate()
   const isLoggedIn = useRecoilValue(UserProfileAtom)
-  const [isOpen, setIsOpen] = useState<boolean>(false)
   const [notificationOpen, setNotificationOpen] = useState<boolean>(false)
   console.log(isLoggedIn, 'isLoggedIn')
   return (
@@ -22,13 +20,11 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
         isOpen={notificationOpen}
         setIsOpen={setNotificationOpen}
       />
-      <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} />
       <HeaderLayout>
-        {isLoggedIn ? (
+        {isLoggedIn || isLoggedIn === null ? (
           <LoggedInHeader
             thumbnail={isLoggedIn ? isLoggedIn.thumbnail : ''}
             isLoggedIn={isLoggedIn}
-            onOpenLoginModal={() => setIsOpen(true)}
             onOpenNotification={() => setNotificationOpen(true)}
           />
         ) : (
@@ -43,7 +39,6 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
         <HeaderNavigations
           editorPostCompleted={editorPostCompleted}
           isLoggedIn={isLoggedIn}
-          onOpen={() => setIsOpen(true)}
         />
       </HeaderLayout>
     </>
@@ -56,15 +51,13 @@ const HeaderLayout = styled.div({
   height: '152px',
   display: 'flex',
   flexDirection: 'column',
-  width: '100%',
   borderBottom: '1px solid black',
+  padding: '0px 360px',
 })
 
 export const HeaderNavigation = styled.div(({height}: {height: string}) => ({
   width: '100%',
   height: height,
-  paddingLeft: 360,
-  paddingRight: 360,
   display: 'flex',
   justifyContent: 'end',
   alignItems: 'center',
