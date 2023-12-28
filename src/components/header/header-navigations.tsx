@@ -95,13 +95,7 @@ const HeaderNavigations = ({
         </FlexBox>
         <FlexBox style={{width: '588px'}} justifyContent="center">
           <FlexBox alignItems="center" gap="54px">
-            <NavBottom
-              onClick={() =>
-                !isLoggedIn ? navigate('/sign-in') : navigate('/')
-              }
-            >
-              홈
-            </NavBottom>
+            <NavBottom onClick={() => navigate('/')}>홈</NavBottom>
             <NavBottom
               onClick={() =>
                 !isLoggedIn ? navigate('/sign-in') : console.log('')
