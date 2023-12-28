@@ -39,7 +39,7 @@ const FeedSection = () => {
           }}
         />
       </Stack>
-      <BranchoutReviews reviews={reviews} />
+      <BranchoutReviews reviews={reviews?.content} />
     </div>
   )
 }
@@ -47,5 +47,3 @@ const FeedSection = () => {
 export default FeedSection
 
 // branchout에서 추후 benchmark도 넣어 분기
-
-

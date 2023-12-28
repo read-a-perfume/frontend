@@ -12,7 +12,7 @@ const ReviewListPage = () => {
     setSort(e.target.value)
     setPage(1)
   }
-
+  console.log(page, 'page')
   return (
     <Box sx={{marginTop: '79px'}}>
       <Box sx={{width: '1200px', margin: 'auto'}}>
@@ -23,7 +23,7 @@ const ReviewListPage = () => {
           handleChangeSort={handleChangeSort}
         />
         <Suspense fallback={<ReviewSkeleton skeletons={skeletons} />}>
-          <ListSection page={page} sort={sort} />
+          <ListSection sort={sort} />
         </Suspense>
       </Box>
     </Box>

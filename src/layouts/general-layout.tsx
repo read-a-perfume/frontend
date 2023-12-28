@@ -1,6 +1,5 @@
 import useAuthRedirect from '@hooks/use-auth-redirect'
 import Header from './header'
-import {Suspense} from 'react'
 
 interface GeneralLayoutProps {
   children: React.ReactNode
