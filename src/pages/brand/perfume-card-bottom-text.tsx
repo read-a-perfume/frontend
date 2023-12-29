@@ -20,13 +20,13 @@ const Container = styled(Box)(() => ({
   width: '50%',
   display: 'flex',
   alignItems: 'center',
-  paddingLeft: '27px',
-  gap: '16px',
+  justifyContent: 'center',
+  gap: '11px',
 }))
 
 
 const Text = styled(Typography)(({theme}) => ({
-  fontSize: theme.typography.body3.fontSize,
+  fontSize: theme.typography.body5.fontSize,
   fontWeight: 500,
   color:'black',
 }))

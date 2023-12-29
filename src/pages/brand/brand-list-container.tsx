@@ -8,6 +8,7 @@ const BrandListContainer = styled(Box)<{col: number}>(({col}) => ({
     justifyItems: 'center',
     minHeight: '90vh',
     paddingTop: '44px',
+
   }))
   
   export default BrandListContainer;

@@ -29,39 +29,39 @@ const PerfumeCard = ({data}: proptype) => {
 export default PerfumeCard
 
 const Container = styled(Box)(() => ({
-  width: '375px',
+  width: '282px',
   cursor: 'pointer',
 }))
 
 const TopContainer = styled(Box)(({theme}) => ({
   width: '100%',
-  height: '426px',
+  height: '320px',
   borderRadius: '16px',
   border: `1px solid ${theme.palette.grey[300]}`,
 }))
 
 const PerfumeImage = styled('img')(() => ({
   width: '100%',
-  height: '341px',
-  minHeight: '341px',
+  height: '256px',
+  minHeight: '256px',
 }))
 
 const PerfumeBrand = styled(Typography)(({theme}) => ({
   textAlign: 'center',
-  fontSize: theme.typography.body3.fontSize,
+  fontSize: theme.typography.body5.fontSize,
   color: '#131313',
-  padding: '8px 0',
+  padding: '6px 0',
 }))
 
 const PerfumeTitle = styled(Typography)(({theme}) => ({
   fontWeight: 600,
   textAlign: 'center',
-  fontSize: theme.typography.body1.fontSize,
+  fontSize: theme.typography.body3.fontSize,
 }))
 
 const BottomContainer = styled(Box)(({theme}) => ({
   width: '100%',
-  marginTop: '32px',
+  marginTop: '23.5px',
   backgroundColor: theme.palette.grey[200],
   padding: '8px 0',
   display: 'flex',
