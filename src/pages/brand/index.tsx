@@ -41,6 +41,7 @@ export default Brand
 
 const Container = styled(Box)(() => ({
   width: '1200px'
+  
 }))
 
 // <MagazineList brandId={brandId}/>
