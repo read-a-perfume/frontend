@@ -1,41 +1,40 @@
-import {IfBrandListResponse} from 'types/brand.interface'
-import {KorClassifyType} from './hook/use-classify-korean'
-import {Box, keyframes, styled} from '@mui/material'
-import {Suspense} from 'react'
+import useClassifyKorean from './hook/use-classify-korean'
+import {Box, styled} from '@mui/material'
 import BrandCard from './brand-card'
 import Nothing from './nothing'
+import {useQuery} from '@tanstack/react-query'
+import {fetchBrands} from './queryfn'
 
 interface proptype {
   korClass: string
-  brands: IfBrandListResponse[] | undefined
-  classifyBrands: KorClassifyType
 }
 
-const BranchBrandList = ({korClass, brands, classifyBrands}: proptype) => {
-    
+const BranchBrandList = ({korClass}: proptype) => {
+  const {data: brands} = useQuery(['brands'], () => fetchBrands(), {
+    suspense: true,
+  })
+
+  const classifyBrands = useClassifyKorean(brands)
+
   if (korClass === '') {
     return (
       <CardContainer>
-        <Suspense fallback={<Loading />}>
-          {brands !== undefined &&
-            (brands.length > 0 ? (
-              brands.map(e => <BrandCard key={e.id} data={e} />)
-            ) : (
-              <Nothing />
-            ))}
-        </Suspense>
+        {brands !== undefined &&
+          (brands.length > 0 ? (
+            brands.map(e => <BrandCard key={e.id} data={e} />)
+          ) : (
+            <Nothing />
+          ))}
       </CardContainer>
     )
   }
   return (
     <CardContainer>
-      <Suspense fallback={<Loading />}>
-        {classifyBrands[korClass].length > 0 ? (
-          classifyBrands[korClass].map(e => <BrandCard key={e.id} data={e} />)
-        ) : (
-          <Nothing />
-        )}
-      </Suspense>
+      {classifyBrands[korClass].length > 0 ? (
+        classifyBrands[korClass].map(e => <BrandCard key={e.id} data={e} />)
+      ) : (
+        <Nothing />
+      )}
     </CardContainer>
   )
 }
@@ -48,20 +47,4 @@ const CardContainer = styled(Box)(() => ({
   gap: '32.6px 24px',
   minHeight: '100vh',
   justifyItems: 'center',
-}))
-
-const blinkAnimation = keyframes`
-    0%,
-    100%{
-        background-color: #ddd
-    }
-    50%{
-        background-color: #fff
-    }
-`
-
-const Loading = styled(Box)(() => ({
-  width: '1200px',
-  height: '100vh',
-  animation: `${blinkAnimation} 0.8s infinite linear`,
 }))

@@ -13,6 +13,7 @@ const usePostPw = (reset: UseFormReset<FormDataType>) => {
       alert('비밀변호 변경 오류')
     },
     useErrorBoundary: false,
+    
   })
 
   const onSubmit = (data: FormDataType) => {

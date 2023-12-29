@@ -19,7 +19,7 @@ const EditInfo = () => {
     <>
       <EditThumbnail />
       <EditTitle title="닉네임">
-        <FormLabel>닉네임*</FormLabel>
+        <FormLabel>닉네임* 어차피 아이디로만 할 것이므로 추후 삭제하는게 좋아보여요 disabled</FormLabel>
         <Input width="257px" placeholder="닉네임 수정" {...username.field} disabled/>
         <FormLabel>내 소개</FormLabel>
         <Input width="717px" placeholder="내 소개" {...bio.field} />

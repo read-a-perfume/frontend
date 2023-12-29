@@ -24,7 +24,7 @@ const EditThumbnail = () => {
       <Avatar
         src={image !== null ? URL.createObjectURL(image) : ''}
         sx={{width: '104px', height: '104px'}}
-        alt="avatar"
+        
       />
       <input
         type="file"
