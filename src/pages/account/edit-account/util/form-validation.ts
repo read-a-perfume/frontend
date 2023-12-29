@@ -19,6 +19,8 @@ interface ValidationType {
   confirmPassword: eachType
 }
 
+const [minLen,maxLen] = [5,16];
+
 const formValidation: ValidationType = {
   oldPassword: {
     required: {
@@ -26,40 +28,40 @@ const formValidation: ValidationType = {
       message: '현재 비밀번호를 입력해주세요',
     },
     minLength: {
-      value: 8,
-      message: '비밀번호는 최소 8자리 입니다.',
+      value: minLen,
+      message: `비밀번호는 최소 ${minLen}자리 입니다.`,
     },
     maxLength: {
-      value: 16,
-      message: '비밀번호는 최대 16자리 입니다.',
+      value: maxLen,
+      message: `비밀번호는 최대 ${maxLen}자리 입니다.`,
     },
   },
   newPassword: {
     required: {
       value: true,
-      message: '현재 비밀번호를 입력해주세요',
+      message: '새 비밀번호를 입력해주세요',
     },
     minLength: {
-      value: 8,
-      message: '비밀번호는 최소 8자리 입니다.',
+      value: minLen,
+      message: `비밀번호는 최소 ${minLen}자리 입니다.`,
     },
     maxLength: {
-      value: 16,
-      message: '비밀번호는 최대 16자리 입니다.',
+      value: maxLen,
+      message: `비밀번호는 최대 ${maxLen}자리 입니다.`,
     },
   },
   confirmPassword: {
     required: {
       value: true,
-      message: '현재 비밀번호를 입력해주세요',
+      message: '확인 비밀번호를 입력해주세요',
     },
     minLength: {
-      value: 8,
-      message: '비밀번호는 최소 8자리 입니다.',
+      value: minLen,
+      message: `비밀번호는 최소 ${minLen}자리 입니다.`,
     },
     maxLength: {
-      value: 16,
-      message: '비밀번호는 최대 16자리 입니다.',
+      value: maxLen,
+      message: `비밀번호는 최대 ${maxLen}자리 입니다.`,
     },
   },
 }

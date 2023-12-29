@@ -7,7 +7,8 @@ const BrandListContainer = styled(Box)<{col: number}>(({col}) => ({
     gridTemplateColumns: `repeat(${col},1fr)`,
     justifyItems: 'center',
     minHeight: '90vh',
-    paddingTop: '44px',
+    padding: '44px 0',
+    
   }))
   
   export default BrandListContainer;

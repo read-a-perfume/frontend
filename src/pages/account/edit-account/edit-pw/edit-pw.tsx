@@ -13,7 +13,6 @@ const EditPw = () => {
   const {errors: newPwErrors} = newPassword.formState
   const {errors: confirmPwErrors} = confirmPassword.formState
 
-
   return (
     <>
       <EditTitle title="아이디 관리">
@@ -28,7 +27,10 @@ const EditPw = () => {
             autoComplete="new-password"
             {...oldPassword.field}
             helperText={
-              <ErrorMessage errorMessage={oldPwErrors.oldPassword?.message} />
+              <ErrorMessage
+                errorMessage={oldPwErrors.oldPassword?.message}
+                sx={{marginTop: '2px', marginBottom: '0.5em', minHeight:'2em'}}
+              />
             }
           />
           <PwInput
@@ -37,7 +39,10 @@ const EditPw = () => {
             autoComplete="new-password"
             {...newPassword.field}
             helperText={
-              <ErrorMessage errorMessage={newPwErrors.newPassword?.message} />
+              <ErrorMessage
+                errorMessage={newPwErrors.newPassword?.message}
+                sx={{marginTop: '2px', marginBottom: '0.5em', minHeight:'2em'}}
+              />
             }
           />
 
@@ -47,7 +52,10 @@ const EditPw = () => {
             autoComplete="new-password"
             {...confirmPassword.field}
             helperText={
-              <ErrorMessage errorMessage={confirmPwErrors.confirmPassword?.message} />
+              <ErrorMessage
+                errorMessage={confirmPwErrors.confirmPassword?.message}
+                sx={{marginTop: '2px', marginBottom: '0.5em',  minHeight:'2em'}}
+              />
             }
           />
         </Stack>

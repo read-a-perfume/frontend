@@ -1,7 +1,7 @@
 import {Avatar, Box, Typography, styled} from '@mui/material'
 
 interface proptype {
-  /*
+  
   data: {
     title: string
     content: string
@@ -9,21 +9,20 @@ interface proptype {
     coverThumbnail: string
     tags: string[]
   }
-  */
-  data: any
+  
 }
 
 const Magazine = ({data}: proptype) => {
-  console.log(data)
+ 
 
   return (
     <Container>
-      <CoverImg src={'/coverThumbnail'} alt="cover image" />
+      <CoverImg src={data.coverThumbnail} alt="cover image" />
       <ContentContainer>
-        <Avatar src={'/thumbnail'} sx={{width: '40px', height: '40px'}} />
-        <Title>{'title'}</Title>
-        <Content>{'content'}</Content>
-        <Tag>{['tags'].map(e => `#${e}`).join(' ')}</Tag>
+        <Avatar src={data.thumbnail} sx={{width: '30px', height: '30px'}} />
+        <Title>{data.title}</Title>
+        <Content>{data.content}</Content>
+        <Tag>{data.tags.map(e => `#${e}`).join(' ')}</Tag>
       </ContentContainer>
     </Container>
   )
@@ -32,29 +31,26 @@ const Magazine = ({data}: proptype) => {
 export default Magazine
 
 const Container = styled(Box)(({theme}) => ({
-  width: '512px',
-  height: '594px',
-  borderRadius: '16px',
+  width: '384px',
+  height: '446px',
+  borderRadius: '12px',
   border: `1px solid ${theme.palette.grey[300]}`,
 }))
 
 const CoverImg = styled('img')(() => ({
-  minHeight: '320px',
+  minHeight: '240px',
   minWidth: '100%',
-  maxHeight: '320px',
-  maxWidth: '100%',
   borderBottom: '1px solid #ddd', // just test
 }))
 
 const ContentContainer = styled(Box)(() => ({
-  padding: '24px 24px 0 24px',
+  padding: '18px 18px 0 18px',
 }))
 
 const Title = styled(Typography)(({theme}) => ({
-  paddingTop: '16px',
-  paddingBottom: '16px',
+  padding: '12px 0',
   fontFamily: 'AritaBuri',
-  fontSize: theme.typography.h4.fontSize,
+  fontSize: theme.typography.body3.fontSize,
   fontWeight: 500,
   whiteSpace: 'nowrap',
   overflow: 'hidden',
@@ -63,19 +59,19 @@ const Title = styled(Typography)(({theme}) => ({
 
 const Content = styled(Typography)(({theme}) => ({
   color: '#707070',
-  fontSize: theme.typography.body2.fontSize,
+  fontSize: theme.typography.body4.fontSize,
   display: '-webkit-box',
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
   WebkitLineClamp: 4,
   textOverflow: 'ellipsis',
-  height: '96px',
+  height: '76px',
   lineHeight: 1.5,
 }))
 
 const Tag = styled(Typography)(({theme}) => ({
   color: theme.palette.primary.main,
-  fontSize: theme.typography.body3.fontSize,
-  marginTop: '8px',
+  fontSize: theme.typography.body5.fontSize,
+  marginTop: '6px',
   minHeight: '1em',
 }))

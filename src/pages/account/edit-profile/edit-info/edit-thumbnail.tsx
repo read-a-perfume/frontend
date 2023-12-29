@@ -3,16 +3,6 @@ import useEditProfileForms from '@pages/account/hook/use-edit-profile-forms'
 import {useRef} from 'react'
 import {useWatch} from 'react-hook-form'
 
-const getImageSrc = (data: File | null | string): string => {
-  if (data === null) {
-    return ''
-  }
-  if (typeof data === 'string') {
-    return data
-  }
-  return URL.createObjectURL(data)
-}
-
 const EditThumbnail = () => {
   const buttonRef = useRef<HTMLInputElement | null>(null)
 
@@ -32,9 +22,9 @@ const EditThumbnail = () => {
   return (
     <Container>
       <Avatar
-        src={getImageSrc(image)}
+        src={image !== null ? URL.createObjectURL(image) : ''}
         sx={{width: '104px', height: '104px'}}
-        alt="avatar"
+        
       />
       <input
         type="file"
