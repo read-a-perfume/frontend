@@ -72,14 +72,6 @@ const ReviewCard = ({...rest}: IfReviewContent) => {
             <CardThumbnailTwo thumbnails={thumbnails} />
           )}
 
-          <Typography
-            variant="body5"
-            sx={{
-              color: theme => theme.palette.primary.main,
-            }}
-          >
-            {keywords.length > 0 && <>{'#' + keywords.join(' #')}</>}
-          </Typography>
           {/* 제품 리뷰 이미지 세개 이상 일 때 */}
           {thumbnails && thumbnails.length >= 3 && (
             <CardThumbnailThree thumbnails={thumbnails} />

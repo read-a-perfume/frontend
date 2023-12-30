@@ -47,6 +47,7 @@ const Notes = ({categoryLoading, categoryError, categories}: any) => {
         setCurrentCategory={setClickedNote}
         setCategoryId={setCategoryId}
         setDescription={setDescription}
+        margin={'55px 0px'}
       />
 
       <FlexBox gap="32px">
@@ -70,6 +71,7 @@ export default Notes
 const Wrapper = styled.div`
   width: 1200px;
   margin-top: 122px;
+  margin-bottom: 102px;
 `
 
 const NoteTitle = styled(Typography)({

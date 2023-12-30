@@ -153,7 +153,7 @@ const PerfumeDetail = () => {
       </FlexBox>
 
       {/* 향수 리뷰 */}
-      <Box sx={{marginTop: '200px'}}>
+      <Box sx={{marginTop: '71px'}}>
         <PerfumeReviewList
           reviewData={reviewData}
           isLoading={reviewLoading}
