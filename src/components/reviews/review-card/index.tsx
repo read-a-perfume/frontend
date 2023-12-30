@@ -52,7 +52,7 @@ const ReviewCard = ({...rest}: IfReviewContent) => {
             paddingLeft: '0px',
             '& .MuiCardHeader-avatar': {marginRight: '12px'},
           }}
-          avatar={<UserAvatar src={''} aria-label="유저이미지" />}
+          avatar={<UserAvatar src={user?.thumbnail} aria-label="유저이미지" />}
           // 유저 닉네임, 아이디
           title={
             <Typography variant="body4" sx={{fontWeight: '600', color: '#000'}}>
