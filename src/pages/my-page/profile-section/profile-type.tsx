@@ -7,11 +7,12 @@ import TypeModal from './modal/type-modal'
 
 interface proptype {
   data: IfUserType[]
+  flag: boolean
 }
 
 const indexArr: number[] = [0, 1, 2]
 
-const ProfileType = ({data}: proptype) => {
+const ProfileType = ({data,flag}: proptype) => {
 
   const [isOpen,setIsOpen] = useState<boolean>(false)
 
@@ -23,7 +24,7 @@ const ProfileType = ({data}: proptype) => {
       <Title>MY TYPE</Title>
       <TypeContainer>
         {indexArr.map(i =>
-          i < data.length ? <TypeInfoCard data={data[i]} key={data[i].id}/> : <TypeAddCard setIsOpen={setIsOpen} key={i}/>,
+          i < data.length ? <TypeInfoCard data={data[i]} key={data[i].id}/> : <TypeAddCard setIsOpen={setIsOpen} key={i} flag={flag}/>,
         )}
       </TypeContainer>
     </Box>

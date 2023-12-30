@@ -3,26 +3,29 @@ import FollowText from './follow-text'
 import {useRouter} from '@hooks/use-router'
 
 interface proptype {
-  userId:number
+  flag: boolean
   username: string
   following: number
   follower: number
 }
 
-const ProfileInfo = ({userId,username, following, follower}: proptype) => {
+const ProfileInfo = ({flag, username, following, follower}: proptype) => {
   const {routeTo} = useRouter()
-  console.log(userId)
 
   return (
     <Container>
       <Username>{username}</Username>
       <Stack direction="row">
-        <FollowText title="팔로워" count={follower} label="follower"/>
-        <FollowText title="팔로잉" count={following} label="following"/>
+        <FollowText title="팔로워" count={follower} label="follower" />
+        <FollowText title="팔로잉" count={following} label="following" />
       </Stack>
-      <SettingButton onClick={() => routeTo('/settings')}>
-        <Typography sx={{fontSize: '20.8px', fontWeight: 500}}>설정</Typography>
-      </SettingButton>
+      {flag && (
+        <SettingButton onClick={() => routeTo('/settings')}>
+          <Typography sx={{fontSize: '20.8px', fontWeight: 500}}>
+            설정
+          </Typography>
+        </SettingButton>
+      )}
     </Container>
   )
 }

@@ -1,12 +1,14 @@
 import {useController, useFormContext} from 'react-hook-form'
-import { FormDataType } from '../edit-profile/type'
+import { FormInfoDataType } from '../edit-profile/type'
 
 const useEditProfileForms = () => {
-  const {control} = useFormContext<FormDataType>()
+  const {control} = useFormContext<FormInfoDataType>()
+  /*
   const thumbnail = useController({
     name: 'thumbnail',
     control,
   })
+  */
   const username = useController({
     name: 'username',
     control,
@@ -19,7 +21,7 @@ const useEditProfileForms = () => {
     name: 'sex',
     control,
   })
-  return {control, thumbnail, username, bio, sex}
+  return {control, username, bio, sex}
 }
 
 export default useEditProfileForms

@@ -15,10 +15,7 @@ const EditPw = () => {
 
   return (
     <>
-      <EditTitle title="아이디 관리">
-        <FormLabel>아이디</FormLabel>
-        {/*<Input placeholder="아이디" autoComplete="off" />*/}
-        <p>아이디는 못바꾸게 그냥 텍스트로만 표시하는게 좋을 것 같아요</p>
+      <EditTitle title="계정 관리">
         <FormLabel>비밀번호</FormLabel>
         <Stack>
           <PwInput
