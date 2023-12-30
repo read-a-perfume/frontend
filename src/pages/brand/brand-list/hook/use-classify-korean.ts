@@ -54,7 +54,7 @@ const getFirstKorString = (str: string): string => {
   return FIRST_CONVERT[first]
 }
 
-interface ReturnType {
+export interface KorClassifyType {
   ㄱ: IfBrandListResponse[]
   ㄴ: IfBrandListResponse[]
   ㄷ: IfBrandListResponse[]
@@ -73,7 +73,7 @@ interface ReturnType {
 }
 
 const classifyKorean = (data: IfBrandListResponse[] | undefined) => {
-  const result: ReturnType = {
+  const result: KorClassifyType = {
     ㄱ: [],
     ㄴ: [],
     ㄷ: [],

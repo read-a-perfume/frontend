@@ -8,13 +8,16 @@ const FullReviewSection = ({description}: {description: string}) => {
       <Typography
         variant="body3"
         component="p"
-        sx={{height: '203px', maxHeight: '203px'}}
+        sx={{
+          height: '92px',
+          maxHeight: '92px',
+          overflow: 'hidden',
+          display: '-webkit-box',
+          WebkitBoxOrient: 'vertical',
+          WebkitLineClamp: 4, // 원하는 줄 수로 설정
+        }}
       >
         {description}
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus,
-        sint vel? Autem repellat laudantium corrupti eius doloribus vero
-        tempore. Laudantium at ab excepturi debitis quaerat, atque animi
-        veritatis culpa aliquid nam dolorum quos molestias optio obcaecati
       </Typography>
     </Box>
   )

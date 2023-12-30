@@ -3,10 +3,10 @@ import EditInfo from './edit-info/edit-info'
 import {FormProvider, useForm} from 'react-hook-form'
 import usePostProfile from '../hook/use-post-profile'
 import {FormDataType} from './type'
-import {IfMe} from 'types/user.interface'
+
 
 interface proptype {
-  data: IfMe
+  data: FormDataType
 }
 
 const EditProfile = ({data}: proptype) => {

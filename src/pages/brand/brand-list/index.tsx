@@ -1,10 +1,7 @@
-import {useQuery} from '@tanstack/react-query'
-import {fetchBrands} from './queryfn'
-import {useState, useEffect} from 'react'
-import useClassifyKorean from './hook/use-classify-korean'
-import {Box, Stack, Typography, styled} from '@mui/material'
-import BrandCard from './brand-card'
+import {useState, useEffect, Suspense} from 'react'
+import {Box, Stack, Typography, keyframes, styled} from '@mui/material'
 import Banner from '@components/base/banner'
+import BranchBrandList from './branch-brand-list.'
 
 const Kor = [
   'ㄱ',
@@ -25,9 +22,6 @@ const Kor = [
 ]
 
 const BrandList = () => {
-  const {data: brands} = useQuery(['brands'], () => fetchBrands())
-
-  const classifyBrands = useClassifyKorean(brands)
 
   const [korClass, setKorClass] = useState('')
 
@@ -36,7 +30,7 @@ const BrandList = () => {
   }, [])
 
   return (
-    <>
+    <Box sx ={{display:'flex',flexDirection:'column',alignItems:'center'}}>
       <Banner />
       <Container>
         <Title>브랜드</Title>
@@ -57,21 +51,18 @@ const BrandList = () => {
             </KorButton>
           ))}
         </Stack>
-        <CardContainer>
-          {brands !== undefined &&
-            (korClass === '' ? brands : classifyBrands[korClass]).map(e => (
-              <BrandCard data={e} key={e.id} />
-            ))}
-        </CardContainer>
+        <Suspense fallback={<Loading />}>
+        <BranchBrandList korClass={korClass}/>
+        </Suspense>
       </Container>
-    </>
+    </Box>
   )
 }
 
 export default BrandList
 
 const Container = styled(Box)(() => ({
-  padding: '0 160px 143.6px 160px',
+  width: '1200px'
 }))
 
 const Title = styled(Typography)(() => ({
@@ -85,15 +76,27 @@ const Title = styled(Typography)(() => ({
 const KorButton = styled('button')<{active: boolean}>(({active, theme}) => ({
   width: '70px',
   height: '70px',
-  border: `2px solid ${active ? theme.palette.primary.main : 'black'}`,
+  border: `1px solid ${active ? theme.palette.primary.main : 'black'}`,
+  borderRadius: '8px',
   fontFamily: 'Pretendard',
   fontSize: '24px',
 }))
 
-const CardContainer = styled(Box)(() => ({
-  display: 'grid',
-  gridTemplateColumns: 'repeat(4,1fr)',
-  gap: '32.6px 24px',
-  minHeight: '100vh',
-  justifyItems: 'center',
+const blinkAnimation = keyframes`
+    0%,
+    100%{
+        background-color: #eee
+    }
+    50%{
+        background-color: #fff
+    }
+`
+
+const Loading = styled(Box)(() => ({
+  width: '1200px',
+  height: '100vh',
+  animation: `${blinkAnimation} 0.8s infinite linear`,
+  borderRadius: '10px',
 }))
+
+

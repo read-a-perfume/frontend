@@ -99,3 +99,22 @@ export interface IfReviewPerFumeSearch {
   perfumeNameWithBrand: string
   perfumeId: number
 }
+
+export interface IfReviewCommentResponse {
+  items:  IfReviewCommentBase[]
+  hasNext: boolean
+  hasPrev: boolean
+  nextCursor: boolean
+  prevCursor: boolean
+}
+
+export interface IfReviewCommentBase {
+  id: number
+  content: string
+  createdAt: string
+  author: {
+    id: number
+    name: string
+    thumbnail: string
+  }
+}

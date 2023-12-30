@@ -24,6 +24,7 @@ const useEditPwForms = () => {
     rules: {
       ...formValidation.confirmPassword,
     },
+    
   })
 
   return {control, oldPassword, confirmPassword, newPassword}

@@ -24,3 +24,9 @@ export interface IfSignUpRequest extends IfLoginRequeset {
 export interface IfSignUpIdDuplicationCheckRequest {
   userId: string
 }
+
+//비밀번호 바꾸기
+export interface IfPasswordPatch {
+  oldPassword:string
+  newPassword:string
+}

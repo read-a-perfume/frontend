@@ -14,6 +14,7 @@ import MagazineUpload from '@pages/brand/legacy/magazine-upload'
 import BrandList from '@pages/brand/brand-list'
 import ReviewListPage from '@pages/reviews/review-list'
 
+
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
   path: string // 페이지 경로
@@ -137,7 +138,6 @@ const routerData: RouterElement[] = [
 
 export const router: RemixRouter = createBrowserRouter(
   routerData.map(router => {
-    /// 공통 레이아웃이 필요하다면 공통 레이아웃 부여
     if (router.withAuth) {
       return {
         path: router.path,
