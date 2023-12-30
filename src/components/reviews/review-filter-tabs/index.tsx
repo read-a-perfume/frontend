@@ -1,13 +1,15 @@
 import {useRouter} from '@hooks/use-router'
-
 import FlexBox from '@layouts/flex-box'
-import {Button, MenuItem, Select, Typography, styled} from '@mui/material'
+import {Box, Button, Typography, styled} from '@mui/material'
+
+import {Link} from 'react-router-dom'
 
 interface IfReviewListSelectProps {
   sectionTitle: string
   buttonText: string
   optionName: string[]
   handleChangeSort: any
+  sort: any
 }
 
 const ReviewFilterTabs = ({
@@ -15,64 +17,71 @@ const ReviewFilterTabs = ({
   buttonText,
   optionName,
   handleChangeSort,
+  sort,
 }: IfReviewListSelectProps) => {
   const {routeTo} = useRouter()
-
+  console.log(sort, 'soprt')
   return (
-    <FlexBox alignItems="center">
+    <>
       <SectionTitle fontWeight={500}>{sectionTitle}</SectionTitle>
-
-      <FlexBox gap="9px">
-        <SelectStyle
-          defaultValue="RECENT"
-          sx={{
-            '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#202020',
-            },
-          }}
-          onChange={e => handleChangeSort(e)}
-        >
-          <MenuItemStyle value="RECENT">
-            <span className="option-name">{optionName[0]}</span>
-          </MenuItemStyle>
-
-          <MenuItemStyle value="LIKE">
-            <span className="option-name">{optionName[1]}</span>
-          </MenuItemStyle>
-        </SelectStyle>
-
-        <WriteReviewButton onClick={() => routeTo('/reviews/writer')}>
-          {buttonText}
-        </WriteReviewButton>
+      <Typography variant="body5" color="#a9a9a9">
+        다양한 향수 리뷰를 피드에서 살펴보세요
+      </Typography>
+      <FlexBox justifyContent="space-between" style={{marginTop: '21.5px'}}>
+        <FlexBox gap="12px">
+          <Chip
+            isClicked={sort === 'RECENT'}
+            onClick={() => handleChangeSort('RECENT')}
+          >
+            {optionName[0]}
+          </Chip>
+          <Chip
+            isClicked={sort === 'LIKE'}
+            onClick={() => handleChangeSort('LIKE')}
+          >
+            {optionName[1]}
+          </Chip>
+        </FlexBox>
+        <FlexBox gap="9px">
+          {buttonText === '리뷰 작성하기' && (
+            <WriteReviewButton onClick={() => routeTo('/reviews/writer')}>
+              {buttonText}
+            </WriteReviewButton>
+          )}
+          {buttonText === '전체 보기' && (
+            <CustomLink to="/reviews">
+              <Typography variant="body4" color="#a9a9a9">
+                전체 보기
+              </Typography>
+            </CustomLink>
+          )}
+        </FlexBox>
       </FlexBox>
-    </FlexBox>
+    </>
   )
 }
 export default ReviewFilterTabs
+
+const Chip = styled(Box)(({isClicked}: {isClicked: boolean}) => ({
+  border: 'none',
+  fontSize: 16,
+  fontWeight: '600',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: 21,
+  height: 31,
+  padding: '20px 15px',
+  fontFamily: 'Pretendard',
+  backgroundColor: isClicked ? '#FE7156' : '#F1F1F5',
+  color: isClicked ? 'white' : '#A9A9A9',
+}))
+
 const SectionTitle = styled(Typography)({
   fontFamily: 'AritaBuri, sans-serif, Arial !important',
   fontSize: 19.5,
   color: '#191919',
   marginRight: 'auto',
-})
-
-const MenuItemStyle = styled(MenuItem)({
-  fontSize: 12,
-  '&:hover .option-name': {
-    fontWeight: '600',
-    borderBottom: '1px solid black',
-  },
-})
-
-const SelectStyle = styled(Select)({
-  width: 108,
-  height: 42,
-  textAlign: 'center',
-  background: 'white',
-  borderRadius: 10,
-  color: '#202020',
-  fontSize: 12,
-  fontWeight: '500',
 })
 
 const WriteReviewButton = styled(Button)({
@@ -85,4 +94,9 @@ const WriteReviewButton = styled(Button)({
   '&:hover': {
     background: '#fe7256d6 ',
   },
+})
+
+const CustomLink = styled(Link)({
+  display: 'flex',
+  alignItems: 'center',
 })
