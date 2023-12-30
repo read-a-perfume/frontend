@@ -7,18 +7,21 @@ import {
   useTheme,
 } from '@mui/material'
 import {useState} from 'react'
-import useFetchComment from '../hooks/use-fetch-comment'
-useTheme
 
-const CommentInput = () => {
+interface IfProps {
+  createComment: any
+  id: number
+}
+
+const CommentInput = ({createComment, id}: IfProps) => {
   const [value, setValue] = useState('')
-  const {createReviewCommentMutate, isCreateLoading} = useFetchComment()
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
   }
   useTheme
   const handleSubmit = () => {
-    createReviewCommentMutate({content: value})
+    createComment({id, content: value})
     setValue('')
   }
 
@@ -34,7 +37,6 @@ const CommentInput = () => {
       <Button
         sx={{position: 'absolute', right: 0, padding: '2px 12px'}}
         onClick={handleSubmit}
-        disabled={isCreateLoading ? true : false}
       >
         <Typography variant="body3">등록</Typography>
       </Button>

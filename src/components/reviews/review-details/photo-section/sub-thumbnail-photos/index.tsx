@@ -6,7 +6,7 @@ interface IfProps {
 const SubThumbnailPhotos = ({thumbnail}: IfProps) => {
   return (
     <ViewPhotos
-      sx={{display: 'flex', justifyContent: 'space-between', marginTop: '20px'}}
+      sx={{display: 'flex', justifyContent: 'space-between', marginTop: '18px'}}
     >
       {[1, 2, 3, 4].map(value => (
         <Photo>
@@ -16,12 +16,12 @@ const SubThumbnailPhotos = ({thumbnail}: IfProps) => {
               display: 'block',
               margin: 0,
               height: 'inherit',
-              backgroundImage: `url(${thumbnail})`,
+
+              border: 'solid 1px #dbdbdb',
+              backgroundImage: `url(${thumbnail && thumbnail[value]})`,
             }}
             component="figure"
-          >
-            {value}
-          </Box>
+          />
         </Photo>
       ))}
     </ViewPhotos>
@@ -34,8 +34,8 @@ const ViewPhotos = styled(Box)({
   height: 'inherit',
 })
 const Photo = styled(Box)({
-  width: '111px',
-  height: '111px',
+  width: '90px',
+  height: '90px',
   overflow: 'hidden',
   borderRadius: '10px',
 })

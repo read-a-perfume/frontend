@@ -1,4 +1,5 @@
 import {
+  IfReviewCommentResponse,
   IfReviewDetailResponse,
   IfReviewPerFumeSearch,
   IfReviewResponse,
@@ -34,4 +35,11 @@ export const fetchReviewPage: (
   )
   const data = await res.data
   return data
+}
+
+export const fetchReviewComments: (
+  id: number,
+) => Promise<IfReviewCommentResponse> = async id => {
+  const res = await instance.get(`/reviews/${id}/comments`)
+  return res.data
 }
