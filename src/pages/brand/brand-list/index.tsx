@@ -1,6 +1,5 @@
 import {useState, useEffect, Suspense} from 'react'
 import {Box, Stack, Typography, keyframes, styled} from '@mui/material'
-import Banner from '@components/base/banner'
 import BranchBrandList from './branch-brand-list.'
 
 const Kor = [
@@ -31,7 +30,6 @@ const BrandList = () => {
 
   return (
     <Box sx ={{display:'flex',flexDirection:'column',alignItems:'center'}}>
-      <Banner />
       <Container>
         <Title>브랜드</Title>
         <Stack

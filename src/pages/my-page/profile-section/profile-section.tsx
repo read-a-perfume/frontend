@@ -18,7 +18,7 @@ const ProfileSection = ({userId}: proptype) => {
   const {data: followCount} = useQuery(followQueryKeys.follows(userId), () =>
     fetchFollowCount(userId),
   )
-  const {data: mytype} = useQuery(userQueryKeys.user(userId), () =>
+  const {data: mytype} = useQuery(userQueryKeys.userTastes(userId), () =>
     fetchMytype(),
   )
 
