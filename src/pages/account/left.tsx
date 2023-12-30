@@ -43,10 +43,10 @@ const Title = styled(Typography)(({theme}) => ({
 
 const Text = styled(Typography)<{flag: boolean}>(({theme, flag}) => ({
   paddingLeft: '10px',
-  borderLeft: flag ? `2px solid ${theme.palette.primary.main}` : '',
-  color: flag ? theme.palette.primary.main : '#000',
+  borderLeft: `${flag ? `2px solid ${theme.palette.primary.main}` : ''}`,
+  color: `${flag ? theme.palette.primary.main : '#000'}`,
   fontSize: theme.typography.body1.fontSize,
-  cursor: flag ? '' : 'pointer',
-  fontWeight: flag? 600 : 400,
+  cursor: `${flag ? '' : 'pointer'}`,
+  fontWeight: `${flag? 600 : 400}`,
   marginBottom:'15px',
 }))

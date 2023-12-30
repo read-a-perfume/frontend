@@ -8,6 +8,7 @@ const usePostProfile = () => {
     onError: () => {
       alert('프로필 사진 변경 실패')
     },
+    useErrorBoundary:false,
   })
 
   const profile = useMutation(
@@ -19,6 +20,7 @@ const usePostProfile = () => {
       onError: () => {
         alert('프로필 정보 변경 실패')
       },
+      useErrorBoundary:false,
     },
   )
 
@@ -27,13 +29,11 @@ const usePostProfile = () => {
       if (data.thumbnail === null) {
         alert('프로필 이미지를 지정해주세요')
       } else {
-        const imageFormdata = new FormData()
-        imageFormdata.append('thumbnail', data.thumbnail)
-        profileImage.mutate(imageFormdata)
+        const formData = new FormData()
+        formData.append('file',data.thumbnail)
+        profileImage.mutate(formData)
         profile.mutate({bio: data.bio, sex: data.sex, birthday: '20000101'})
       }
-
-      console.log(data)
     } catch (error: any) {
       alert(error.message)
     }

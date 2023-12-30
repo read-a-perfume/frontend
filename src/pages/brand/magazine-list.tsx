@@ -1,7 +1,7 @@
 import {useQuery} from '@tanstack/react-query'
 import BrandListContainer from './brand-list-container'
 import {fetchBrandMagazines} from './queryfn'
-import Magazine from './magazine'
+//import Magazine from './magazine'
 
 interface proptype {
   brandId: string
@@ -12,9 +12,11 @@ const MagazineList = ({brandId}: proptype) => {
     fetchBrandMagazines(brandId),
   )
 
+  console.log(magazineList)
+
   return (
     <BrandListContainer col={3}>
-      {magazineList !== undefined &&
+      {/*magazineList !== undefined &&
         magazineList.items.map(e => (
           <Magazine
             key={e.id}
@@ -26,7 +28,8 @@ const MagazineList = ({brandId}: proptype) => {
               coverThumbnail: '',
             }}
           />
-        ))}
+          ))*/}
+        <></>
     </BrandListContainer>
   )
 }

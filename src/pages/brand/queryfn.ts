@@ -52,6 +52,7 @@ export const fetchBrandMagazines = async (
         },
       },
     )
+    
     return res.data
   } catch (error: any) {
     console.log(error)
