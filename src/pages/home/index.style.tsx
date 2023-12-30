@@ -4,6 +4,10 @@ import {Typography} from '@mui/material'
 export const Banner = styled.div({
   width: '100%',
   height: '470px',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
 })
 
 export const BannerImage = styled.img({
@@ -30,15 +34,17 @@ export const BannerBox = styled.div({
   flexDirection: 'column',
   justifyContent: 'center',
   height: '100%',
-  paddingLeft: '360px',
+  width: 1200,
 })
 
 export const Content = styled.section({
   width: '100%',
   height: '100%',
   marginTop: 100,
-  paddingLeft: 360,
-  paddingRight: 360,
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
 })
 
 export const MagazineCard = styled.div({

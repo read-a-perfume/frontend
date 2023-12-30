@@ -68,6 +68,7 @@ const Notes = ({categoryLoading, categoryError, categories}: any) => {
 export default Notes
 
 const Wrapper = styled.div`
+  width: 1200px;
   margin-top: 122px;
 `
 

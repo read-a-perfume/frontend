@@ -113,6 +113,7 @@ export default Products
 
 const ProductsContainer = styled.div({
   marginTop: 136,
+  width: 1200,
 })
 
 const ProductBox = styled.div({

@@ -48,15 +48,16 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
 export default Header
 
 const HeaderLayout = styled.div({
+  width: '100%',
   height: '152px',
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
   borderBottom: '1px solid black',
-  padding: '0px 360px',
 })
 
 export const HeaderNavigation = styled.div(({height}: {height: string}) => ({
-  width: '100%',
+  width: 1200,
   height: height,
   display: 'flex',
   justifyContent: 'end',

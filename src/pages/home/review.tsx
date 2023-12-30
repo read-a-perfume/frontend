@@ -8,6 +8,7 @@ import {useQuery} from '@tanstack/react-query'
 import {Skeleton} from '@mui/material'
 import {MoreReviewsText} from './review-card.styles'
 import CustomIcons from '@assets/icons/custom-Icons'
+import {useNavigate} from 'react-router-dom'
 
 export type Reviews = {
   id: number
@@ -33,6 +34,7 @@ const getReviews = async () => {
 }
 
 const Review = () => {
+  const navigate = useNavigate()
   const [clickedChip, setClickedChip] = useState<number>(0)
   const [reviews, setReviews] = useState<Reviews[]>()
 
@@ -63,7 +65,7 @@ const Review = () => {
   }
 
   return (
-    <div>
+    <Wrapper>
       <SectionTitle>향수 리뷰</SectionTitle>
       <SectionSubTitle>다양한 향수 리뷰를 피드에서 살펴보세요</SectionSubTitle>
       <FlexBox justifyContent="space-between">
@@ -74,7 +76,7 @@ const Review = () => {
             </button>
           ))}
         </FlexBox>
-        <MoreReviewsButton>
+        <MoreReviewsButton onClick={() => navigate('/reviews')}>
           <MoreReviewsText>향수 리뷰 전체보기</MoreReviewsText>
           <CustomIcons.AfterIcon color="#707070" size="22" />
         </MoreReviewsButton>
@@ -96,11 +98,15 @@ const Review = () => {
             )
           })}
       </ReviewBox>
-    </div>
+    </Wrapper>
   )
 }
 
 export default Review
+
+const Wrapper = styled.div({
+  width: 1200,
+})
 
 const ReviewBox = styled.div({
   display: 'grid',
