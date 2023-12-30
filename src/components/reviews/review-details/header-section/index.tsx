@@ -1,14 +1,15 @@
 import {Box, Typography, styled} from '@mui/material'
+import {IfPerfume} from 'types/perfume.interface'
 
 interface IfProps {
-  perfumeId: number
+  perfumeDetails: IfPerfume
 }
 
-const HeaderSection = ({perfumeId}: IfProps) => {
+const HeaderSection = ({perfumeDetails}: IfProps) => {
   return (
     <Box>
       <Box>
-        <SubTitle variant="body3">위클리 향수로 추천 {perfumeId}</SubTitle>
+        <SubTitle variant="body3">위클리 향수로 추천</SubTitle>
       </Box>
       <Box sx={{display: 'flex', gap: '5px'}}>
         <Typography
@@ -17,9 +18,9 @@ const HeaderSection = ({perfumeId}: IfProps) => {
           color={theme => theme.palette.secondary.main}
           fontWeight={600}
         >
-          CHANEL 샹스 오 드 빠르펭 35ml
+          {perfumeDetails.name}
         </Typography>
-        <Typography variant="body3">플로랄</Typography>
+        <Typography variant="body3">{perfumeDetails.brandName}</Typography>
       </Box>
     </Box>
   )

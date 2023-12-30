@@ -5,13 +5,6 @@ import ReviewInfoSection from './review-info-section'
 import HeaderSection from './header-section'
 import useFetchReviewDetails from './hooks/use-fetch-review-details'
 
-const images = [
-  'https://picsum.photos/500/500/?blur',
-  'https://picsum.photos/500/500/?blur',
-  'https://picsum.photos/500/500/?blur',
-  'https://picsum.photos/500/500/?blur',
-]
-
 const style = {
   position: 'absolute',
   top: '50%',
@@ -31,18 +24,20 @@ interface IfProps {
   open: boolean
 }
 
-const ReviewDetails = ({id = 5, handleClose, open}: IfProps) => {
-  const {reviewDetails} = useFetchReviewDetails({id: id})
+const ReviewDetails = ({id, handleClose, open}: IfProps) => {
+  const {reviewDetails, perfumeDetails} = useFetchReviewDetails({id: id})
 
+  if (!reviewDetails) {
+    return false
+  }
+  console.log(perfumeDetails, '향수상세')
   return (
     <Wrapper open={open} onClose={handleClose}>
       <Container sx={style}>
-        <Header title={<HeaderSection perfumeId={1} />}></Header>
+        <Header title={<HeaderSection perfumeDetails={perfumeDetails} />} />
         <ModalContent>
-          <Box
-            sx={{display: 'flex', gap: '24px', justifyContent: 'space-between'}}
-          >
-            <PhotoSection thumbnail={images} />
+          <ModalContentWrapper>
+            <PhotoSection thumbnails={reviewDetails.thumbnails} />
             <Box
               sx={{
                 width: '486px',
@@ -50,9 +45,9 @@ const ReviewDetails = ({id = 5, handleClose, open}: IfProps) => {
               }}
             >
               {reviewDetails && <ReviewInfoSection {...reviewDetails} />}
-              <FeedbackSection />
+              <FeedbackSection id={id} />
             </Box>
-          </Box>
+          </ModalContentWrapper>
         </ModalContent>
       </Container>
     </Wrapper>
@@ -64,19 +59,25 @@ export default ReviewDetails
 const Wrapper = styled(Modal)({})
 
 const Container = styled(Box)({
-  width: '1090px',
-  height: '819px',
-  padding: '24px 48px',
+  width: '994px',
+  height: '656px',
+  padding: '16px 32px',
   boxSizing: 'border-box',
 })
 
 const Header = styled(CardHeader)({
   height: '89px',
-  marginBottom: '40px',
+  marginBottom: '20px',
   padding: 0,
 })
 
 const ModalContent = styled(CardContent)({
   padding: 0,
   height: '706px',
+})
+
+const ModalContentWrapper = styled(Box)({
+  display: 'flex',
+  gap: '24px',
+  justifyContent: 'space-between',
 })
