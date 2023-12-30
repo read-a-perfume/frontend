@@ -23,7 +23,7 @@ const ReviewFilterTabs = ({
   console.log(sort, 'soprt')
   return (
     <>
-      <SectionTitle fontWeight={500}>{sectionTitle}</SectionTitle>
+      <SectionTitle fontWeight={600}>{sectionTitle}</SectionTitle>
       <Typography variant="body5" color="#a9a9a9">
         다양한 향수 리뷰를 피드에서 살펴보세요
       </Typography>
@@ -73,6 +73,7 @@ const Chip = styled(Box)(({isClicked}: {isClicked: boolean}) => ({
   height: 31,
   padding: '20px 15px',
   fontFamily: 'Pretendard',
+  cursor: 'pointer',
   backgroundColor: isClicked ? '#FE7156' : '#F1F1F5',
   color: isClicked ? 'white' : '#A9A9A9',
 }))

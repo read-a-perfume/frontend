@@ -50,8 +50,8 @@ const PerfumeDetail = () => {
   const {isLoading: graphLoading, data: graphData} = results[1]
   const {isLoading: reviewLoading, data: reviewData} = results[2]
 
-  const handleChangeSort = e => {
-    setSort(e.target.value)
+  const handleChangeSort = tab => {
+    setSort(tab)
     setPage(1)
   }
 
@@ -157,6 +157,7 @@ const PerfumeDetail = () => {
         <PerfumeReviewList
           reviewData={reviewData}
           isLoading={reviewLoading}
+          sort={sort}
           handleChangeSort={handleChangeSort}
         />
 

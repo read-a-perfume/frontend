@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import styled from '@emotion/styled'
+import {styled} from '@mui/material'
 import {useQueries} from '@tanstack/react-query'
 import {Link, useSearchParams} from 'react-router-dom'
 import {
@@ -301,7 +301,7 @@ const Description = styled(Typography)({
   '-webkit-box-orient': 'vertical',
 })
 
-const ProductList = styled.ul({
+const ProductList = styled('ul')({
   padding: '0',
   margin: '0',
   width: '100%',
@@ -310,7 +310,7 @@ const ProductList = styled.ul({
   gap: '24px ',
 })
 
-const Footer = styled.footer({
+const Footer = styled('footer')({
   width: '100%',
   display: 'flex',
   justifyContent: 'center',

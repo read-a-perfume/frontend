@@ -4,10 +4,11 @@ import FlexBox from '@layouts/flex-box'
 import {Typography, styled} from '@mui/material'
 import ReviewCard from '@components/reviews/review-card'
 import SkeletonCard from '@components/skeleton-card'
-import ReviewListSelect from './review-list-select'
+import ReviewFilterTabs from '@components/reviews/review-filter-tabs'
 
 interface IfPerfumeReviewListProps {
   reviewData: IfReviewResponse
+  sort: string
   isLoading: boolean
   handleChangeSort: (e) => void
 }
@@ -17,15 +18,17 @@ const skeletons = Array.from({length: 6}, (_, index) => index + 1)
 const PerfumeReviewList = ({
   reviewData,
   isLoading,
+  sort,
   handleChangeSort,
 }: IfPerfumeReviewListProps) => {
   return (
     <Container>
       <Wrapper>
-        <ReviewListSelect
+        <ReviewFilterTabs
           sectionTitle="향수 리뷰"
           buttonText="리뷰 작성하기"
           optionName={['최신순', '좋아요순']}
+          sort={sort}
           handleChangeSort={handleChangeSort}
         />
 
