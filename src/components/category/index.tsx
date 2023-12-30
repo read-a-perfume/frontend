@@ -17,6 +17,7 @@ interface IfCategoryProps {
   setSearchParams?: React.Dispatch<React.SetStateAction<URLSearchParamsInit>>
   setCategoryId?: React.Dispatch<React.SetStateAction<number>>
   setDescription?: React.Dispatch<React.SetStateAction<string>>
+  margin?: string
 }
 
 const isLoadingData = Array.from({length: 11}, (_, index) => index + 1)
@@ -29,6 +30,7 @@ const Category = ({
   setCurrentCategory,
   setCategoryId,
   setDescription,
+  margin = '93px 0px',
 }: IfCategoryProps) => {
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -75,7 +77,7 @@ const Category = ({
   console.log(error)
 
   return (
-    <Wrapper>
+    <Wrapper customStyle={margin}>
       <Box sx={{cursor: 'pointer'}} onClick={handleLeftArrowClick}>
         <CustomIcons.BeforeIcon />
       </Box>
@@ -102,66 +104,67 @@ const Category = ({
               <FlexBox
                 direction="column"
                 alignItems="center"
-                gap=""
                 style={{
                   cursor: 'pointer',
                 }}
                 onClick={() => setQueryParams(category)}
                 key={category.id}
               >
-                {category.thumbnail ? (
-                  <CategoryImg
-                    clicked={
-                      (query && query === String(category.id)) ||
-                      (!query && currentCategory === category.name)
-                        ? 'true'
-                        : ''
-                    }
-                    src={category.thumbnail}
-                    alt="category 이미지"
-                  />
-                ) : (
-                  <>
-                    {(query && query === String(category.id)) ||
-                    (!query && currentCategory === category.name) ? (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="78"
-                        height="78"
-                        viewBox="0 0 78 78"
-                        fill="none"
-                      >
-                        <circle
-                          cx="39"
-                          cy="39"
-                          r="38.625"
-                          fill="white"
-                          stroke="#FE7156"
-                          strokeWidth="0.75"
-                        />
-                        <circle cx="39" cy="39" r="36" fill="#F1F1F5" />
-                      </svg>
-                    ) : (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="78"
-                        height="78"
-                        viewBox="0 0 78 78"
-                        fill="none"
-                      >
-                        <circle
-                          cx="39"
-                          cy="39"
-                          r="38.625"
-                          fill="white"
-                          stroke="#EDEDED"
-                          strokeWidth="0.75"
-                        />
-                        <circle cx="39" cy="39" r="36" fill="#F1F1F5" />
-                      </svg>
-                    )}
-                  </>
-                )}
+                <Box sx={{width: 78}}>
+                  {category.thumbnail ? (
+                    <CategoryImg
+                      clicked={
+                        (query && query === String(category.id)) ||
+                        (!query && currentCategory === category.name)
+                          ? 'true'
+                          : ''
+                      }
+                      src={category.thumbnail}
+                      alt="category 이미지"
+                    />
+                  ) : (
+                    <>
+                      {(query && query === String(category.id)) ||
+                      (!query && currentCategory === category.name) ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="78"
+                          height="78"
+                          viewBox="0 0 78 78"
+                          fill="none"
+                        >
+                          <circle
+                            cx="39"
+                            cy="39"
+                            r="38.625"
+                            fill="white"
+                            stroke="#FE7156"
+                            strokeWidth="0.75"
+                          />
+                          <circle cx="39" cy="39" r="36" fill="#F1F1F5" />
+                        </svg>
+                      ) : (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="78"
+                          height="78"
+                          viewBox="0 0 78 78"
+                          fill="none"
+                        >
+                          <circle
+                            cx="39"
+                            cy="39"
+                            r="38.625"
+                            fill="white"
+                            stroke="#EDEDED"
+                            strokeWidth="0.75"
+                          />
+                          <circle cx="39" cy="39" r="36" fill="#F1F1F5" />
+                        </svg>
+                      )}
+                    </>
+                  )}
+                </Box>
 
                 <CategoryName
                   clicked={
@@ -185,24 +188,24 @@ const Category = ({
   )
 }
 
-const Wrapper = styled.div({
-  margin: '93px 0px',
+const Wrapper = styled.div<{customStyle: string}>(({customStyle}) => ({
+  margin: customStyle,
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'center',
   position: 'relative',
-})
+}))
 
 const CategoryImg = styled.img<{clicked: string}>(({clicked}) => ({
-  borderRadius: '50%',
-  border: clicked ? '1px solid #FE7156' : '1px solid #F1F1F5',
+  borderRadius: '50% !important',
+  border: clicked ? '2px solid #FE7156' : '1px solid #F1F1F5',
   cursor: 'pointer',
   transition: 'all 0.1s ease-in-out',
   width: '78px',
   height: '78px',
 
   '&:hover': {
-    border: '1px solid #FE7156',
+    border: '2px solid #FE7156',
   },
 }))
 

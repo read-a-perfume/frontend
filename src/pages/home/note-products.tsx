@@ -1,9 +1,8 @@
-import instance from '@api/instance'
-import styled from '@emotion/styled'
-import {Skeleton, Typography} from '@mui/material'
+import {Box, Skeleton, Typography, styled} from '@mui/material'
 import {useQuery} from '@tanstack/react-query'
 import {theme} from '@theme/index'
 import {useNavigate} from 'react-router-dom'
+import {fetchPerfumeList} from 'src/store/server/categories/queries'
 
 type PerfumesType = {
   content: {
@@ -25,15 +24,6 @@ type PerfumesType = {
 
 const skeletons = new Array(6).fill(0).map((_, idx) => idx + 1)
 
-const fetchGetPerfumesByCategory = async (id: number) => {
-  try {
-    const res = await instance.get(`/perfumes/category/${id}?page=0&size=6`)
-    return res.data
-  } catch (error) {
-    throw new Error(error as string)
-  }
-}
-
 const NoteProducts = ({categoryId}: {categoryId: number}) => {
   const navigate = useNavigate()
 
@@ -43,7 +33,7 @@ const NoteProducts = ({categoryId}: {categoryId: number}) => {
     data: perfumes,
   } = useQuery<PerfumesType>(
     ['perfumes-by-note', categoryId],
-    () => fetchGetPerfumesByCategory(categoryId),
+    () => fetchPerfumeList(categoryId, 0),
     {
       keepPreviousData: false,
     },
@@ -58,14 +48,16 @@ const NoteProducts = ({categoryId}: {categoryId: number}) => {
             key={idx}
             onClick={() => navigate(`/perfume/${perfume.id}`)}
           >
-            <ThumbNail
-              src={
-                perfume.thumbnail
-                  ? perfume.thumbnail
-                  : 'images/perfume_test.png'
-              }
-              alt="product"
-            />
+            <ThumbNailBox>
+              <ThumbNail
+                src={
+                  perfume.thumbnail
+                    ? perfume.thumbnail
+                    : 'images/perfume_test.png'
+                }
+                alt="product"
+              />
+            </ThumbNailBox>
             <ProductInfoBox>
               <ProductName>
                 {perfume.name.length > 12
@@ -83,7 +75,7 @@ const NoteProducts = ({categoryId}: {categoryId: number}) => {
             sx={{borderRadius: 4, animationDuration: '1.2s'}}
             variant="rectangular"
             width={'30%'}
-            height={285}
+            height={214}
           />
         ))}
     </ProductLayout>
@@ -92,33 +84,29 @@ const NoteProducts = ({categoryId}: {categoryId: number}) => {
 
 export default NoteProducts
 
-const ProductLayout = styled.div({
+const ProductLayout = styled('div')({
   display: 'flex',
   flex: 1,
-  height: '600px',
-  gap: '32px',
+  gap: '24px',
   flexWrap: 'wrap',
-  marginBottom: 136,
 })
 
-const ProductBox = styled.div({
+const ProductBox = styled('div')({
   width: '30%',
-  height: '284px',
-  borderRadius: '16px',
+  height: '214px',
+  borderRadius: '12px',
   background: 'white',
   border: '1px solid #DBDBDB',
   overflow: 'hidden',
   cursor: 'pointer',
 })
 
-const ProductInfoBox = styled.div({
-  padding: '0px 24px',
-  marginTop: '-6px',
-  height: '78px',
+const ProductInfoBox = styled('div')({
+  borderTop: '1px solid #EDEDED',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
-  borderTop: '1px solid #EDEDED',
+  paddingLeft: '18px',
+  paddingTop: '12px',
 })
 
 const ProductName = styled(Typography)({
@@ -132,8 +120,13 @@ const BrandName = styled(Typography)({
   fontSize: theme.typography.body5.fontSize,
 })
 
-const ThumbNail = styled.img`
-  object-fit: center;
-  width: 100%;
-  height: 75%;
-`
+const ThumbNailBox = styled(Box)(() => ({
+  width: '282px',
+  height: '154px',
+}))
+
+const ThumbNail = styled('img')({
+  width: '100%',
+  height: '100%',
+  objectFit: 'contain',
+})

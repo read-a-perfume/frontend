@@ -1,3 +1,5 @@
+import {IfReviewResponse} from 'types/review.interface'
+
 import FlexBox from '@layouts/flex-box'
 import {Typography, styled} from '@mui/material'
 import ReviewCard from '@components/reviews/review-card'
@@ -5,7 +7,7 @@ import SkeletonCard from '@components/skeleton-card'
 import ReviewListSelect from './review-list-select'
 
 interface IfPerfumeReviewListProps {
-  reviewData: any
+  reviewData: IfReviewResponse
   isLoading: boolean
   handleChangeSort: (e) => void
 }
@@ -34,7 +36,11 @@ const PerfumeReviewList = ({
             ) : (
               <>
                 {reviewData?.content?.length > 0 ? (
-                  reviewData.content.map(item => <ReviewCard {...item} />)
+                  reviewData.content.map(item => (
+                    <div key={item.id}>
+                      <ReviewCard {...item} />
+                    </div>
+                  ))
                 ) : (
                   <NotReviewText>
                     아직 리뷰가 없습니다! 리뷰를 채워주세요!

@@ -55,7 +55,7 @@ export const MagazineCard = styled.div({
 export const SectionTitle = styled(Typography)({
   fontFamily: 'AritaBuri, sans-serif, Arial !important',
   fontSize: 18,
-  fontWeight: '500',
+  fontWeight: '600',
   color: '#191919',
 })
 
