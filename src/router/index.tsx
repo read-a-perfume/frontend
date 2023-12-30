@@ -95,7 +95,7 @@ const routerData: RouterElement[] = [
   {
     id: 6,
     label: '마이페이지',
-    path: '/mypage',
+    path: '/mypage/:userId',
     element: <MyPage />,
     isLayout: true,
     withAuth: true,

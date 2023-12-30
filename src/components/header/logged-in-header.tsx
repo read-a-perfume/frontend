@@ -18,12 +18,14 @@ interface LoggedInHeaderProps {
   thumbnail: string
   isLoggedIn: boolean
   onOpenNotification: () => void
+  userId: string | number
 }
 
 const LoggedInHeader = ({
   thumbnail,
   isLoggedIn,
   onOpenNotification,
+  userId,
 }: LoggedInHeaderProps) => {
   const anchorRef = useRef<HTMLButtonElement>(null)
   const navigation = useNavigate()
@@ -41,6 +43,10 @@ const LoggedInHeader = ({
     }
 
     switch (name) {
+      case 'mypage':
+        setMyPagePopOpen(false),
+        navigation(`/mypage/${userId}`)
+        break
       case 'review':
         setMyPagePopOpen(false)
         navigation('/reviews/writer')
@@ -104,7 +110,7 @@ const LoggedInHeader = ({
             style={{
               transformOrigin:
                 placement === 'bottom-start' ? 'left top' : 'left bottom',
-              height: 123,
+              height: 162,
               width: 177,
               borderRadius: 8,
               border: '1px solid #191919',
@@ -121,6 +127,9 @@ const LoggedInHeader = ({
                   onKeyDown={handleListKeyDown}
                   sx={{paddingTop: 0}}
                 >
+                  <PopupItem onClick={e => handleClose(e, 'mypage')}>
+                    마이 페이지
+                  </PopupItem>
                   <PopupItem onClick={e => handleClose(e, 'review')}>
                     리뷰 작성
                   </PopupItem>

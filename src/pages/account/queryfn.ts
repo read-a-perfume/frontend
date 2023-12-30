@@ -25,7 +25,11 @@ export const patchPassword = async (data: IfPasswordPatch) => {
 
 export const patchProfileImage = async (data: any) => {
   try {
-    const res: any = await instance.patch(`/user/profile-pic`, data)
+    const res: any = await instance.patch(`/user/profile-pic`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data;charset=UTF-8',
+      },
+    })
     return res.data
   } catch (error) {
     console.error(error)

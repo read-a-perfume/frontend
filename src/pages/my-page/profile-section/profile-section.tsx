@@ -3,16 +3,29 @@ import {useQuery} from '@tanstack/react-query'
 import {fetchCurUser, fetchMytype, fetchFollowCount} from './queryfn'
 import ProfileInfo from './profile-info'
 import ProfileType from './profile-type'
+import {followQueryKeys, userQueryKeys} from 'src/react-query-keys/user.keys'
 
-const ProfileSection = () => {
-  const {data: curUser} = useQuery(['curuser'], () => fetchCurUser())
-  const {data: followCount} = useQuery(['followcount'], () => fetchFollowCount())
-  const {data: mytype} = useQuery(['mytype'], () => fetchMytype())
+interface proptype {
+  userId: string
+}
+
+const ProfileSection = ({userId}: proptype) => {
+  const {data: curUser} = useQuery(userQueryKeys.user(userId), () =>
+    fetchCurUser(userId),
+  )
+  const {data: followCount} = useQuery(followQueryKeys.follows(userId), () =>
+    fetchFollowCount(userId),
+  )
+  const {data: mytype} = useQuery(userQueryKeys.user(userId), () =>
+    fetchMytype(),
+  )
+
   return (
     <Container>
       {curUser !== undefined && <ProfileAvatar src={curUser.thumbnail} />}
       {curUser !== undefined && followCount !== undefined && (
         <ProfileInfo
+          userId={curUser.id}
           username={curUser.username}
           follower={followCount.followerCount}
           following={followCount.followingCount}
@@ -32,7 +45,7 @@ const Container = styled(Box)(() => ({
   height: '310px',
   display: 'flex',
   alignItems: 'center',
-  padding: '0 49px 0 36px'
+  padding: '0 49px 0 36px',
 }))
 
 const ProfileAvatar = styled(Avatar)(() => ({
