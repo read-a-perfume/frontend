@@ -1,10 +1,10 @@
 import instance from '@api/instance'
 import {AxiosResponse} from 'axios'
-import { IfFollowResponse, IfReviewCount, IfMe, IfUserType } from 'types/user.interface'
+import { IfFollowResponse, IfReviewCount, IfUserType, IfUser } from 'types/user.interface'
 
-export const fetchCurUser = async (): Promise<IfMe> => {
+export const fetchCurUser = async (id:string): Promise<IfUser> => {
   try {
-    const res: AxiosResponse<IfMe> = await instance.get(`/me`)
+    const res: AxiosResponse<IfUser> = await instance.get(`/user/${id}`)
     return res.data
   } catch (error: any) {
     console.log(error)
@@ -24,10 +24,10 @@ export const fetchReviewCount = async (): Promise<IfReviewCount> => {
   }
 }
 
-export const fetchFollowCount = async (): Promise<IfFollowResponse> => {
+export const fetchFollowCount = async (id:string): Promise<IfFollowResponse> => {
   try {
     const res: AxiosResponse<IfFollowResponse> = await instance.get(
-      `/mypage/100/follows`,
+      `/mypage/${id}/follows`,
     )
     return res.data
   } catch (error: any) {

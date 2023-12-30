@@ -3,13 +3,15 @@ import FollowText from './follow-text'
 import {useRouter} from '@hooks/use-router'
 
 interface proptype {
+  userId:number
   username: string
   following: number
   follower: number
 }
 
-const ProfileInfo = ({username, following, follower}: proptype) => {
+const ProfileInfo = ({userId,username, following, follower}: proptype) => {
   const {routeTo} = useRouter()
+  console.log(userId)
 
   return (
     <Container>

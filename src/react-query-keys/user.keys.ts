@@ -1,11 +1,12 @@
 export const userQueryKeys = {
   me: ['me'],
-  userTastes: ['user-tastes'],
+  userTastes: (id:string) => ['user-tastes',{id:id}],
   mypageReviews: ['mypage-reviews'],
+  user: (id: string) => ['user', {id: id}],
 }
 
 export const followQueryKeys = {
-  follows: ['follows'],
+  follows: (id: string) => ['follows', {id: id}],
 }
 
 export const followMutateKeys = {

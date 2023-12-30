@@ -1,10 +1,14 @@
 import {Box, Typography, styled} from '@mui/material'
 
-// just temporary
-const Banner = () => {
+interface proptype {
+  text?: string
+}
+
+const Banner = ({text = ''}: proptype) => {
   return (
     <_Banner>
-      <BannerText>마이페이지 관련 멘트</BannerText>
+      <BannerImg src="/images/banner.png" width={100} />
+      <BannerText>{text}</BannerText>
     </_Banner>
   )
 }
@@ -16,20 +20,26 @@ const _Banner = styled(Box)(() => ({
   height: '470px',
   display: 'flex',
   alignItems: 'center',
-  paddingLeft: '160px',
+  justifyContent: 'center',
   backgroundColor: 'black',
+  position: 'relative',
+  top: 0,
+}))
+
+const BannerImg = styled('img')(() => ({
+  position: 'absolute',
+  top: 0,
+  width: '100%',
+  height: '100%',
 }))
 
 const BannerText = styled(Typography)(() => ({
-  width: '681px',
+  width: '1200px',
   height: '116px',
   fontFamily: 'AritaBuri',
   fontSize: '36px',
   fontWeight: 600,
-  fontStretch: 'normal',
-  fontStyle: 'normal',
   lineHeight: 1.6,
-  letterSpacing: 'normal',
-  textAlign: 'left',
   color: '#fff',
+  zIndex: 1,
 }))
