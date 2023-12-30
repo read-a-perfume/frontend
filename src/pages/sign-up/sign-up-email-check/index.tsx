@@ -6,7 +6,7 @@ interface Props {
   value: string
   handleClick: (id: string) => void
 }
-const SignUpIdCheck = ({title, value, handleClick}: Props) => {
+const SignUpEmailCheck = ({title, value, handleClick}: Props) => {
   return (
     <Box sx={{position: 'absolute', right: '-100px', top: '35px'}}>
       <MuiButton
@@ -18,4 +18,4 @@ const SignUpIdCheck = ({title, value, handleClick}: Props) => {
   )
 }
 
-export default SignUpIdCheck
+export default SignUpEmailCheck

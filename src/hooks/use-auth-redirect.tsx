@@ -9,18 +9,6 @@ const useAuthRedirect = () => {
 
   const {routeTo} = useRouter()
 
-  // const {isLoading} = useQuery({
-  //   queryFn: fetchRefreshToken,
-  //   queryKey: ['userProfiledsdss'],
-  //   options: {
-  //     onSuccess: data => {
-  //       setIsLoggined(data)
-  //     },
-  //     onError: () => routeTo('/sign-in'),
-  //     staleTime: Infinity,
-  //   },
-  // })
-
   const {isLoading} = useQuery({
     queryFn: fetchUserProfile,
     queryKey: ['userProfile'],
@@ -29,7 +17,8 @@ const useAuthRedirect = () => {
         setIsLoggined(data)
       },
       onError: () => routeTo('/sign-in'),
-      // staleTime: Infinity,
+      staleTime: Infinity,
+      retry: 1,
     },
   })
 

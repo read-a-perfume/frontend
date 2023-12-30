@@ -24,5 +24,11 @@ export const postSignUpIdDuplicationCheck = async (userId: string) => {
   const res = await instance.post('/signup/check-username', {
     username: userId,
   })
-  return res
+  return res.data
+}
+export const postSignUpEmailDuplicationCheck = async (email: string) => {
+  const res = await instance.post('/signup/email-verify/request', {
+    email,
+  })
+  return res.data
 }

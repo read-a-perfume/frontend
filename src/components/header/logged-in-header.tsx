@@ -13,6 +13,7 @@ import {
 } from '@mui/material'
 import {useNavigate} from 'react-router-dom'
 import {postLogout} from 'src/store/server/auth/mutations'
+import useMutation from 'src/store/server/use-mutation'
 
 interface LoggedInHeaderProps {
   thumbnail: string
@@ -31,6 +32,17 @@ const LoggedInHeader = ({
   const navigation = useNavigate()
   const [myPagePop, setMyPagePopOpen] = useState<boolean>(false)
 
+  const {mutate: logoutMutate} = useMutation({
+    mutationFn: postLogout,
+    mutationKey: ['logout'],
+    options: {
+      onSuccess: () => window.location.reload(),
+    },
+  })
+  const Logout = () => {
+    logoutMutate()
+  }
+
   const handleClose = async (
     event: Event | React.SyntheticEvent,
     name: string,
@@ -44,8 +56,7 @@ const LoggedInHeader = ({
 
     switch (name) {
       case 'mypage':
-        setMyPagePopOpen(false),
-        navigation(`/mypage/${userId}`)
+        setMyPagePopOpen(false), navigation(`/mypage/${userId}`)
         break
       case 'review':
         setMyPagePopOpen(false)
@@ -54,11 +65,6 @@ const LoggedInHeader = ({
       case 'profile':
         setMyPagePopOpen(false)
         navigation('/settings')
-        break
-      case 'logout':
-        console.log('logout!')
-        setMyPagePopOpen(false)
-        await postLogout()
         break
     }
   }
@@ -136,9 +142,7 @@ const LoggedInHeader = ({
                   <PopupItem onClick={e => handleClose(e, 'profile')}>
                     프로필 편집
                   </PopupItem>
-                  <PopupItem onClick={e => handleClose(e, 'logout')}>
-                    로그아웃
-                  </PopupItem>
+                  <PopupItem onClick={Logout}>로그아웃</PopupItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>

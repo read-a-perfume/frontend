@@ -1,6 +1,6 @@
 import Magazines from './magazines'
 import Notes from './notes'
-import Review from './review'
+
 import {Banner, BannerBox, BannerImage, Content, Title} from './index.style'
 import Button from '@components/base/button.js'
 import Products from './products.js'
@@ -9,6 +9,7 @@ import {fetchCategories} from 'src/store/server/categories/queries.js'
 import {useQuery} from '@tanstack/react-query'
 import {IfCategory} from 'types/perfume.interface.js'
 import {perfumeQueryKeys} from 'src/react-query-keys/perfume.keys.js'
+import ReviewSection from './review-section/index.js'
 
 export default function Home() {
   const navigate = useNavigate()
@@ -52,7 +53,7 @@ export default function Home() {
           categoryError={categoryError}
           categories={categories}
         />
-        <Review />
+        <ReviewSection />
         <Products />
       </Content>
     </>
