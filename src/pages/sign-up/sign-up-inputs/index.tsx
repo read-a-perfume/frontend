@@ -4,10 +4,11 @@ import useValidationForm from '../hooks/use-validation-form'
 import {formData} from '../data.constant'
 import SignUpIdCheck from '../sign-up-id-check'
 import usePostIdCheck from '../hooks/use-post-id-check'
+import SignUpEmailCheck from '../sign-up-email-check'
 
 const SignupInputs = () => {
   const {username, password, confirmPassword, email} = useValidationForm()
-  const {mutateCheckUserId} = usePostIdCheck({
+  const {mutateCheckUserId, checkEmailMutate} = usePostIdCheck({
     success: '사용 가능합니다',
     failed: '아이디 중복입니다.',
   })
@@ -51,6 +52,13 @@ const SignupInputs = () => {
           type="email"
           method={email}
           name="본인 확인 이메일"
+          compoment={
+            <SignUpEmailCheck
+              title="인증"
+              value={email.field.value}
+              handleClick={checkEmailMutate}
+            />
+          }
         />
       </Item>
     </List>
