@@ -1,11 +1,11 @@
 import {Box, styled} from '@mui/material'
-import {FormDataType} from './type'
+import {FormInfoDataType} from './type'
 import {FormProvider, useForm} from 'react-hook-form'
 import usePostPw from './hook/use-post-pw'
 import EditPw from './edit-pw/edit-pw'
 
 const EditAccount = () => {
-  const methods = useForm<FormDataType>({
+  const methods = useForm<FormInfoDataType>({
     defaultValues: {
       oldPassword: '',
       newPassword: '',

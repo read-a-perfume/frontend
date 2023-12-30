@@ -18,7 +18,7 @@ interface LoggedInHeaderProps {
   thumbnail: string
   isLoggedIn: boolean
   onOpenNotification: () => void
-  userId: string | number
+  userId: string
 }
 
 const LoggedInHeader = ({

@@ -1,14 +1,16 @@
 import {useMutation} from '@tanstack/react-query'
-import {FormDataType} from '../edit-profile/type'
+import {FormInfoDataType, FormThumbnailDataType} from '../edit-profile/type'
 import {patchProfile, patchProfileImage} from '../queryfn'
 
 const usePostProfile = () => {
   const profileImage = useMutation((d: any) => patchProfileImage(d), {
-    onSuccess: () => {},
+    onSuccess: () => {
+      alert('프로필 사진 변경 성공')
+    },
     onError: () => {
       alert('프로필 사진 변경 실패')
     },
-    useErrorBoundary:false,
+    useErrorBoundary: false,
   })
 
   const profile = useMutation(
@@ -20,26 +22,33 @@ const usePostProfile = () => {
       onError: () => {
         alert('프로필 정보 변경 실패')
       },
-      useErrorBoundary:false,
+      useErrorBoundary: false,
     },
   )
 
-  const onSubmit = (data: FormDataType) => {
+  const onSubmit = (data: FormInfoDataType) => {
     try {
-      if (data.thumbnail === null) {
-        alert('프로필 이미지를 지정해주세요')
-      } else {
+      profile.mutate({bio: data.bio, sex: data.sex, birthday: '20000101'})
+    } catch (error: any) {
+      alert(error.message)
+    }
+  }
+
+  const onSubmitThumbnail = (data: FormThumbnailDataType) => {
+    try {
+      if (data.thumbnail !== null) {
         const formData = new FormData()
-        formData.append('file',data.thumbnail)
+        formData.append('file', data.thumbnail)
         profileImage.mutate(formData)
-        profile.mutate({bio: data.bio, sex: data.sex, birthday: '20000101'})
+      } else {
+        alert('프로필 사진을 지정해주세요')
       }
     } catch (error: any) {
       alert(error.message)
     }
   }
 
-  return {onSubmit}
+  return {onSubmit, onSubmitThumbnail}
 }
 
 export default usePostProfile

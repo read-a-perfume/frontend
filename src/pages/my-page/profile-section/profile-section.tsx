@@ -4,6 +4,8 @@ import {fetchCurUser, fetchMytype, fetchFollowCount} from './queryfn'
 import ProfileInfo from './profile-info'
 import ProfileType from './profile-type'
 import {followQueryKeys, userQueryKeys} from 'src/react-query-keys/user.keys'
+import {useRecoilValue} from 'recoil'
+import {UserProfileAtom} from 'src/store/client/auth/atoms'
 
 interface proptype {
   userId: string
@@ -20,18 +22,24 @@ const ProfileSection = ({userId}: proptype) => {
     fetchMytype(),
   )
 
+  const currentClient = useRecoilValue(UserProfileAtom)
+
+  const flag = currentClient.userId === Number(userId)
+
   return (
     <Container>
       {curUser !== undefined && <ProfileAvatar src={curUser.thumbnail} />}
       {curUser !== undefined && followCount !== undefined && (
         <ProfileInfo
-          userId={curUser.id}
           username={curUser.username}
           follower={followCount.followerCount}
           following={followCount.followingCount}
+          flag={flag}
         />
       )}
-      {mytype && <ProfileType data={mytype} />}
+      {mytype && (
+        <ProfileType data={mytype} flag={flag} />
+      )}
     </Container>
   )
 }

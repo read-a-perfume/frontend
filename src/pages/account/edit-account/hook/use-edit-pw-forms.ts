@@ -1,9 +1,9 @@
 import {useController, useFormContext} from 'react-hook-form'
-import {FormDataType} from '../type'
+import {FormInfoDataType} from '../type'
 import formValidation from '../util/form-validation'
 
 const useEditPwForms = () => {
-  const {control} = useFormContext<FormDataType>()
+  const {control} = useFormContext<FormInfoDataType>()
   const oldPassword = useController({
     name: 'oldPassword',
     control,

@@ -1,13 +1,15 @@
 import {Button, styled} from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 
-
-interface proptype{
-    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
+interface proptype {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  flag: boolean
 }
 
-const TypeAddCard = ({setIsOpen}:proptype) => {
-  
+const TypeAddCard = ({setIsOpen, flag}: proptype) => {
+  if (!flag) {
+    return <Container />
+  }
 
   return (
     <Container onClick={() => setIsOpen(true)}>
