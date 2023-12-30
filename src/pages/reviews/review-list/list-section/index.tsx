@@ -1,6 +1,6 @@
 import ReviewCardList from '@components/reviews/review-card-list'
-import {Link, Pagination, PaginationItem} from '@mui/material'
-import {useLocation} from 'react-router-dom'
+import {Pagination, PaginationItem} from '@mui/material'
+import {Link, useLocation} from 'react-router-dom'
 import {reviewQueryKeys} from 'src/react-query-keys/review.keys'
 import {fetchReviewPage} from 'src/store/server/reviews/queries'
 import useQuery from 'src/store/server/use-query'
@@ -8,21 +8,21 @@ import useQuery from 'src/store/server/use-query'
 const ListSection = ({sort}: {sort: string}) => {
   const location = useLocation()
   const query = new URLSearchParams(location.search)
-  const page = parseInt(query.get('page') || '1', 10)
+  const currentPage = parseInt(query.get('page') || '1', 10)
   const {data} = useQuery({
-    queryKey: [reviewQueryKeys.list({page, size: 10, sort})],
+    queryKey: [reviewQueryKeys.list({page: currentPage, size: 10, sort})],
     queryFn: () => fetchReviewPage(sort, 1, 10),
     options: {
       suspense: true,
     },
   })
-  console.log(query, 'query')
+
   return (
     <>
       <ReviewCardList content={data?.content || []} />
       <Pagination
-        page={page}
-        count={3}
+        page={currentPage}
+        count={data?.totalPages}
         defaultPage={1}
         boundaryCount={2}
         variant="outlined"
