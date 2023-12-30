@@ -1,7 +1,7 @@
 import useClassifyKorean from './hook/use-classify-korean'
 import {Box, styled} from '@mui/material'
 import BrandCard from './brand-card'
-import Nothing from './nothing'
+import Nothing from '../base/nothing'
 import {useQuery} from '@tanstack/react-query'
 import {fetchBrands} from './queryfn'
 

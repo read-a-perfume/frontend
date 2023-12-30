@@ -45,4 +45,3 @@ const Container = styled(Box)(() => ({
   
 }))
 
-// <MagazineList brandId={brandId}/>
