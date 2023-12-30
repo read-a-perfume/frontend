@@ -3,7 +3,7 @@ import {IfUserType} from 'types/user.interface'
 import TypeInfoCard from './type-info-card'
 import TypeAddCard from './type-add-card'
 import { useState } from 'react'
-import TypeModal from './modal/type-modal'
+import TypeModal from './modal/category-modal/type-modal'
 
 interface proptype {
   data: IfUserType[]
@@ -15,6 +15,7 @@ const indexArr: number[] = [0, 1, 2]
 const ProfileType = ({data,flag}: proptype) => {
 
   const [isOpen,setIsOpen] = useState<boolean>(false)
+ 
 
   return (
     <Box sx={{marginLeft: 'auto',}}>

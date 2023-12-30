@@ -1,8 +1,14 @@
 import instance from '@api/instance'
 import {AxiosResponse} from 'axios'
-import { IfFollowResponse, IfReviewCount, IfUserType, IfUser } from 'types/user.interface'
+import {IfCategory} from 'types/perfume.interface'
+import {
+  IfFollowResponse,
+  IfReviewCount,
+  IfUserType,
+  IfUser,
+} from 'types/user.interface'
 
-export const fetchCurUser = async (id:string): Promise<IfUser> => {
+export const fetchCurUser = async (id: string): Promise<IfUser> => {
   try {
     const res: AxiosResponse<IfUser> = await instance.get(`/user/${id}`)
     return res.data
@@ -24,7 +30,9 @@ export const fetchReviewCount = async (): Promise<IfReviewCount> => {
   }
 }
 
-export const fetchFollowCount = async (id:string): Promise<IfFollowResponse> => {
+export const fetchFollowCount = async (
+  id: string,
+): Promise<IfFollowResponse> => {
   try {
     const res: AxiosResponse<IfFollowResponse> = await instance.get(
       `/mypage/${id}/follows`,
@@ -38,9 +46,17 @@ export const fetchFollowCount = async (id:string): Promise<IfFollowResponse> => 
 
 export const fetchMytype = async (): Promise<IfUserType[]> => {
   try {
-    const res: AxiosResponse<IfUserType[]> = await instance.get(
-      `/user/tastes`,
-    )
+    const res: AxiosResponse<IfUserType[]> = await instance.get(`/user/tastes`)
+    return res.data
+  } catch (error: any) {
+    console.log(error)
+    throw error
+  }
+}
+
+export const fetchAlltype = async (): Promise<IfCategory[]> => {
+  try {
+    const res: AxiosResponse<IfCategory[]> = await instance.get(`/categories`)
     return res.data
   } catch (error: any) {
     console.log(error)

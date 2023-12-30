@@ -129,6 +129,7 @@ const Perfumes = () => {
                   src={perfumeThemeData?.thumbnail}
                   alt="main-img"
                   className="main-img"
+                  style={{filter:'brightness(0.5)'}}
                 />
 
                 <Box

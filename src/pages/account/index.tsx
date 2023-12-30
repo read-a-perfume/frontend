@@ -6,8 +6,11 @@ import EditAccount from './edit-account'
 import {useQuery} from '@tanstack/react-query'
 import {fetchCurUser} from './queryfn'
 import getImageFromURL from './util/getImageFromURL'
+import useGoTop from '@hooks/use-go-top'
 
 const Account = () => {
+
+  useGoTop()
   const [isProfileSection, setIsProfileSection] = useState<boolean>(true)
   const {data: curUser} = useQuery(['curUser'], () => fetchCurUser())
   const [thumbnail, setThumbnail] = useState<File | null>(null)
