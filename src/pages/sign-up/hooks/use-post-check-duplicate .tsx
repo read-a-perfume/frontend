@@ -10,8 +10,8 @@ interface IfProps {
   failedMessage: string
 }
 
-const usePostIdCheck = ({successMessage, failedMessage}: IfProps) => {
-  const {setError} = useFormContext()
+const usePostCheckDuplicate = ({successMessage, failedMessage}: IfProps) => {
+  const {setError,trigger} = useFormContext()
   const {mutate: mutateCheckUserId} = useMutation({
     mutationFn: postSignUpIdDuplicationCheck,
     mutationKey: ['userIdCheck'],
@@ -26,7 +26,7 @@ const usePostIdCheck = ({successMessage, failedMessage}: IfProps) => {
     },
   })
 
-  const {mutate: checkEmailMutate, data: emailRes} = useMutation({
+  const {mutate: checkEmailMutate} = useMutation({
     mutationFn: postSignUpEmailDuplicationCheck,
     mutationKey: ['email'],
     options: {
@@ -40,7 +40,20 @@ const usePostIdCheck = ({successMessage, failedMessage}: IfProps) => {
     },
   })
 
-  return {mutateCheckUserId, checkEmailMutate, emailRes}
+  //아이디 중복체크 
+  const handleIdDuplicateCheck = async (usernameFildValue:string) => {
+    if ((await trigger('username')) === true) {
+      mutateCheckUserId(usernameFildValue)
+    }
+  }
+  // 이메일 중복체크 
+  const handleEmailDuplicateCheck = async (emailFildValue:string) => {
+    if ((await trigger('email')) === true) {
+      checkEmailMutate(emailFildValue)
+    }
+  }
+
+  return {mutateCheckUserId, checkEmailMutate, handleIdDuplicateCheck,handleEmailDuplicateCheck }
 }
 
-export default usePostIdCheck
+export default usePostCheckDuplicate
