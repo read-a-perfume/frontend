@@ -1,4 +1,11 @@
-import {Box, CardContent, CardHeader, styled, Modal} from '@mui/material'
+import {
+  Box,
+  CardContent,
+  CardHeader,
+  styled,
+  Modal,
+  LinearProgress,
+} from '@mui/material'
 import FeedbackSection from './feedback-section'
 import PhotoSection from './photo-section'
 import ReviewInfoSection from './review-info-section'
@@ -27,28 +34,29 @@ interface IfProps {
 const ReviewDetails = ({id, handleClose, open}: IfProps) => {
   const {reviewDetails, perfumeDetails} = useFetchReviewDetails({id: id})
 
-  if (!reviewDetails) {
-    return false
-  }
-  console.log(perfumeDetails, '향수상세')
   return (
     <Wrapper open={open} onClose={handleClose}>
       <Container sx={style}>
-        <Header title={<HeaderSection perfumeDetails={perfumeDetails} />} />
-        <ModalContent>
-          <ModalContentWrapper>
-            <PhotoSection thumbnails={reviewDetails.thumbnails} />
-            <Box
-              sx={{
-                width: '486px',
-                position: 'relative',
-              }}
-            >
-              {reviewDetails && <ReviewInfoSection {...reviewDetails} />}
-              <FeedbackSection id={id} />
-            </Box>
-          </ModalContentWrapper>
-        </ModalContent>
+        <>
+          {reviewDetails ? (
+            <>
+              <ModalHeader
+                title={<HeaderSection perfumeDetails={perfumeDetails} />}
+              />
+              <ModalContent>
+                <ModalContentWrapper>
+                  <PhotoSection thumbnails={reviewDetails?.thumbnails} />
+                  <ReviewTextLineSection>
+                    <ReviewInfoSection {...reviewDetails} />
+                    <FeedbackSection id={id} />
+                  </ReviewTextLineSection>
+                </ModalContentWrapper>
+              </ModalContent>
+            </>
+          ) : (
+            <LinearProgress color="primary" />
+          )}
+        </>
       </Container>
     </Wrapper>
   )
@@ -65,8 +73,8 @@ const Container = styled(Box)({
   boxSizing: 'border-box',
 })
 
-const Header = styled(CardHeader)({
-  height: '89px',
+const ModalHeader = styled(CardHeader)({
+  height: '73px',
   marginBottom: '20px',
   padding: 0,
 })
@@ -80,4 +88,9 @@ const ModalContentWrapper = styled(Box)({
   display: 'flex',
   gap: '24px',
   justifyContent: 'space-between',
+})
+
+const ReviewTextLineSection = styled(Box)({
+  width: '486px',
+  position: 'relative',
 })
