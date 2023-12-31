@@ -1,14 +1,14 @@
 import {List, ListItem, styled} from '@mui/material'
 import SignUpValidation from './sign-up-validation'
-import useValidationForm from '../hooks/use-validation-form'
 import {formData} from '../data.constant'
 import SignUpIdCheck from '../sign-up-id-check'
-import usePostIdCheck from '../hooks/use-post-id-check'
 import SignUpEmailCheck from '../sign-up-email-check'
+import usePostCheckDuplicate from '../hooks/use-post-check-duplicate '
+import useValidateForm from '../hooks/use-validate-form'
 
 const SignupInputs = () => {
-  const {username, password, confirmPassword, email} = useValidationForm()
-  const {mutateCheckUserId, checkEmailMutate} = usePostIdCheck({
+  const {username, password, confirmPassword, email} = useValidateForm()
+  const {handleIdDuplicateCheck, handleEmailDuplicateCheck} = usePostCheckDuplicate({
     successMessage: '사용 가능합니다',
     failedMessage: '아이디 중복입니다.',
   })
@@ -25,7 +25,7 @@ const SignupInputs = () => {
             <SignUpIdCheck
               title="중복확인"
               value={username.field.value}
-              handleClick={mutateCheckUserId}
+              handleIdDuplicateCheck={handleIdDuplicateCheck}
             />
           }
         />
@@ -56,7 +56,7 @@ const SignupInputs = () => {
             <SignUpEmailCheck
               title="인증"
               value={email.field.value}
-              handleClick={checkEmailMutate}
+              handleEmailDuplicateCheck={handleEmailDuplicateCheck}
             />
           }
         />

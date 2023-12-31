@@ -8,6 +8,7 @@ export interface ButtonProps {
   handleClick?: (event: React.MouseEvent<HTMLButtonElement> | any) => void
   height?: string
   formType?: 'button' | 'submit'
+  disabled?: boolean
 }
 
 const MuiButton: React.FC<ButtonProps> = ({
@@ -18,6 +19,7 @@ const MuiButton: React.FC<ButtonProps> = ({
   handleClick,
   height = '48px',
   formType = 'button',
+  disabled = false,
 }) => {
   const theme = useTheme()
 
@@ -45,6 +47,7 @@ const MuiButton: React.FC<ButtonProps> = ({
     <Button
       variant="contained"
       type={formType}
+      disabled={disabled}
       sx={{
         '&.MuiButtonBase-root': {
           width: `${width ? width : '100%'}`,

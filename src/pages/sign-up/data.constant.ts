@@ -63,7 +63,7 @@ export const formData = {
   email: {
     label: '본인 확인 이메일',
     name: 'email',
-    placeholder: '8~16자 / 문자, 숫자, 특수 문자 모두 혼용',
+    placeholder: '@필수',
     register: {
       required: {
         value: true,
