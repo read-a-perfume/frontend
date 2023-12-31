@@ -31,10 +31,11 @@ const SignUpForm = () => {
     mutationFn: postSignUp,
     mutationKey: ['sign-up'],
     options: {
+      onSuccess: () => routeTo('/'),
       onError: error => {
         if (axios.isAxiosError(error)) {
           if (error.response?.status === 409) {
-            alert('중복된 아이디입니다')
+            alert(error.response.data.message)
           }
         } else {
           alert('회원가입에 실패 했습니다.')
@@ -51,7 +52,7 @@ const SignUpForm = () => {
       marketingConsent: data.marketingConsent,
       promotionConsent: data.promotionConsent,
     }
-    console.log(data, 'Data')
+
     mutate(newData)
   }
 
