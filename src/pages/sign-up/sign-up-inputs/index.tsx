@@ -9,8 +9,8 @@ import SignUpEmailCheck from '../sign-up-email-check'
 const SignupInputs = () => {
   const {username, password, confirmPassword, email} = useValidationForm()
   const {mutateCheckUserId, checkEmailMutate} = usePostIdCheck({
-    success: '사용 가능합니다',
-    failed: '아이디 중복입니다.',
+    successMessage: '사용 가능합니다',
+    failedMessage: '아이디 중복입니다.',
   })
 
   return (
