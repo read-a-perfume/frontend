@@ -20,7 +20,7 @@ const ReviewFilterTabs = ({
   sort,
 }: IfReviewListSelectProps) => {
   const {routeTo} = useRouter()
-  console.log(sort, 'soprt')
+
   return (
     <>
       <SectionTitle fontWeight={600}>{sectionTitle}</SectionTitle>

@@ -15,17 +15,17 @@ const Notes = ({categoryLoading, categoryError, categories}: any) => {
   )
 
   useEffect(() => {
-    if (clickedNote === '애니멀') {
+    if (clickedNote === 'Animal') {
       setImage('animal')
-    } else if (clickedNote === '시트러스') {
+    } else if (clickedNote === 'Citrus') {
       setImage('citrus')
-    } else if (clickedNote === '그린') {
+    } else if (clickedNote === 'Green') {
       setImage('green')
-    } else if (clickedNote === '머스크') {
+    } else if (clickedNote === 'Musk') {
       setImage('musk')
-    } else if (clickedNote === '스파이시') {
+    } else if (clickedNote === 'Spicy') {
       setImage('spicy')
-    } else if (clickedNote === '스위트') {
+    } else if (clickedNote === 'Sweet') {
       setImage('sweet')
     } else {
       setImage('default')
