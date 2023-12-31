@@ -1,16 +1,13 @@
 import {Box, Button, Checkbox, Typography, styled} from '@mui/material'
-import {
-  useFormContext,
-} from 'react-hook-form'
+import {useFormContext} from 'react-hook-form'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import useValidationForm from '../hooks/use-validation-form'
+import useValidateForm from '../hooks/use-validate-form'
 import CheckBoxItem from './checkbox-item'
 
 const SignUpAgreement = () => {
   const {watch, setValue} = useFormContext()
-  const {allCheck, age, promotionConsent, marketingConsent} =
-    useValidationForm()
+  const {allCheck, age, promotionConsent, marketingConsent} = useValidateForm()
 
   const handleUseFormAllCheck = () => {
     const newValue = watch('allCheck')
