@@ -185,7 +185,7 @@ const Perfumes = () => {
         />
 
         {/* 제품 리스트 */}
-        <Box sx={{height: '799px'}}>
+        <Box sx={{minHeight: '799px'}}>
           {perfumesLoading ? (
             <>
               <PerfumeSkeleton skeletons={skeletons} />
@@ -193,13 +193,6 @@ const Perfumes = () => {
           ) : (
             <>
               <PerfumeList perfumeListData={perfumeListData.content} />
-
-              {perfumeListData.content.length === 0 && (
-                <NotPerfumeText>
-                  향수 없이는 세상이 흑백인데, 우리 제품이 없어서 모두 향기로운
-                  색채가 사라진 것 같아요! 🌈🚫
-                </NotPerfumeText>
-              )}
             </>
           )}
           <Footer>
@@ -314,15 +307,6 @@ const SLink = styled(Link)({
   '&:hover img': {
     transform: 'scale(1.098)',
   },
-})
-
-const NotPerfumeText = styled(Typography)({
-  color: ' #ABABAB',
-  fontAmily: 'Pretendard',
-  fontSize: ' 19.5px',
-  fontWeight: 500,
-  lineHeight: 'normal',
-  textAlign: 'center',
 })
 
 export default Perfumes
