@@ -33,7 +33,7 @@ const NoteProducts = ({categoryId}: {categoryId: number}) => {
     data: perfumes,
   } = useQuery<PerfumesType>(
     ['perfumes-by-note', categoryId],
-    () => fetchPerfumeList(categoryId, 0),
+    () => fetchPerfumeList(categoryId, 0, 6),
     {
       keepPreviousData: false,
     },

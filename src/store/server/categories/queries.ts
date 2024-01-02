@@ -18,10 +18,12 @@ export const fetchCategories = async (): Promise<IfCategory[]> => {
 export const fetchPerfumeList = async (
   queryCategoryId: number,
   page: number,
+  size?: number,
 ) => {
   try {
+    console.log(queryCategoryId, page, size)
     const res = await instance.get(`/perfumes/category/${queryCategoryId}`, {
-      params: {page: page, size: '10'},
+      params: {page: page, size: size ? size : '10'},
     })
 
     const data = res.data
