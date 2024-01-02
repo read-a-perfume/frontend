@@ -111,59 +111,16 @@ const Category = ({
                 key={category.id}
               >
                 <Box sx={{width: 78}}>
-                  {category.thumbnail ? (
-                    <CategoryImg
-                      clicked={
-                        (query && query === String(category.id)) ||
-                        (!query && currentCategory === category.name)
-                          ? 'true'
-                          : ''
-                      }
-                      src={category.thumbnail}
-                      alt="category 이미지"
-                    />
-                  ) : (
-                    <>
-                      {(query && query === String(category.id)) ||
-                      (!query && currentCategory === category.name) ? (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="78"
-                          height="78"
-                          viewBox="0 0 78 78"
-                          fill="none"
-                        >
-                          <circle
-                            cx="39"
-                            cy="39"
-                            r="38.625"
-                            fill="white"
-                            stroke="#FE7156"
-                            strokeWidth="0.75"
-                          />
-                          <circle cx="39" cy="39" r="36" fill="#F1F1F5" />
-                        </svg>
-                      ) : (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="78"
-                          height="78"
-                          viewBox="0 0 78 78"
-                          fill="none"
-                        >
-                          <circle
-                            cx="39"
-                            cy="39"
-                            r="38.625"
-                            fill="white"
-                            stroke="#EDEDED"
-                            strokeWidth="0.75"
-                          />
-                          <circle cx="39" cy="39" r="36" fill="#F1F1F5" />
-                        </svg>
-                      )}
-                    </>
-                  )}
+                  <CategoryImg
+                    clicked={
+                      (query && query === String(category.id)) ||
+                      (!query && currentCategory === category.name)
+                        ? 'true'
+                        : ''
+                    }
+                    src={category?.thumbnail}
+                    alt="category 이미지"
+                  />
                 </Box>
 
                 <CategoryName
@@ -203,6 +160,7 @@ const CategoryImg = styled.img<{clicked: string}>(({clicked}) => ({
   transition: 'all 0.1s ease-in-out',
   width: '78px',
   height: '78px',
+  objectFit: 'cover',
 
   '&:hover': {
     border: '2px solid #FE7156',
