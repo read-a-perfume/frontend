@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import FlexBox from '../../layouts/flex-box'
 import {SectionSubTitle, SectionTitle} from './index.style'
 import styled from '@emotion/styled'
@@ -9,28 +9,9 @@ import NoteProducts from './note-products'
 const Notes = ({categoryLoading, categoryError, categories}: any) => {
   const [categoryId, setCategoryId] = useState<number>(1)
   const [clickedNote, setClickedNote] = useState<string>('Fruity')
-  const [image, setImage] = useState<string>('default')
   const [description, setDescription] = useState<string>(
     '달콤한 과일의 향이 지속되어 생동감과 매력적인 느낌을 줍니다.',
   )
-
-  useEffect(() => {
-    if (clickedNote === 'Animal') {
-      setImage('animal')
-    } else if (clickedNote === 'Citrus') {
-      setImage('citrus')
-    } else if (clickedNote === 'Green') {
-      setImage('green')
-    } else if (clickedNote === 'Musk') {
-      setImage('musk')
-    } else if (clickedNote === 'Spicy') {
-      setImage('spicy')
-    } else if (clickedNote === 'Sweet') {
-      setImage('sweet')
-    } else {
-      setImage('default')
-    }
-  }, [clickedNote])
 
   return (
     <Wrapper>
@@ -52,7 +33,7 @@ const Notes = ({categoryLoading, categoryError, categories}: any) => {
 
       <FlexBox gap="32px">
         <NoteBox>
-          <Image src={`images/note-images/note-${image}.png`} alt="note" />
+          <Image src={categories[categoryId - 1]?.thumbnail} alt="note" />
           <NoteTitle>
             {clickedNote.toUpperCase()}
             <br />
