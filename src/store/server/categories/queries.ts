@@ -20,9 +20,9 @@ export const fetchPerfumeList = async (
   page: number,
 ) => {
   try {
-    const res = await instance.get(
-      `/perfumes/category/${queryCategoryId}?page=${page}&size=10`,
-    )
+    const res = await instance.get(`/perfumes/category/${queryCategoryId}`, {
+      params: {page: page, size: '10'},
+    })
 
     const data = res.data
 

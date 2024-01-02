@@ -1,12 +1,12 @@
 import {SectionSubTitle, SectionTitle} from './index.style.js'
 import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box.js'
-import {Pagination, PaginationItem, Skeleton, Typography} from '@mui/material'
-import PerfumeCharacteristics from './perfume-characteristics.js'
-import {useNavigate} from 'react-router-dom'
+import {Pagination, PaginationItem} from '@mui/material'
 import {useEffect, useState} from 'react'
 import instance from '@api/instance.js'
 import {useQuery} from '@tanstack/react-query'
+import PerfumeSkeleton from '@components/perfumes/perfume-card-skeleton/index.js'
+import PerfumeList from '@components/perfumes/perfume-card-list/index.js'
 
 type Product = {
   id: number
@@ -23,9 +23,9 @@ const getPerfumesByFavorite = async () => {
   )
   return res.data
 }
+const skeletons = Array.from({length: 12}, (_, index) => index + 1)
 
 const Products = () => {
-  const navigate = useNavigate()
   const [page, setPage] = useState<number>(0)
   const [perfumes, setPerfumes] = useState<Product[]>([])
 
@@ -47,44 +47,17 @@ const Products = () => {
       <SectionSubTitle>
         사람들이 많이 검색한 향수 위주로 모아봤어요
       </SectionSubTitle>
-      <ProductBox>
-        {!isLoading &&
-          perfumes.map(item => (
-            <FlexBox
-              key={item.id}
-              direction="column"
-              gap="24px"
-              onClick={() => navigate(`/perfume/${item.id}`)}
-            >
-              <GridItem width={'282px'}>
-                <Product>
-                  <ProductImage src={item.thumbnail || 'images/perfume.png'} />
-                  <FlexBox direction="column" alignItems="center" gap="8px">
-                    <BrandName>{item.brandName}</BrandName>
-                    <ProductName>{item.name}</ProductName>
-                  </FlexBox>
-                </Product>
-              </GridItem>
-              <PerfumeCharacteristics
-                width={'282px'}
-                firstValue={item.strength}
-                secondValue={item.duration}
-              />
-            </FlexBox>
-          ))}
-        {(isLoading || !perfumes) &&
-          perfumes.map(item => {
-            return (
-              <Skeleton
-                key={item.id}
-                sx={{borderRadius: 4, animationDuration: '1.2s'}}
-                variant="rectangular"
-                width={'282px'}
-                height={'100%'}
-              />
-            )
-          })}
-      </ProductBox>
+
+      {isLoading ? (
+        <>
+          <PerfumeSkeleton skeletons={skeletons} />
+        </>
+      ) : (
+        <>
+          <PerfumeList perfumeListData={data.content} />
+        </>
+      )}
+
       <FlexBox justifyContent="center">
         <Pagination
           page={page}
@@ -116,43 +89,10 @@ const ProductsContainer = styled.div({
   width: 1200,
 })
 
-const ProductBox = styled.div({
-  display: 'grid',
-  gridTemplateColumns: `repeat(4, 1fr)`,
-  gridTemplateRows: `repeat(2, 1fr))`,
-  rowGap: '88px',
-  columnGap: '24px',
-})
-
-const GridItem = styled.div<{width: string}>(({width}) => ({
-  width: width,
-  cursor: 'pointer',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}))
-
 const Product = styled.div({
   height: '426px',
   borderRadius: 16,
   border: '1px solid #EDEDED',
-})
-
-const ProductImage = styled.img({
-  height: '341px',
-  width: '100%',
-  objectFit: 'cover',
-})
-
-const BrandName = styled(Typography)({
-  fontSize: 14,
-  color: '#131313',
-})
-
-const ProductName = styled(Typography)({
-  fontSize: 18,
-  fontWeight: '600',
-  color: '#131313',
 })
 
 const Item = styled(PaginationItem)({
