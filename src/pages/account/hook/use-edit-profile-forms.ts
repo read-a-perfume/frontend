@@ -3,12 +3,7 @@ import { FormInfoDataType } from '../edit-profile/type'
 
 const useEditProfileForms = () => {
   const {control} = useFormContext<FormInfoDataType>()
-  /*
-  const thumbnail = useController({
-    name: 'thumbnail',
-    control,
-  })
-  */
+
   const username = useController({
     name: 'username',
     control,

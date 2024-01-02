@@ -1,6 +1,7 @@
 import {useMutation} from '@tanstack/react-query'
 import {FormInfoDataType, FormThumbnailDataType} from '../edit-profile/type'
-import {patchProfile, patchProfileImage} from '../queryfn'
+import { patchProfile, patchProfileImage } from 'src/store/server/user/mutations'
+
 
 const usePostProfile = () => {
   const profileImage = useMutation((d: any) => patchProfileImage(d), {

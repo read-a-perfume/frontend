@@ -6,14 +6,25 @@ import {
   IfReviewCount,
   IfUserType,
   IfUser,
+  IfMe,
 } from 'types/user.interface'
 
-export const fetchCurUser = async (id: string): Promise<IfUser> => {
+export const fetchCurUser = async (): Promise<IfMe> => {
+  try {
+    const res: AxiosResponse<IfMe> = await instance.get(`/me`)
+    return res.data
+  } catch (error: any) {
+    console.log(error)
+    throw error
+  }
+}
+
+export const fetchUserWithId = async (id: string): Promise<IfUser> => {
   try {
     const res: AxiosResponse<IfUser> = await instance.get(`/user/${id}`)
     return res.data
   } catch (error: any) {
-    console.log(error)
+    console.error(error)
     throw error
   }
 }
@@ -25,7 +36,7 @@ export const fetchReviewCount = async (): Promise<IfReviewCount> => {
     )
     return res.data
   } catch (error: any) {
-    console.log(error)
+    console.error(error)
     throw error
   }
 }
@@ -39,7 +50,7 @@ export const fetchFollowCount = async (
     )
     return res.data
   } catch (error: any) {
-    console.log(error)
+    console.error(error)
     throw error
   }
 }
@@ -49,7 +60,7 @@ export const fetchMytype = async (): Promise<IfUserType[]> => {
     const res: AxiosResponse<IfUserType[]> = await instance.get(`/user/tastes`)
     return res.data
   } catch (error: any) {
-    console.log(error)
+    console.error(error)
     throw error
   }
 }
@@ -59,7 +70,8 @@ export const fetchAlltype = async (): Promise<IfCategory[]> => {
     const res: AxiosResponse<IfCategory[]> = await instance.get(`/categories`)
     return res.data
   } catch (error: any) {
-    console.log(error)
-    throw error
+    console.error(error)
+    //throw error
+    return [] // 현재 api가 변경중인지 작동안됨
   }
 }

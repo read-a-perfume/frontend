@@ -3,14 +3,14 @@ import {Box, styled} from '@mui/material'
 import BrandCard from './brand-card'
 import Nothing from '../base/nothing'
 import {useQuery} from '@tanstack/react-query'
-import {fetchBrands} from './queryfn'
+import { fetchBrandList } from 'src/store/server/brand/queries'
 
 interface proptype {
   korClass: string
 }
 
 const BranchBrandList = ({korClass}: proptype) => {
-  const {data: brands} = useQuery(['brands'], () => fetchBrands(), {
+  const {data: brands} = useQuery(['brands'], () => fetchBrandList(), {
     suspense: true,
   })
 

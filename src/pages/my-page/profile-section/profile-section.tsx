@@ -1,11 +1,11 @@
 import {Avatar, Box, styled} from '@mui/material'
 import {useQuery} from '@tanstack/react-query'
-import {fetchCurUser, fetchMytype, fetchFollowCount} from './queryfn'
 import ProfileInfo from './profile-info'
 import ProfileType from './profile-type'
 import {followQueryKeys, userQueryKeys} from 'src/react-query-keys/user.keys'
 import {useRecoilValue} from 'recoil'
 import {UserProfileAtom} from 'src/store/client/auth/atoms'
+import { fetchFollowCount, fetchMytype, fetchUserWithId } from 'src/store/server/user/queries'
 
 interface proptype {
   userId: string
@@ -13,7 +13,7 @@ interface proptype {
 
 const ProfileSection = ({userId}: proptype) => {
   const {data: curUser} = useQuery(userQueryKeys.user(userId), () =>
-    fetchCurUser(userId),
+    fetchUserWithId(userId),
   )
   const {data: followCount} = useQuery(followQueryKeys.follows(userId), () =>
     fetchFollowCount(userId),

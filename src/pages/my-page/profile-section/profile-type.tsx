@@ -20,7 +20,7 @@ const ProfileType = ({data,flag}: proptype) => {
   return (
     <Box sx={{marginLeft: 'auto',}}>
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        <TypeModal/>
+        <TypeModal setIsOpen={setIsOpen} myType={data}/>
       </Modal>
       <Title>MY TYPE</Title>
       <TypeContainer>
