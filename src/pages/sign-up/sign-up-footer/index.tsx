@@ -1,12 +1,9 @@
 import {Box, Typography, styled} from '@mui/material'
 import {Link} from 'react-router-dom'
+import { IfFormFooterProps } from '../types'
 
-interface FormFooterProps {
-  subText: string
-  title: string
-}
 
-const SignUpFooter = ({subText, title}: FormFooterProps) => {
+const SignUpFooter = ({subText, title}: IfFormFooterProps) => {
   return (
     <LoginLinkFooter>
       <Typography color={theme => theme.palette.grey[400]} variant="body4">

@@ -1,17 +1,12 @@
 import {ListItem, ListItemIcon, createSvgIcon, styled} from '@mui/material'
 import {useEffect, useState} from 'react'
-
-interface IfMainPreviewImageProps {
-  thumbnailsFiles: any
-  handleThumbnailDelete: any
-  value: number
-}
+import {IfSubPreviewImageProps} from '../../types'
 
 const SubPreviewImage = ({
   thumbnailsFiles,
   handleThumbnailDelete,
   value,
-}: IfMainPreviewImageProps) => {
+}: IfSubPreviewImageProps) => {
   const [image, setImage] = useState('')
 
   const deleteAll = () => {

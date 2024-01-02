@@ -2,8 +2,8 @@ import {Autocomplete, TextField, styled} from '@mui/material'
 import SubTitle from '../../base/sub-title'
 import {useState} from 'react'
 import useFetchPerfumeSearch from '../../hooks/use-fetch-perfume-search'
-import useGetCustomForms from '../../hooks/use-get-custom-forms'
 import ErrorMessage from '@components/base/error-message'
+import useFormValidateReview from '../../hooks/use-form-validate-review'
 const inputLabelProps = {
   style: {
     fontSize: 14, // Adjust the font size as needed
@@ -11,7 +11,7 @@ const inputLabelProps = {
 }
 const PerfumeSearch = () => {
   const [search, setSearch] = useState('')
-  const {perfume} = useGetCustomForms()
+  const {perfume} = useFormValidateReview()
   const {
     field,
     formState: {errors},
@@ -52,6 +52,7 @@ const PerfumeSearch = () => {
         )}
         getOptionLabel={option => option.name}
         isOptionEqualToValue={(option, value) => {
+        console.log(option,value,"테스트")
           return option.id === value.id
         }}
         renderOption={(props, option) => (

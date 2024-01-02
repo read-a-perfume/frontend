@@ -1,16 +1,15 @@
 import {useController, useFormContext} from 'react-hook-form'
-import {formData} from '../data.constant'
+import signUpvalidate from '../utils/sign-up-validate'
 
-const useValidateForm = () => {
-  const {control, watch, getFieldState} = useFormContext()
-  const test = getFieldState('username')
-  console.log(test, 'Test')
-  
+
+const useFormValidate = () => {
+  const {control, watch} = useFormContext()
+
   const username = useController({
     name: 'username', // defaultsvalues 저장한 객체 키
     control,
     rules: {
-      ...formData.username.register,
+      ...signUpvalidate.username.register,
     },
     //규칙
   })
@@ -19,7 +18,7 @@ const useValidateForm = () => {
     name: 'password', // defaultsvalues 저장한 객체 키
     control,
     rules: {
-      ...formData.password.register,
+      ...signUpvalidate.password.register,
     },
     //규칙
   })
@@ -32,7 +31,7 @@ const useValidateForm = () => {
           return '비밀번호가 일치하지않습니다.'
         }
       },
-      ...formData.confirmPassword.register,
+      ...signUpvalidate.confirmPassword.register,
     },
 
     //규칙
@@ -42,7 +41,7 @@ const useValidateForm = () => {
     name: 'email', // defaultsvalues 저장한 객체 키
     control,
     rules: {
-      ...formData.email.register,
+      ...signUpvalidate.email.register,
     },
 
     //규칙
@@ -94,4 +93,4 @@ const useValidateForm = () => {
   }
 }
 
-export default useValidateForm
+export default useFormValidate

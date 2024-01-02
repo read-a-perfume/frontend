@@ -1,11 +1,12 @@
 import {Checkbox, FormControlLabel, Typography, styled} from '@mui/material'
 import {REVIEW_OPTIONS} from '../../data/review-options'
 import {useWatch} from 'react-hook-form'
-import useGetCustomForms from '../../hooks/use-get-custom-forms'
 import ErrorMessage from '@components/base/error-message'
+import useFormValidateReview from '../../hooks/use-form-validate-review'
+
 
 const PerfumeKeywords = ({title}: {title: string}) => {
-  const {keywordMethods, control} = useGetCustomForms()
+  const {keywordMethods, control} = useFormValidateReview()
 
   const {
     field: {ref, value, onChange, ...inputProps},

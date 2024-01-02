@@ -1,9 +1,9 @@
 import {useController, useFormContext} from 'react-hook-form'
 import {IfReviewRequest} from 'types/review.interface'
-import reviwFormValidation from '../data/review-form-validation'
+import reviwFormValidation from '../utils/review-form-validation'
 
 //useForm 커스텀
-const useGetCustomForms = () => {
+const useFormValidateReview = () => {
   const {control} = useFormContext<IfReviewRequest>()
 
   const thumbnails = useController({
@@ -87,4 +87,4 @@ const useGetCustomForms = () => {
   }
 }
 
-export default useGetCustomForms
+export default useFormValidateReview

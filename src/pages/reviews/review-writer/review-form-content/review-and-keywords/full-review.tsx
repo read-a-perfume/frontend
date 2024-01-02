@@ -1,9 +1,9 @@
 import {TextareaAutosize, Typography, styled} from '@mui/material'
-import useGetCustomForms from '../../hooks/use-get-custom-forms'
 import ErrorMessage from '@components/base/error-message'
+import useFormValidateReview from '../../hooks/use-form-validate-review'
 
 const FullReview = ({title}: {title: string}) => {
-  const {fullReview} = useGetCustomForms()
+  const {fullReview} = useFormValidateReview()
   const {
     field,
     formState: {errors},

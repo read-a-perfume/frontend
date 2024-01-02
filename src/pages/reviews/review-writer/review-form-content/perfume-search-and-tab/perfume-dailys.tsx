@@ -1,12 +1,12 @@
 import {RadioGroup, styled} from '@mui/material'
 import {REVIEW_OPTIONS} from '@pages/reviews/review-writer/data/review-options'
 import RadioRoundedButton from '../../base/radio-rounded-button'
-import useGetCustomForms from '../../hooks/use-get-custom-forms'
 import ErrorMessage from '@components/base/error-message'
 import SubTitle from '../../base/sub-title'
+import useFormValidateReview from '../../hooks/use-form-validate-review'
 
 const PerfumeDailys = () => {
-  const {dayType} = useGetCustomForms()
+  const {dayType} = useFormValidateReview()
   const {
     field,
     formState: {errors},
@@ -23,7 +23,11 @@ const PerfumeDailys = () => {
         onChange={field.onChange}
       >
         {REVIEW_OPTIONS.dayTypes.map(dayType => (
-          <RadioRoundedButton title={dayType.name} value={dayType.code} />
+          <RadioRoundedButton
+            title={dayType.name}
+            value={dayType.code}
+            key={dayType.name}
+          />
         ))}
       </CustomRadioGroup>
       <ErrorMessage errorMessage={errors.dayType?.message} />

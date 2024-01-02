@@ -6,6 +6,7 @@ import PerfumeStrengths from './perfume-strengths'
 import PerfumeSeasons from './perfume-seasons'
 
 const PerfumeSearchAndTabs = () => {
+
   return (
     <>
       <FormControl component="fieldset">

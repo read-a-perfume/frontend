@@ -7,12 +7,12 @@ import {
 } from '@mui/material'
 import MainPreviewImage from './main-preview-image'
 import SubPreviewImage from './sub-preview-image'
-import useGetCustomForms from '../../hooks/use-get-custom-forms'
 import {useWatch} from 'react-hook-form'
 import FileLengthView from './file-length-view'
+import useFormValidateReview from '../../hooks/use-form-validate-review'
 
 const PhotoUpload = () => {
-  const {thumbnails, control} = useGetCustomForms()
+  const {thumbnails, control} = useFormValidateReview()
   const {field} = thumbnails
   //업로드한 파일 데이터 목록
   const thumbnailsFiles = useWatch({control: control, name: 'thumbnails'}) || []
@@ -56,13 +56,15 @@ const PhotoUpload = () => {
         <PreviewFileLabel htmlFor="file">업로드</PreviewFileLabel>
         <Box sx={{position: 'relative', margin: 'auto', width: '420px'}}>
           <MainPreviewImage
-            thumbnailsFiles={thumbnailsFiles[thumbnailsFiles.length - 1]}
+            thumbnailsFiles={
+              thumbnailsFiles[thumbnailsFiles.length - 1] as File
+            }
           />
           <SubPreview>
             <SubPreviewList>
               {[0, 1, 2, 3].map(value => (
                 <SubPreviewImage
-                  thumbnailsFiles={thumbnailsFiles}
+                  thumbnailsFiles={thumbnailsFiles as File[]}
                   handleThumbnailDelete={handleDelete}
                   value={value}
                   key={value}

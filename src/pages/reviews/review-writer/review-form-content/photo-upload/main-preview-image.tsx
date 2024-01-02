@@ -1,8 +1,7 @@
 import {Box, Typography, styled} from '@mui/material'
 import {useEffect, useState} from 'react'
-interface IfMainPreviewImageProps {
-  thumbnailsFiles: any
-}
+import { IfMainPreviewImageProps } from '../../types'
+
 
 const MainPreviewImage = ({thumbnailsFiles}: IfMainPreviewImageProps) => {
   const [image, setImage] = useState('')
