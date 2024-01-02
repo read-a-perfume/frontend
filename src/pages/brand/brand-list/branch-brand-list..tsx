@@ -3,16 +3,21 @@ import {Box, styled} from '@mui/material'
 import BrandCard from './brand-card'
 import Nothing from '../base/nothing'
 import {useQuery} from '@tanstack/react-query'
-import { fetchBrandList } from 'src/store/server/brand/queries'
+import {fetchBrandList} from 'src/store/server/brand/queries'
+import {brandQueryKeys} from 'src/react-query-keys/brand.keys'
 
 interface proptype {
   korClass: string
 }
 
 const BranchBrandList = ({korClass}: proptype) => {
-  const {data: brands} = useQuery(['brands'], () => fetchBrandList(), {
-    suspense: true,
-  })
+  const {data: brands} = useQuery(
+    brandQueryKeys.brandList,
+    () => fetchBrandList(),
+    {
+      suspense: true,
+    },
+  )
 
   const classifyBrands = useClassifyKorean(brands)
 

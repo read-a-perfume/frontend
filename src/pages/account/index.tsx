@@ -7,11 +7,12 @@ import {useQuery} from '@tanstack/react-query'
 import getImageFromURL from './util/getImageFromURL'
 import useGoTop from '@hooks/use-go-top'
 import { fetchCurUser } from 'src/store/server/user/queries'
+import { userQueryKeys } from 'src/react-query-keys/user.keys'
 
 const Account = () => {
   useGoTop()
   const [isProfileSection, setIsProfileSection] = useState<boolean>(true)
-  const {data: curUser} = useQuery(['curUser'], () => fetchCurUser())
+  const {data: curUser} = useQuery(userQueryKeys.me, () => fetchCurUser())
   const [thumbnail, setThumbnail] = useState<File | null>(null)
 
   useEffect(() => {

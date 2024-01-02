@@ -1,14 +1,17 @@
 import Avatar from '@components/base/avatar'
 import {Box, Link, Typography, styled} from '@mui/material'
 import {useQuery} from '@tanstack/react-query'
-import { fetchBrand } from 'src/store/server/brand/queries'
+import {brandQueryKeys} from 'src/react-query-keys/brand.keys'
+import {fetchBrand} from 'src/store/server/brand/queries'
 
 interface proptype {
   brandId: string
 }
 
 const BrandInfo = ({brandId}: proptype) => {
-  const {data: brandData} = useQuery(['brand',{id:brandId}], () => fetchBrand(brandId))
+  const {data: brandData} = useQuery(brandQueryKeys.brand(brandId), () =>
+    fetchBrand(brandId),
+  )
 
   if (brandData === undefined) {
     return <Container />
