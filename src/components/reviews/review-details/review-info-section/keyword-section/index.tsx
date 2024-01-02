@@ -9,7 +9,6 @@ const KeywordSection = ({keywords}: ShortReview) => {
     <Box sx={{display: 'flex', alignItems: 'center', gap: '5px'}}>
       {keywords.length > 0 &&
         keywords.map(item => <ReviewKeyword title={item} />)}
-      <ReviewKeyword title="밝음" />
     </Box>
   )
 }

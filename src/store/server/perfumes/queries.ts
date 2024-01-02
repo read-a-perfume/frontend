@@ -23,7 +23,6 @@ export const fetchPerfumeTheme = async () => {
     return data
   } catch (error: any) {
     console.error('향수 테마 조회 중 오류 발생:', error)
-    throw error
   }
 }
 

@@ -129,7 +129,6 @@ const Perfumes = () => {
                   src={perfumeThemeData?.thumbnail}
                   alt="main-img"
                   className="main-img"
-                  style={{filter:'brightness(0.5)'}}
                 />
 
                 <Box
@@ -248,6 +247,8 @@ const Wrapper = styled(Box)({
   '& .main-img': {
     width: '326px',
     height: '319px',
+    filter: 'brightness(0.5)',
+    objectFit: 'cover',
   },
   '& .sub-img': {
     width: '177px',

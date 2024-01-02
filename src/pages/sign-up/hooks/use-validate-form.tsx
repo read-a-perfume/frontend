@@ -1,9 +1,11 @@
 import {useController, useFormContext} from 'react-hook-form'
 import {formData} from '../data.constant'
 
-const useValidationForm = () => {
-  const {control, watch} = useFormContext()
-
+const useValidateForm = () => {
+  const {control, watch, getFieldState} = useFormContext()
+  const test = getFieldState('username')
+  console.log(test, 'Test')
+  
   const username = useController({
     name: 'username', // defaultsvalues 저장한 객체 키
     control,
@@ -92,4 +94,4 @@ const useValidationForm = () => {
   }
 }
 
-export default useValidationForm
+export default useValidateForm
