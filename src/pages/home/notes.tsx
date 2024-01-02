@@ -33,7 +33,10 @@ const Notes = ({categoryLoading, categoryError, categories}: any) => {
 
       <FlexBox gap="32px">
         <NoteBox>
-          <Image src={categories[categoryId - 1]?.thumbnail} alt="note" />
+          <Image
+            src={categories && categories[categoryId - 1]?.thumbnail}
+            alt="note"
+          />
           <NoteTitle>
             {clickedNote.toUpperCase()}
             <br />
