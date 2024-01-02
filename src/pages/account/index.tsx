@@ -4,9 +4,9 @@ import EditProfile from './edit-profile'
 import {useEffect, useState} from 'react'
 import EditAccount from './edit-account'
 import {useQuery} from '@tanstack/react-query'
-import {fetchCurUser} from './queryfn'
 import getImageFromURL from './util/getImageFromURL'
 import useGoTop from '@hooks/use-go-top'
+import { fetchCurUser } from 'src/store/server/user/queries'
 
 const Account = () => {
   useGoTop()

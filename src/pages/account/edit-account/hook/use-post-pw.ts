@@ -1,8 +1,8 @@
 import {UseFormReset} from 'react-hook-form'
 import {FormInfoDataType} from '../type'
 import {useMutation} from '@tanstack/react-query'
-import {patchPassword} from '@pages/account/queryfn'
 import {IfPasswordPatch} from 'types/auth.interface'
+import { patchPassword } from 'src/store/server/user/mutations'
 
 const usePostPw = (reset: UseFormReset<FormInfoDataType>) => {
   const patchPw = useMutation((d: IfPasswordPatch) => patchPassword(d), {

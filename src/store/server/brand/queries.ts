@@ -41,21 +41,35 @@ export const fetchBrandPerfumes = async (
 
 export const fetchBrandMagazines = async (
   id: string,
+  pageSize: number = 10000,
+  after: string = '',
 ): Promise<IfMagazineListResponse> => {
   try {
     const res: AxiosResponse<IfMagazineListResponse> = await instance.get(
       `/brand/${id}/magazines`,
       {
         params: {
-          after: '',
-          pageSize: 1000,
+          after: after,
+          pageSize: pageSize,
         },
       },
     )
-    
+
     return res.data
   } catch (error: any) {
     console.log(error)
+    throw error
+  }
+}
+
+export const fetchBrandList = async (): Promise<IfBrandListResponse[]> => {
+  try {
+    const res: AxiosResponse<IfBrandListResponse[]> = await instance.get(
+      `/brands`,
+    )
+    return res.data
+  } catch (error: any) {
+    console.log('brands', error)
     throw error
   }
 }

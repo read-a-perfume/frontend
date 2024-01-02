@@ -2,12 +2,12 @@ import {Box, Button, Typography, styled} from '@mui/material'
 import ModalContainer from '../modal-container'
 import {useQuery} from '@tanstack/react-query'
 import {categoryQueryKeys} from 'src/react-query-keys/category.keys'
-import {fetchAlltype} from '../../queryfn'
 import TypeCard from './type-card'
 import {useEffect, useState} from 'react'
 import {IfCategory} from 'types/perfume.interface'
 import {initType} from './util/util'
 import {IfUserType} from 'types/user.interface'
+import { fetchAlltype } from 'src/store/server/user/queries'
 
 interface proptype {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>

@@ -1,9 +1,9 @@
 import {useQuery} from '@tanstack/react-query'
 import BrandListContainer from './brand-list-container'
-import {fetchBrandPerfumes} from './queryfn'
 import {perfumeQueryKeys} from 'src/react-query-keys/perfume.keys'
 import PerfumeCard from './perfume-card'
 import Nothing from './base/nothing'
+import { fetchBrandPerfumes } from 'src/store/server/brand/queries'
 
 interface proptype {
   brandId: string
