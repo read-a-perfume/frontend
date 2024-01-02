@@ -13,7 +13,8 @@ import FlexBox from '@layouts/flex-box'
 import Category from '@components/category'
 import Pagination from '@mui/material/Pagination'
 import {Box, Skeleton, Stack, Typography} from '@mui/material'
-import PerfumesItem, {IfItemType} from './perfumes-item'
+import PerfumeList from '@components/perfumes/perfume-card-list'
+import PerfumeSkeleton from '@components/perfumes/perfume-card-skeleton'
 
 const topSkeletons = Array.from({length: 4}, (_, index) => index + 1)
 const skeletons = Array.from({length: 12}, (_, index) => index + 1)
@@ -55,7 +56,7 @@ const Perfumes = () => {
   const {
     isLoading: perfumesLoading,
     error: perfumesError,
-    data: perfumeList,
+    data: perfumeListData,
   } = results[0]
 
   const {
@@ -184,57 +185,48 @@ const Perfumes = () => {
         />
 
         {/* 제품 리스트 */}
-        <ProductList>
+        <Box sx={{height: '799px'}}>
           {perfumesLoading ? (
             <>
-              {skeletons.map((_, index) => (
-                <Stack spacing={1} key={index}>
-                  <Skeleton
-                    sx={{bgcolor: 'grey.200'}}
-                    variant="rounded"
-                    width={282}
-                    height={319}
-                    key={index}
-                  />
-
-                  <Skeleton variant="rounded" width={282} height={34.5} />
-                </Stack>
-              ))}
+              <PerfumeSkeleton skeletons={skeletons} />
             </>
           ) : (
             <>
-              {perfumeList?.content?.length > 0 &&
-                perfumeList?.content?.map((item: IfItemType, index: number) => (
-                  <PerfumesItem item={item} key={index} />
-                ))}
+              <PerfumeList perfumeListData={perfumeListData.content} />
+
+              {perfumeListData.content.length === 0 && (
+                <NotPerfumeText>
+                  향수 없이는 세상이 흑백인데, 우리 제품이 없어서 모두 향기로운
+                  색채가 사라진 것 같아요! 🌈🚫
+                </NotPerfumeText>
+              )}
             </>
           )}
-        </ProductList>
-
-        <Footer>
-          <Pagination
-            page={currentPage}
-            count={perfumeList?.totalPages}
-            defaultPage={1}
-            boundaryCount={2}
-            color="standard"
-            size="large"
-            variant="outlined"
-            shape="rounded"
-            sx={{
-              margin: 2,
-              '& .MuiPaginationItem-root': {
-                backgroundColor: '#F1F1F5',
-              },
-              '& .Mui-selected': {
-                backgroundColor: '#D9D9D9',
-              },
-            }}
-            hidePrevButton
-            hideNextButton
-            onChange={e => handlePage(e)}
-          />
-        </Footer>
+          <Footer>
+            <Pagination
+              page={currentPage}
+              count={perfumeListData?.totalPages}
+              defaultPage={1}
+              boundaryCount={2}
+              color="standard"
+              size="large"
+              variant="outlined"
+              shape="rounded"
+              sx={{
+                margin: 2,
+                '& .MuiPaginationItem-root': {
+                  backgroundColor: '#F1F1F5',
+                },
+                '& .Mui-selected': {
+                  backgroundColor: '#D9D9D9',
+                },
+              }}
+              hidePrevButton
+              hideNextButton
+              onChange={e => handlePage(e)}
+            />
+          </Footer>
+        </Box>
       </Wrapper>
     </>
   )
@@ -303,15 +295,6 @@ const Description = styled(Typography)({
   '-webkit-box-orient': 'vertical',
 })
 
-const ProductList = styled('ul')({
-  padding: '0',
-  margin: '0',
-  width: '100%',
-  display: 'flex',
-  flexWrap: 'wrap',
-  gap: '24px ',
-})
-
 const Footer = styled('footer')({
   width: '100%',
   display: 'flex',
@@ -331,6 +314,15 @@ const SLink = styled(Link)({
   '&:hover img': {
     transform: 'scale(1.098)',
   },
+})
+
+const NotPerfumeText = styled(Typography)({
+  color: ' #ABABAB',
+  fontAmily: 'Pretendard',
+  fontSize: ' 19.5px',
+  fontWeight: 500,
+  lineHeight: 'normal',
+  textAlign: 'center',
 })
 
 export default Perfumes

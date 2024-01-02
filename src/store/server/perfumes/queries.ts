@@ -51,9 +51,9 @@ export const fetchPerfumeReviewData = async (
   sort: string,
 ) => {
   try {
-    const res = await instance.get(
-      `/perfumes/${id}/reviews?page=${page}&size=6&sort=${sort}`,
-    )
+    const res = await instance.get(`/perfumes/${id}/reviews`, {
+      params: {page: page, size: '6', sort: sort},
+    })
 
     const data = res.data
 
