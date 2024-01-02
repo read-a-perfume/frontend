@@ -1,9 +1,9 @@
 import {Input, Typography, styled} from '@mui/material'
-import useGetCustomForms from '../../hooks/use-get-custom-forms'
 import ErrorMessage from '@components/base/error-message'
+import useFormValidateReview from '../../hooks/use-form-validate-review'
 
 const ShortReview = ({title}: {title: string}) => {
-  const {shortReview} = useGetCustomForms()
+  const {shortReview} = useFormValidateReview()
   const {
     field,
     formState: {errors},

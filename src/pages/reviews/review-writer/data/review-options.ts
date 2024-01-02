@@ -1,3 +1,4 @@
+//정적인 데이터를 넣는 폴더 data
 export const REVIEW_OPTIONS = {
   dayTypes: [
     {

@@ -1,4 +1,4 @@
-export const formData = {
+const signUpvalidate = {
   username: {
     label: '아이디',
     name: 'username',
@@ -110,3 +110,4 @@ export const formCheckboxData = {
     register: {},
   },
 }
+export default signUpvalidate

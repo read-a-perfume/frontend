@@ -1,8 +1,9 @@
+import {IfReviewFormProgassStateProps} from '../types'
 import PerfumeSearchAndTabs from './perfume-search-and-tab'
 import PhotoUpload from './photo-upload'
 import ReviewAndKeywords from './review-and-keywords'
 
-const ReviewFormContent = ({prograss}: {prograss: number}) => {
+const ReviewFormContent = ({prograss}: IfReviewFormProgassStateProps) => {
   return (
     <>
       {prograss === 0 && <PhotoUpload />}

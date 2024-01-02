@@ -2,7 +2,7 @@ import ReviewCardList from '@components/reviews/review-card-list'
 import {Pagination, PaginationItem} from '@mui/material'
 import {Link, useLocation} from 'react-router-dom'
 import {reviewQueryKeys} from 'src/react-query-keys/review.keys'
-import {fetchReviewPage} from 'src/store/server/reviews/queries'
+import {fetchAllReviews} from 'src/store/server/reviews/queries'
 import useQuery from 'src/store/server/use-query'
 
 const ListSection = ({sort}: {sort: string}) => {
@@ -11,7 +11,7 @@ const ListSection = ({sort}: {sort: string}) => {
   const currentPage = parseInt(query.get('page') || '1', 10)
   const {data} = useQuery({
     queryKey: [reviewQueryKeys.list({page: currentPage, size: 10, sort})],
-    queryFn: () => fetchReviewPage(sort, 1, 10),
+    queryFn: () => fetchAllReviews(sort, 1, 10),
     options: {
       suspense: true,
     },

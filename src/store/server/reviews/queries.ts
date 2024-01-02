@@ -1,3 +1,4 @@
+import {AxiosResponse} from 'axios'
 import {
   IfReviewCommentResponse,
   IfReviewDetailResponse,
@@ -11,8 +12,15 @@ import instance from '@api/instance'
 export const fetchPerfumeSearch: (
   keyword?: string,
 ) => Promise<IfReviewPerFumeSearch[]> = async (keyword?: string) => {
-  const res = await instance.get(`/perfumes/search?query=${keyword}`)
-  const data = await res.data
+  const res: AxiosResponse<IfReviewPerFumeSearch[]> = await instance.get(
+    `/perfumes/search?query`,
+    {
+      params: {
+        keyword,
+      },
+    },
+  )
+  const data = res.data
   return data
 }
 
@@ -25,21 +33,23 @@ export const fetchReviewDeatils: (
 }
 
 //리뷰페이지 리스트
-export const fetchReviewPage: (
+export const fetchAllReviews: (
   sort: string,
   page: number,
   size: number,
 ) => Promise<IfReviewResponse> = async (sort, page, size) => {
-  const res = await instance.get(
-    `reviews?page=${page}&size=${size}&sort=${sort}`,
-  )
-  const data = await res.data
+  const res: AxiosResponse<IfReviewResponse> = await instance.get(`/reviews`, {
+    params: {page: page, size: size, sort: sort},
+  })
+  const data = res.data
   return data
 }
 
 export const fetchReviewComments: (
   id: number,
 ) => Promise<IfReviewCommentResponse> = async id => {
-  const res = await instance.get(`/reviews/${id}/comments`)
+  const res: AxiosResponse<IfReviewCommentResponse> = await instance.get(
+    `/reviews/${id}/comments`,
+  )
   return res.data
 }

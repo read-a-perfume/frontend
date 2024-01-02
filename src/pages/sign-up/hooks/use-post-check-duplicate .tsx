@@ -1,20 +1,21 @@
 import {useFormContext} from 'react-hook-form'
+import {authMutationKeys} from 'src/react-query-keys/auth.keys'
 import {
   postSignUpEmailDuplicationCheck,
   postSignUpIdDuplicationCheck,
 } from 'src/store/server/auth/mutations'
 import useMutation from 'src/store/server/use-mutation'
+import {IfUsePostCheckDuplicateProps} from '../types'
 
-interface IfProps {
-  successMessage: string
-  failedMessage: string
-}
-
-const usePostCheckDuplicate = ({successMessage, failedMessage}: IfProps) => {
-  const {setError,trigger} = useFormContext()
+const usePostCheckDuplicate = ({
+  successMessage,
+  failedMessage,
+  userId,
+}: IfUsePostCheckDuplicateProps) => {
+  const {setError, trigger} = useFormContext()
   const {mutate: mutateCheckUserId} = useMutation({
     mutationFn: postSignUpIdDuplicationCheck,
-    mutationKey: ['userIdCheck'],
+    mutationKey: authMutationKeys.signUpIdCheck(userId),
     options: {
       onSuccess: () => alert(successMessage),
       onError: () => {
@@ -40,20 +41,25 @@ const usePostCheckDuplicate = ({successMessage, failedMessage}: IfProps) => {
     },
   })
 
-  //아이디 중복체크 
-  const handleIdDuplicateCheck = async (usernameFildValue:string) => {
+  //아이디 중복체크
+  const handleIdDuplicateCheck = async (usernameFildValue: string) => {
     if ((await trigger('username')) === true) {
       mutateCheckUserId(usernameFildValue)
     }
   }
-  // 이메일 중복체크 
-  const handleEmailDuplicateCheck = async (emailFildValue:string) => {
+  // 이메일 중복체크
+  const handleEmailDuplicateCheck = async (emailFildValue: string) => {
     if ((await trigger('email')) === true) {
       checkEmailMutate(emailFildValue)
     }
   }
 
-  return {mutateCheckUserId, checkEmailMutate, handleIdDuplicateCheck,handleEmailDuplicateCheck }
+  return {
+    mutateCheckUserId,
+    checkEmailMutate,
+    handleIdDuplicateCheck,
+    handleEmailDuplicateCheck,
+  }
 }
 
 export default usePostCheckDuplicate

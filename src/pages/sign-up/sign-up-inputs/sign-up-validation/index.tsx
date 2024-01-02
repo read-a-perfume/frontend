@@ -1,21 +1,15 @@
 import {TextField, Typography} from '@mui/material'
 import {styled, Box} from '@mui/material'
 import ErrorMessage from '@components/base/error-message'
+import {IfFormTextFiledValidationProps} from '@pages/sign-up/types'
 
-interface FormTextFiledValidationProps {
-  placeholder: string // 입력 전 값
-  type: string
-  method: any
-  compoment?: React.ReactNode
-  name: string
-}
 const SignUpValidation = ({
   placeholder,
   method,
   type,
   compoment,
   name,
-}: FormTextFiledValidationProps) => {
+}: IfFormTextFiledValidationProps) => {
   const {
     field,
     formState: {errors},

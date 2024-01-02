@@ -1,17 +1,12 @@
 import MuiButton from '@components/base/mui-button'
 import {Box} from '@mui/material'
-
-interface ReviewFormPreNextProps {
-  handleNextPage: () => void
-  handlePrevPage: () => void
-  prograss: number
-}
+import {IfReviewFormPreNextProps} from '../types'
 
 const ReviewFormNavButtons = ({
   handleNextPage,
   handlePrevPage,
   prograss,
-}: ReviewFormPreNextProps) => {
+}: IfReviewFormPreNextProps) => {
   return (
     <Box sx={{display: 'flex', gap: '10px', marginTop: '20px'}}>
       {prograss === 0 && (

@@ -1,8 +1,9 @@
 import {Box, Step, StepLabel, Stepper, Typography, styled} from '@mui/material'
+import {IfReviewFormProgassStateProps} from '../types'
 
 const category = ['향수 이미지 업로드', '향수 특징 선택', '상세 리뷰 작성']
 
-const ReviewFormProgassState = ({prograss}: any) => {
+const ReviewFormProgassState = ({prograss}: IfReviewFormProgassStateProps) => {
   return (
     <Box
       component="header"
