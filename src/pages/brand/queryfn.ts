@@ -44,7 +44,7 @@ export const fetchBrandMagazines = async (
 ): Promise<IfMagazineListResponse> => {
   try {
     const res: AxiosResponse<IfMagazineListResponse> = await instance.get(
-      `/${id}/magazines`,
+      `/brand/${id}/magazines`,
       {
         params: {
           after: '',

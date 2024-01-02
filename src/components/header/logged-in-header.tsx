@@ -16,17 +16,17 @@ import {postLogout} from 'src/store/server/auth/mutations'
 import useMutation from 'src/store/server/use-mutation'
 
 interface LoggedInHeaderProps {
-  thumbnail: string
-  isLoggedIn: boolean
+ 
+  isLoggedIn: any
   onOpenNotification: () => void
-  userId: string
+  
 }
 
 const LoggedInHeader = ({
-  thumbnail,
+ 
   isLoggedIn,
   onOpenNotification,
-  userId,
+  
 }: LoggedInHeaderProps) => {
   const anchorRef = useRef<HTMLButtonElement>(null)
   const navigation = useNavigate()
@@ -56,7 +56,7 @@ const LoggedInHeader = ({
 
     switch (name) {
       case 'mypage':
-        setMyPagePopOpen(false), navigation(`/mypage/${userId}`)
+        setMyPagePopOpen(false), navigation(`/mypage/${isLoggedIn.userId}`)
         break
       case 'review':
         setMyPagePopOpen(false)
@@ -98,9 +98,9 @@ const LoggedInHeader = ({
         aria-haspopup="true"
         onClick={() => setMyPagePopOpen(prevOpen => !prevOpen)}
       >
-        {thumbnail ? <Avatar size="26px" url={thumbnail} /> : <NoAvatar />}
-
-        <NavTop>마이페이지</NavTop>
+        {isLoggedIn.thumbnail ? <Avatar size="26px" url={isLoggedIn.thumbnail} /> : <NoAvatar />}
+        {/*여기 바꾸기*/}
+        <NavTop>{isLoggedIn.username}</NavTop>
       </MyPageBox>
       <Popper
         open={myPagePop}

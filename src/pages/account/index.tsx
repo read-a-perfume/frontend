@@ -9,7 +9,6 @@ import getImageFromURL from './util/getImageFromURL'
 import useGoTop from '@hooks/use-go-top'
 
 const Account = () => {
-
   useGoTop()
   const [isProfileSection, setIsProfileSection] = useState<boolean>(true)
   const {data: curUser} = useQuery(['curUser'], () => fetchCurUser())
@@ -28,18 +27,20 @@ const Account = () => {
   }, [curUser])
 
   return (
-    <Box sx ={{display:'flex',flexDirection:'column',alignItems:'center'}}>
-    <Container>
-      <Left
-        setIsProfileSection={setIsProfileSection}
-        isProfileSection={isProfileSection}
-      />
-      {curUser !== undefined && isProfileSection ? (
-        <EditProfile data={{...curUser, thumbnail: thumbnail}} />
-      ) : (
-        <EditAccount />
-      )}
-    </Container>
+    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      <Container>
+        <Left
+          setIsProfileSection={setIsProfileSection}
+          isProfileSection={isProfileSection}
+        />
+        {curUser !== undefined &&
+          thumbnail !== null &&
+          (isProfileSection ? (
+            <EditProfile data={{...curUser, thumbnail: thumbnail}} />
+          ) : (
+            <EditAccount />
+          ))}
+      </Container>
     </Box>
   )
 }

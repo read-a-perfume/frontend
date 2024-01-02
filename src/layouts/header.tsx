@@ -23,8 +23,7 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
       <HeaderLayout>
         {isLoggedIn || isLoggedIn === null ? (
           <LoggedInHeader
-            userId = {isLoggedIn.userId}
-            thumbnail={isLoggedIn ? isLoggedIn.thumbnail : ''}
+            
             isLoggedIn={isLoggedIn}
             onOpenNotification={() => setNotificationOpen(true)}
           />

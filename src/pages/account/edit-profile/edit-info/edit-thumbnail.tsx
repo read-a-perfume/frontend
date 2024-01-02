@@ -13,7 +13,7 @@ const EditThumbnail = () => {
   const {field} = thumbnail
 
   const image = useWatch({control: control, name: 'thumbnail'})
-
+  
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const file = e.target.files[0]

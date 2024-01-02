@@ -29,7 +29,8 @@ export interface IfMagazineResponse {
   id: number
   title: string
   content: string
-  coverThumbnailId: string
+  coverThumbnail: string
+  userThumbnail: string
   tags: string[]
 }
 

@@ -7,8 +7,14 @@ import TypeCard from './type-card'
 import {useEffect, useState} from 'react'
 import {IfCategory} from 'types/perfume.interface'
 import {initType} from './util/util'
+import {IfUserType} from 'types/user.interface'
 
-const TypeModal = () => {
+interface proptype {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  myType: IfUserType[]
+}
+
+const TypeModal = ({setIsOpen, myType}: proptype) => {
   const {data: res} = useQuery(categoryQueryKeys.category(), () =>
     fetchAlltype(),
   )
@@ -18,10 +24,11 @@ const TypeModal = () => {
   >()
 
   useEffect(() => {
+    const myTypeNameArr = myType.map(e => e.name)
     if (res !== undefined) {
-      setAllType(res.map(e => ({...e, select: false})))
+      setAllType(res.map(e => ({...e, select: myTypeNameArr.includes(e.name)})))
     }
-  }, [res])
+  }, [myType, res])
 
   return (
     <ModalContainer>
@@ -48,7 +55,8 @@ const TypeModal = () => {
         <ModalButton
           variant="contained"
           onClick={() => {
-            console.log(allType)
+            alert(allType?.filter(e=>e.select).map(ee=>ee.name))
+            setIsOpen(false)
           }}
         >
           확인하기
