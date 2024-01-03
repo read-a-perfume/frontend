@@ -50,10 +50,8 @@ const BrandStory = styled(Typography)(({theme}) => ({
   fontSize: theme.typography.body2.fontSize,
   minHeight: '1em',
   color: '#606060',
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  maxWidth: '800px',
+  height: '5em',
+  width: '800px',
 }))
 
 const BrandLink = styled(Link)(({theme}) => ({

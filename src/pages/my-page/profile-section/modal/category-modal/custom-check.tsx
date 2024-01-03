@@ -26,4 +26,5 @@ const Container = styled(Box)<{flag: boolean}>(({flag, theme}) => ({
   backgroundColor: flag ? theme.palette.primary.main : '#fff',
   alignSelf:'end',
   borderRadius: '50%',
+  zIndex: 1,
 }))

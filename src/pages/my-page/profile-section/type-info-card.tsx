@@ -40,4 +40,5 @@ const TypeText = styled(Typography)(() => ({
   color: '#fff',
   textAlign: 'center',
   fontFamily: 'AritaBuri',
+  zIndex: 1,
 }))

@@ -10,7 +10,7 @@ interface proptype {
   flag: boolean
 }
 
-const indexArr: number[] = [0, 1, 2]
+const indexArr: {id:string}[] = [{id:'sad'}, {id:'gfd'}, {id:'fkf'}]
 
 const ProfileType = ({data,flag}: proptype) => {
 
@@ -24,8 +24,8 @@ const ProfileType = ({data,flag}: proptype) => {
       </Modal>
       <Title>MY TYPE</Title>
       <TypeContainer>
-        {indexArr.map(i =>
-          i < data.length ? <TypeInfoCard data={data[i]} key={data[i].id}/> : <TypeAddCard setIsOpen={setIsOpen} key={i} flag={flag}/>,
+        {indexArr.map((e,i) =>
+          i < data.length ? <TypeInfoCard data={data[i]} key={data[i].id}/> : <TypeAddCard setIsOpen={setIsOpen} key={e.id} flag={flag}/>,
         )}
       </TypeContainer>
     </Box>
