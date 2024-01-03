@@ -1,11 +1,10 @@
 import { Box, keyframes, styled } from "@mui/material"
 
 const blinkAnimation = keyframes`
-    0%,
-    100%{
-        background-color: #eee
+    from{
+        background-color: #ddd
     }
-    50%{
+    to{
         background-color: #fff
     }
 `
@@ -13,7 +12,7 @@ const blinkAnimation = keyframes`
 const Loading = styled(Box)<{width?:string|number,height?:string|number}>(({width="100%",height="100%"}) => ({
   width: width,
   height: height,
-  animation: `${blinkAnimation} 0.8s infinite linear`,
+  animation: `${blinkAnimation} 1s infinite ease-in-out`,
   borderRadius: '10px',
 }))
 

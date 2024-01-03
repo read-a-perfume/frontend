@@ -1,13 +1,15 @@
 import {Box, Button, Typography, styled} from '@mui/material'
 import ModalContainer from '../modal-container'
-import {useQuery} from '@tanstack/react-query'
+import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 import {categoryQueryKeys} from 'src/react-query-keys/category.keys'
 import TypeCard from './type-card'
 import {useEffect, useState} from 'react'
 import {IfCategory} from 'types/perfume.interface'
 import {initType} from './util/util'
-import {IfUserType} from 'types/user.interface'
-import { fetchAlltype } from 'src/store/server/user/queries'
+import {IfUserType, IfUserTypePost} from 'types/user.interface'
+import {fetchAlltype} from 'src/store/server/user/queries'
+import Loading from '@components/base/loading'
+import {postMyType} from 'src/store/server/user/mutations'
 
 interface proptype {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -30,38 +32,62 @@ const TypeModal = ({setIsOpen, myType}: proptype) => {
     }
   }, [myType, res])
 
+  const queryClient = useQueryClient()
+
+  const myTypeMutation = useMutation((d: IfUserTypePost) => postMyType(d), {
+    onSuccess: () => {
+      queryClient.invalidateQueries()
+      alert('타입 추가 및 변경 성공')
+      setIsOpen(false)
+    },
+    onError: () => {
+      alert('타입 추가 및 변경 실패')
+      setIsOpen(false)
+    },
+
+    useErrorBoundary: false,
+  })
+
   return (
     <ModalContainer>
-      <Bar>마이 타입</Bar>
-      <CardContainer>
-        {allType !== undefined &&
-          allType.map(e => (
-            <TypeCard
-              key={e.id}
-              id={e.id}
-              allType={allType}
-              setAllType={setAllType}
-            />
-          ))}
-      </CardContainer>
-      <ButtonContainer>
-        <ModalButton
-          mark="sub"
-          variant="contained"
-          onClick={() => initType(allType, setAllType)}
-        >
-          초기화
-        </ModalButton>
-        <ModalButton
-          variant="contained"
-          onClick={() => {
-            alert(allType?.filter(e=>e.select).map(ee=>ee.name))
-            setIsOpen(false)
-          }}
-        >
-          확인하기
-        </ModalButton>
-      </ButtonContainer>
+      {allType !== undefined ? (
+        <>
+          <Bar>마이 타입</Bar>
+          <CardContainer>
+            {allType.map(e => (
+              <TypeCard
+                key={e.id}
+                id={e.id}
+                allType={allType}
+                setAllType={setAllType}
+              />
+            ))}
+          </CardContainer>
+          <ButtonContainer>
+            <ModalButton
+              mark="sub"
+              variant="contained"
+              onClick={() => initType(allType, setAllType)}
+            >
+              초기화
+            </ModalButton>
+            <ModalButton
+              variant="contained"
+              onClick={() => {
+                const typeIdList = allType
+                  .filter(e => e.select)
+                  .map(ee => ee.id)
+                myTypeMutation.mutate({categoryIds: typeIdList})
+                
+              }}
+            >
+              확인하기
+            </ModalButton>
+          </ButtonContainer>
+        </>
+      ) : (
+        <Loading />
+      )}
     </ModalContainer>
   )
 }

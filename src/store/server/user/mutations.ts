@@ -1,7 +1,7 @@
 import instance from '@api/instance'
 import {AxiosResponse} from 'axios'
 import {IfPasswordPatch} from 'types/auth.interface'
-import {IfMe} from 'types/user.interface'
+import {IfMe, IfUserTypePost} from 'types/user.interface'
 
 export const fetchCurUser = async (): Promise<IfMe> => {
   try {
@@ -44,6 +44,16 @@ export const patchProfile = async (data: {
 }) => {
   try {
     const res: any = await instance.patch(`/user/profile`, data)
+    return res.data
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
+export const postMyType = async (data: IfUserTypePost) => {
+  try {
+    const res: any = await instance.post(`/user/types`, data)
     return res.data
   } catch (error) {
     console.error(error)

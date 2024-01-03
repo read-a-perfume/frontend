@@ -35,3 +35,7 @@ export interface IfFollowResponse {
 export interface IfReviewCount {
   reviewCount: number
 }
+
+export interface IfUserTypePost {
+  categoryIds: number[]
+}
