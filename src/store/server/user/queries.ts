@@ -55,9 +55,9 @@ export const fetchFollowCount = async (
   }
 }
 
-export const fetchMytype = async (): Promise<IfUserType[]> => {
+export const fetchMytype = async (id:string|number): Promise<IfUserType[]> => {
   try {
-    const res: AxiosResponse<IfUserType[]> = await instance.get(`/user/tastes`)
+    const res: AxiosResponse<IfUserType[]> = await instance.get(`/user/${id}/types`)
     return res.data
   } catch (error: any) {
     console.error(error)
