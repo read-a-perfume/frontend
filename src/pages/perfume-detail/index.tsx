@@ -66,7 +66,7 @@ const PerfumeDetail = () => {
     <Container>
       <FlexBox justifyContent="space-between">
         <LeftBox>
-          <Carousel isLoading={isLoading} />
+          <Carousel isLoading={isLoading} images={data?.images} />
         </LeftBox>
 
         <CenterLine />

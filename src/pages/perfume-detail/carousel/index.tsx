@@ -23,27 +23,10 @@ SwiperCore.use([Navigation, Pagination, Autoplay])
 
 interface IfCarouselProps {
   isLoading: boolean
+  images: string[]
 }
 
-const images = [
-  {
-    src: '/images/perfume-detail/main.jpg',
-  },
-  {
-    src: '/images/perfume-detail/sub1.png',
-  },
-  {
-    src: '/images/perfume-detail/sub2.jpg',
-  },
-  {
-    src: '/images/perfume-detail/sub3.jpg',
-  },
-  {
-    src: '/images/perfume-detail/sub4.jpg',
-  },
-]
-
-const Carousel = ({isLoading}: IfCarouselProps) => {
+const Carousel = ({isLoading, images}: IfCarouselProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>()
 
   return (
@@ -71,8 +54,9 @@ const Carousel = ({isLoading}: IfCarouselProps) => {
                     sx={{
                       width: '100%',
                       height: '100%',
-                      backgroundImage: `url(${img.src})`,
+                      backgroundImage: `url(${img})`,
                       backgroundSize: 'cover',
+                      backgroundRepeat: 'no-repeat',
                       backgroundPosition: 'center',
                     }}
                   />
@@ -94,7 +78,7 @@ const Carousel = ({isLoading}: IfCarouselProps) => {
                   <Box
                     sx={{
                       height: '123px',
-                      backgroundImage: `url(${img.src})`,
+                      backgroundImage: `url(${img})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       border: '1px solid #EDEDED',
