@@ -19,12 +19,13 @@ const ProfileSection = ({userId}: proptype) => {
     fetchFollowCount(userId),
   )
   const {data: mytype} = useQuery(userQueryKeys.userTastes(userId), () =>
-    fetchMytype(),
+    fetchMytype(userId),
   )
 
   const currentClient = useRecoilValue(UserProfileAtom)
 
   const flag = currentClient.userId === Number(userId)
+
 
   return (
     <Container>

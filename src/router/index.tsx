@@ -1,5 +1,5 @@
 import GeneralLayout from '@layouts/general-layout.js'
-import Brand from '@pages/brand/index.js'
+import Brand from '@pages/brand/brand-page/index.js'
 import Home from '@pages/home/index.js'
 import Perfumes from '@pages/perfumes/index.js'
 import SignUp from '@pages/sign-up/index.js'

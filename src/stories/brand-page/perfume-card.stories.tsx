@@ -1,4 +1,4 @@
-import PerfumeCard from "@pages/brand/perfume-card";
+import PerfumeCard from "@pages/brand/brand-page/perfume-card";
 import type {Meta, StoryObj} from '@storybook/react'
 
 const meta: Meta<typeof PerfumeCard> = {

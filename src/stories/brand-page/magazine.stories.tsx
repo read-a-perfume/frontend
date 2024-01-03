@@ -1,4 +1,4 @@
-import Magazine from '@pages/brand/magazine'
+import Magazine from '@pages/brand/brand-page/magazine'
 import type {Meta, StoryObj} from '@storybook/react'
 
 const meta: Meta<typeof Magazine> = {
