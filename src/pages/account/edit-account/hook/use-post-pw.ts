@@ -1,10 +1,10 @@
 import {UseFormReset} from 'react-hook-form'
-import {FormInfoDataType} from '../type'
+import {PwFormDataType} from '../type'
 import {useMutation} from '@tanstack/react-query'
 import {IfPasswordPatch} from 'types/auth.interface'
 import { patchPassword } from 'src/store/server/user/mutations'
 
-const usePostPw = (reset: UseFormReset<FormInfoDataType>) => {
+const usePostPw = (reset: UseFormReset<PwFormDataType>) => {
   const patchPw = useMutation((d: IfPasswordPatch) => patchPassword(d), {
     onSuccess: () => {
       alert('비밀번호 변경 성공')
@@ -16,7 +16,7 @@ const usePostPw = (reset: UseFormReset<FormInfoDataType>) => {
     
   })
 
-  const onSubmit = (data: FormInfoDataType) => {
+  const onPwSubmit = (data: PwFormDataType) => {
     if (data.newPassword !== data.confirmPassword) {
       alert('새 비밀번호와 새 비밀번호 확인이 다릅니다.')
     } else {
@@ -28,7 +28,7 @@ const usePostPw = (reset: UseFormReset<FormInfoDataType>) => {
     reset()
   }
 
-  return {onSubmit}
+  return {onPwSubmit}
 }
 
 export default usePostPw

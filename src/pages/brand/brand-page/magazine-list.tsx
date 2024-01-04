@@ -1,36 +1,37 @@
-import {useQuery} from '@tanstack/react-query'
-import BrandListContainer from './brand-list-container'
 import Magazine from './magazine'
-import {fetchBrandMagazines} from 'src/store/server/brand/queries'
-import {brandQueryKeys} from 'src/react-query-keys/brand.keys'
+import {Box, styled} from '@mui/material'
+import {IfMagazineResponse} from 'types/brand.interface'
 
 interface proptype {
-  brandId: string
+  magazineList: IfMagazineResponse[]
 }
 
-const MagazineList = ({brandId}: proptype) => {
-  const {data: magazineList} = useQuery(
-    brandQueryKeys.magazineList(brandId),
-    () => fetchBrandMagazines(brandId),
-  )
-
+const MagazineList = ({magazineList}: proptype) => {
   return (
     <BrandListContainer col={3}>
-      {magazineList !== undefined &&
-        magazineList.items.map(e => (
-          <Magazine
-            key={e.id}
-            data={{
-              thumbnail: e.coverThumbnail,
-              tags: e.tags,
-              content: e.content,
-              title: e.title,
-              coverThumbnail: e.userThumbnail,
-            }}
-          />
-        ))}
+      {magazineList.map(e => (
+        <Magazine
+          key={e.id}
+          data={{
+            thumbnail: e.coverThumbnail,
+            tags: e.tags,
+            content: e.content,
+            title: e.title,
+            coverThumbnail: e.userThumbnail,
+          }}
+        />
+      ))}
     </BrandListContainer>
   )
 }
 
 export default MagazineList
+
+const BrandListContainer = styled(Box)<{col: number}>(({col}) => ({
+  display: 'grid',
+  gap: '60px 32px',
+  gridTemplateColumns: `repeat(${col},1fr)`,
+  justifyItems: 'center',
+  minHeight: '90vh',
+  paddingTop: '44px',
+}))

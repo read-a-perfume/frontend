@@ -1,11 +1,14 @@
 import {Box, styled} from '@mui/material'
-import {FormInfoDataType} from './type'
+import {PwFormDataType} from './type'
 import {FormProvider, useForm} from 'react-hook-form'
 import usePostPw from './hook/use-post-pw'
 import EditPw from './edit-pw/edit-pw'
+import EditEmail from './edit-email/edit-email'
+
+
 
 const EditAccount = () => {
-  const methods = useForm<FormInfoDataType>({
+  const pwMethods = useForm<PwFormDataType>({
     defaultValues: {
       oldPassword: '',
       newPassword: '',
@@ -13,12 +16,13 @@ const EditAccount = () => {
     },
   })
 
-  const {onSubmit} = usePostPw(methods.reset)
+  const {onPwSubmit} = usePostPw(pwMethods.reset)
 
   return (
     <Container>
-      <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <EditEmail/>
+      <FormProvider {...pwMethods}>
+        <form onSubmit={pwMethods.handleSubmit(onPwSubmit)}>
           <EditPw />
         </form>
       </FormProvider>

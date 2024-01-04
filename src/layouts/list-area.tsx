@@ -16,7 +16,9 @@ const ListArea = ({children}: proptype) => {
 
 export default ListArea
 
-const Container = styled(Box)(() => ({
-  width: '1200px',
-  minHeight: '90vh',
-}))
+const Container = styled(Box)<{height?: string | number}>(
+  ({height = '80vh'}) => ({
+    width: '1200px',
+    height: height,
+  }),
+)

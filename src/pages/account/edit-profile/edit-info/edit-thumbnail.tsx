@@ -1,9 +1,10 @@
-import {Avatar, Box, Button, Divider, styled} from '@mui/material'
+import {Avatar, Box, Divider, styled} from '@mui/material'
 import EditTitle from '@pages/account/base/edit-title'
 import SaveButton from '@pages/account/base/save-button'
 import useEditThumbnailForms from '@pages/account/hook/use-edit-thumbnail-forms'
 import {useRef} from 'react'
 import {useWatch} from 'react-hook-form'
+import SettingButton from '@pages/account/base/setting-button'
 
 const EditThumbnail = () => {
   const buttonRef = useRef<HTMLInputElement | null>(null)
@@ -66,14 +67,3 @@ const Container = styled(Box)(() => ({
   marginBottom: '48px',
 }))
 
-const SettingButton = styled(Button)(({theme}) => ({
-  width: '88px',
-  height: '33px',
-  border: 'solid 1.7px #ededed',
-  color: 'black',
-  backgroundColor: 'white',
-  '&:hover': {
-    backgroundColor: '#eee',
-  },
-  fontSize: theme.typography.body3.fontSize,
-}))

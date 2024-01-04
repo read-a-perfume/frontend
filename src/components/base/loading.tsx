@@ -1,4 +1,4 @@
-import { Box, keyframes, styled } from "@mui/material"
+import {Box, keyframes, styled} from '@mui/material'
 
 const blinkAnimation = keyframes`
     from{
@@ -9,15 +9,15 @@ const blinkAnimation = keyframes`
     }
 `
 
-const Loading = styled(Box)<{width?:string|number,height?:string|number}>(({width="100%",height="100%"}) => ({
+const Loading = styled(Box)<{
+  width?: string | number
+  height?: string | number
+  borderRadius?: string | number
+}>(({width = '100%', height = '100%', borderRadius = '10px'}) => ({
   width: width,
   height: height,
   animation: `${blinkAnimation} 1s infinite ease-in-out`,
-  borderRadius: '10px',
+  borderRadius: borderRadius,
 }))
 
 export default Loading
-
-
-
-

@@ -1,17 +1,7 @@
 import instance from '@api/instance'
-import {AxiosResponse} from 'axios'
 import {IfPasswordPatch} from 'types/auth.interface'
-import {IfMe, IfUserTypePost} from 'types/user.interface'
+import {IfUserTypePost} from 'types/user.interface'
 
-export const fetchCurUser = async (): Promise<IfMe> => {
-  try {
-    const res: AxiosResponse<IfMe> = await instance.get(`/me`)
-    return res.data
-  } catch (error: any) {
-    console.log(error)
-    throw error
-  }
-}
 
 export const patchPassword = async (data: IfPasswordPatch) => {
   try {

@@ -48,7 +48,6 @@ const BrandName = styled(Typography)(({theme}) => ({
 
 const BrandStory = styled(Typography)(({theme}) => ({
   fontSize: theme.typography.body2.fontSize,
-  minHeight: '1em',
   color: '#606060',
   height: '5em',
   width: '800px',

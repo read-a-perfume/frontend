@@ -26,6 +26,7 @@ const Container = styled(Box)(({theme}) => ({
   height: '64px',
   display: 'flex',
   borderBottom: `1px solid ${theme.palette.grey[400]}`,
+  marginBottom: '44px',
 }))
 
 const Tab = styled(Box)<{flag: boolean}>(({theme, flag}) => ({

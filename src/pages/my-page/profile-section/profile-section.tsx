@@ -3,9 +3,12 @@ import {useQuery} from '@tanstack/react-query'
 import ProfileInfo from './profile-info'
 import ProfileType from './profile-type'
 import {followQueryKeys, userQueryKeys} from 'src/react-query-keys/user.keys'
-import {useRecoilValue} from 'recoil'
-import {UserProfileAtom} from 'src/store/client/auth/atoms'
-import { fetchFollowCount, fetchMytype, fetchUserWithId } from 'src/store/server/user/queries'
+import {
+  fetchCurUser,
+  fetchFollowCount,
+  fetchMytype,
+  fetchUserWithId,
+} from 'src/store/server/user/queries'
 
 interface proptype {
   userId: string
@@ -22,10 +25,9 @@ const ProfileSection = ({userId}: proptype) => {
     fetchMytype(userId),
   )
 
-  const currentClient = useRecoilValue(UserProfileAtom)
+  const {data: me} = useQuery(userQueryKeys.me, () => fetchCurUser())
 
-  const flag = currentClient.userId === Number(userId)
-
+  const flag = me?.userId === Number(userId)
 
   return (
     <Container>
@@ -38,9 +40,7 @@ const ProfileSection = ({userId}: proptype) => {
           flag={flag}
         />
       )}
-      {mytype && (
-        <ProfileType data={mytype} flag={flag} />
-      )}
+      {mytype && <ProfileType data={mytype} flag={flag} />}
     </Container>
   )
 }
