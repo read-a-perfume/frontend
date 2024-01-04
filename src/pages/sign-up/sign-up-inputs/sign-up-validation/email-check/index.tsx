@@ -1,21 +1,22 @@
 import {Box} from '@mui/material'
 import MuiButton from '@components/base/mui-button'
-import {IfSignUpIdCheckProps} from '../types'
+import {IfSignUpEmailCheckProps} from '../../../types'
 
-const SignUpIdCheck = ({
+const EmailCheck = ({
   title,
   value,
-  handleIdDuplicateCheck,
-}: IfSignUpIdCheckProps) => {
+  handleEmailDuplicateCheck,
+}: IfSignUpEmailCheckProps) => {
   return (
     <Box sx={{position: 'absolute', right: '-100px', top: '35px'}}>
       <MuiButton
+        formType="button"
         type="dark"
         title={title}
-        handleClick={() => handleIdDuplicateCheck(value)}
+        handleClick={() => handleEmailDuplicateCheck(value)}
       />
     </Box>
   )
 }
 
-export default SignUpIdCheck
+export default EmailCheck

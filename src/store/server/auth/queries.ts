@@ -5,10 +5,9 @@ export const fetchRefreshToken = async () => {
   const url = '/reissue'
   return await instance.get(url)
 }
-export const fetchUserProfile: () => Promise<IfLoginUserProfileResponse> =
-  async () => {
-    const res = await instance.get('/me')
-    const data = await res.data
+export const fetchUserProfile =
+  async (): Promise<IfLoginUserProfileResponse> => {
+    const {data} = await instance.get('/me')
 
     return data
   }

@@ -1,7 +1,6 @@
-import axios from 'axios'
+import axios, {AxiosError, AxiosResponse} from 'axios'
 import {fetchRefreshToken} from 'src/store/server/auth/queries'
 
-axios.defaults.withCredentials = true
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_KEY,
   headers: {
@@ -13,19 +12,40 @@ const instance = axios.create({
 })
 
 export default instance
-instance.interceptors.response.use(
-  response => {
-    return response
-  },
-  async function refresh(error) {
-    const originalRequest = error.config
-    if (error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true
+
+interface ErrorResponse {
+  status: string
+  severDateTime: string
+  errorCode: string
+  errorMessage: string
+}
+
+export function isServerError(
+  error: unknown,
+): error is AxiosError<ErrorResponse> {
+  return axios.isAxiosError(error)
+}
+
+export const httpErrorHandler = async (
+  error: AxiosError<ErrorResponse> | Error,
+): Promise<Error> => {
+  // 401에러인 경우 로그인 페이지로 이동
+  if (isServerError(error) && error.response?.status === 401) {
+    try {
+      // 토큰 갱신 API 요청
       const response = await fetchRefreshToken()
       if (response?.status === 200) {
-        return instance(originalRequest)
+        window.location.reload()
       }
+    } catch (refreshError) {
+      // 토큰 갱신에 실패한 경우 로그인 페이지로 이동
+      window.location.href = '/sign-in'
     }
-    return Promise.reject(error)
-  },
+  }
+  return Promise.reject(error)
+}
+instance.interceptors.response.use(
+  (response: AxiosResponse) => response,
+  async (error: AxiosError<ErrorResponse> | Error) =>
+    await httpErrorHandler(error),
 )

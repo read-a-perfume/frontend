@@ -7,7 +7,7 @@ import {RecoilRoot} from 'recoil'
 import {CssBaseline, ThemeProvider as MuiThemeProvider} from '@mui/material'
 import {Global} from '@emotion/react'
 import globalReset from '@theme/global-reset'
-
+import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
 import {theme} from '@theme/index'
 
 const client = new QueryClient({
@@ -25,6 +25,7 @@ const client = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={client}>
+      <ReactQueryDevtools initialIsOpen />
       <RecoilRoot>
         <MuiThemeProvider theme={theme}>
           <Global styles={globalReset} />
