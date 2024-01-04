@@ -1,6 +1,7 @@
 import {useFormContext} from 'react-hook-form'
 import {authMutationKeys} from 'src/react-query-keys/auth.keys'
 import {
+  postSignUpEmailConfirm,
   postSignUpEmailDuplicationCheck,
   postSignUpIdDuplicationCheck,
 } from 'src/store/server/auth/mutations'
@@ -12,7 +13,7 @@ const usePostCheckDuplicate = ({
   failedMessage,
   userId,
 }: IfUsePostCheckDuplicateProps) => {
-  const {setError, trigger} = useFormContext()
+  const {setError, trigger, getValues} = useFormContext()
   const {mutate: mutateCheckUserId} = useMutation({
     mutationFn: postSignUpIdDuplicationCheck,
     mutationKey: authMutationKeys.signUpIdCheck(userId),
@@ -26,10 +27,15 @@ const usePostCheckDuplicate = ({
       },
     },
   })
+  //이메일 인증 확인요청
 
-  const {mutate: checkEmailMutate} = useMutation({
+  const {
+    mutate: checkEmailMutate,
+    isSuccess,
+    data: emailData,
+  } = useMutation({
     mutationFn: postSignUpEmailDuplicationCheck,
-    mutationKey: ['email'],
+    mutationKey: authMutationKeys.emailDuplicateCheck(getValues('email')),
     options: {
       onSuccess: () => alert('이메일 전송이 성공적으로 보내졌습니다.'),
       onError: () => {
@@ -38,6 +44,25 @@ const usePostCheckDuplicate = ({
           message: '중복된 이메일입니다.',
         })
       },
+
+      retry: 1,
+    },
+  })
+
+  //이메일 인증코드 확인 요청
+
+  const {mutate: confirmEmail} = useMutation({
+    mutationFn: postSignUpEmailConfirm,
+    mutationKey: authMutationKeys.emailAuthCodeConfirm(getValues('emailAuth')),
+    options: {
+      onSuccess: () => alert('이메일 인증이 성공적으로 되었습니다.'),
+      onError: () => {
+        setError('emailAuth', {
+          type: 'menual',
+          message: '이메일 인증에 실패했습니다',
+        })
+      },
+      retry: 1,
     },
   })
 
@@ -54,11 +79,20 @@ const usePostCheckDuplicate = ({
     }
   }
 
+  const handleEmailComfirmCheck = async (emailFildValue: any) => {
+    if ((await trigger('emailAuth')) === true) {
+      confirmEmail(emailFildValue)
+    }
+  }
+
   return {
     mutateCheckUserId,
     checkEmailMutate,
     handleIdDuplicateCheck,
     handleEmailDuplicateCheck,
+    handleEmailComfirmCheck,
+    isSuccess,
+    emailData,
   }
 }
 

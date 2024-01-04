@@ -10,6 +10,13 @@ export interface IfSignUpEmailCheckProps {
   handleEmailDuplicateCheck: (email: string) => void
 }
 
+export interface IfSignUpEmailConfirmProps {
+  title: string
+  emailAdreess: string
+  emailCode:string;
+  confirmEmail: (data) => void
+}
+
 export interface IfSignUpIdCheckProps {
   title: string
   value: string

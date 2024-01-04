@@ -20,6 +20,7 @@ const SignUpForm = () => {
       username: '',
       password: '',
       email: '',
+      emailAuth: '',
       confimrPassword: '',
       marketingConsent: false,
       promotionConsent: false,
@@ -28,8 +29,8 @@ const SignUpForm = () => {
   const {routeTo} = useRouter()
 
   const {mutate} = useMutation({
-    mutationFn: postSignUp,
     mutationKey: ['sign-up'],
+    mutationFn: postSignUp,
     options: {
       onSuccess: () => routeTo('/'),
       onError: error => {

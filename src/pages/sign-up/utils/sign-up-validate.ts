@@ -2,22 +2,23 @@ const signUpvalidate = {
   username: {
     label: '아이디',
     name: 'username',
-    placeholder: '6~16자 / 영문 소문자, 숫자 사용 가능',
+    placeholder:
+      '알파벳 소문자, 숫자, 마침표(.) 및 밑줄(_)을 포함할 수 있습니다',
     register: {
       required: {
         value: true,
         message: '아이디를 입력해주세요.',
       },
       minLength: {
-        value: 6,
-        message: '최소 6자 이상 입력해주세요.',
+        value: 4,
+        message: '최소 4자 이상 입력해주세요.',
       },
       maxLength: {
         value: 16,
         message: '최대 16자 이하 입력해주세요.',
       },
       pattern: {
-        value: /^[a-z](?=.*\d)[a-z0-9]+$/g,
+        value: /^[a-zA-Z][a-zA-Z0-9._]{2,29}$/,
         message: '올바른 아이디를 입력해주세요.',
       },
     },

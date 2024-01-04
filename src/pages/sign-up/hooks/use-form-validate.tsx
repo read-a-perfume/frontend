@@ -43,8 +43,10 @@ const useFormValidate = () => {
     rules: {
       ...signUpvalidate.email.register,
     },
-
-    //규칙
+  })
+  const emailAuth = useController({
+    name: 'emailAuth', // defaultsvalues 저장한 객체 키
+    control,
   })
 
   const allCheck = useController({
@@ -84,6 +86,7 @@ const useFormValidate = () => {
     password,
     confirmPassword,
     email,
+    emailAuth,
     terms,
     age,
     privacy,

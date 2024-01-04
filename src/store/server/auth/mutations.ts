@@ -32,3 +32,11 @@ export const postSignUpEmailDuplicationCheck = async (email: string) => {
   })
   return res.data
 }
+export const postSignUpEmailConfirm = async obj => {
+  const {email, code} = obj
+  const res = await instance.post('/signup/email-verify/confirm', {
+    email,
+    code,
+  })
+  return res.data
+}
