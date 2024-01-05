@@ -1,10 +1,10 @@
 import {Stack} from '@mui/material'
-import EditTitle from '@pages/account/base/edit-title'
-import FormLabel from '@pages/account/base/form-label'
 import {PwInput} from '@pages/account/base/input'
 import SaveButton from '@pages/account/base/save-button'
 import useEditPwForms from '../hook/use-edit-pw-forms'
 import ErrorMessage from '@components/base/error-message'
+import EditTitle from '@pages/account/base/edit-title'
+import FormLabel from '@pages/account/base/form-label'
 
 const EditPw = () => {
   const {oldPassword, newPassword, confirmPassword} = useEditPwForms()
@@ -15,7 +15,7 @@ const EditPw = () => {
 
   return (
     <>
-      <EditTitle title="계정 관리">
+      <EditTitle title="비밀번호 재설정">
         <FormLabel>비밀번호</FormLabel>
         <Stack>
           <PwInput
@@ -26,7 +26,7 @@ const EditPw = () => {
             helperText={
               <ErrorMessage
                 errorMessage={oldPwErrors.oldPassword?.message}
-                sx={{marginTop: '2px', marginBottom: '0.5em', minHeight:'2em'}}
+                sx={{marginTop: '2px', marginBottom: '0.5em', minHeight: '2em'}}
               />
             }
           />
@@ -38,7 +38,7 @@ const EditPw = () => {
             helperText={
               <ErrorMessage
                 errorMessage={newPwErrors.newPassword?.message}
-                sx={{marginTop: '2px', marginBottom: '0.5em', minHeight:'2em'}}
+                sx={{marginTop: '2px', marginBottom: '0.5em', minHeight: '2em'}}
               />
             }
           />
@@ -51,7 +51,7 @@ const EditPw = () => {
             helperText={
               <ErrorMessage
                 errorMessage={confirmPwErrors.confirmPassword?.message}
-                sx={{marginTop: '2px', marginBottom: '0.5em',  minHeight:'2em'}}
+                sx={{marginTop: '2px', marginBottom: '0.5em', minHeight: '2em'}}
               />
             }
           />

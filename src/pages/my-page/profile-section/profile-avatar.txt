@@ -1,0 +1,18 @@
+import {Avatar} from '@mui/material'
+import {useQuery} from '@tanstack/react-query'
+import {userQueryKeys} from 'src/react-query-keys/user.keys'
+import {fetchUserWithId} from 'src/store/server/user/queries'
+
+interface proptype {
+  userId: string
+}
+
+const ProfileAvatar = ({userId}: proptype) => {
+  const {data: curUser} = useQuery(userQueryKeys.user(userId), () =>
+    fetchUserWithId(userId),
+  )
+
+  return <>{curUser && <Avatar sx={{width: '121px', height: '121px'}} src={curUser.thumbnail}/>}</>
+}
+
+export default ProfileAvatar

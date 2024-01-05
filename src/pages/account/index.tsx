@@ -39,7 +39,7 @@ const Account = () => {
           (isProfileSection ? (
             <EditProfile data={{...curUser, thumbnail: thumbnail}} />
           ) : (
-            <EditAccount />
+            <EditAccount/>
           ))}
       </Container>
     </Box>

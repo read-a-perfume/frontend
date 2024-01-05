@@ -1,6 +1,7 @@
 import {useState, useEffect, Suspense} from 'react'
-import {Box, Stack, Typography, keyframes, styled} from '@mui/material'
+import {Box, Stack, Typography, styled} from '@mui/material'
 import BranchBrandList from './branch-brand-list.'
+import Loading from '@components/base/loading'
 
 const Kor = [
   'ㄱ',
@@ -21,7 +22,6 @@ const Kor = [
 ]
 
 const BrandList = () => {
-
   const [korClass, setKorClass] = useState('')
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const BrandList = () => {
   }, [])
 
   return (
-    <Box sx ={{display:'flex',flexDirection:'column',alignItems:'center'}}>
+    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <Container>
         <Title>브랜드</Title>
         <Stack
@@ -49,8 +49,8 @@ const BrandList = () => {
             </KorButton>
           ))}
         </Stack>
-        <Suspense fallback={<Loading />}>
-        <BranchBrandList korClass={korClass}/>
+        <Suspense fallback={<Loading height="80vh"/>}>
+          <BranchBrandList korClass={korClass} />
         </Suspense>
       </Container>
     </Box>
@@ -60,7 +60,7 @@ const BrandList = () => {
 export default BrandList
 
 const Container = styled(Box)(() => ({
-  width: '1200px'
+  width: '1200px',
 }))
 
 const Title = styled(Typography)(() => ({
@@ -79,22 +79,4 @@ const KorButton = styled('button')<{active: boolean}>(({active, theme}) => ({
   fontFamily: 'Pretendard',
   fontSize: '24px',
 }))
-
-const blinkAnimation = keyframes`
-    0%,
-    100%{
-        background-color: #eee
-    }
-    50%{
-        background-color: #fff
-    }
-`
-
-const Loading = styled(Box)(() => ({
-  width: '1200px',
-  height: '100vh',
-  animation: `${blinkAnimation} 0.8s infinite linear`,
-  borderRadius: '10px',
-}))
-
 
