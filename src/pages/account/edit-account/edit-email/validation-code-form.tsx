@@ -3,19 +3,36 @@ import {Input} from '@pages/account/base/input'
 import SaveButton from '@pages/account/base/save-button'
 import useEditEmailForms from '../hook/use-edit-email-forms'
 import TypingContext from '../util/typing-context'
-import { useContext } from 'react'
+import {useContext} from 'react'
+import SettingButton from '@pages/account/base/setting-button'
+import usePostEmail from '../hook/use-post-email'
 
 const ValidationCodeForm = () => {
-  const {validationCode} = useEditEmailForms()
-  const {isTyping} = useContext(TypingContext)
-  
+  const {validationCode, methods} = useEditEmailForms()
+  const {isTyping, setIsTyping} = useContext(TypingContext)
+  const {onEmailCheckSubmit} = usePostEmail()
+
   return (
-    <Box sx={{height:'110px'}}>
+    <Box sx={{height: '110px'}}>
       {isTyping && (
-        <Box sx={{display: 'flex', flexDirection: 'column'}}>
-          <Input placeholder="인증 번호 입력" {...validationCode.field} />
+        <>
+          <Box sx={{display: 'flex', gap: '27px', alignItems: 'center'}}>
+            <Input placeholder="인증 번호 입력" {...validationCode.field} />
+            <SettingButton
+              sx={{marginBottom: '20px'}}
+              onClick={methods.handleSubmit(onEmailCheckSubmit)}
+            >
+              재전송
+            </SettingButton>
+            <SettingButton
+              sx={{marginBottom: '20px'}}
+              onClick={() => setIsTyping(false)}
+            >
+              이메일 변경
+            </SettingButton>
+          </Box>
           <SaveButton>저장하기</SaveButton>
-        </Box>
+        </>
       )}
     </Box>
   )

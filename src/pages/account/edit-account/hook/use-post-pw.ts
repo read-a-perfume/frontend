@@ -2,7 +2,7 @@ import {UseFormReset} from 'react-hook-form'
 import {PwFormDataType} from '../type'
 import {useMutation} from '@tanstack/react-query'
 import {IfPasswordPatch} from 'types/auth.interface'
-import { patchPassword } from 'src/store/server/user/mutations'
+import {patchPassword} from 'src/store/server/user/mutations'
 
 const usePostPw = (reset: UseFormReset<PwFormDataType>) => {
   const patchPw = useMutation((d: IfPasswordPatch) => patchPassword(d), {
@@ -13,7 +13,6 @@ const usePostPw = (reset: UseFormReset<PwFormDataType>) => {
       alert('비밀변호 변경 오류')
     },
     useErrorBoundary: false,
-    
   })
 
   const onPwSubmit = (data: PwFormDataType) => {
