@@ -2,19 +2,20 @@ import {useController, useFormContext} from 'react-hook-form'
 import {EmailFormDataType} from '../type'
 
 const useEditEmailForms = () => {
-  const {control} = useFormContext<EmailFormDataType>()
+  const methods = useFormContext<EmailFormDataType>()
+  const control = methods.control
   const email = useController({
     name: 'email',
     control,
     //rules:{}
   })
   const validationCode = useController({
-    name:'validationCode',
+    name: 'validationCode',
     control,
     //rules:[]
   })
 
-  return {control, email,validationCode}
+  return {email, validationCode, methods}
 }
 
 export default useEditEmailForms
