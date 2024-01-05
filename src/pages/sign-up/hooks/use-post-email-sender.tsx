@@ -1,13 +1,12 @@
 import {useFormContext} from 'react-hook-form'
-import {useSetRecoilState} from 'recoil'
 import {authMutationKeys} from 'src/react-query-keys/auth.keys'
-import {SignUpAtoms} from 'src/store/client/auth'
 import {postSignUpEmailDuplicationCheck} from 'src/store/server/auth/mutations'
 import useMutation from 'src/store/server/use-mutation'
+import {useSignUpContext} from './use-sign-up-context'
 
-const usePostEmailSender = () => {
+const usePostEmailSender = ({successMessage, failedMessage}: any) => {
   const {setError, getValues, trigger} = useFormContext()
-  const setAuthCheck = useSetRecoilState(SignUpAtoms)
+  const {signUpState,updateSignUpState} = useSignUpContext()
   const {
     mutate: checkEmailMutate,
     isSuccess,
@@ -17,25 +16,15 @@ const usePostEmailSender = () => {
     mutationKey: authMutationKeys.emailDuplicateCheck(getValues('email')),
     options: {
       onSuccess: () => {
-        alert('이메일 전송이 성공적으로 보내졌습니다.')
-        setAuthCheck(pre => {
-          return {
-            ...pre,
-            isEmailSenderCheck: true,
-          }
-        })
+        alert(successMessage)
+        updateSignUpState({...signUpState, isEmailSenderCheck: true})
       },
       onError: () => {
         setError('email', {
           type: 'menual',
-          message: '중복된 이메일입니다.',
+          message: failedMessage,
         })
-        setAuthCheck(pre => {
-          return {
-            ...pre,
-            isEmailSenderCheck: false,
-          }
-        })
+        updateSignUpState({...signUpState, isEmailSenderCheck: false})
       },
 
       retry: 1,
@@ -50,12 +39,7 @@ const usePostEmailSender = () => {
   }
   //이메일 중복 체크 시 변경
   const handleEmailChange = async () => {
-    setAuthCheck(pre => {
-      return {
-        ...pre,
-        isEmailSenderCheck: false,
-      }
-    })
+    updateSignUpState({...signUpState, isEmailSenderCheck: false})
   }
 
   return {checkEmailMutate, isSuccess, handleEmailSend, handleEmailChange}

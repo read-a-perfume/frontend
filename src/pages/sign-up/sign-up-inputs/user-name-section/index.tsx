@@ -3,16 +3,13 @@ import SignUpTextFiled from '@pages/sign-up/base/sign-up-text-filed'
 import {Box, styled} from '@mui/material'
 import {IfUserNameProps} from '@pages/sign-up/types'
 import UserNameCheckButton from './user-name-check-button'
-import {useRecoilValue} from 'recoil'
-import {SignUpAtoms} from 'src/store/client/auth'
+import {useSignUpContext} from '@pages/sign-up/hooks/use-sign-up-context'
 
-const UserNameSection = ({username, handleUserNameConfirm}: IfUserNameProps) => {
-  const isSignUpChecks = useRecoilValue(SignUpAtoms)
-  const isAuthCheck = isSignUpChecks.isUserNameCheck
-  console.log(isSignUpChecks, '체크')
-  // const updateIsUserNameCheck = (isCheck: boolean) => {
-  //   setValue('usernameCheck', isCheck)
-  // }
+const UserNameSection = ({
+  username,
+  handleUserNameConfirm,
+}: IfUserNameProps) => {
+  const {signUpState} = useSignUpContext()
 
   return (
     <TextFiledWrapper>
@@ -21,14 +18,14 @@ const UserNameSection = ({username, handleUserNameConfirm}: IfUserNameProps) => 
         type="text"
         method={username}
         placeholder="아이디 체크"
-        isAuthCheck={isAuthCheck}
+        isAuthCheck={signUpState.isUserNameCheck}
       />
       <UserNameCheckButton
         beforeTitle="인증"
         afterTitle="인증완료"
         value={username.field.value}
         handleUserNameConfirm={handleUserNameConfirm}
-        isAuthCheck={isAuthCheck}
+        isAuthCheck={signUpState.isUserNameCheck}
       />
     </TextFiledWrapper>
   )

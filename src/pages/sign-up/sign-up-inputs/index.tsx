@@ -12,19 +12,25 @@ import usePostUserNameConfirm from '../hooks/use-post-user-name-confirm '
 const SignupInputs = () => {
   const {username, password, passwordConfirm, email, emailAuthCode} =
     useFormValidate()
-  const {handleUserNameConfirm } = usePostUserNameConfirm({
-    successMessage: '사용 가능합니다',
+  const {handleUserNameConfirm} = usePostUserNameConfirm({
+    successMessage: '사용 가능한 아이디입니다',
     failedMessage: '아이디 중복입니다.',
     userId: username.field.value,
   })
-  const {handleEmailAuthCodeCheck} = usePostEmailAuthCode()
-  const {handleEmailSend, handleEmailChange} = usePostEmailSender()
+  const {handleEmailAuthCodeCheck} = usePostEmailAuthCode({
+    successMessage: '이메일 인증이 완료되었습니다.',
+    failedMessage: '이메일 인증이 실패했습니다.',
+  })
+  const {handleEmailSend, handleEmailChange} = usePostEmailSender({
+    successMessage: '인증코드가 전송되었습니다.',
+    failedMessage: '중복된 이메일입니다.',
+  })
 
   return (
     <List sx={{width: '100%'}}>
       <UserNameSection
         username={username}
-        handleUserNameConfirm ={handleUserNameConfirm }
+        handleUserNameConfirm={handleUserNameConfirm}
       />
       <PasswordSection password={password} />
       <PasswordConfirmSection passwordConfirm={passwordConfirm} />
@@ -34,6 +40,7 @@ const SignupInputs = () => {
         handleEmailChange={handleEmailChange}
       />
       <EmailAuthCodeSection
+        currentEmail={email.field.value}
         emailAuthCode={emailAuthCode}
         handleEmailAuthCodeCheck={handleEmailAuthCodeCheck}
       />

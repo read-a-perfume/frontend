@@ -10,12 +10,13 @@ import AlertModal from '@components/modal/alert-modal'
 import {useState} from 'react'
 import {useRouter} from '@hooks/use-router'
 import usePostSignUpCreate from './hooks/use-post-sign-up-create'
+import {SignUpProvider} from './sign-up-provider'
 
 const initData = {
   username: '',
   password: '',
   email: '',
-  emailAuthCode:"",
+  emailAuthCode: '',
   passwordConfirm: '',
   marketingConsent: false,
   promotionConsent: false,
@@ -47,21 +48,23 @@ const SignUpForm = () => {
   }
 
   return (
-    <FormProvider {...methods}>
-      <SignUpFormContainer onSubmit={methods.handleSubmit(onSubmit)}>
-        <SignUpHeader title="회원가입" />
-        <SignupInputs />
-        <FormAgreement/>
-        <SignUpFooter subText="이미 회원이신가요?" title="로그인하기" />
-        <AlertModal
-          open={open}
-          handleClose={handleClose}
-          title="회원가입"
-          description="완료되었습니다."
-          buttonText="확인"
-        />
-      </SignUpFormContainer>
-    </FormProvider>
+    <SignUpProvider>
+      <FormProvider {...methods}>
+        <SignUpFormContainer onSubmit={methods.handleSubmit(onSubmit)}>
+          <SignUpHeader title="회원가입" />
+          <SignupInputs />
+          <FormAgreement />
+          <SignUpFooter subText="이미 회원이신가요?" title="로그인하기" />
+          <AlertModal
+            open={open}
+            handleClose={handleClose}
+            title="회원가입"
+            description="완료되었습니다."
+            buttonText="확인"
+          />
+        </SignUpFormContainer>
+      </FormProvider>
+    </SignUpProvider>
   )
 }
 
