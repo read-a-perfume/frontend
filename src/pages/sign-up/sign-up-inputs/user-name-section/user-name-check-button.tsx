@@ -5,7 +5,7 @@ const UserNameCheckButton = ({
   beforeTitle,
   afterTitle,
   value,
-  handleIdDuplicateCheck,
+  handleUserNameConfirm,
   isAuthCheck,
 }: any) => {
   return (
@@ -13,7 +13,7 @@ const UserNameCheckButton = ({
       <MuiButton
         type={isAuthCheck ? 'grey' : 'dark'}
         title={isAuthCheck ? afterTitle : beforeTitle}
-        handleClick={() => handleIdDuplicateCheck(value)}
+        handleClick={() => handleUserNameConfirm(value)}
         disabled={isAuthCheck}
       />
     </Box>

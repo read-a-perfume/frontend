@@ -11,6 +11,6 @@ export const SignUpAtoms = atom<IfSignUpAtom>({
   default: {
     isEmailSenderCheck: false,
     isEmailAuthCodeCheck: false,
-    isUserNameCheck: false,
+    isUserNameCheck: false, //인증완료버튼 UI출력하고 Textfiled disabled 띄우기
   },
 })
