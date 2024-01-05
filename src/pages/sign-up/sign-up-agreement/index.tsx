@@ -4,10 +4,17 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import CheckBoxItem from './checkbox-item'
 import useFormValidate from '../hooks/use-form-validate'
+import {useRecoilValue} from 'recoil'
+import {SignUpAtoms} from 'src/store/client/auth'
 
 const SignUpAgreement = () => {
+  const isSignUpChecks = useRecoilValue(SignUpAtoms)
   const {watch, setValue} = useFormContext()
   const {allCheck, age, promotionConsent, marketingConsent} = useFormValidate()
+  const {isEmailAuthCodeCheck, isEmailSenderCheck, isUserNameCheck} =
+    isSignUpChecks
+  const isAllCheck =
+    isEmailAuthCodeCheck && isEmailSenderCheck && isUserNameCheck
 
   const handleUseFormAllCheck = () => {
     const newValue = watch('allCheck')
@@ -59,6 +66,7 @@ const SignUpAgreement = () => {
         />
         <Button
           type="submit"
+          disabled={!isAllCheck}
           variant="contained"
           color="inherit"
           size="large"
@@ -78,6 +86,5 @@ const AgreementWrapper = styled(Box)({
   background: '#fff',
   border: '1px solid #E7E7E7',
   borderRadius: '16px',
-  marginLeft: '16px',
   position: 'relative',
 })

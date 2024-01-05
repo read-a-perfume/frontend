@@ -1,86 +1,42 @@
 import {List} from '@mui/material'
-import SignUpValidation from './sign-up-validation'
-import usePostCheckDuplicate from '../hooks/use-post-check-duplicate '
 import useFormValidate from '../hooks/use-form-validate'
-import signUpvalidate from '../utils/sign-up-validate'
-import EmailConfirm from './sign-up-validation/email-confirm'
-import IdCheck from './sign-up-validation/id-check'
-import EmailCheck from './sign-up-validation/email-check'
+import UserNameSection from './user-name-section'
+import PasswordSection from './password-section'
+import PasswordConfirmSection from './password-confirm-section'
+import EmailAuthCodeSection from './email-auth-code-section'
+import usePostEmailSender from '../hooks/use-post-email-sender'
+import usePostEmailAuthCode from '../hooks/use-post-email-auth-code'
+import EmailSenderSection from './email-sender-section'
+import usePostUserNameConfirm from '../hooks/use-post-user-name-confirm '
 
 const SignupInputs = () => {
-  const {username, password, confirmPassword, email, emailAuth} =
+  const {username, password, passwordConfirm, email, emailAuthCode} =
     useFormValidate()
-  const {
-    handleIdDuplicateCheck,
-    handleEmailDuplicateCheck,
-    handleEmailComfirmCheck,
-    isSuccess,
-  } = usePostCheckDuplicate({
+  const {handleUserNameConfirm } = usePostUserNameConfirm({
     successMessage: '사용 가능합니다',
     failedMessage: '아이디 중복입니다.',
     userId: username.field.value,
   })
+  const {handleEmailAuthCodeCheck} = usePostEmailAuthCode()
+  const {handleEmailSend, handleEmailChange} = usePostEmailSender()
 
   return (
     <List sx={{width: '100%'}}>
-      <SignUpValidation
-        placeholder={signUpvalidate.username.placeholder}
-        name="아이디"
-        type="text"
-        method={username}
-        compoment={
-          <IdCheck
-            title="중복확인"
-            value={username.field.value}
-            handleIdDuplicateCheck={handleIdDuplicateCheck}
-          />
-        }
+      <UserNameSection
+        username={username}
+        handleUserNameConfirm ={handleUserNameConfirm }
       />
-
-      <SignUpValidation
-        placeholder={signUpvalidate.password.placeholder}
-        type="password"
-        method={password}
-        name="비밀번호"
+      <PasswordSection password={password} />
+      <PasswordConfirmSection passwordConfirm={passwordConfirm} />
+      <EmailSenderSection
+        email={email}
+        handleEmailSend={handleEmailSend}
+        handleEmailChange={handleEmailChange}
       />
-
-      <SignUpValidation
-        placeholder={signUpvalidate.password.placeholder}
-        type="password"
-        method={confirmPassword}
-        name="비밀번호 확인"
+      <EmailAuthCodeSection
+        emailAuthCode={emailAuthCode}
+        handleEmailAuthCodeCheck={handleEmailAuthCodeCheck}
       />
-
-      <SignUpValidation
-        placeholder={signUpvalidate.email.placeholder}
-        type="email"
-        method={email}
-        name="본인 확인 이메일"
-        compoment={
-          <EmailCheck
-            title="인증"
-            value={email.field.value}
-            handleEmailDuplicateCheck={handleEmailDuplicateCheck}
-          />
-        }
-      />
-
-      {isSuccess && (
-        <SignUpValidation
-          placeholder="이메일 인증 코드를 적으시오"
-          method={emailAuth}
-          name="이메일 인증 코드"
-          compoment={
-            <EmailConfirm
-              title="확인"
-              emailAdreess={email.field.value}
-              emailCode={emailAuth.field.value}
-              confirmEmail={handleEmailComfirmCheck}
-            />
-          }
-          type="text"
-        />
-      )}
     </List>
   )
 }
