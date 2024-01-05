@@ -9,10 +9,13 @@ const ListSection = ({sort}: {sort: string}) => {
   const location = useLocation()
   const query = new URLSearchParams(location.search)
   const currentPage = parseInt(query.get('page') || '1', 10)
+
   const {data} = useQuery({
     queryKey: [reviewQueryKeys.list({page: currentPage, size: 10, sort})],
-    queryFn: () => fetchAllReviews(sort, 1, 10),
+    queryFn: () => fetchAllReviews(sort, currentPage, 10),
     options: {
+      staleTime: 30 * 60 * 1000,
+      cacheTime: 40 * 60 * 1000,
       suspense: true,
     },
   })

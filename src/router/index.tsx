@@ -13,7 +13,7 @@ import SignIn from '@pages/sign-in'
 import MagazineUpload from '@pages/brand/legacy/magazine-upload'
 import BrandList from '@pages/brand/brand-list'
 import ReviewListPage from '@pages/reviews/review-list'
-
+import SearchPage from '@pages/search'
 
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
@@ -131,6 +131,14 @@ const routerData: RouterElement[] = [
     label: '리뷰 목록 페이지',
     path: '/reviews',
     element: <ReviewListPage />,
+    isLayout: true,
+    withAuth: true,
+  },
+  {
+    id: 11,
+    label: '리뷰 목록 페이지',
+    path: '/search',
+    element: <SearchPage />,
     isLayout: true,
     withAuth: true,
   },
