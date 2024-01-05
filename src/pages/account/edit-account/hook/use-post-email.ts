@@ -48,7 +48,10 @@ const usePostEmail = () => {
     emailCheck.mutate(data.email)
   }
 
-  return {onEmailChangeSubmit, onEmailCheckSubmit}
+  const emailSaveLoading = emailSave.isLoading
+  const emailCheckLoading = emailCheck.isLoading
+
+  return {onEmailChangeSubmit, onEmailCheckSubmit,emailCheckLoading,emailSaveLoading}
 }
 
 export default usePostEmail

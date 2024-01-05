@@ -6,16 +6,19 @@ import TypingContext from '../util/typing-context'
 import {useContext} from 'react'
 import SettingButton from '@pages/account/base/setting-button'
 import usePostEmail from '../hook/use-post-email'
+import LoadingOverlay from '@components/base/loading-overlay'
 
 const ValidationCodeForm = () => {
   const {validationCode, methods} = useEditEmailForms()
   const {isTyping, setIsTyping} = useContext(TypingContext)
-  const {onEmailCheckSubmit} = usePostEmail()
+  const {onEmailCheckSubmit,emailCheckLoading} = usePostEmail()
+
 
   return (
     <Box sx={{height: '110px'}}>
       {isTyping && (
-        <>
+        <> 
+          {emailCheckLoading && <LoadingOverlay/>}
           <Box sx={{display: 'flex', gap: '27px', alignItems: 'center'}}>
             <Input placeholder="인증 번호 입력" {...validationCode.field} />
             <SettingButton
@@ -39,3 +42,4 @@ const ValidationCodeForm = () => {
 }
 
 export default ValidationCodeForm
+

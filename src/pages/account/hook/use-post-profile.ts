@@ -49,7 +49,10 @@ const usePostProfile = () => {
     }
   }
 
-  return {onSubmit, onSubmitThumbnail}
+  const profileLoading = profile.isLoading
+  const profileImageLoading = profileImage.isLoading
+
+  return {onSubmit, onSubmitThumbnail,profileImageLoading,profileLoading}
 }
 
 export default usePostProfile
