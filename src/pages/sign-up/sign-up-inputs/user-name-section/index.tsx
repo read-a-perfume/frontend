@@ -3,8 +3,17 @@ import SignUpTextFiled from '@pages/sign-up/base/sign-up-text-filed'
 import {Box, styled} from '@mui/material'
 import {IfUserNameProps} from '@pages/sign-up/types'
 import UserNameCheckButton from './user-name-check-button'
+import {useRecoilValue} from 'recoil'
+import {SignUpAtoms} from 'src/store/client/auth'
 
-const UserNameSection = ({username, handleUsernameCheck}: IfUserNameProps) => {
+const UserNameSection = ({username, handleUserNameConfirm}: IfUserNameProps) => {
+  const isSignUpChecks = useRecoilValue(SignUpAtoms)
+  const isAuthCheck = isSignUpChecks.isUserNameCheck
+  console.log(isSignUpChecks, '체크')
+  // const updateIsUserNameCheck = (isCheck: boolean) => {
+  //   setValue('usernameCheck', isCheck)
+  // }
+
   return (
     <TextFiledWrapper>
       <SignUpLabel label="아이디" />
@@ -12,11 +21,14 @@ const UserNameSection = ({username, handleUsernameCheck}: IfUserNameProps) => {
         type="text"
         method={username}
         placeholder="아이디 체크"
+        isAuthCheck={isAuthCheck}
       />
       <UserNameCheckButton
-        title="중복체크"
+        beforeTitle="인증"
+        afterTitle="인증완료"
         value={username.field.value}
-        handleIdDuplicateCheck={handleUsernameCheck}
+        handleUserNameConfirm={handleUserNameConfirm}
+        isAuthCheck={isAuthCheck}
       />
     </TextFiledWrapper>
   )

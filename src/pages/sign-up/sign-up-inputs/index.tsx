@@ -1,37 +1,41 @@
 import {List} from '@mui/material'
-import usePostCheckDuplicate from '../hooks/use-post-check-duplicate '
 import useFormValidate from '../hooks/use-form-validate'
-import UserNameSection from './sign-up-validation/user-name-section'
-import PasswordSection from './sign-up-validation/password-section'
-import PasswordConfirmSection from './sign-up-validation/password-confirm-section'
-import EmailConfirmSenderSection from './sign-up-validation/email-confirm-sender-section'
-import EmailAuthCodeConfirmSection from './sign-up-validation/email-auth-code-confirm-section'
+import UserNameSection from './user-name-section'
+import PasswordSection from './password-section'
+import PasswordConfirmSection from './password-confirm-section'
+import EmailAuthCodeSection from './email-auth-code-section'
+import usePostEmailSender from '../hooks/use-post-email-sender'
+import usePostEmailAuthCode from '../hooks/use-post-email-auth-code'
+import EmailSenderSection from './email-sender-section'
+import usePostUserNameConfirm from '../hooks/use-post-user-name-confirm '
 
 const SignupInputs = () => {
-  const {username, password, passwordConfirm, email, emailAuth} =
+  const {username, password, passwordConfirm, email, emailAuthCode} =
     useFormValidate()
-  const {handleUsernameCheck, handleEmailConfirmSend, handleEmailComfirmCheck} =
-    usePostCheckDuplicate({
-      successMessage: '사용 가능합니다',
-      failedMessage: '아이디 중복입니다.',
-      userId: username.field.value,
-    })
+  const {handleUserNameConfirm } = usePostUserNameConfirm({
+    successMessage: '사용 가능합니다',
+    failedMessage: '아이디 중복입니다.',
+    userId: username.field.value,
+  })
+  const {handleEmailAuthCodeCheck} = usePostEmailAuthCode()
+  const {handleEmailSend, handleEmailChange} = usePostEmailSender()
 
   return (
     <List sx={{width: '100%'}}>
       <UserNameSection
         username={username}
-        handleUsernameCheck={handleUsernameCheck}
+        handleUserNameConfirm ={handleUserNameConfirm }
       />
       <PasswordSection password={password} />
       <PasswordConfirmSection passwordConfirm={passwordConfirm} />
-      <EmailConfirmSenderSection
+      <EmailSenderSection
         email={email}
-        handleEmailConfirmSend={handleEmailConfirmSend}
+        handleEmailSend={handleEmailSend}
+        handleEmailChange={handleEmailChange}
       />
-      <EmailAuthCodeConfirmSection
-        emailCode={emailAuth}
-        confirmEmail={handleEmailComfirmCheck}
+      <EmailAuthCodeSection
+        emailAuthCode={emailAuthCode}
+        handleEmailAuthCodeCheck={handleEmailAuthCodeCheck}
       />
     </List>
   )

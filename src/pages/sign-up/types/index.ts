@@ -6,23 +6,18 @@ export interface IfUsePostCheckDuplicateProps {
   userId: string
 }
 
-export interface IfSignUpEmailCheckProps {
-  title: string
-  value: string
-  handleEmailDuplicateCheck: (email: string) => void
-}
-
-export interface IfSignUpEmailConfirmProps {
-  title: string
+export interface IfSignUpEmailConfirmProps extends IfAuthButtonTitle {
   emailAdreess: string
   emailCode: string
   confirmEmail: (data) => void
 }
 
-export interface IfSignUpIdCheckProps {
-  title: string
+export interface IfUserNameCheckButtonProps {
+  beforeTitle: string
+  afterTitle: string
   value: string
   handleIdDuplicateCheck: (id: string) => void
+  isUserNameCheck: boolean
 }
 export interface IfFormTextFiledValidationProps {
   placeholder: string // 입력 전 값
@@ -44,7 +39,7 @@ export interface IfSignUpInputBase {
 //유저이름 섹션
 export interface IfUserNameProps {
   username: UseControllerReturn<FieldValues, 'username'>
-  handleUsernameCheck: (username: string) => void
+  handleUserNameConfirm: (username: string) => void
 }
 export interface IfPasswordProps {
   password: UseControllerReturn<FieldValues, 'password'>
@@ -54,13 +49,29 @@ export interface IfPasswordConfirmProps {
   passwordConfirm: UseControllerReturn<FieldValues, 'passwordConfirm'>
 }
 
+export interface IfSignUpEmailCheckProps extends IfAuthButtonTitle {
+  value: string
+  handleEmailSend: (email: string) => void
+  handleEmailChange: () => void
+}
+
 // 이메일 인증코드 확인 섹션
 export interface IfEmailConfirmSenderProps {
   email: UseControllerReturn<FieldValues, 'email'>
-  handleEmailConfirmSend: (email: string) => void
+  handleEmailSend: (email: string) => void
+  handleEmailChange: () => void
 }
 
 // 이메일 인증코드 확인 섹션
 export interface IfEmailAuthCodeConfirmSectionProps {
   emailAuthCode: UseControllerReturn<FieldValues>
+}
+
+interface IfIsAuthCheck {
+  isAuthCheck: boolean
+}
+
+interface IfAuthButtonTitle extends IfIsAuthCheck {
+  beforeTitle: string
+  afterTitle: string
 }

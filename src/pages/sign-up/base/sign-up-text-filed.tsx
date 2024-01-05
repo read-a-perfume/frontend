@@ -1,7 +1,7 @@
 import ErrorMessage from '@components/base/error-message'
 import {TextField, styled} from '@mui/material'
 
-const SignUpTextFiled = ({type, method, placeholder}) => {
+const SignUpTextFiled = ({type, method, placeholder, isAuthCheck}: any) => {
   const {
     field,
     formState: {errors},
@@ -11,12 +11,11 @@ const SignUpTextFiled = ({type, method, placeholder}) => {
     <CustomTextFiled
       hiddenLabel
       InputLabelProps={{shrink: false}}
+      {...field}
       type={type}
-      value={field.value}
-      onChange={field.onChange}
-      onBlur={field.onBlur}
       helperText={<ErrorMessage errorMessage={errors[field.name]?.message} />}
       placeholder={placeholder}
+      disabled={isAuthCheck}
     />
   )
 }

@@ -1,18 +1,20 @@
 import {Box} from '@mui/material'
 import MuiButton from '@components/base/mui-button'
-import {IfSignUpIdCheckProps} from '@pages/sign-up/types'
 
 const UserNameCheckButton = ({
-  title,
+  beforeTitle,
+  afterTitle,
   value,
   handleIdDuplicateCheck,
-}: IfSignUpIdCheckProps) => {
+  isAuthCheck,
+}: any) => {
   return (
     <Box sx={{position: 'absolute', right: '-100px', top: '35px'}}>
       <MuiButton
-        type="dark"
-        title={title}
+        type={isAuthCheck ? 'grey' : 'dark'}
+        title={isAuthCheck ? afterTitle : beforeTitle}
         handleClick={() => handleIdDuplicateCheck(value)}
+        disabled={isAuthCheck}
       />
     </Box>
   )

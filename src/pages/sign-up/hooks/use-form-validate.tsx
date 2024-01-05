@@ -1,7 +1,6 @@
 import {useController, useFormContext} from 'react-hook-form'
 import signUpvalidate from '../utils/sign-up-validate'
 
-
 const useFormValidate = () => {
   const {control, watch} = useFormContext()
 
@@ -44,8 +43,8 @@ const useFormValidate = () => {
       ...signUpvalidate.email.register,
     },
   })
-  const emailAuth = useController({
-    name: 'emailAuth', // defaultsvalues 저장한 객체 키
+  const emailAuthCode = useController({
+    name: 'emailAuthCode', // defaultsvalues 저장한 객체 키
     control,
   })
 
@@ -84,9 +83,9 @@ const useFormValidate = () => {
   return {
     username,
     password,
-    passwordConfirm ,
+    passwordConfirm,
     email,
-    emailAuth,
+    emailAuthCode,
     terms,
     age,
     privacy,
