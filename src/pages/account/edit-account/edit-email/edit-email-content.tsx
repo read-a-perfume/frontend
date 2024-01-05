@@ -5,6 +5,7 @@ import {EmailFormDataType} from '../type'
 import usePostEmail from '../hook/use-post-email'
 import EmailForm from './email-form'
 import ValidationCodeForm from './validation-code-form'
+import LoadingOverlay from '@components/base/loading-overlay'
 
 
 
@@ -22,11 +23,12 @@ const EditEmailContent = ({defaultEmail}: proptype) => {
     },
   })
 
-  const {onEmailChangeSubmit, onEmailCheckSubmit} = usePostEmail()
+  const {onEmailChangeSubmit, onEmailCheckSubmit,emailCheckLoading,emailSaveLoading} = usePostEmail()
 
 
   return (
     <>
+      {(emailCheckLoading || emailSaveLoading) && <LoadingOverlay/> }
       <FormProvider {...emailMethods}>
         <EditTitle title="이메일 변경">
           <form onSubmit={emailMethods.handleSubmit(onEmailCheckSubmit)}>

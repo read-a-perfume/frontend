@@ -9,6 +9,9 @@ import TypingContext from '../util/typing-context'
 const EmailForm = () => {
   const {email} = useEditEmailForms()
   const {isTyping} = useContext(TypingContext)
+ 
+
+  
 
   return (
     <>

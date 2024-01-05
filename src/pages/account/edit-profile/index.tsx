@@ -4,6 +4,7 @@ import {FormProvider, useForm} from 'react-hook-form'
 import usePostProfile from '../hook/use-post-profile'
 import {FormInfoDataType, FormThumbnailDataType} from './type'
 import EditThumbnail from './edit-info/edit-thumbnail'
+import LoadingOverlay from '@components/base/loading-overlay'
 
 interface proptype {
   data: FormInfoDataType & FormThumbnailDataType
@@ -24,10 +25,11 @@ const EditProfile = ({data}: proptype) => {
     },
   })
 
-  const {onSubmit, onSubmitThumbnail} = usePostProfile()
+  const {onSubmit, onSubmitThumbnail,profileImageLoading,profileLoading} = usePostProfile()
 
   return (
     <Container>
+      {(profileLoading || profileImageLoading) && <LoadingOverlay/>}
       <FormProvider {...thumbnailMethods}>
         <form onSubmit={thumbnailMethods.handleSubmit(onSubmitThumbnail)}>
           <EditThumbnail />
