@@ -2,7 +2,7 @@ import {Box, Tabs} from '@mui/material'
 import SearchTab from './search-tab'
 
 const SearchTabs = () => {
-  const handleChange = (event, newValue) => {
+  const handleChange = (_event, newValue) => {
     // Handle tab change event here
     console.log(newValue, 'valuwe')
   }
