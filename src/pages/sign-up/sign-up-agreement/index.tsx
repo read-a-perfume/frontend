@@ -78,6 +78,5 @@ const AgreementWrapper = styled(Box)({
   background: '#fff',
   border: '1px solid #E7E7E7',
   borderRadius: '16px',
-  marginLeft: '16px',
   position: 'relative',
 })

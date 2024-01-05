@@ -13,17 +13,23 @@ const usePostCheckDuplicate = ({
   failedMessage,
   userId,
 }: IfUsePostCheckDuplicateProps) => {
-  const {setError, trigger, getValues} = useFormContext()
+  const {setError, trigger, getValues, setValue} = useFormContext()
+  console.log(getValues('usernameCheck'), '로ㅓ그')
+  //아이디 중복체크
   const {mutate: mutateCheckUserId} = useMutation({
     mutationFn: postSignUpIdDuplicationCheck,
     mutationKey: authMutationKeys.signUpIdCheck(userId),
     options: {
-      onSuccess: () => alert(successMessage),
+      onSuccess: () => {
+        alert(successMessage)
+        setValue('usernameCheck', true)
+      },
       onError: () => {
         setError('username', {
           type: 'menual',
           message: failedMessage,
         })
+        setValue('usernameCheck', false)
       },
     },
   })
@@ -67,13 +73,13 @@ const usePostCheckDuplicate = ({
   })
 
   //아이디 중복체크
-  const handleIdDuplicateCheck = async (usernameFildValue: string) => {
+  const handleUsernameCheck = async (usernameFildValue: string) => {
     if ((await trigger('username')) === true) {
       mutateCheckUserId(usernameFildValue)
     }
   }
   // 이메일 중복체크
-  const handleEmailDuplicateCheck = async (emailFildValue: string) => {
+  const handleEmailConfirmSend = async (emailFildValue: string) => {
     if ((await trigger('email')) === true) {
       checkEmailMutate(emailFildValue)
     }
@@ -88,8 +94,8 @@ const usePostCheckDuplicate = ({
   return {
     mutateCheckUserId,
     checkEmailMutate,
-    handleIdDuplicateCheck,
-    handleEmailDuplicateCheck,
+    handleUsernameCheck,
+    handleEmailConfirmSend ,
     handleEmailComfirmCheck,
     isSuccess,
     emailData,

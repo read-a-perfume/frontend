@@ -20,10 +20,12 @@ const SignUpForm = () => {
       username: '',
       password: '',
       email: '',
-      emailAuth: '',
-      confimrPassword: '',
+      passwordConfirm: '',
       marketingConsent: false,
       promotionConsent: false,
+      usernameCheck: false, //아이디 중복 체크 여부
+      emailCheck: false, // 이메일 전송 여부
+      emailConfirm: false, // 이메일 인증코드 확인 여부
     },
   })
   const {routeTo} = useRouter()

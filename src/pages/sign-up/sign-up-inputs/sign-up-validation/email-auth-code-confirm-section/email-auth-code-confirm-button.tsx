@@ -2,7 +2,7 @@ import MuiButton from "@components/base/mui-button"
 import { Box } from "@mui/material"
 import { IfSignUpEmailConfirmProps } from "@pages/sign-up/types"
 
-const EmailConfirm = ({
+const EmailAuthCodeConfirmButton = ({
     title,
     emailAdreess,
     emailCode,
@@ -20,4 +20,4 @@ const EmailConfirm = ({
   )
 }
 
-export default EmailConfirm
+export default EmailAuthCodeConfirmButton

@@ -22,8 +22,8 @@ const useFormValidate = () => {
     },
     //규칙
   })
-  const confirmPassword = useController({
-    name: 'confirmPassword', // defaultsvalues 저장한 객체 키
+  const passwordConfirm = useController({
+    name: 'passwordConfirm', // defaultsvalues 저장한 객체 키
     control,
     rules: {
       validate: (val: string) => {
@@ -84,7 +84,7 @@ const useFormValidate = () => {
   return {
     username,
     password,
-    confirmPassword,
+    passwordConfirm ,
     email,
     emailAuth,
     terms,
