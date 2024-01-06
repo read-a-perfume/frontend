@@ -3,16 +3,14 @@ import SignUpLabel from '@pages/sign-up/base/sign-up-label'
 import SignUpTextFiled from '@pages/sign-up/base/sign-up-text-filed'
 import EmailCheck from './email-check'
 import {IfEmailConfirmSenderProps} from '@pages/sign-up/types'
-import {SignUpAtoms} from 'src/store/client/auth'
-import {useRecoilValue} from 'recoil'
+import {useSignUpContext} from '@pages/sign-up/hooks/use-sign-up-context'
 
 const EmailSenderSection = ({
   email,
   handleEmailSend,
   handleEmailChange,
 }: IfEmailConfirmSenderProps) => {
-  const isSignUpChecks = useRecoilValue(SignUpAtoms)
-  const isAuthCheck = isSignUpChecks.isEmailSenderCheck
+  const {signUpState} = useSignUpContext()
 
   return (
     <TextFiledWrapper>
@@ -21,7 +19,7 @@ const EmailSenderSection = ({
         type="email"
         method={email}
         placeholder="이메일을 입력하세요"
-        isAuthCheck={isAuthCheck}
+        isAuthCheck={signUpState.isEmailSenderCheck}
       />
       <EmailCheck
         beforeTitle="전송"
@@ -29,7 +27,7 @@ const EmailSenderSection = ({
         value={email.field.value}
         handleEmailSend={handleEmailSend}
         handleEmailChange={handleEmailChange}
-        isAuthCheck={isAuthCheck}
+        isAuthCheck={signUpState.isEmailSenderCheck}
       />
     </TextFiledWrapper>
   )

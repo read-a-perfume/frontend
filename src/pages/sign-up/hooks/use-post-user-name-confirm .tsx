@@ -3,15 +3,14 @@ import {authMutationKeys} from 'src/react-query-keys/auth.keys'
 import {postSignUpIdDuplicationCheck} from 'src/store/server/auth/mutations'
 import useMutation from 'src/store/server/use-mutation'
 import {IfUsePostCheckDuplicateProps} from '../types'
-import {useSetRecoilState} from 'recoil'
-import {SignUpAtoms} from 'src/store/client/auth'
+import {useSignUpContext} from './use-sign-up-context'
 
 const usePostUserNameConfirm = ({
   successMessage,
   failedMessage,
   userId,
 }: IfUsePostCheckDuplicateProps) => {
-  const setAuthCheck = useSetRecoilState(SignUpAtoms)
+  const {signUpState,updateSignUpState} = useSignUpContext()
   const {setError, trigger} = useFormContext()
 
   //아이디 중복체크
@@ -21,24 +20,14 @@ const usePostUserNameConfirm = ({
     options: {
       onSuccess: () => {
         alert(successMessage)
-        setAuthCheck(prevAtomState => {
-          return {
-            ...prevAtomState,
-            isUserNameCheck: true,
-          }
-        })
+        updateSignUpState({...signUpState, isUserNameCheck: true})
       },
       onError: () => {
         setError('username', {
           type: 'menual',
           message: failedMessage,
         })
-        setAuthCheck(prevAtomState => {
-          return {
-            ...prevAtomState,
-            isUserNameCheck: false,
-          }
-        })
+        updateSignUpState({...signUpState, isUserNameCheck: false})
       },
     },
   })

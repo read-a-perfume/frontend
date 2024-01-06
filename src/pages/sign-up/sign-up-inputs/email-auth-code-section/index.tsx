@@ -2,19 +2,15 @@ import {Box, styled} from '@mui/material'
 import SignUpLabel from '@pages/sign-up/base/sign-up-label'
 import SignUpTextFiled from '@pages/sign-up/base/sign-up-text-filed'
 import EmailAuthCodeConfirmButton from './email-auth-code-confirm-button'
-import {useRecoilValue} from 'recoil'
-import {SignUpAtoms} from 'src/store/client/auth'
-import {useFormContext} from 'react-hook-form'
+import {useSignUpContext} from '@pages/sign-up/hooks/use-sign-up-context'
 
 const EmailAuthCodeSection = ({
+  currentEmail,
   emailAuthCode,
   handleEmailAuthCodeCheck,
 }) => {
-  const isSignUpChecks = useRecoilValue(SignUpAtoms)
-  const isAuthCheck = isSignUpChecks.isEmailAuthCodeCheck
-  console.log(isAuthCheck, 'isCheck')
-  const {getValues} = useFormContext()
-  const currentEmail = getValues('email')
+  const {signUpState} = useSignUpContext()
+
   return (
     <TextFiledWrapper>
       <SignUpLabel label="이메일 인증코드 확인" />
@@ -22,7 +18,7 @@ const EmailAuthCodeSection = ({
         type="text"
         method={emailAuthCode}
         placeholder="인증코드를 입력하세요"
-        isAuthCheck={isAuthCheck}
+        isAuthCheck={signUpState.isEmailAuthCodeCheck}
       />
       <EmailAuthCodeConfirmButton
         emailAdreess={currentEmail}
@@ -30,7 +26,7 @@ const EmailAuthCodeSection = ({
         confirmEmail={handleEmailAuthCodeCheck}
         beforeTitle="인증 코드"
         afterTitle="인증 완료"
-        isAuthCheck={isAuthCheck}
+        isAuthCheck={signUpState.isEmailAuthCodeCheck}
       />
     </TextFiledWrapper>
   )
