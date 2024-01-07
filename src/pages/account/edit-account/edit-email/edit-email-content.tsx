@@ -7,13 +7,9 @@ import EmailForm from './email-form'
 import ValidationCodeForm from './validation-code-form'
 import LoadingOverlay from '@components/base/loading-overlay'
 
-
-
-
 interface proptype {
   defaultEmail: string
 }
-
 
 const EditEmailContent = ({defaultEmail}: proptype) => {
   const emailMethods = useForm<EmailFormDataType>({
@@ -23,18 +19,23 @@ const EditEmailContent = ({defaultEmail}: proptype) => {
     },
   })
 
-  const {onEmailChangeSubmit, onEmailCheckSubmit,emailCheckLoading,emailSaveLoading} = usePostEmail()
+  const {trigger, setError} = emailMethods
 
+  const {
+    onEmailChangeSubmit,
+    onEmailCheckSubmit,
+    emailCheckLoading,
+    emailSaveLoading,
+  } = usePostEmail(trigger, setError)
 
   return (
     <>
-      {(emailCheckLoading || emailSaveLoading) && <LoadingOverlay/> }
+      {(emailCheckLoading || emailSaveLoading) && <LoadingOverlay />}
       <FormProvider {...emailMethods}>
-        <EditTitle title="이메일 변경">
-          <form onSubmit={emailMethods.handleSubmit(onEmailCheckSubmit)}>
-            <EmailForm />
-          </form>
-        </EditTitle>
+        <EditTitle title="이메일 변경" />
+        <form onSubmit={emailMethods.handleSubmit(onEmailCheckSubmit)}>
+          <EmailForm />
+        </form>
         <form onSubmit={emailMethods.handleSubmit(onEmailChangeSubmit)}>
           <ValidationCodeForm />
         </form>

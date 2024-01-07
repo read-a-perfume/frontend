@@ -11,7 +11,12 @@ const BrandCard = ({data}: proptype) => {
 
   return (
     <Container onClick={() => routeTo(`/brand/${data.id}`)}>
-      <BrandThumbnail src={data.thumbnail} alt="brand image" />
+      <BrandThumbnail
+        src={data.thumbnail}
+        alt="brand image"
+        height={360.9}
+        width={282}
+      />
       <BrandName>{data.name}</BrandName>
       <BrandStory>{data.story}</BrandStory>
     </Container>
@@ -26,8 +31,8 @@ const Container = styled(Box)(() => ({
 }))
 
 const BrandThumbnail = styled('img')(() => ({
-  width: '100%',
-  height: '360.9px',
+  //width: '100%',
+  //height: '360.9px',
   borderRadius: '19.1px',
 }))
 

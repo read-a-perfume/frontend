@@ -20,7 +20,7 @@ const ProfileInfo = ({flag, username, following, follower}: proptype) => {
         <FollowText title="팔로잉" count={following} label="following" />
       </Stack>
       {flag && (
-        <SettingButton onClick={() => routeTo('/settings')}>
+        <SettingButton onClick={() => routeTo('/settings')} aria-label='설정'>
           <Typography sx={{fontSize: '20.8px', fontWeight: 500}}>
             설정
           </Typography>

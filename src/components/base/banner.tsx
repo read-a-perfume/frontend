@@ -7,7 +7,7 @@ interface proptype {
 const Banner = ({text = ''}: proptype) => {
   return (
     <_Banner>
-      <BannerImg src="/images/banner.png" width={100} />
+      <BannerImg src="/images/banner.webp" alt="banner"/>
       <BannerText>{text}</BannerText>
     </_Banner>
   )

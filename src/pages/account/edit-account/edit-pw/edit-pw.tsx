@@ -12,12 +12,13 @@ const EditPw = () => {
   const {errors: oldPwErrors} = oldPassword.formState
   const {errors: newPwErrors} = newPassword.formState
   const {errors: confirmPwErrors} = confirmPassword.formState
+  
 
   return (
     <>
-      <EditTitle title="비밀번호 재설정">
+      <EditTitle title="비밀번호 재설정"/>
         <FormLabel>비밀번호</FormLabel>
-        <Stack>
+        <Stack sx={{gap:'40px'}}>
           <PwInput
             placeholder="현재 비밀번호"
             type="password"
@@ -55,9 +56,10 @@ const EditPw = () => {
               />
             }
           />
+          <SaveButton>저장하기</SaveButton>
         </Stack>
-      </EditTitle>
-      <SaveButton>저장하기</SaveButton>
+  
+      
     </>
   )
 }

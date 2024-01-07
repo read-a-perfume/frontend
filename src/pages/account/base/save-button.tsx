@@ -11,6 +11,7 @@ SaveButton.defaultProps = {
   disableElevation: true,
   type: 'submit',
   variant: 'contained',
+  "aria-label": '저장하기',
 }
 
 export default SaveButton

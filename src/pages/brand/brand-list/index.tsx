@@ -44,6 +44,7 @@ const BrandList = () => {
                 setKorClass(korClass === e ? '' : e)
               }}
               active={korClass === e}
+              aria-label={e}
             >
               {e}
             </KorButton>
