@@ -3,9 +3,19 @@ import {Link} from 'react-router-dom'
 
 const HeaderNavBar = () => {
   return (
-    <AppBar position="static" sx={{background: '#fff', boxShadow: 'none'}}>
+    <AppBar
+      position="static"
+      sx={{
+        width: '1200px',
+        background: '#fff',
+        boxShadow: 'none',
+        '& > .MuiToolbar-root': {
+          boxShadow: 0,
+        },
+      }}
+    >
       <ToolbarWrapper>
-        <Typography variant="h6" fontSize={32}>
+        <Typography variant="h1" fontSize={32}>
           Read a Perfume
         </Typography>
         <Box sx={{display: 'flex', gap: '33px', marginLeft: '103px'}}>
@@ -22,13 +32,7 @@ const HeaderNavBar = () => {
 
 export default HeaderNavBar
 
-const ToolbarWrapper = styled(Toolbar)({
-  '.MuiToolbar-root': {
-    width: '1200px',
-    marign: 'auto',
-    boxShadow: 0,
-  },
-})
+const ToolbarWrapper = styled(Toolbar)({})
 
 const Navigation = styled(Link)({
   display: 'block',
