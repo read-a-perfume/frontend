@@ -6,9 +6,8 @@ import {useParams} from 'react-router-dom'
 
 const MyPage = () => {
   
-
   const {userId} = useParams()
-
+  
   return (
     <Box
       sx={{
