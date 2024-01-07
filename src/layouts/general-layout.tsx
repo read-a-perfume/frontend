@@ -7,12 +7,9 @@ interface GeneralLayoutProps {
 }
 
 const GeneralLayout: React.FC<GeneralLayoutProps> = ({children}) => {
-  const {isLoggined, isLoading} = useAuthRedirect()
 
-  if (!isLoggined && isLoading) {
-    return
-  }
-
+  useAuthRedirect()
+  
   return (
     <>
       <Header />

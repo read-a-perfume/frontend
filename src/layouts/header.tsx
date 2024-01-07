@@ -21,7 +21,7 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
         setIsOpen={setNotificationOpen}
       />
       <HeaderLayout>
-        {isLoggedIn || isLoggedIn === null ? (
+        {isLoggedIn  ? (
           <LoggedInHeader
             
             isLoggedIn={isLoggedIn}

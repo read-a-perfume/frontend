@@ -1,15 +1,14 @@
 import Magazines from './magazines'
 import Notes from './notes'
-
 import {Banner, BannerBox, BannerImage, Content, Title} from './index.style'
-import Button from '@components/base/button.js'
-import Products from './products.js'
+import Button from '@components/base/button'
 import {useNavigate} from 'react-router-dom'
-import {fetchCategories} from 'src/store/server/categories/queries.js'
+import {fetchCategories} from 'src/store/server/categories/queries'
 import {useQuery} from '@tanstack/react-query'
-import {IfCategory} from 'types/perfume.interface.js'
-import {perfumeQueryKeys} from 'src/react-query-keys/perfume.keys.js'
-import ReviewSection from './review-section/index.js'
+import {IfCategory} from 'types/perfume.interface'
+import {perfumeQueryKeys} from 'src/react-query-keys/perfume.keys'
+import ReviewSection from './review-section/index'
+import Products from './products'
 
 export default function Home() {
   const navigate = useNavigate()
