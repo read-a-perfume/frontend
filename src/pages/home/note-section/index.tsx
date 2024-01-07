@@ -1,17 +1,31 @@
 import {useState} from 'react'
-import FlexBox from '../../layouts/flex-box'
-import {SectionSubTitle, SectionTitle} from './index.style'
-import styled from '@emotion/styled'
-import {Typography} from '@mui/material'
+import FlexBox from '@layouts/flex-box'
+import {Box, Typography, styled} from '@mui/material'
 import Category from '@components/category'
 import NoteProducts from './note-products'
+import {IfCategory} from 'types/perfume.interface'
+import useQuery from 'src/store/server/use-query'
+import {perfumeQueryKeys} from 'src/react-query-keys/perfume.keys'
+import {fetchCategories} from 'src/store/server/categories/queries'
 
-const Notes = ({categoryLoading, categoryError, categories}: any) => {
+const NoteSection = () => {
   const [categoryId, setCategoryId] = useState<number>(1)
   const [clickedNote, setClickedNote] = useState<string>('Fruity')
   const [description, setDescription] = useState<string>(
     '달콤한 과일의 향이 지속되어 생동감과 매력적인 느낌을 줍니다.',
   )
+
+  const {
+    isLoading: categoryLoading,
+    error: categoryError,
+    data: categories,
+  } = useQuery<IfCategory[]>({
+    queryKey: [perfumeQueryKeys.perfumesCategory()],
+    queryFn: fetchCategories,
+    options: {
+      staleTime: Infinity,
+    },
+  })
 
   return (
     <Wrapper>
@@ -50,13 +64,13 @@ const Notes = ({categoryLoading, categoryError, categories}: any) => {
   )
 }
 
-export default Notes
+export default NoteSection
 
-const Wrapper = styled.div`
-  width: 1200px;
-  margin-top: 122px;
-  margin-bottom: 102px;
-`
+const Wrapper = styled(Box)({
+  width: '1200px',
+  marginTop: '122px',
+  marginBottom: '102px',
+})
 
 const NoteTitle = styled(Typography)({
   fontFamily: 'AritaBuri, sans-serif, Arial !important',
@@ -80,17 +94,31 @@ const NoteSubTitle = styled(Typography)({
   width: '255px',
 })
 
-const NoteBox = styled.div({
+const NoteBox = styled('div')({
   height: '450px',
   width: '282px',
   borderRadius: 16,
 })
 
-const Image = styled.img({
+const Image = styled('img')({
   background:
     'linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%), lightgray 50% / cover no-repeat',
   borderRadius: 16,
   position: 'absolute',
   width: '282px',
   height: '450px',
+})
+const SectionTitle = styled(Typography)({
+  fontFamily: 'AritaBuri, sans-serif, Arial !important',
+  fontSize: 18,
+  fontWeight: '600',
+  color: '#191919',
+})
+
+const SectionSubTitle = styled(Typography)({
+  fontSize: 12,
+  fontWeight: '500',
+  color: '#A9A9A9',
+  marginTop: 5,
+  marginBottom: 40,
 })

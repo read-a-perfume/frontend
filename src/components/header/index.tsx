@@ -1,19 +1,15 @@
 import styled from '@emotion/styled'
 import {Button, OutlinedInput, Typography} from '@mui/material'
 import {useState} from 'react'
-import {useNavigate} from 'react-router-dom'
-import FlexBox from './flex-box.js'
-import NotificationModal from '@components/modal/notification-modal/index.js'
+import {Link} from 'react-router-dom'
+import FlexBox from '@layouts/flex-box'
+import NotificationModal from '@components/modal/notification-modal'
 import {theme} from '@theme/index.js'
-import {useRecoilValue} from 'recoil'
-import HeaderNavigations from '@components/header/header-navigations.js'
-import LoggedInHeader from '@components/header/logged-in-header.js'
-import {UserProfileAtom} from 'src/store/client/auth/atoms.js'
-const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
-  const navigate = useNavigate()
-  const isLoggedIn = useRecoilValue(UserProfileAtom)
+
+import HeaderNavBar from '@components/header/header-nav-bar'
+const Header = () => {
   const [notificationOpen, setNotificationOpen] = useState<boolean>(false)
-  console.log(isLoggedIn, 'isLoggedIn')
+
   return (
     <>
       <NotificationModal
@@ -21,25 +17,14 @@ const Header = ({editorPostCompleted}: {editorPostCompleted?: boolean}) => {
         setIsOpen={setNotificationOpen}
       />
       <HeaderLayout>
-        {isLoggedIn || isLoggedIn === null ? (
-          <LoggedInHeader
-            
-            isLoggedIn={isLoggedIn}
-            onOpenNotification={() => setNotificationOpen(true)}
-          />
-        ) : (
-          <HeaderNavigation height="58px">
-            <FlexBox gap="4px">
-              <NavTop onClick={() => navigate('/sign-up')}>회원가입</NavTop>
-              <NavTop>/</NavTop>
-              <NavTop onClick={() => navigate('/sign-in')}>{' 로그인'}</NavTop>
-            </FlexBox>
-          </HeaderNavigation>
-        )}
-        <HeaderNavigations
-          editorPostCompleted={editorPostCompleted}
-          isLoggedIn={isLoggedIn}
-        />
+        <HeaderNavigation height="58px">
+          <FlexBox gap="4px">
+            <NavTop to="/sign-up">회원가입</NavTop>
+            <NavTop to="/sign-in">로그인</NavTop>
+          </FlexBox>
+        </HeaderNavigation>
+
+        <HeaderNavBar />
       </HeaderLayout>
     </>
   )
@@ -69,11 +54,12 @@ export const HeaderNavigation = styled.div(({height}: {height: string}) => ({
   },
 }))
 
-export const NavTop = styled(Typography)({
+export const NavTop = styled(Link)({
   fontSize: theme.typography.body3.fontSize,
   fontWeight: 500,
   lineHeight: '150%',
   cursor: 'pointer',
+  color: 'black',
 })
 
 export const NavBottom = styled(Typography)({

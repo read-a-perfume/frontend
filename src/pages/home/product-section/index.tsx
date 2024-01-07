@@ -1,7 +1,11 @@
-import {SectionSubTitle, SectionTitle} from './index.style.js'
-import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box.js'
-import {Pagination, PaginationItem} from '@mui/material'
+import {
+  Box,
+  Pagination,
+  PaginationItem,
+  Typography,
+  styled,
+} from '@mui/material'
 import {useEffect, useState} from 'react'
 import instance from '@api/instance.js'
 import {useQuery} from '@tanstack/react-query'
@@ -25,7 +29,7 @@ const getPerfumesByFavorite = async () => {
 }
 const skeletons = Array.from({length: 12}, (_, index) => index + 1)
 
-const Products = () => {
+const ProductSection = () => {
   const [page, setPage] = useState<number>(0)
   const [perfumes, setPerfumes] = useState<Product[]>([])
 
@@ -82,14 +86,13 @@ const Products = () => {
   )
 }
 
-export default Products
-
-const ProductsContainer = styled.div({
+export default ProductSection
+const ProductsContainer = styled(Box)({
   marginTop: 136,
   width: 1200,
 })
 
-const Product = styled.div({
+const Product = styled(Box)({
   height: '426px',
   borderRadius: 16,
   border: '1px solid #EDEDED',
@@ -102,4 +105,18 @@ const Item = styled(PaginationItem)({
   fontSize: 16,
   fontWeight: '500',
   marginRight: 10,
+})
+const SectionTitle = styled(Typography)({
+  fontFamily: 'AritaBuri, sans-serif, Arial !important',
+  fontSize: 18,
+  fontWeight: '600',
+  color: '#191919',
+})
+
+const SectionSubTitle = styled(Typography)({
+  fontSize: 12,
+  fontWeight: '500',
+  color: '#A9A9A9',
+  marginTop: 5,
+  marginBottom: 40,
 })
