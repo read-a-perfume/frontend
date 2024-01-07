@@ -8,11 +8,15 @@ import getImageFromURL from './util/getImageFromURL'
 import useGoTop from '@hooks/use-go-top'
 import { fetchCurUser } from 'src/store/server/user/queries'
 import { userQueryKeys } from 'src/react-query-keys/user.keys'
+import useAuthRedirect from '@hooks/use-auth-redirect'
 
 const Account = () => {
   useGoTop()
+
+  
+
   const [isProfileSection, setIsProfileSection] = useState<boolean>(true)
-  const {data: curUser} = useQuery(userQueryKeys.me, () => fetchCurUser())
+  const {data: curUser} = useQuery(userQueryKeys.me, () => fetchCurUser(),{useErrorBoundary:false})
   const [thumbnail, setThumbnail] = useState<File | null>(null)
 
   useEffect(() => {
@@ -26,6 +30,17 @@ const Account = () => {
       })
     }
   }, [curUser])
+
+  const data = useAuthRedirect()
+
+  if (data.isLoading){
+    return <></>
+  }
+
+  if (data.isLoggined === null) {
+    window.location.href = "/"
+    return <></>
+  }
 
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>

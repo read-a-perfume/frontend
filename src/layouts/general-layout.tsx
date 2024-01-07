@@ -1,6 +1,6 @@
 import useAuthRedirect from '@hooks/use-auth-redirect'
-import Header from './header'
 import BottomFooter from '@components/bottom-footer'
+import Header from '@components/header'
 
 interface GeneralLayoutProps {
   children: React.ReactNode

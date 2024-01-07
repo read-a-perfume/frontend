@@ -1,6 +1,7 @@
 import {fetchUserProfile} from 'src/store/server/auth/queries'
 import {useRecoilState} from 'recoil'
 import {UserProfileAtom} from 'src/store/client/auth/atoms'
+
 import useQuery from 'src/store/server/use-query'
 
 const useAuthRedirect = () => {
@@ -12,8 +13,10 @@ const useAuthRedirect = () => {
     options: {
       onSuccess: data => {
         setIsLoggined(data)
-      }, 
-      staleTime: 9999999,
+      },
+      onError: error => console.log(error, '토큰이없습니다'),
+      staleTime: Infinity,
+      retry: 0,
     },
   })
 
