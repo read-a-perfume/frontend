@@ -38,8 +38,7 @@ export const httpErrorHandler = async (
         window.location.reload()
       }
     } catch (refreshError) {
-      // 토큰 갱신에 실패한 경우 로그인 페이지로 이동
-      window.location.href = '/sign-in'
+      console.log(refreshError, '리프레시 에러')
     }
   }
   return Promise.reject(error)
