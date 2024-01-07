@@ -1,6 +1,5 @@
 import {useState} from 'react'
 import {Popper, Paper, List, ListItem, Typography, styled} from '@mui/material'
-
 import {Link} from 'react-router-dom'
 import usePostLogout from '@hooks/use-post-logout'
 
@@ -33,17 +32,17 @@ const SubNavMenu = ({title}: {title: string}) => {
         >
           <NavList>
             <NavListItem>
-              <NavLink to="/my-page">
+              <NavLink to="/mypage/100">
                 <Typography variant="body3">마이 페이지</Typography>
               </NavLink>
             </NavListItem>
             <NavListItem>
-              <NavLink to="/#">
+              <NavLink to="/reviews/writer">
                 <Typography variant="body3">리뷰 작성</Typography>
               </NavLink>
             </NavListItem>
             <NavListItem>
-              <NavLink to="/#">
+              <NavLink to="/settings">
                 <Typography variant="body3">프로필 편집</Typography>
               </NavLink>
             </NavListItem>
