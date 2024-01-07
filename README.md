@@ -1,18 +1,26 @@
-
 <img src="https://github.com/read-a-perfume/frontend/assets/71584114/f56a95ad-6095-45c1-a631-e20366554f66" width="800px" height="500px"/>
 
 ## 프로젝트 소개
-향수에 대한 관심이 있는 사람들이 모여서 향수에 대한 정보를 공유하고, 서로의 취향을 공감할 수 있는 커뮤니티 웹사이트입니다.
 
-## 팀 동료
+- 리드 어 퍼퓸은  “화장품 정보 어플리케이션 화해”를 모티브 삼아 만든 향수 플랫폼입니다.   
+- 사용자들에게 향수에 대한 자유로운 의견을 나눌 수 있는 공간을 제공합니다. 
+- 사용자들은 인스타그램과 같이 글, 사진, 영상을 통해 향수에 대한 감상과 무드를 표현할 수 있으며, 팔로우 및 팔로잉 기능을 통해 타임라인에서 실시간 리뷰를 확인할 수 있습니다.
 
-## 기술스택
+### 프로젝트 네비게이션 구조
 
-- react
-- emotion
-- vite,
-- React-query v4
-- recoil,
+<img src="https://github.com/read-a-perfume/frontend/assets/71584114/9c98d32c-2c3a-4fd0-aac0-b090e02f3804"/>
+
+### 회원가입 인증 구조도
+
+<img src="https://github.com/read-a-perfume/frontend/assets/71584114/116f38bb-52a5-4149-8df7-75a59bc36ab9"/>
+
+### 로그인 인증 구조도
+
+<img src="https://github.com/read-a-perfume/frontend/assets/71584114/e3f1d187-4241-4286-be13-8bd977e5e1f8" width="500px" height="400px"/>
+
+### 사용 기술 및 환경
+
+React,Typescript,Vite,Material-ui,React-Query
 
 ## Commit Convention
 
