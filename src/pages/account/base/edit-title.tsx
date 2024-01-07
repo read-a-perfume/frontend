@@ -1,18 +1,11 @@
 import {Typography, styled} from '@mui/material'
-import {ReactNode} from 'react'
 
 interface proptype {
-  children?: ReactNode
   title: string
 }
 
-const EditTitle = ({children, title}: proptype) => {
-  return (
-    <>
-      <Title>{title}</Title>
-      {children}
-    </>
-  )
+const EditTitle = ({title}: proptype) => {
+  return <Title>{title}</Title>
 }
 
 export default EditTitle

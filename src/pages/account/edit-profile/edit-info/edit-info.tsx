@@ -16,12 +16,12 @@ const EditInfo = () => {
 
   return (
     <>
-      <EditTitle title="내 정보">
+      <EditTitle title="내 정보"/>
         <FormLabel>내 소개</FormLabel>
-        <Input width="717px" placeholder="내 소개" {...bio.field} />
+        <Input width="717px" placeholder="내 소개" {...bio.field} sx={{marginBottom:'30px'}}/>
         <FormLabel>성별</FormLabel>
         <SexRadio />
-      </EditTitle>
+      
       <SaveButton>저장하기</SaveButton>
     </>
   )

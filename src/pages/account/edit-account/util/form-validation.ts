@@ -19,9 +19,9 @@ interface ValidationType {
   confirmPassword: eachType
 }
 
-const [minLen,maxLen] = [5,16];
+const [minLen, maxLen] = [5, 16]
 
-const formValidation: ValidationType = {
+export const pwFormValidation: ValidationType = {
   oldPassword: {
     required: {
       value: true,
@@ -66,4 +66,21 @@ const formValidation: ValidationType = {
   },
 }
 
-export default formValidation
+export const emailFormValidation = {
+  email: {
+    required: {
+      value: true,
+      message: '이메일을 입력해주세요',
+    },
+    pattern: {
+      value: /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+      message: '올바른 이메일 형식으로 입력해주세요.',
+    },
+  },
+  validationCode: {
+    required: {
+      value: true,
+      message: '인증코드를 입력해주세요',
+    },
+  },
+}

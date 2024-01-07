@@ -8,7 +8,7 @@ interface proptype {
 const TypeInfoCard = ({data}: proptype) => {
   return (
     <Container>
-      <Thumbnail src={data.thumbnail} alt={data.name} />
+      <Thumbnail src={data.thumbnail} alt={data.name} loading='lazy'/>
       <TypeText>{data.name}</TypeText>
     </Container>
   )

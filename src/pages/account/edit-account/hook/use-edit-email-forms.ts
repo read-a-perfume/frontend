@@ -1,3 +1,4 @@
+import {emailFormValidation} from './../util/form-validation'
 import {useController, useFormContext} from 'react-hook-form'
 import {EmailFormDataType} from '../type'
 
@@ -7,12 +8,12 @@ const useEditEmailForms = () => {
   const email = useController({
     name: 'email',
     control,
-    //rules:{}
+    rules: {...emailFormValidation.email},
   })
   const validationCode = useController({
     name: 'validationCode',
     control,
-    //rules:[]
+    //rules: {...emailFormValidation.validationCode},
   })
 
   return {email, validationCode, methods}

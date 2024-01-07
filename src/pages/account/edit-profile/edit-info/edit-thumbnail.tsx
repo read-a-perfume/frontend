@@ -14,7 +14,7 @@ const EditThumbnail = () => {
   const {field} = thumbnail
 
   const image = useWatch({control: control, name: 'thumbnail'})
-  
+
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const file = e.target.files[0]
@@ -23,7 +23,8 @@ const EditThumbnail = () => {
   }
 
   return (
-    <EditTitle title="프로필 사진">
+    <>
+      <EditTitle title="프로필 사진" />
       <Container>
         <Avatar
           src={image !== null ? URL.createObjectURL(image) : ''}
@@ -54,7 +55,7 @@ const EditThumbnail = () => {
       </Container>
       <SaveButton>저장하기</SaveButton>
       <Divider sx={{margin: '44px 0'}} />
-    </EditTitle>
+    </>
   )
 }
 
@@ -66,4 +67,3 @@ const Container = styled(Box)(() => ({
   gap: '27px',
   marginBottom: '48px',
 }))
-

@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <>
       <Banner>
-        <BannerImage src="/images/banner.png" alt="banner" />
+        <BannerImage src="/images/banner.webp" alt="banner" />
         <BannerBox>
           <Title>
             REED A PERFUME에 오신것을 환영합니다.
