@@ -1,29 +1,15 @@
 import styled from '@emotion/styled'
 import {Button, OutlinedInput, Typography} from '@mui/material'
-import {useState} from 'react'
 import {Link} from 'react-router-dom'
-import FlexBox from '@layouts/flex-box'
-import NotificationModal from '@components/modal/notification-modal'
 import {theme} from '@theme/index.js'
-
 import HeaderNavBar from '@components/header/header-nav-bar'
-const Header = () => {
-  const [notificationOpen, setNotificationOpen] = useState<boolean>(false)
+import HeaderSubNav from './header-sub-nav'
 
+const Header = () => {
   return (
     <>
-      <NotificationModal
-        isOpen={notificationOpen}
-        setIsOpen={setNotificationOpen}
-      />
       <HeaderLayout>
-        <HeaderNavigation height="58px">
-          <FlexBox gap="4px">
-            <NavTop to="/sign-up">회원가입</NavTop>
-            <NavTop to="/sign-in">로그인</NavTop>
-          </FlexBox>
-        </HeaderNavigation>
-
+        <HeaderSubNav />
         <HeaderNavBar />
       </HeaderLayout>
     </>
