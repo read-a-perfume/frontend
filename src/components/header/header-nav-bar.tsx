@@ -15,9 +15,11 @@ const HeaderNavBar = () => {
       }}
     >
       <ToolbarWrapper>
-        <Typography variant="h1" fontSize={32}>
-          Read a Perfume
-        </Typography>
+        <Navigation to="/">
+          <Typography variant="h1" fontSize={32}>
+            Read a Perfume
+          </Typography>
+        </Navigation>
         <Box sx={{display: 'flex', gap: '33px', marginLeft: '103px'}}>
           <Navigation to="/">홈</Navigation>
           <Navigation to="/reviews">리뷰</Navigation>
