@@ -14,6 +14,8 @@ import MagazineUpload from '@pages/brand/legacy/magazine-upload'
 import BrandList from '@pages/brand/brand-list'
 import ReviewListPage from '@pages/reviews/review-list'
 import SearchPage from '@pages/search'
+import {ReactNode} from 'react'
+import AuthRedirect from '@layouts/auth-redirect'
 
 interface RouterBase {
   id: number // 페이지 아이디 (반복문용 고유값)
@@ -42,14 +44,14 @@ const routerData: RouterElement[] = [
     path: '/',
     element: <Home />,
     isLayout: true,
-    withAuth: true,
+    withAuth: false,
   },
   {
     id: 1,
     label: '로그인 페이지',
     path: '/sign-in',
     element: <SignIn />,
-    isLayout: true,
+    isLayout: false,
     withAuth: false,
   },
   {
@@ -66,7 +68,7 @@ const routerData: RouterElement[] = [
     path: '/brand/:brandId',
     element: <Brand />,
     isLayout: true,
-    withAuth: true,
+    withAuth: false,
   },
   {
     id: 4,
@@ -82,7 +84,7 @@ const routerData: RouterElement[] = [
     path: '/perfumes',
     element: <Perfumes />,
     isLayout: true,
-    withAuth: true,
+    withAuth: false,
   },
   {
     id: 6,
@@ -90,7 +92,7 @@ const routerData: RouterElement[] = [
     path: '/perfume/:id',
     element: <PerfumeDetail />,
     isLayout: true,
-    withAuth: true,
+    withAuth: false,
   },
   {
     id: 6,
@@ -124,7 +126,7 @@ const routerData: RouterElement[] = [
     path: '/brands',
     element: <BrandList />,
     isLayout: true,
-    withAuth: true,
+    withAuth: false,
   },
   {
     id: 10,
@@ -146,7 +148,16 @@ const routerData: RouterElement[] = [
 
 export const router: RemixRouter = createBrowserRouter(
   routerData.map(router => {
+    let element: ReactNode = router.element
+    if (router.isLayout) {
+      element = <GeneralLayout>{element}</GeneralLayout>
+    }
     if (router.withAuth) {
+      element = <AuthRedirect>{element}</AuthRedirect>
+    }
+    /*
+    if (router.isLayout) {
+
       return {
         path: router.path,
         element: <GeneralLayout>{router.element}</GeneralLayout>,
@@ -155,6 +166,11 @@ export const router: RemixRouter = createBrowserRouter(
     return {
       path: router.path,
       element: router.element,
+    }
+    */
+    return {
+      path: router.path,
+      element: element,
     }
   }),
 )

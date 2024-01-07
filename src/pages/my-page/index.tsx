@@ -3,21 +3,10 @@ import ProfileSection from './profile-section/profile-section'
 // import FeedSection from './feed-section/feed-section'
 import Banner from '@components/base/banner'
 import {useParams} from 'react-router-dom'
-import useAuthRedirect from '@hooks/use-auth-redirect'
 
 const MyPage = () => {
   
   const {userId} = useParams()
-  const data = useAuthRedirect()
-
-  if (data.isLoading){
-    return <></>
-  }
-
-  if (data.isLoggined === null) {
-    window.location.href = "/"
-    return <></>
-  }
   
   return (
     <Box
