@@ -10,43 +10,57 @@ import SubPreviewImage from './sub-preview-image'
 import {useWatch} from 'react-hook-form'
 import FileLengthView from './file-length-view'
 import useFormValidateReview from '../../hooks/use-form-validate-review'
+import {ChangeEvent} from 'react'
 
 const PhotoUpload = () => {
   const {thumbnails, control} = useFormValidateReview()
   const {field} = thumbnails
   //업로드한 파일 데이터 목록
   const thumbnailsFiles = useWatch({control: control, name: 'thumbnails'}) || []
-
+  //파일 사이즈 측정
+  const measureFileSize = (file: File | null) => {
+    const fileSizeLimit = 1 * 1024 * 1024
+    return file && file.size <= fileSizeLimit
+  }
   //파일 업로드
-  const handleUpload = event => {
+  const handleUpload = (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target
-    const file = target.files[0]
-    // const fileSizeLimit = 1 * 1024 * 1024
-    const newArray = [...thumbnailsFiles]
-    const item = file
-    if (newArray.length > 0) {
-      const index = newArray.findIndex(x => x === item)
+    const file = target.files && target.files[0]
+    const newFiles = [...thumbnailsFiles]
+    //파일이 없다면  return
+    if (!file) return
 
-      if (newArray.length > 3) {
+    //파일 사이즈 측정
+    if (!measureFileSize(file)) {
+      alert('1MB 이하의 이미지만 올려주세요')
+      return false
+    }
+    // 파일 추가 규칙
+    if (newFiles.length > 0) {
+      const index = newFiles.findIndex(x => x === file)
+
+      if (newFiles.length > 3) {
         alert('최대 4개까지 입니다.')
         return false
       }
 
       if (index === -1) {
-        newArray.push(item)
+        newFiles.push(file)
       } else {
-        newArray.splice(index, 1)
+        newFiles.splice(index, 1)
       }
     } else {
-      newArray.push(item)
+      newFiles.push(file)
     }
 
-    field.onChange(newArray)
+    field.onChange(newFiles)
   }
 
   //파일 삭제
-  const handleDelete = file => {
-    const filteredItems = thumbnailsFiles.filter(it => it !== file && it)
+  const handleDelete = (file: File) => {
+    const filteredItems = thumbnailsFiles.filter(
+      thumbnailsFile => thumbnailsFile !== file && thumbnailsFile,
+    )
     field.onChange(filteredItems)
   }
 
