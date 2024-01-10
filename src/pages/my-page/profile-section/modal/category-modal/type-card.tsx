@@ -41,7 +41,6 @@ const TypeCard = ({data}: proptype) => {
             alert('타입은 최대 3개까지 설정 가능합니다.')
           } else {
             checkRef.current.click()
-            console.log(id, category.field, flag)
           }
         }
       }}

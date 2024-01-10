@@ -19,7 +19,6 @@ const usePostCategory = () => {
       alert('타입 추가 및 변경 실패')
       setIsOpen(false)
     },
-
     useErrorBoundary: false,
   })
 
