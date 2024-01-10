@@ -10,6 +10,13 @@
 <a href="https://perfume.app.cd80.run/">배포링크</a> 
 아이디 및 패스워드 : admin
 
+### 실행 방법
+
+```
+npm install 설치
+npm run dev 실행
+```
+
 ### 브랜치 관리 전략
 
 브랜치 관리 전략
