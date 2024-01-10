@@ -9,6 +9,15 @@
 ### 배포 링크
 <a href="https://perfume.app.cd80.run/">배포링크</a> 
 아이디 및 패스워드 : admin
+
+### 브랜치 관리 전략
+
+브랜치 관리 전략
+Git Flow를 사용하여 브랜치를 관리합니다.  
+모든 브랜치는 Pull Request에 리뷰를 진행한 후 merge를 진행합니다.  
+메인 브렌치인 main에는 아직 많은 내용이 merge되지 않았습니다. 현재 개발 진행사항을 확인하고 싶다면 develop을 확인해주세요.  
+
+
 ### 프로젝트 네비게이션 구조
 
 <img src="https://github.com/read-a-perfume/frontend/assets/71584114/9c98d32c-2c3a-4fd0-aac0-b090e02f3804"/>
