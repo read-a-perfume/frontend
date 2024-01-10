@@ -1,5 +1,5 @@
 import {Box, Typography, styled} from '@mui/material'
-import ProfileSection from './profile-section/profile-section'
+import ProfileSection from './profile-section'
 // import FeedSection from './feed-section/feed-section'
 import Banner from '@components/base/banner'
 import {useParams} from 'react-router-dom'

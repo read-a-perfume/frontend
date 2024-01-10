@@ -53,7 +53,6 @@ const usePostEmail = (trigger:UseFormTrigger<EmailFormDataType>, setError:UseFor
 
   // 인증하기 버튼 누르면 제대로 된 이메일인지 체크 후 인증번호 받기
   const onEmailCheckSubmit = async (data: EmailFormDataType) => {
-    console.log('check',data)
     if ((await trigger('email')) == true) {
       emailCheck.mutate(data.email)
     }

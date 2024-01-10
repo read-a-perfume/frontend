@@ -9,9 +9,9 @@ import FormLabel from '@pages/account/base/form-label'
 const EditPw = () => {
   const {oldPassword, newPassword, confirmPassword} = useEditPwForms()
 
-  const {errors: oldPwErrors} = oldPassword.formState
-  const {errors: newPwErrors} = newPassword.formState
-  const {errors: confirmPwErrors} = confirmPassword.formState
+  const oldPwError = oldPassword.fieldState.error
+  const newPwError = newPassword.fieldState.error
+  const confirmPwError = confirmPassword.fieldState.error
   
 
   return (
@@ -26,7 +26,7 @@ const EditPw = () => {
             {...oldPassword.field}
             helperText={
               <ErrorMessage
-                errorMessage={oldPwErrors.oldPassword?.message}
+                errorMessage={oldPwError?.message}
                 sx={{marginTop: '2px', marginBottom: '0.5em', minHeight: '2em'}}
               />
             }
@@ -38,7 +38,7 @@ const EditPw = () => {
             {...newPassword.field}
             helperText={
               <ErrorMessage
-                errorMessage={newPwErrors.newPassword?.message}
+                errorMessage={newPwError?.message}
                 sx={{marginTop: '2px', marginBottom: '0.5em', minHeight: '2em'}}
               />
             }
@@ -51,7 +51,7 @@ const EditPw = () => {
             {...confirmPassword.field}
             helperText={
               <ErrorMessage
-                errorMessage={confirmPwErrors.confirmPassword?.message}
+                errorMessage={confirmPwError?.message}
                 sx={{marginTop: '2px', marginBottom: '0.5em', minHeight: '2em'}}
               />
             }

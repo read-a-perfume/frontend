@@ -9,7 +9,8 @@ const getNameExtension = (url: string) => {
 
 const getImageFromURL = async (imageURL: string):Promise<File>=> {
   try {
-    const res = await fetch(`${imageURL}`,{method:'GET'})
+    // const res = await fetch(`${imageURL}`,{method:'GET'})
+    const res = await fetch('https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg',{method:'GET'})
     const blob = await res.blob()
     const fileName = getNameExtension(imageURL)
     const file = new File([blob], fileName, {type: blob.type})

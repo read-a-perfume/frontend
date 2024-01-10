@@ -1,4 +1,5 @@
 import {IfCategory} from 'types/perfume.interface'
+import {IfUserType} from 'types/user.interface'
 
 type StateType =
   | (IfCategory & {
@@ -35,8 +36,24 @@ export const changeTypeWithId = (
   }
 }
 
-export const initType = (data:StateType,setState:SetStateType) => {
-    if (data !== undefined) {
-        setState(data.map(e=>({...e,select:false})))
-    }
+export const initType = (data: StateType, setState: SetStateType) => {
+  if (data !== undefined) {
+    setState(data.map(e => ({...e, select: false})))
+  }
+}
+
+export interface FormCategoryDataType {
+  [key: number]: boolean
+}
+
+export const getDefaultValues = (
+  all: IfCategory[],
+  my: IfUserType[],
+): FormCategoryDataType => {
+  const result:FormCategoryDataType = {}
+  const myIdArr = my.map(e => e.id)
+  all.forEach(e => {
+    result[e.id] = myIdArr.includes(e.id)
+  })
+  return result
 }

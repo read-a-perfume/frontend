@@ -19,6 +19,6 @@ export default ListArea
 const Container = styled(Box)<{height?: string | number}>(
   ({height = '80vh'}) => ({
     width: '1200px',
-    height: height,
+    minHeight: height,
   }),
 )

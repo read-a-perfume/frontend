@@ -1,30 +1,38 @@
-import {Check} from '@mui/icons-material'
 import {Box, styled} from '@mui/material'
-
-interface proptype {
-  flag: boolean
-}
+//import CheckIcon from '@mui/icons-material/Check'
 
 const SIZE = '25px'
-
-const CustomCheck = ({flag}: proptype) => {
-  return (
-    <Container flag={flag}>
-      <Check sx={{color: flag ? '#fff' : '#ddd'}} />
-    </Container>
-  )
-}
-
-export default CustomCheck
-
-const Container = styled(Box)<{flag: boolean}>(({flag, theme}) => ({
+/*
+const CustomCheck = styled(Checkbox)<{flag: boolean}>(({flag, theme}) => ({
+  zIndex: 1,
+  alignSelf: 'end',
   width: SIZE,
   height: SIZE,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   backgroundColor: flag ? theme.palette.primary.main : '#fff',
-  alignSelf:'end',
-  borderRadius: '50%',
-  zIndex: 1,
+  padding: 0,
+  '& .MuiSvgIcon-root': {fontSize: SIZE},
+  '&:hover': {
+    opacity: 0.7,
+    backgroundColor: flag ? theme.palette.primary.main : '#fff',
+  },
 }))
+
+CustomCheck.defaultProps = {
+  icon: <CheckIcon sx={{color: '#ddd'}} />,
+  checkedIcon: <CheckIcon sx={{color: '#fff'}} />,
+}
+*/
+const CustomCheck = ({flag}) => {
+  return <Container flag={flag}></Container>
+}
+
+const Container = styled(Box)<{flag: boolean}>(({theme, flag}) => ({
+  zIndex: 1,
+  alignSelf: 'end',
+  width: SIZE,
+  height: SIZE,
+  backgroundColor: flag ? theme.palette.primary.main : '#fff',
+  borderRadius:'50%',
+}))
+
+export default CustomCheck

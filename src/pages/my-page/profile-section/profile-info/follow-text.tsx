@@ -1,5 +1,5 @@
 import {Typography, styled, Modal} from '@mui/material'
-import FollowModal from './modal/follow-modal'
+import FollowModal from '../modal/follow-modal'
 import {useState} from 'react'
 
 interface proptype {

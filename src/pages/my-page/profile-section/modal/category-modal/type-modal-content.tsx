@@ -1,22 +1,17 @@
-import {Box, Button, Typography, styled} from '@mui/material'
-import ModalContainer from '../modal-container'
-import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
-import {categoryQueryKeys} from 'src/react-query-keys/category.keys'
-import TypeCard from './type-card'
-import {useEffect, useState} from 'react'
+import {Typography, styled} from '@mui/material'
+import {useContext} from 'react'
 import {IfCategory} from 'types/perfume.interface'
-import {initType} from './util/util'
-import {IfUserType, IfUserTypePost} from 'types/user.interface'
-import {fetchAlltype} from 'src/store/server/user/queries'
-import Loading from '@components/base/loading'
-import {postMyType} from 'src/store/server/user/mutations'
+import {FormCategoryDataType, getDefaultValues} from './util/util'
+import {TypeContext} from '../../profile-type'
+import {FormProvider, useForm} from 'react-hook-form'
+import usePostCategory from './hook/use-post-category'
+import CardContainer from './card-container'
+import ButtonContainer from './button-container'
+/*
+const TypeModalContent = () => {
 
-interface proptype {
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-  myType: IfUserType[]
-}
+  const {data:myType,setIsOpen} = useContext(TypeContext)
 
-const TypeModal = ({setIsOpen, myType}: proptype) => {
   const {data: res} = useQuery(categoryQueryKeys.category(), () =>
     fetchAlltype(),
   )
@@ -91,8 +86,37 @@ const TypeModal = ({setIsOpen, myType}: proptype) => {
     </ModalContainer>
   )
 }
+*/
 
-export default TypeModal
+interface proptype {
+  allType: IfCategory[]
+}
+
+const TypeModalContent = ({allType}: proptype) => {
+  const {data: curType} = useContext(TypeContext)
+
+  const methods = useForm<FormCategoryDataType>({
+    defaultValues: getDefaultValues(allType, curType),
+  })
+
+  const {onSubmit} = usePostCategory()
+
+ 
+
+  return (
+    <>
+      <Bar>마이 타입</Bar>
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <CardContainer data={allType}/>
+          <ButtonContainer/>
+        </form>
+      </FormProvider>
+    </>
+  )
+}
+
+export default TypeModalContent
 
 const Bar = styled(Typography)(({theme}) => ({
   height: '67.4px',
@@ -104,41 +128,5 @@ const Bar = styled(Typography)(({theme}) => ({
   fontSize: theme.typography.body1.fontSize,
 }))
 
-const ButtonContainer = styled(Box)(() => ({
-  display: 'flex',
-  justifyContent: 'flex-end',
-  padding: '0 40.5px 0 40.5px',
-  gap: '13.6px',
-  marginTop: '33.3px',
-}))
-
-const ModalButton = styled(Button)<{mark?: string | undefined}>(
-  ({mark, theme}) => ({
-    height: '35.8px',
-    fontSize: '13px',
-    padding: '0 28.6px 0 28.6px',
-    borderRadius: '8.5px',
-    color: `${mark === 'sub' ? theme.palette.grey[600] : '#fff'}`,
-    boxShadow: 'none',
-    backgroundColor: `${
-      mark === 'sub' ? theme.palette.grey[200] : theme.palette.primary.main
-    }`,
-    '&:hover': {
-      backgroundColor: `${
-        mark === 'sub' ? theme.palette.grey[200] : theme.palette.primary.main
-      }`,
-      boxShadow: 'none',
-    },
-  }),
-)
 
 //1.17143
-const CardContainer = styled(Box)(() => ({
-  padding: '40.5px 40.5px 0 40.5px',
-  display: 'grid',
-  gridTemplateColumns: `repeat(3,1fr)`,
-  justifyItems: 'center',
-  gap: '20.5px 0',
-  overflowY: 'scroll',
-  maxHeight: '559.4px',
-}))

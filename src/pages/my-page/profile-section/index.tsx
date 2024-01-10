@@ -40,7 +40,7 @@ const ProfileSection = ({userId}: proptype) => {
           flag={flag}
         />
       )}
-      {mytype && <ProfileType data={mytype} flag={flag} />}
+      {mytype !== undefined && <ProfileType data={mytype} flag={flag} />}
     </Container>
   )
 }

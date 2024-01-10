@@ -1,5 +1,5 @@
 import {Box, Stack, styled} from '@mui/material'
-import ModalContainer from './modal-container'
+import ModalContainer from '../modal-container'
 import {useState} from 'react'
 
 type FollowMarkType = 'following' | 'follower'
