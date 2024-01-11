@@ -10,7 +10,7 @@ import {fetchPerfumeTheme} from 'src/store/server/perfumes/queries'
 import {perfumeQueryKeys} from 'src/react-query-keys/perfume.keys'
 
 import FlexBox from '@layouts/flex-box'
-import Category from '@components/category'
+import Category from '@components/perfume/category'
 import Pagination from '@mui/material/Pagination'
 import {Box, Skeleton, Stack, Typography} from '@mui/material'
 import PerfumeList from '@components/perfumes/perfume-card-list'
