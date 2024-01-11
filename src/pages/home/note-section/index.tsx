@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import FlexBox from '@layouts/flex-box'
 import {Box, Typography, styled} from '@mui/material'
-import Category from '@components/category'
+import Category from '@components/perfume/category'
 import NoteProducts from './note-products'
 import {IfCategory} from 'types/perfume.interface'
 import useQuery from 'src/store/server/use-query'
