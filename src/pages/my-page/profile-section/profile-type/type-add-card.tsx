@@ -1,12 +1,12 @@
 import {Button, styled} from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
+import { useContext } from 'react'
+import { TypeContext } from '.'
 
-interface proptype {
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-  flag: boolean
-}
+const TypeAddCard = () => {
 
-const TypeAddCard = ({setIsOpen, flag}: proptype) => {
+  const {flag,setIsOpen} = useContext(TypeContext)
+
   if (!flag) {
     return <Container />
   }

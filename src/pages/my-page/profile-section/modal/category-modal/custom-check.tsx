@@ -1,30 +1,29 @@
-import {Check} from '@mui/icons-material'
 import {Box, styled} from '@mui/material'
-
-interface proptype {
-  flag: boolean
-}
+import CheckIcon from '@mui/icons-material/Check'
 
 const SIZE = '25px'
 
-const CustomCheck = ({flag}: proptype) => {
+const CustomCheck = ({flag}) => {
   return (
     <Container flag={flag}>
-      <Check sx={{color: flag ? '#fff' : '#ddd'}} />
+      <Icon flag={flag} />
     </Container>
   )
 }
 
 export default CustomCheck
 
-const Container = styled(Box)<{flag: boolean}>(({flag, theme}) => ({
+const Container = styled(Box)<{flag: boolean}>(({theme, flag}) => ({
+  zIndex: 1,
+  alignSelf: 'end',
   width: SIZE,
   height: SIZE,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   backgroundColor: flag ? theme.palette.primary.main : '#fff',
-  alignSelf:'end',
   borderRadius: '50%',
-  zIndex: 1,
+}))
+
+const Icon = styled(CheckIcon)<{flag: boolean}>(({flag}) => ({
+  width: SIZE,
+  height: SIZE,
+  color: flag ? '#fff' : '#ddd',
 }))

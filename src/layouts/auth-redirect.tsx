@@ -12,6 +12,8 @@ const AuthRedirect = ({children}:proptype) => {
     return <></>
   }
 
+  
+
   if (data.isLoggined === null) {
     window.location.href = "/"
     return <></>

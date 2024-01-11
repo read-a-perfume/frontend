@@ -1,31 +1,64 @@
 import {Box, Typography, styled} from '@mui/material'
 import {IfCategory} from 'types/perfume.interface'
-import {changeTypeWithId, getTypeWithId} from './util/util'
 import CustomCheck from './custom-check'
+import useCategoryForms from './hook/use-category-forms'
+import {useWatch} from 'react-hook-form'
+import {useRef} from 'react'
 
 interface proptype {
-  id: number
-  allType: (IfCategory & {
-    select: boolean
-  })[]
-  setAllType: React.Dispatch<
-    React.SetStateAction<
-      | (IfCategory & {
-          select: boolean
-        })[]
-      | undefined
-    >
-  >
+  data: IfCategory
 }
 
-const TypeCard = ({id, allType, setAllType}: proptype) => {
-  const data = getTypeWithId(id, allType)
+const TypeCard = ({data}: proptype) => {
+  const id = data.id
+  const {category, control, getValues} = useCategoryForms(id)
+
+  const flag = useWatch({
+    control: control,
+    name: String(id) as never,
+  }) as boolean
+
+  const checkRef = useRef<HTMLInputElement | null>(null)
+
+  const blockClick = (): boolean => {
+    const allData = getValues()
+    const cnt = Object.values(allData).filter(e => e === true).length
+    if (cnt >= 3) {
+      return false
+    }
+    return true
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    category.field.onChange(!e.target.checked)
+  }
 
   return (
-    <Container onClick={() => changeTypeWithId(id, allType, setAllType)}>
-      <TypeImage src={data?.thumbnail} alt={data?.name} />
-      <CustomCheck flag={data !== undefined && data.select} />
-      <Title>{data?.name}</Title>
+    <Container
+      onClick={() => {
+        if (checkRef.current) {
+          if (!flag && !blockClick()) {
+            alert('타입은 최대 3개까지 설정 가능합니다.')
+          } else {
+            checkRef.current.click()
+          }
+        }
+      }}
+    >
+      <input
+        type="checkbox"
+        hidden
+        id={String(id)}
+        name={category.field.name}
+        ref={e => {
+          category.field.ref(e)
+          checkRef.current = e
+        }}
+        onChange={handleChange}
+      />
+      <TypeImage src={data.thumbnail} alt={data.name} />
+      {<CustomCheck flag={flag} />}
+      <Title>{data.name}</Title>
     </Container>
   )
 }
@@ -53,7 +86,7 @@ const TypeImage = styled('img')(() => ({
   width: '100%',
   height: '100%',
   zIndex: 0,
-  filter: 'brightness(0.5)',
+  // filter: 'brightness(0.5)',
 }))
 
 const Title = styled(Typography)(({theme}) => ({
