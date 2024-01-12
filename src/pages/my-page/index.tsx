@@ -5,16 +5,14 @@ import Banner from '@components/base/banner'
 import {useParams} from 'react-router-dom'
 
 const MyPage = () => {
-  
   const {userId} = useParams()
-  
+
   return (
     <Box
       sx={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        
       }}
     >
       <Banner />
@@ -40,7 +38,7 @@ const ContentSection = styled(Box)(() => ({
 
 const Title = styled(Typography)(() => ({
   marginBottom: '64px',
-  fontFamily: 'Arita-buri(OTF)',
+  fontFamily: 'Arita buri',
   fontSize: '32px',
   fontWeight: 600,
   fontStretch: 'normal',
@@ -50,6 +48,3 @@ const Title = styled(Typography)(() => ({
   textAlign: 'left',
   color: '#0f0f0f',
 }))
-
-
-

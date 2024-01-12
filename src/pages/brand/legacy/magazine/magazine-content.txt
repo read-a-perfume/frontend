@@ -58,7 +58,7 @@ const MagazineContent = () => {
               fontWeight: '600',
               lineHeight: '150%',
               color: 'white',
-              fontFamily: 'AritaBuri !important',
+              fontFamily: 'Buri !important',
               marginTop: 12,
               zIndex: 2,
             }}

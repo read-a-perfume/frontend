@@ -15,7 +15,7 @@ const ReviewFormProgassState = ({prograss}: IfReviewFormProgassStateProps) => {
       <div>
         <Typography
           variant="h2"
-          fontFamily={'AritaBuri'}
+          fontFamily="Arita buri"
           sx={{
             textAlign: 'center',
             marginBottom: '24px',

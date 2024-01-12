@@ -107,7 +107,7 @@ const Item = styled(PaginationItem)({
   marginRight: 10,
 })
 const SectionTitle = styled(Typography)({
-  fontFamily: 'AritaBuri, sans-serif, Arial !important',
+  fontFamily: 'Arita buri, sans-serif, Arial !important',
   fontSize: 18,
   fontWeight: '600',
   color: '#191919',

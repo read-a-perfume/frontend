@@ -50,7 +50,7 @@ const BrandList = () => {
             </KorButton>
           ))}
         </Stack>
-        <Suspense fallback={<Loading height="80vh"/>}>
+        <Suspense fallback={<Loading height="80vh" />}>
           <BranchBrandList korClass={korClass} />
         </Suspense>
       </Container>
@@ -65,7 +65,7 @@ const Container = styled(Box)(() => ({
 }))
 
 const Title = styled(Typography)(() => ({
-  fontFamily: 'AritaBuri',
+  fontFamily: 'Arita buri',
   fontSize: '36px',
   fontWeight: 600,
   marginTop: '54px',
@@ -80,4 +80,3 @@ const KorButton = styled('button')<{active: boolean}>(({active, theme}) => ({
   fontFamily: 'Pretendard',
   fontSize: '24px',
 }))
-

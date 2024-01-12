@@ -13,7 +13,7 @@ const Banner = () => {
         height={470}
       />
       <BannerBox>
-        <Title fontSize={36} fontFamily="AritaBuri" fontWeight={600}>
+        <Title fontSize={36} fontFamily="Arita buri" fontWeight={600}>
           REED A PERFUME에 오신것을 환영합니다.
           <br />
           향에 담긴 이야기, 당신만의 리뷰를 펼쳐보세요.

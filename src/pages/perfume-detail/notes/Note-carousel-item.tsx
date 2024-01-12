@@ -157,7 +157,7 @@ const PopoverText = styled(Typography)({
   fontSize: '11px',
   fontWeight: '500',
   lineHeight: '16px',
-  fontFamily: 'Arita-buri(OTF)',
+  fontFamily: 'Arita buri',
 })
 
 export default NoteCarouselItem

@@ -8,7 +8,7 @@ interface proptype {
 const TypeInfoCard = ({data}: proptype) => {
   return (
     <Container>
-      <Thumbnail src={data.thumbnail} alt={data.name} loading='lazy'/>
+      <Thumbnail src={data.thumbnail} alt={data.name} loading="lazy" />
       <TypeText>{data.name}</TypeText>
     </Container>
   )
@@ -39,6 +39,6 @@ const TypeText = styled(Typography)(() => ({
   fontWeight: 600,
   color: '#fff',
   textAlign: 'center',
-  fontFamily: 'AritaBuri',
+  fontFamily: 'Arita buri',
   zIndex: 1,
 }))

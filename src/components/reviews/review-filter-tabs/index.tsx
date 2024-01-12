@@ -79,7 +79,7 @@ const Chip = styled(Box)(({isClicked}: {isClicked: boolean}) => ({
 }))
 
 const SectionTitle = styled(Typography)({
-  fontFamily: 'AritaBuri, sans-serif, Arial !important',
+  fontFamily: 'Arita buri, sans-serif, Arial !important',
   fontSize: 19.5,
   color: '#191919',
   marginRight: 'auto',

@@ -246,7 +246,7 @@ const Wrapper = styled(Box)({
 })
 
 const BrandTitle = styled(Typography)({
-  fontFamily: 'AritaBuri, sans-serif, Arial !important',
+  fontFamily: 'Arita buri, sans-serif, Arial !important',
   fontSize: '27px',
   fontWeight: '700',
   lineHeight: 'normal',

@@ -73,7 +73,7 @@ const Wrapper = styled(Box)({
 })
 
 const NoteTitle = styled(Typography)({
-  fontFamily: 'AritaBuri, sans-serif, Arial !important',
+  fontFamily: 'Arita buri, sans-serif, Arial !important',
   color: 'white',
   fontSize: '32px',
   fontWeight: '500',
@@ -109,7 +109,7 @@ const Image = styled('img')({
   height: '450px',
 })
 const SectionTitle = styled(Typography)({
-  fontFamily: 'AritaBuri, sans-serif, Arial !important',
+  fontFamily: 'Arita buri, sans-serif, Arial !important',
   fontSize: 18,
   fontWeight: '600',
   color: '#191919',

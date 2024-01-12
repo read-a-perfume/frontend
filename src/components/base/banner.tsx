@@ -7,7 +7,7 @@ interface proptype {
 const Banner = ({text = ''}: proptype) => {
   return (
     <_Banner>
-      <BannerImg src="/images/banner.webp" alt="banner"/>
+      <BannerImg src="/images/banner.webp" alt="banner" />
       <BannerText>{text}</BannerText>
     </_Banner>
   )
@@ -36,7 +36,7 @@ const BannerImg = styled('img')(() => ({
 const BannerText = styled(Typography)(() => ({
   width: '1200px',
   height: '116px',
-  fontFamily: 'AritaBuri',
+  fontFamily: 'Arita buri',
   fontSize: '36px',
   fontWeight: 600,
   lineHeight: 1.6,
