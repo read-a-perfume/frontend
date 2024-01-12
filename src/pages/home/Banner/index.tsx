@@ -6,9 +6,14 @@ const Banner = () => {
   const {routeTo} = useRouter()
   return (
     <BannerWrapper>
-      <BannerImage src="/images/banner.webp" alt="banner" />
+      <BannerImage
+        src="/images/banner.webp"
+        alt="banner"
+        width={1920}
+        height={470}
+      />
       <BannerBox>
-        <Title>
+        <Title fontSize={36} fontFamily="AritaBuri" fontWeight={600}>
           REED A PERFUME에 오신것을 환영합니다.
           <br />
           향에 담긴 이야기, 당신만의 리뷰를 펼쳐보세요.
@@ -37,11 +42,11 @@ const BannerWrapper = styled('div')({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
+  background:
+    'linear-gradient(0deg, rgba(19, 19, 19, 0.50) 0%, rgba(19, 19, 19, 0.50) 100%), lightgray;',
 })
 
 const BannerImage = styled('img')({
-  width: '100%',
-  height: '470px',
   objectFit: 'cover',
   position: 'absolute',
   zIndex: 0,
@@ -50,12 +55,9 @@ const BannerImage = styled('img')({
 })
 
 const Title = styled(Typography)({
-  fontSize: '36px',
   color: 'white',
-  fontWeight: '600',
   zIndex: 0,
   width: '724px',
-  fontFamily: 'AritaBuri, sans-serif, Arial !important',
 })
 
 const BannerBox = styled('div')({
