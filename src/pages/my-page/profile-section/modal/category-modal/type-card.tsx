@@ -1,10 +1,8 @@
-import {Box, Typography, styled} from '@mui/material'
+import { Typography, styled} from '@mui/material'
 import {IfCategory} from 'types/perfume.interface'
 import CustomCheck from './custom-check'
 import useCategoryForms from './hook/use-category-forms'
 import {useWatch} from 'react-hook-form'
-import {useRef} from 'react'
-
 interface proptype {
   data: IfCategory
 }
@@ -18,8 +16,6 @@ const TypeCard = ({data}: proptype) => {
     name: String(id) as never,
   }) as boolean
 
-  const checkRef = useRef<HTMLInputElement | null>(null)
-
   const ableClick = (): boolean => {
     const allData = getValues()
     const cnt = Object.values(allData).filter(e => e === true).length
@@ -30,21 +26,17 @@ const TypeCard = ({data}: proptype) => {
   }
 
   const handleChange = () => {
-    // category.field.onChange(!e.target.checked)
-    // category.field.onChange(e.target.checked)
-    category.field.onChange(!flag)
-  }
-
-  const handleClick = () => {
+    //category.field.onChange(!e.target.checked)
     if (!flag && !ableClick()) {
       alert('타입은 최대 3개까지 설정 가능합니다.')
     } else {
-      checkRef.current?.click()
+      category.field.onChange(!flag)
     }
+    
   }
 
   return (
-    <Container onClick={handleClick}>
+    <>
       <input
         type="checkbox"
         hidden
@@ -53,20 +45,21 @@ const TypeCard = ({data}: proptype) => {
         name={category.field.name}
         ref={e => {
           category.field.ref(e)
-          checkRef.current = e
         }}
         onChange={handleChange}
       />
-      <TypeImage src={data.thumbnail} alt={data.name} />
-      {<CustomCheck flag={flag} />}
-      <Title>{data.name}</Title>
-    </Container>
+      <Container htmlFor={String(id)}>
+        <TypeImage src={data.thumbnail} alt={data.name} />
+        {<CustomCheck flag={flag} />}
+        <Title>{data.name}</Title>
+      </Container>
+    </>
   )
 }
 
 export default TypeCard
 
-const Container = styled(Box)(() => ({
+const Container = styled('label')(() => ({
   width: '128.1px',
   height: '153.7px',
   borderRadius: '8px',
