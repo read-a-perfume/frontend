@@ -8,14 +8,12 @@ interface proptype {
 const BrandTap = ({current, setCurrent}: proptype) => {
   return (
     <Container>
-      <Tab
-        flag={current === 'magazine'}
-        onClick={() => setCurrent('magazine')}
-      >브랜드 매거진</Tab>
-      <Tab
-        flag={current === 'perfume'}
-        onClick={() => setCurrent('perfume')}
-      >향수</Tab>
+      <Tab flag={current === 'magazine'} onClick={() => setCurrent('magazine')}>
+        브랜드 매거진
+      </Tab>
+      <Tab flag={current === 'perfume'} onClick={() => setCurrent('perfume')}>
+        향수
+      </Tab>
     </Container>
   )
 }
@@ -30,7 +28,7 @@ const Container = styled(Box)(({theme}) => ({
 }))
 
 const Tab = styled(Box)<{flag: boolean}>(({theme, flag}) => ({
-  fontFamily: 'AritaBuri !important',
+  fontFamily: 'Arita buri !important',
   fontSize: theme.typography.h3.fontSize,
   fontWeight: 600,
   textAlign: 'center',
@@ -39,5 +37,5 @@ const Tab = styled(Box)<{flag: boolean}>(({theme, flag}) => ({
   cursor: flag ? 'default' : 'pointer',
   borderBottom: '1px solid transparent',
   borderBottomColor: flag ? 'black' : 'none',
-  transition: 'border-bottom-color 0.7s ease'
+  transition: 'border-bottom-color 0.7s ease',
 }))

@@ -42,7 +42,7 @@ const Box = styled.div({
 })
 
 const Type = styled(Typography)({
-  fontFamily: 'AritaBuri !important',
+  fontFamily: 'Arita Buri !important',
   fontSize: 14,
   fontWeight: '500',
 })

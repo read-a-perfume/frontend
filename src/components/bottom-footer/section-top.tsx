@@ -37,7 +37,7 @@ const Container = styled(Box)(() => ({
 
 const Logo = styled(Typography)(({theme}) => ({
   fontSize: theme.typography.h3.fontSize,
-  fontFamily: 'AritaBuri',
+  fontFamily: 'Arita buri',
   marginRight: '18px',
   color: 'white',
 }))

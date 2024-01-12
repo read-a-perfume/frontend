@@ -56,7 +56,7 @@ const NoteSection = () => {
             <br />
             NOTE
           </NoteTitle>
-          <NoteSubTitle>{description}</NoteSubTitle>
+          <NoteSubTitle fontFamily="Arita buri">{description}</NoteSubTitle>
         </NoteBox>
         <NoteProducts categoryId={categoryId} />
       </FlexBox>
@@ -73,7 +73,6 @@ const Wrapper = styled(Box)({
 })
 
 const NoteTitle = styled(Typography)({
-  fontFamily: 'AritaBuri, sans-serif, Arial !important',
   color: 'white',
   fontSize: '32px',
   fontWeight: '500',

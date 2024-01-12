@@ -105,7 +105,7 @@ export const Tabs = styled.div({
 })
 
 export const Tab = styled.div(({current}: {current: boolean}) => ({
-  fontFamily: 'AritaBuri !important',
+  fontFamily: 'Arita buri',
   fontSize: theme.typography.h3.fontSize,
   color: '#191919',
   fontWeight: 600,
