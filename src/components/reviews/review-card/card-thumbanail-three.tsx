@@ -11,7 +11,8 @@ const CardThumbnailThree = ({thumbnails}: IfCardThumbnailProps) => {
       {/* 첫 번째 이미지 */}
       <CardMedia
         component="img"
-        height="138"
+        height="138px"
+        // width="347px"
         image={thumbnails[0]}
         alt="Image"
         sx={{borderRadius: '12px', width: 229, marginRight: '12px'}}
@@ -43,7 +44,8 @@ const CardThumbnailThree = ({thumbnails}: IfCardThumbnailProps) => {
 
         <CardMedia
           component="img"
-          height="138"
+          height="138px"
+          // width="347px"
           image={thumbnails[1]}
           alt="Image"
           sx={{borderRadius: '12px'}}

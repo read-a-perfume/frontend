@@ -13,14 +13,13 @@ const TypeCard = ({data}: proptype) => {
   const id = data.id
   const {category, getValues, control} = useCategoryForms(id)
 
-  
   const flag = useWatch({
     control: control,
     name: String(id) as never,
   }) as boolean
 
   const checkRef = useRef<HTMLInputElement | null>(null)
-  
+
   const ableClick = (): boolean => {
     const allData = getValues()
     const cnt = Object.values(allData).filter(e => e === true).length
@@ -32,7 +31,7 @@ const TypeCard = ({data}: proptype) => {
 
   const handleChange = () => {
     // category.field.onChange(!e.target.checked)
-    // console.log(e)
+    // category.field.onChange(e.target.checked)
     category.field.onChange(!flag)
   }
 

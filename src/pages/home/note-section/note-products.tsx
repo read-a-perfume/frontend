@@ -56,6 +56,8 @@ const NoteProducts = ({categoryId}: {categoryId: number}) => {
                     : 'images/perfume_test.png'
                 }
                 alt="product"
+                width="263.8px"
+                height="154px"
               />
             </ThumbNailBox>
             <ProductInfoBox>
@@ -121,12 +123,8 @@ const BrandName = styled(Typography)({
 })
 
 const ThumbNailBox = styled(Box)(() => ({
-  width: '282px',
-  height: '154px',
 }))
 
 const ThumbNail = styled('img')({
-  width: '100%',
-  height: '100%',
   objectFit: 'contain',
 })
