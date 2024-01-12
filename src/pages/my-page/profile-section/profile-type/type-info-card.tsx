@@ -1,19 +1,18 @@
 import {Box, Typography, styled} from '@mui/material'
-import { useContext } from 'react'
+import {useContext} from 'react'
 import {IfUserType} from 'types/user.interface'
-import { TypeContext } from '.'
+import {TypeContext} from '.'
 
 interface proptype {
   data: IfUserType
 }
 
 const TypeInfoCard = ({data}: proptype) => {
-
   const {setIsOpen} = useContext(TypeContext)
 
   return (
-    <Container onClick={()=>setIsOpen(true)}>
-      <Thumbnail src={data.thumbnail} alt={data.name} loading='lazy'/>
+    <Container onClick={() => setIsOpen(true)}>
+      <Thumbnail src={data.thumbnail} alt={data.name} loading="lazy" />
       <TypeText>{data.name}</TypeText>
     </Container>
   )
@@ -29,7 +28,7 @@ const Container = styled(Box)(() => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  cursor:'pointer',
+  cursor: 'pointer',
 }))
 
 const Thumbnail = styled('img')(() => ({
@@ -45,6 +44,6 @@ const TypeText = styled(Typography)(() => ({
   fontWeight: 600,
   color: '#fff',
   textAlign: 'center',
-  fontFamily: 'AritaBuri',
+  fontFamily: 'Arita buri',
   zIndex: 1,
 }))

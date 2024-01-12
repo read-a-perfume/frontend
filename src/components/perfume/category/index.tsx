@@ -124,6 +124,7 @@ const Category = ({
                 </Box>
 
                 <CategoryName
+                  fontFamily="Arita buri"
                   clicked={
                     (query && query === String(category.id)) ||
                     (!query && currentCategory === category.name)
@@ -168,7 +169,6 @@ const CategoryImg = styled.img<{clicked: string}>(({clicked}) => ({
 }))
 
 const CategoryName = styled(Typography)<{clicked: string}>(({clicked}) => ({
-  fontFamily: 'AritaBuri, sans-serif, Arial !important',
   marginTop: '12px',
   fontWeight: '500',
   fontSize: '13.5px',

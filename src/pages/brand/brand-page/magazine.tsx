@@ -1,7 +1,6 @@
 import {Avatar, Box, Typography, styled} from '@mui/material'
 
 interface proptype {
-  
   data: {
     title: string
     content: string
@@ -9,12 +8,9 @@ interface proptype {
     coverThumbnail: string
     tags: string[]
   }
-  
 }
 
 const Magazine = ({data}: proptype) => {
- 
-
   return (
     <Container>
       <CoverImg src={data.coverThumbnail} alt="cover image" />
@@ -49,7 +45,7 @@ const ContentContainer = styled(Box)(() => ({
 
 const Title = styled(Typography)(({theme}) => ({
   padding: '12px 0',
-  fontFamily: 'AritaBuri',
+  fontFamily: 'Arita buri',
   fontSize: theme.typography.body3.fontSize,
   fontWeight: 500,
   whiteSpace: 'nowrap',

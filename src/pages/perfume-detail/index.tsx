@@ -219,7 +219,7 @@ const PerfumeType = styled(Typography)({
 })
 
 const PerfumeName = styled(Typography)({
-  fontFamily: 'AritaBuri !important',
+  fontFamily: 'Arita buri !important',
   fontSize: '19.5px',
   fontWeight: '600',
   lineHeight: ' 150%',

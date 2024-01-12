@@ -23,7 +23,9 @@ const ReviewFilterTabs = ({
 
   return (
     <>
-      <SectionTitle fontWeight={600}>{sectionTitle}</SectionTitle>
+      <SectionTitle fontWeight={600} fontFamily="Arita buri">
+        {sectionTitle}
+      </SectionTitle>
       <Typography variant="body5" color="#a9a9a9">
         다양한 향수 리뷰를 피드에서 살펴보세요
       </Typography>
@@ -79,7 +81,6 @@ const Chip = styled(Box)(({isClicked}: {isClicked: boolean}) => ({
 }))
 
 const SectionTitle = styled(Typography)({
-  fontFamily: 'AritaBuri, sans-serif, Arial !important',
   fontSize: 19.5,
   color: '#191919',
   marginRight: 'auto',

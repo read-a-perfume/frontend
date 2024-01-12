@@ -134,7 +134,7 @@ const CarouselItem = styled('div')({
 })
 
 const NotesName = styled(Typography)({
-  fontFamily: 'AritaBuri !important',
+  fontFamily: 'Arita buri !important',
   fontWeight: '500',
   fontSize: '12px',
   color: '#000',
@@ -157,7 +157,7 @@ const PopoverText = styled(Typography)({
   fontSize: '11px',
   fontWeight: '500',
   lineHeight: '16px',
-  fontFamily: 'Arita-buri(OTF)',
+  fontFamily: 'Arita buri',
 })
 
 export default NoteCarouselItem

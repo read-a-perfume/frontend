@@ -92,7 +92,7 @@ const TypeImage = styled('img')(() => ({
 
 const Title = styled(Typography)(({theme}) => ({
   fontSize: theme.typography.h4.fontSize,
-  fontFamily: 'AritaBuri',
+  fontFamily: 'Arita buri',
   color: '#fff',
   zIndex: 1,
 }))

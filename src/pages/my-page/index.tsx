@@ -5,22 +5,20 @@ import Banner from '@components/base/banner'
 import {useParams} from 'react-router-dom'
 
 const MyPage = () => {
-  
   const {userId} = useParams()
-  
+
   return (
     <Box
       sx={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        
       }}
     >
       <Banner />
       {userId !== undefined && (
         <ContentSection>
-          <Title>내 프로필</Title>
+          <Title fontFamily="Arita buri">내 프로필</Title>
           <ProfileSection userId={userId} />
           <Title sx={{marginTop: '88px'}}>내 리뷰</Title>
           {/* <FeedSection /> */}
@@ -40,7 +38,6 @@ const ContentSection = styled(Box)(() => ({
 
 const Title = styled(Typography)(() => ({
   marginBottom: '64px',
-  fontFamily: 'Arita-buri(OTF)',
   fontSize: '32px',
   fontWeight: 600,
   fontStretch: 'normal',
@@ -50,6 +47,3 @@ const Title = styled(Typography)(() => ({
   textAlign: 'left',
   color: '#0f0f0f',
 }))
-
-
-
