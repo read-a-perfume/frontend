@@ -1,4 +1,4 @@
-import Magazine from './magazine'
+import Magazine from '@components/magazine/magazine'
 import {Box, styled} from '@mui/material'
 import {IfMagazineResponse} from 'types/brand.interface'
 
