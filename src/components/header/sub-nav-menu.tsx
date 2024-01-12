@@ -7,6 +7,7 @@ import usePostLogout from '@hooks/use-post-logout'
 const SubNavMenu = ({title}: {title: string}) => {
   const [anchorEl, setAnchorEl] = useState(null)
   const {mutate: logout} = usePostLogout()
+  
 
   const handleButtonClick = event => {
     setAnchorEl(anchorEl ? null : event.currentTarget)

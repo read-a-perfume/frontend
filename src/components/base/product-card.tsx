@@ -1,8 +1,7 @@
 import React from 'react'
-import styled from '@emotion/styled'
 import {PerfumeHamburger} from '@pages/brand/legacy/brand.style.js'
 import FlexBox from '@layouts/flex-box.js'
-import {Typography} from '@mui/material'
+import {Typography,styled} from '@mui/material'
 
 interface ProductCardProps {
   width?: string
@@ -26,7 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <PerfumeHamburger />
         </HamburgerContainer>
       )}
-      <ProductCardImage src="/images/perfume.png" alt="product-image" />
+      <ProductCardImage src="/images/perfume.png" alt="product-image" width="280px" height="256px"/>
       <FlexBox alignItems="center" style={{flexDirection: 'column'}}>
         <BrandName>{brandName}</BrandName>
         <ProductName>{productName}</ProductName>
@@ -35,13 +34,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
   )
 }
 
-const HamburgerContainer = styled.div({
+const HamburgerContainer = styled('div')({
   width: '100%',
   display: 'flex',
   justifyContent: 'end',
 })
 
-const ProductCardContainer = styled.div(
+const ProductCardContainer = styled('div')(
   ({width, height}: {width: string; height: string}) => ({
     width,
     height,
@@ -51,8 +50,7 @@ const ProductCardContainer = styled.div(
   }),
 )
 
-const ProductCardImage = styled.img({
-  height: 342,
+const ProductCardImage = styled('img')({
 })
 
 const BrandName = styled(Typography)({

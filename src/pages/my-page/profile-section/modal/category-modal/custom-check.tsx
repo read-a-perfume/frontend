@@ -25,5 +25,5 @@ const Container = styled(Box)<{flag: boolean}>(({theme, flag}) => ({
 const Icon = styled(CheckIcon)<{flag: boolean}>(({flag}) => ({
   width: SIZE,
   height: SIZE,
-  color: flag ? '#fff' : '#ddd',
+  color: flag ? '#fff' : '#bbb',
 }))

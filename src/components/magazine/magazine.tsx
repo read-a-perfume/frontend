@@ -17,7 +17,7 @@ const Magazine = ({data}: proptype) => {
 
   return (
     <Container>
-      <CoverImg src={data.coverThumbnail} alt="cover image" />
+      <CoverImg src={data.coverThumbnail} alt="cover image" width="384px" height="240px" />
       <ContentContainer>
         <Avatar src={data.thumbnail} sx={{width: '30px', height: '30px'}} />
         <Title>{data.title}</Title>
@@ -38,9 +38,7 @@ const Container = styled(Box)(({theme}) => ({
 }))
 
 const CoverImg = styled('img')(() => ({
-  minHeight: '240px',
-  minWidth: '100%',
-  borderBottom: '1px solid #ddd', // just test
+  
 }))
 
 const ContentContainer = styled(Box)(() => ({

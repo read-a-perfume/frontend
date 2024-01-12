@@ -1,5 +1,6 @@
-import {useRouter} from '@hooks/use-router'
+// import {useRouter} from '@hooks/use-router'
 import {Box, Typography, styled} from '@mui/material'
+import {Link} from 'react-router-dom'
 import {IfBrandListResponse} from 'types/brand.interface'
 
 interface proptype {
@@ -7,18 +8,20 @@ interface proptype {
 }
 
 const BrandCard = ({data}: proptype) => {
-  const {routeTo} = useRouter()
+  
 
   return (
-    <Container onClick={() => routeTo(`/brand/${data.id}`)}>
-      <BrandThumbnail
-        src={data.thumbnail}
-        alt="brand image"
-        height={360.9}
-        width={282}
-      />
-      <BrandName>{data.name}</BrandName>
-      <BrandStory>{data.story}</BrandStory>
+    <Container >
+      <Link to = {`/brand/${data.id}`}>
+        <BrandThumbnail
+          src={data.thumbnail}
+          alt={data.name}
+          height={360.9}
+          width={282}
+        />
+        <BrandName>{data.name}</BrandName>
+        <BrandStory>{data.story}</BrandStory>
+      </Link>
     </Container>
   )
 }
@@ -41,6 +44,7 @@ const BrandName = styled(Typography)(() => ({
   fontWeight: 600,
   paddingTop: '21.5px',
   paddingBottom: '13px',
+  color:'black',
 }))
 
 const BrandStory = styled(Typography)(() => ({
