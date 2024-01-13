@@ -1,12 +1,13 @@
 import {useState} from 'react'
-import {Popper, Paper, List, ListItem, Typography, styled} from '@mui/material'
-import {Link} from 'react-router-dom'
-import usePostLogout from '@hooks/use-post-logout'
+import {Popper, Paper, List, Typography, styled} from '@mui/material'
 
-const SubNavMenu = ({title}: {title: string}) => {
+import usePostLogout from '@hooks/use-post-logout'
+import {IfLoginUserProfileResponse} from 'types/auth.interface'
+import SubNavMenuElement from './sub-nav-menu-element'
+
+const SubNavMenu = ({user}: {user: IfLoginUserProfileResponse}) => {
   const [anchorEl, setAnchorEl] = useState(null)
   const {mutate: logout} = usePostLogout()
-  
 
   const handleButtonClick = event => {
     setAnchorEl(anchorEl ? null : event.currentTarget)
@@ -22,7 +23,7 @@ const SubNavMenu = ({title}: {title: string}) => {
         color="black"
         sx={{cursor: 'pointer'}}
       >
-        {title}
+        {user.username}
       </Typography>
       <Popper id="mouse-over-popper" open={open} anchorEl={anchorEl}>
         <Paper
@@ -32,28 +33,20 @@ const SubNavMenu = ({title}: {title: string}) => {
           }}
         >
           <NavList>
-            <NavListItem>
-              <NavLink to="/mypage/100">
-                <Typography variant="body3">마이 페이지</Typography>
-              </NavLink>
-            </NavListItem>
-            <NavListItem>
-              <NavLink to="/reviews/writer">
-                <Typography variant="body3">리뷰 작성</Typography>
-              </NavLink>
-            </NavListItem>
-            <NavListItem>
-              <NavLink to="/settings">
-                <Typography variant="body3">프로필 편집</Typography>
-              </NavLink>
-            </NavListItem>
-            <NavListItem>
-              <NavLink to="/#">
-                <Typography variant="body3" onClick={() => logout()}>
-                  로그아웃
-                </Typography>
-              </NavLink>
-            </NavListItem>
+            <SubNavMenuElement
+              url={`/mypage/${user.userId}`}
+              title="마이 페이지"
+            />
+            <SubNavMenuElement url={`/reviews/writer`} title="리뷰 작성" />
+            <SubNavMenuElement url={`/settings`} title="프로필 편집" />
+            <SubNavMenuElement
+              url={`/`}
+              title="로그아웃"
+              onClick={() => {
+                alert('로그아웃 시도')
+                logout()
+              }}
+            />
           </NavList>
         </Paper>
       </Popper>
@@ -64,21 +57,3 @@ const SubNavMenu = ({title}: {title: string}) => {
 export default SubNavMenu
 
 const NavList = styled(List)({})
-
-const NavListItem = styled(ListItem)({
-  color: '#000',
-  width: '177px;',
-  padding: ' 10px 8px;',
-  display: 'flex',
-  justifyContent: 'center',
-  '&:hover': {
-    backgroundColor: '#f1f1f5',
-  },
-})
-
-const NavLink = styled(Link)({
-  display: 'block',
-  color: '#000',
-  width: '100%',
-  textAlign: 'center',
-})

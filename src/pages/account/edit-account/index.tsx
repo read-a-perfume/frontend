@@ -2,8 +2,8 @@ import {Box, styled} from '@mui/material'
 import {PwFormDataType} from './type'
 import {FormProvider, useForm} from 'react-hook-form'
 import usePostPw from './hook/use-post-pw'
-import EditPw from './edit-pw/edit-pw'
-import EditEmail from './edit-email/edit-email'
+import EditPw from './edit-pw'
+import EditEmail from './edit-email'
 
 
 

@@ -1,5 +1,5 @@
 import EditTitle from '../../base/edit-title'
-import useEditProfileForms from '../../hook/use-edit-profile-forms'
+import useEditProfileForms from '../hook/use-edit-profile-forms'
 import SexRadio from './sex-radio'
 import SaveButton from '@pages/account/base/save-button'
 import FormLabel from '@pages/account/base/form-label'

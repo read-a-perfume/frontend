@@ -5,16 +5,6 @@ export interface IfUserType {
   thumbnail: string
 }
 
-export interface IfMe {
-  userId: number
-  username: string
-  thumbnail: string
-  sex: 'MALE' | 'FEMALE' | 'OTHER'
-  birthday: string
-  bio: string
-  email: string
-}
-
 export interface IfUser {
   id: number
   username: string

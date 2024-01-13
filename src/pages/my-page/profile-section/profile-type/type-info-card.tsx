@@ -8,10 +8,18 @@ interface proptype {
 }
 
 const TypeInfoCard = ({data}: proptype) => {
-  const {setIsOpen} = useContext(TypeContext)
+  const {setIsOpen, flag} = useContext(TypeContext)
 
   return (
-    <Container onClick={() => setIsOpen(true)}>
+    <Container
+      onClick={
+        flag
+          ? () => setIsOpen(true)
+          : () => {
+              alert('자신의 타입만 변경 가능해요')
+            }
+      }
+    >
       <Thumbnail src={data.thumbnail} alt={data.name} loading="lazy" />
       <TypeText>{data.name}</TypeText>
     </Container>

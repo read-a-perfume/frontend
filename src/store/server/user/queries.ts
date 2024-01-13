@@ -6,18 +6,7 @@ import {
   IfReviewCount,
   IfUserType,
   IfUser,
-  IfMe,
 } from 'types/user.interface'
-
-export const fetchCurUser = async (): Promise<IfMe> => {
-  try {
-    const res: AxiosResponse<IfMe> = await instance.get(`/me`)
-    return res.data
-  } catch (error: any) {
-    console.log(error)
-    throw error
-  }
-}
 
 export const fetchUserWithId = async (id: string): Promise<IfUser> => {
   try {

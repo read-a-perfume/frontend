@@ -74,7 +74,10 @@ const Category = ({
     }
   }
 
-  console.log(error)
+  if (error){
+    console.log(error)
+  }
+  
 
   return (
     <Wrapper customStyle={margin}>

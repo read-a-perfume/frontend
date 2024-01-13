@@ -4,7 +4,7 @@ import {
   Radio as _Radio,
   styled,
 } from '@mui/material'
-import useEditProfileForms from '@pages/account/hook/use-edit-profile-forms'
+import useEditProfileForms from '@pages/account/edit-profile/hook/use-edit-profile-forms'
 
 const Arr: {
   label: '남성' | '여성' | '선택하지않음'

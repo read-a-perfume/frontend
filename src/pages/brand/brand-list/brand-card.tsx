@@ -8,16 +8,15 @@ interface proptype {
 }
 
 const BrandCard = ({data}: proptype) => {
-  
-
   return (
-    <Container >
-      <Link to = {`/brand/${data.id}`}>
+    <Container>
+      <Link to={`/brand/${data.id}`}>
         <BrandThumbnail
           src={data.thumbnail}
           alt={data.name}
-          height={360.9}
-          width={282}
+          height="360.9px"
+          width="282px"
+          loading="lazy"
         />
         <BrandName>{data.name}</BrandName>
         <BrandStory>{data.story}</BrandStory>
@@ -34,8 +33,6 @@ const Container = styled(Box)(() => ({
 }))
 
 const BrandThumbnail = styled('img')(() => ({
-  //width: '100%',
-  //height: '360.9px',
   borderRadius: '19.1px',
 }))
 
@@ -44,7 +41,7 @@ const BrandName = styled(Typography)(() => ({
   fontWeight: 600,
   paddingTop: '21.5px',
   paddingBottom: '13px',
-  color:'black',
+  color: 'black',
 }))
 
 const BrandStory = styled(Typography)(() => ({
