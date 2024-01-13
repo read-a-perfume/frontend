@@ -6,8 +6,8 @@ import {
   postSignUpEmailConfirm,
   postSignUpEmailDuplicationCheck,
 } from 'src/store/server/auth/mutations'
-import {userQueryKeys} from 'src/react-query-keys/user.keys'
 import { UseFormSetError, UseFormTrigger } from 'react-hook-form'
+import { authQueryKeys } from 'src/react-query-keys/auth.keys'
 
 
 const usePostEmail = (trigger:UseFormTrigger<EmailFormDataType>, setError:UseFormSetError<EmailFormDataType>) => {
@@ -18,7 +18,6 @@ const usePostEmail = (trigger:UseFormTrigger<EmailFormDataType>, setError:UseFor
     (email: string) => postSignUpEmailDuplicationCheck(email),
     {
       onSuccess: () => {
-        QueryClient.invalidateQueries({queryKey: userQueryKeys.me})
         alert('인증 코드를 확인해주세요')
         setIsTyping(true)
       },
@@ -37,6 +36,7 @@ const usePostEmail = (trigger:UseFormTrigger<EmailFormDataType>, setError:UseFor
     (d: {email: string; code: string}) => postSignUpEmailConfirm(d),
     {
       onSuccess: d => {
+        QueryClient.invalidateQueries({queryKey: authQueryKeys.userProfile})
         alert(`변경에 성공했습니다. 이메일:${d.email}`)
         setIsTyping(false)
       },

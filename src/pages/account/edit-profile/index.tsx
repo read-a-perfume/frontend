@@ -1,7 +1,7 @@
 import {Box, styled} from '@mui/material'
 import EditInfo from './edit-info/edit-info'
 import {FormProvider, useForm} from 'react-hook-form'
-import usePostProfile from '../hook/use-post-profile'
+import usePostProfile from './hook/use-post-profile'
 import {FormInfoDataType, FormThumbnailDataType} from './type'
 import EditThumbnail from './edit-info/edit-thumbnail'
 import LoadingOverlay from '@components/base/loading-overlay'

@@ -8,8 +8,11 @@ export interface IfLoginRequeset {
 
 export interface IfLoginUserProfileResponse
   extends Omit<IfLoginRequeset, 'password'> {
-  data: any
-  userId: string
+  sex: 'MALE' | 'FEMALE' | 'OTHER'
+  birthday: string
+  bio: string
+  email: string
+  userId: string | number
   thumbnail: string
 }
 
@@ -27,6 +30,6 @@ export interface IfSignUpIdDuplicationCheckRequest {
 
 //비밀번호 바꾸기
 export interface IfPasswordPatch {
-  oldPassword:string
-  newPassword:string
+  oldPassword: string
+  newPassword: string
 }
