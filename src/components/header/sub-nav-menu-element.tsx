@@ -5,15 +5,23 @@ interface proptype {
   url: string
   title: string
   onClick?: React.MouseEventHandler<HTMLSpanElement> | undefined
+  setAnchorEl: React.Dispatch<React.SetStateAction<null>>
 }
 
-const SubNavMenuElement = ({url, title, onClick}: proptype) => {
+const SubNavMenuElement = ({url, title, onClick, setAnchorEl}: proptype) => {
   return (
-    <NavListItem >
-      <NavLink to={url} onClick={onClick}>
-        <Typography variant="body3" >
-          {title}
-        </Typography>
+    <NavListItem>
+      <NavLink
+        to={url}
+        onClick={e => {
+          if (onClick !== undefined) {
+            onClick(e)
+          }
+
+          setAnchorEl(null)
+        }}
+      >
+        <Typography variant="body3">{title}</Typography>
       </NavLink>
     </NavListItem>
   )

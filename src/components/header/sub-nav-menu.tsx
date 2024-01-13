@@ -36,16 +36,25 @@ const SubNavMenu = ({user}: {user: IfLoginUserProfileResponse}) => {
             <SubNavMenuElement
               url={`/mypage/${user.userId}`}
               title="마이 페이지"
+              setAnchorEl={setAnchorEl}
             />
-            <SubNavMenuElement url={`/reviews/writer`} title="리뷰 작성" />
-            <SubNavMenuElement url={`/settings`} title="프로필 편집" />
+            <SubNavMenuElement
+              url={`/reviews/writer`}
+              title="리뷰 작성"
+              setAnchorEl={setAnchorEl}
+            />
+            <SubNavMenuElement
+              url={`/settings`}
+              title="프로필 편집"
+              setAnchorEl={setAnchorEl}
+            />
             <SubNavMenuElement
               url={`/`}
               title="로그아웃"
               onClick={() => {
-                alert('로그아웃 시도')
                 logout()
               }}
+              setAnchorEl={setAnchorEl}
             />
           </NavList>
         </Paper>
