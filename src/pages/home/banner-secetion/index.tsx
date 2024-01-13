@@ -2,7 +2,7 @@ import MuiButton from '@components/base/mui-button'
 import {useRouter} from '@hooks/use-router'
 import {Typography, styled} from '@mui/material'
 
-const Banner = () => {
+const BannerSection = () => {
   const {routeTo} = useRouter()
   return (
     <BannerWrapper>
@@ -20,7 +20,7 @@ const Banner = () => {
         </Title>
         <MuiButton
           title="리뷰 작성하기"
-          type="white"
+          type="transparent"
           width="178px"
           height="54px"
           handleClick={() => routeTo('/reviews/writer')}
@@ -30,7 +30,7 @@ const Banner = () => {
   )
 }
 
-export default Banner
+export default BannerSection
 
 const BannerWrapper = styled('div')({
   width: '100%',

@@ -1,7 +1,7 @@
 import {MobileStepper} from '@mui/material'
 import 'react-multi-carousel/lib/styles.css'
 import {useState} from 'react'
-import Card from '@components/base/card.js'
+import MagazineCard from '@components/magazine/magazine-card'
 import {magazineData} from '../data/constants'
 import {Swiper, SwiperSlide} from 'swiper/react'
 import {Autoplay} from 'swiper/modules'
@@ -32,7 +32,7 @@ const CarouselWithStepper = () => {
       >
         {magazineData.map(data => (
           <SwiperSlide key={data.id}>
-            <Card
+            <MagazineCard
               width="334px"
               height="442px"
               coverImageHeight={'240px'}

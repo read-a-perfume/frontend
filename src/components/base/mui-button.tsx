@@ -42,6 +42,11 @@ const MuiButton: React.FC<ButtonProps> = ({
       color: '#191919',
       border: `1px solid ${theme.palette.grey[400]}`,
     },
+    transparent: {
+      backgroundColor: 'transparent',
+      color: '#fff',
+      border: `1px solid white`,
+    },
   }
   return (
     <Button
