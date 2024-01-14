@@ -1,11 +1,9 @@
 import React from 'react'
 import {URLSearchParamsInit, useSearchParams} from 'react-router-dom'
-import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box'
 import {IfCategory} from 'types/perfume.interface'
-
 import CustomIcons from '@assets/icons/custom-Icons'
-import {Box, Skeleton, Stack, Typography} from '@mui/material'
+import {Box, Skeleton, Stack, Typography, styled} from '@mui/material'
 
 interface IfCategoryProps {
   categories: IfCategory[] | undefined
@@ -25,7 +23,7 @@ const isLoadingData = Array.from({length: 11}, (_, index) => index + 1)
 const Category = ({
   categories,
   loading,
-  error,
+
   currentCategory,
   setCurrentCategory,
   setCategoryId,
@@ -74,8 +72,6 @@ const Category = ({
     }
   }
 
-  console.log(error)
-
   return (
     <Wrapper customStyle={margin}>
       <Box sx={{cursor: 'pointer'}} onClick={handleLeftArrowClick}>
@@ -112,6 +108,8 @@ const Category = ({
               >
                 <Box sx={{width: 78}}>
                   <CategoryImg
+                    width="78px"
+                    height="78px"
                     clicked={
                       (query && query === String(category.id)) ||
                       (!query && currentCategory === category.name)
@@ -146,7 +144,7 @@ const Category = ({
   )
 }
 
-const Wrapper = styled.div<{customStyle: string}>(({customStyle}) => ({
+const Wrapper = styled(Box)<{customStyle: string}>(({customStyle}) => ({
   margin: customStyle,
   display: 'flex',
   justifyContent: 'space-around',
@@ -154,13 +152,12 @@ const Wrapper = styled.div<{customStyle: string}>(({customStyle}) => ({
   position: 'relative',
 }))
 
-const CategoryImg = styled.img<{clicked: string}>(({clicked}) => ({
+const CategoryImg = styled('img')<{clicked: string}>(({clicked}) => ({
   borderRadius: '50% !important',
   border: clicked ? '2px solid #FE7156' : '1px solid #F1F1F5',
   cursor: 'pointer',
   transition: 'all 0.1s ease-in-out',
-  width: '78px',
-  height: '78px',
+
   objectFit: 'cover',
 
   '&:hover': {
