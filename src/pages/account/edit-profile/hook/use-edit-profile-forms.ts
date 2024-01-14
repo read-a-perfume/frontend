@@ -1,5 +1,5 @@
 import {useController, useFormContext} from 'react-hook-form'
-import { FormInfoDataType } from '../edit-profile/type'
+import { FormInfoDataType } from '../type'
 
 const useEditProfileForms = () => {
   const {control} = useFormContext<FormInfoDataType>()

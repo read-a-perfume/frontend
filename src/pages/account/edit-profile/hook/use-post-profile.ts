@@ -1,7 +1,7 @@
 import {useMutation, useQueryClient} from '@tanstack/react-query'
-import {FormInfoDataType, FormThumbnailDataType} from '../edit-profile/type'
+import {FormInfoDataType, FormThumbnailDataType} from '../type'
 import { patchProfile, patchProfileImage } from 'src/store/server/user/mutations'
-import { userQueryKeys } from 'src/react-query-keys/user.keys'
+import { authQueryKeys } from 'src/react-query-keys/auth.keys'
 
 
 const usePostProfile = () => {
@@ -10,7 +10,7 @@ const usePostProfile = () => {
 
   const profileImage = useMutation((d: any) => patchProfileImage(d), {
     onSuccess: () => {
-      QueryClient.invalidateQueries({queryKey:userQueryKeys.me})
+      QueryClient.invalidateQueries({queryKey:authQueryKeys.userProfile})
       alert('프로필 사진 변경 성공')
     },
     onError: () => {
@@ -23,7 +23,7 @@ const usePostProfile = () => {
     (d: {bio: string; birthday: string; sex: string}) => patchProfile(d),
     {
       onSuccess: () => {
-        QueryClient.invalidateQueries({queryKey:userQueryKeys.me})
+        QueryClient.invalidateQueries({queryKey:authQueryKeys.userProfile})
         alert('프로필 정보 변경 성공')
       },
       onError: () => {

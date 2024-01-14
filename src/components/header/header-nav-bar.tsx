@@ -1,38 +1,45 @@
 import {AppBar, Box, Toolbar, Typography, styled} from '@mui/material'
 import {Link} from 'react-router-dom'
 
+const menuData: {url: string; name: string; id: number}[] = [
+  {url: '/', name: '홈', id: 1},
+  {url: '/reviews', name: '리뷰', id: 2},
+  {url: '/brands', name: '브랜드', id: 3},
+  {url: '/perfumes', name: '제품', id: 4},
+]
+
 const HeaderNavBar = () => {
   return (
-    <AppBar
-      position="static"
-      sx={{
-        width: '1200px',
-        background: '#fff',
-        boxShadow: 'none',
-        '& > .MuiToolbar-root': {
-          boxShadow: 0,
-        },
-      }}
-    >
+    <Container position="static">
       <ToolbarWrapper>
         <Navigation to="/">
-          <Typography variant="h1" fontSize={32}>
+          <Typography variant="h1" fontSize={32} fontFamily="Arita buri">
             Read a Perfume
           </Typography>
         </Navigation>
         <Box sx={{display: 'flex', gap: '33px', marginLeft: '103px'}}>
-          <Navigation to="/">홈</Navigation>
-          <Navigation to="/reviews">리뷰</Navigation>
-          <Navigation to="/brands">브랜드</Navigation>
-          <Navigation to="/perfumes">제품</Navigation>
+          {menuData.map(e => (
+            <Navigation key={e.id} to={e.url}>
+              {e.name}
+            </Navigation>
+          ))}
         </Box>
-        {/* 다른 메뉴들도 추가 가능 */}
+        {/* 다른 메뉴들도 menuData 조작해서 추가 가능 */}
       </ToolbarWrapper>
-    </AppBar>
+    </Container>
   )
 }
 
 export default HeaderNavBar
+
+const Container = styled(AppBar)({
+  width: '1200px',
+  background: '#fff',
+  boxShadow: 'none',
+  '& > .MuiToolbar-root': {
+    boxShadow: 0,
+  },
+})
 
 const ToolbarWrapper = styled(Toolbar)({})
 

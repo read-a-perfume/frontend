@@ -8,6 +8,5 @@ export const fetchRefreshToken = async () => {
 export const fetchUserProfile =
   async (): Promise<IfLoginUserProfileResponse> => {
     const {data} = await instance.get('/me')
-
     return data
   }

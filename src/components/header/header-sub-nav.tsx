@@ -3,13 +3,15 @@ import {HeaderNavigation} from '.'
 import {Avatar, styled} from '@mui/material'
 import {Link} from 'react-router-dom'
 import SubNavMenu from './sub-nav-menu'
-import {useRecoilValue} from 'recoil'
-import {UserProfileAtom} from 'src/store/client/auth/atoms'
+// import {useRecoilValue} from 'recoil'
+// import {UserProfileAtom} from 'src/store/client/auth/atoms'
 import {useState} from 'react'
 import NotificationModal from '@components/modal/notification-modal'
+import useAuthProfile from '@hooks/use-auth-profile'
 
 const HeaderSubNav = () => {
-  const user = useRecoilValue(UserProfileAtom)
+  // const user = useRecoilValue(UserProfileAtom)
+  const {data: user, isLoading, isError} = useAuthProfile()
   const [open, setOpen] = useState<boolean>(false)
 
   const handleOpen = () => {
@@ -20,21 +22,22 @@ const HeaderSubNav = () => {
     <>
       <NotificationModal isOpen={open} setIsOpen={setOpen} />
       <HeaderNavigation height="58px">
-        {!user ? (
-          <FlexBox gap="4px">
-            <NavTop to="/sign-up">회원가입</NavTop>
-            <NavTop to="/sign-in">로그인</NavTop>
-          </FlexBox>
-        ) : (
-          <FlexBox gap="4px" alignItems="center">
-            <NavTop to="#" onClick={handleOpen}>
-              알림
-            </NavTop>
-            <VerticalLine />
-            <UserIcon />
-            <SubNavMenu title="메뉴" />
-          </FlexBox>
-        )}
+        {!isLoading &&
+          (isError ? (
+            <FlexBox gap="4px">
+              <NavTop to="/sign-up">회원가입</NavTop>
+              <NavTop to="/sign-in">로그인</NavTop>
+            </FlexBox>
+          ) : (
+            <FlexBox gap="4px" alignItems="center">
+              <NavTop to="#" onClick={handleOpen}>
+                알림
+              </NavTop>
+              <VerticalLine />
+              <UserIcon />
+              <SubNavMenu user={user} />
+            </FlexBox>
+          ))}
       </HeaderNavigation>
     </>
   )

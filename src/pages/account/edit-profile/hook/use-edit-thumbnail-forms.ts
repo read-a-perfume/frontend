@@ -1,5 +1,5 @@
 import {useController, useFormContext} from 'react-hook-form'
-import {FormThumbnailDataType} from '../edit-profile/type'
+import {FormThumbnailDataType} from '../type'
 
 const useEditThumbnailForms = () => {
   const {control} = useFormContext<FormThumbnailDataType>()

@@ -1,4 +1,4 @@
-import { Typography, styled} from '@mui/material'
+import {Typography, styled} from '@mui/material'
 import {IfCategory} from 'types/perfume.interface'
 import CustomCheck from './custom-check'
 import useCategoryForms from './hook/use-category-forms'
@@ -32,7 +32,6 @@ const TypeCard = ({data}: proptype) => {
     } else {
       category.field.onChange(!flag)
     }
-    
   }
 
   return (

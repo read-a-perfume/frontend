@@ -4,11 +4,12 @@ import ProfileInfo from './profile-info'
 import ProfileType from './profile-type'
 import {followQueryKeys, userQueryKeys} from 'src/react-query-keys/user.keys'
 import {
-  fetchCurUser,
   fetchFollowCount,
   fetchMytype,
   fetchUserWithId,
 } from 'src/store/server/user/queries'
+import { authQueryKeys } from 'src/react-query-keys/auth.keys'
+import { fetchUserProfile } from 'src/store/server/auth/queries'
 
 interface proptype {
   userId: string
@@ -25,9 +26,9 @@ const ProfileSection = ({userId}: proptype) => {
     fetchMytype(userId),
   )
 
-  const {data: me} = useQuery(userQueryKeys.me, () => fetchCurUser())
+  const {data: me} = useQuery(authQueryKeys.userProfile, () => fetchUserProfile())
 
-  const flag = me?.userId === Number(userId)
+  const flag = String(me?.userId) === userId
 
   return (
     <Container>

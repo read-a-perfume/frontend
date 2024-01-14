@@ -1,5 +1,4 @@
 export const userQueryKeys = {
-  me: ['me'],
   userTastes: (id:string) => ['user-tastes',{id:id}],
   mypageReviews: ['mypage-reviews'],
   user: (id: string) => ['user', {id: id}],

@@ -71,7 +71,6 @@ const Category = ({
       setQueryParams(categories[newIndex])
     }
   }
-
   return (
     <Wrapper customStyle={margin}>
       <Box sx={{cursor: 'pointer'}} onClick={handleLeftArrowClick}>
