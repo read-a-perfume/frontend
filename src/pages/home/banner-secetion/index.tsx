@@ -9,8 +9,8 @@ const BannerSection = () => {
       <BannerImage
         src="/images/banner.webp"
         alt="banner"
-        width={1920}
-        height={470}
+        width="1920px"
+        height="470px"
       />
       <BannerBox>
         <Title fontSize={36} fontFamily="Arita buri" fontWeight={600}>
