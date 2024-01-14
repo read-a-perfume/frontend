@@ -1,9 +1,20 @@
 import MuiButton from '@components/base/mui-button'
+import useAuthProfile from '@hooks/use-auth-profile'
 import {useRouter} from '@hooks/use-router'
 import {Typography, styled} from '@mui/material'
 
 const BannerSection = () => {
   const {routeTo} = useRouter()
+  const {data} = useAuthProfile()
+
+  const handleRoute = () => {
+    if (data) {
+      routeTo('/reviews/writer')
+    } else {
+      alert('로그인이 필요합니다.')
+    }
+  }
+
   return (
     <BannerWrapper>
       <BannerImage
@@ -23,7 +34,7 @@ const BannerSection = () => {
           type="transparent"
           width="178px"
           height="54px"
-          handleClick={() => routeTo('/reviews/writer')}
+          handleClick={handleRoute}
         />
       </BannerBox>
     </BannerWrapper>
