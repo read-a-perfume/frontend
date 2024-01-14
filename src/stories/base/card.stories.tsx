@@ -1,16 +1,16 @@
-import Card from '@components/base/card'
+import MagazineCard from '@components/magazine/magazine-card'
 import type {Meta, StoryObj} from '@storybook/react'
 
-const meta: Meta<typeof Card> = {
-  component: Card,
-  title: 'Base/Card',
+const meta: Meta<typeof MagazineCard> = {
+  component: MagazineCard,
+  title: 'Base/MagazineCard',
 }
 
 export default meta
 
-type Story = StoryObj<typeof Card>
+type Story = StoryObj<typeof MagazineCard>
 
-Card.defaultProps = {
+MagazineCard.defaultProps = {
   title: 'title',
   content: 'content',
   hashTags: ['foo', 'bar'],
@@ -18,9 +18,7 @@ Card.defaultProps = {
   profileImage: '/images/perfume.png',
 }
 
-export const Normal: Story = {
-    
-}
+export const Normal: Story = {}
 
 export const Editor: Story = {
   args: {

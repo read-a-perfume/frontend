@@ -2,7 +2,7 @@ import {Box, styled} from '@mui/material'
 import SectionTop from './section-top'
 import SectionBottom from './section-bottom'
 
-const BottomFooter = () => {
+const Footer = () => {
   return (
     <Container>
         <SectionTop />
@@ -12,7 +12,7 @@ const BottomFooter = () => {
   )
 }
 
-export default BottomFooter
+export default Footer
 
 const Container = styled(Box)(() => ({
   width: '100%',

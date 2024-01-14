@@ -1,9 +1,8 @@
 import CustomIcons from '@assets/icons/custom-Icons.js'
 import {Box, styled} from '@mui/material'
-import EditOptions from '@layouts/edit-options.js'
 import FlexBox from '@layouts/flex-box.js'
 import {Typography} from '@mui/material'
-import Avatar from './avatar.js'
+import Avatar from '@components/base/avatar'
 
 interface CardProps {
   width?: string
@@ -21,7 +20,7 @@ interface CardProps {
   style?: any
 }
 
-const Card: React.FC<CardProps> = ({
+const MagazineCard: React.FC<CardProps> = ({
   width = '464px',
   height = '442px',
   coverImageHeight = '320px',
@@ -31,7 +30,6 @@ const Card: React.FC<CardProps> = ({
   content,
   hashTags,
   isEditor = false,
-  isOptionOpen = false,
   onClick,
   style,
 }) => {
@@ -56,7 +54,6 @@ const Card: React.FC<CardProps> = ({
               <CustomIcons.HamburgerIcon />
             </button>
           )}
-          {isOptionOpen && <EditOptions />}
         </FlexBox>
         <ContentContainer onClick={onClick}>
           <CardTitle variant="h4">{title}</CardTitle>
@@ -119,4 +116,4 @@ const HashTags = styled(Typography)(({theme}) => ({
   color: theme.palette.primary.main,
 }))
 
-export default Card
+export default MagazineCard
