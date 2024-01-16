@@ -6,7 +6,6 @@ import EditAccount from './edit-account'
 import {useQuery} from '@tanstack/react-query'
 import getImageFromURL from './util/getImageFromURL'
 import useGoTop from '@hooks/use-go-top'
-import useAuthRedirect from '@hooks/use-auth-redirect'
 import { authQueryKeys } from 'src/react-query-keys/auth.keys'
 import { fetchUserProfile } from 'src/store/server/auth/queries'
 
@@ -31,16 +30,6 @@ const Account = () => {
     }
   }, [curUser])
 
-  const data = useAuthRedirect()
-
-  if (data.isLoading){
-    return <></>
-  }
-
-  if (data.isLoggined === null) {
-    window.location.href = "/"
-    return <></>
-  }
 
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
@@ -66,4 +55,5 @@ export default Account
 const Container = styled(Box)(() => ({
   display: 'flex',
   width: '1200px',
+  minHeight: '100vh',
 }))
