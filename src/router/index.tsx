@@ -1,23 +1,23 @@
 import GeneralLayout from '@layouts/general-layout.js'
-import Brand from '@pages/brand/brand-page/index.js'
 import Home from '@pages/home/index.js'
-import Perfumes from '@pages/perfumes/index.js'
-import SignUp from '@pages/sign-up/index.js'
 import {createBrowserRouter} from 'react-router-dom'
-import MyPage from '@pages/my-page/index'
-import Account from '@pages/account/index'
-import ReviewWriter from '@pages/reviews/review-writer'
-import PerfumeDetail from '@pages/perfume-detail'
-import SignIn from '@pages/sign-in'
 import MagazineUpload from '@pages/brand/legacy/magazine-upload'
-import BrandList from '@pages/brand/brand-list'
-import ReviewListPage from '@pages/reviews/review-list'
 import SearchPage from '@pages/search'
 import {ReactNode} from 'react'
 import AuthRedirect from '@layouts/auth-redirect'
-
+import {
+  LazyReviewListPage,
+  LazySignUpPage,
+  LazyReviewWriterPage,
+  LazySignInPage,
+  LazyPerfumeDetailsPage,
+  LazyPerfumesPage,
+  LazyBrandDetailsPage,
+  LazyBrandsPage,
+  LazyAccoutntPage,
+  LazyMyPage,
+} from './lazy-pages'
 interface RouterBase {
-  id: number // 페이지 아이디 (반복문용 고유값)
   path: string // 페이지 경로
   label: string // 사이드바에 표시할 페이지 이름
   element?: React.ReactNode // 페이지 엘리먼트
@@ -37,7 +37,6 @@ interface AdminAccessibleRouterElement extends RouterBase {
 
 const routerData: RouterElement[] = [
   {
-    id: 0,
     label: '메인 페이지',
     path: '/',
     element: <Home />,
@@ -45,100 +44,88 @@ const routerData: RouterElement[] = [
     withAuth: false,
   },
   {
-    id: 1,
     label: '로그인 페이지',
     path: '/sign-in',
-    element: <SignIn />,
+    element: <LazySignInPage />,
     isLayout: false,
     withAuth: false,
   },
   {
-    id: 2,
     label: '회원가입 페이지',
     path: '/sign-up',
-    element: <SignUp />,
+    element: <LazySignUpPage />,
     isLayout: false,
     withAuth: false,
   },
   {
-    id: 3,
-    label: '브랜드',
-    path: '/brand/:brandId',
-    element: <Brand />,
-    isLayout: true,
-    withAuth: false,
-  },
-  {
-    id: 4,
-    label: '리뷰 작성 페지',
-    path: '/reviews/writer',
-    element: <ReviewWriter />,
+    label: '리뷰 목록 페이지',
+    path: '/reviews',
+    element: <LazyReviewListPage />,
     isLayout: true,
     withAuth: true,
   },
   {
-    id: 5,
+    label: '리뷰 작성 페이지',
+    path: '/reviews/writer',
+    element: <LazyReviewWriterPage />,
+    isLayout: true,
+    withAuth: true,
+  },
+  {
     label: '제품리스트 페이지',
     path: '/perfumes',
-    element: <Perfumes />,
+    element: <LazyPerfumesPage />,
     isLayout: true,
     withAuth: false,
   },
   {
-    id: 6,
     label: '제품 상세 페이지',
     path: '/perfume/:id',
-    element: <PerfumeDetail />,
+    element: <LazyPerfumeDetailsPage />,
     isLayout: true,
     withAuth: false,
   },
   {
-    id: 6,
+    label: '브랜드 상세페이지',
+    path: '/brand/:brandId',
+    element: <LazyBrandDetailsPage />,
+    isLayout: true,
+    withAuth: false,
+  },
+  {
+    label: '브랜드 목록',
+    path: '/brands',
+    element: <LazyBrandsPage />,
+    isLayout: true,
+    withAuth: false,
+  },
+  {
+    label: '검색 페이지',
+    path: '/search',
+    element: <SearchPage />,
+    isLayout: true,
+    withAuth: true,
+  },
+  {
     label: '마이페이지',
     path: '/mypage/:userId',
-    element: <MyPage />,
+    element: <LazyMyPage />,
     isLayout: true,
     withAuth: true,
     isAdminPage: true,
   },
   {
-    id: 7,
     label: '프로필 관리',
     path: '/settings',
-    element: <Account />,
+    element: <LazyAccoutntPage />,
     isLayout: true,
     withAuth: true,
     isAdminPage: true,
   },
   {
-    id: 8,
     label: '매거진 업로드',
     path: '/brand/upload',
     element: <MagazineUpload />,
-    isLayout: true,
-    withAuth: true,
-  },
-  {
-    id: 9,
-    label: '브랜드 목록',
-    path: '/brands',
-    element: <BrandList />,
-    isLayout: true,
-    withAuth: false,
-  },
-  {
-    id: 10,
-    label: '리뷰 목록 페이지',
-    path: '/reviews',
-    element: <ReviewListPage />,
-    isLayout: true,
-    withAuth: true,
-  },
-  {
-    id: 11,
-    label: '리뷰 목록 페이지',
-    path: '/search',
-    element: <SearchPage />,
     isLayout: true,
     withAuth: true,
   },
