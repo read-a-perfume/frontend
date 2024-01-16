@@ -3,12 +3,12 @@ import ProductSection from './product-section'
 import ReviewSection from './review-section'
 import {Box, styled} from '@mui/material'
 import MagazineSection from './magazine-section'
-import Banner from './Banner'
+import BannerSection from './banner-secetion'
 
 export default function Home() {
   return (
     <>
-      <Banner />
+      <BannerSection />
       <Content>
         <MagazineSection />
         <NoteSection />

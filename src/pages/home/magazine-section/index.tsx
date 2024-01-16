@@ -1,5 +1,5 @@
 import {Box, Typography, styled} from '@mui/material'
-import CarouselWithStepper from '../carousel'
+import CarouselWithStepper from './carousel'
 
 const MagazineSection = () => {
   return (
