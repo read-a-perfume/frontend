@@ -34,7 +34,7 @@ const HeaderSubNav = () => {
                 알림
               </NavTop>
               <VerticalLine />
-              <UserIcon />
+              <UserIcon src={user.thumbnail}/>
               <SubNavMenu user={user} />
             </FlexBox>
           ))}

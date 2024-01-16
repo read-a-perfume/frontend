@@ -42,9 +42,6 @@ const TypeCard = ({data}: proptype) => {
         {...category.field}
         id={String(id)}
         name={category.field.name}
-        ref={e => {
-          category.field.ref(e)
-        }}
         onChange={handleChange}
       />
       <Container htmlFor={String(id)}>

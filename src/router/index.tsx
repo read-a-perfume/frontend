@@ -1,10 +1,9 @@
-import GeneralLayout from '@layouts/general-layout.js'
-import Home from '@pages/home/index.js'
 import {createBrowserRouter} from 'react-router-dom'
-import MagazineUpload from '@pages/brand/legacy/magazine-upload'
-import SearchPage from '@pages/search'
 import {ReactNode} from 'react'
 import AuthRedirect from '@layouts/auth-redirect'
+import GeneralLayout from '@layouts/general-layout.js'
+import Home from '@pages/home/index.js'
+import SearchPage from '@pages/search'
 import {
   LazyReviewListPage,
   LazySignUpPage,
@@ -14,7 +13,7 @@ import {
   LazyPerfumesPage,
   LazyBrandDetailsPage,
   LazyBrandsPage,
-  LazyAccoutntPage,
+  LazyAccountPage,
   LazyMyPage,
 } from './lazy-pages'
 interface RouterBase {
@@ -117,17 +116,10 @@ const routerData: RouterElement[] = [
   {
     label: '프로필 관리',
     path: '/settings',
-    element: <LazyAccoutntPage />,
+    element: <LazyAccountPage />,
     isLayout: true,
     withAuth: true,
     isAdminPage: true,
-  },
-  {
-    label: '매거진 업로드',
-    path: '/brand/upload',
-    element: <MagazineUpload />,
-    isLayout: true,
-    withAuth: true,
   },
 ]
 

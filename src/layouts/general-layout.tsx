@@ -1,7 +1,8 @@
 import useAuthRedirect from '@hooks/use-auth-redirect'
 import Footer from '@components/footer'
 import Header from '@components/header'
-import { Suspense } from 'react'
+import {Suspense} from 'react'
+import Box from '@mui/material/Box'
 
 interface GeneralLayoutProps {
   children: React.ReactNode
@@ -13,9 +14,11 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({children}) => {
   return (
     <>
       <Header />
-        <Suspense fallback={<div>로딩중입니다</div>}>
+      <Suspense
+        fallback={<Box width="100%" height="100vh"/>}
+      >
         {children}
-        </Suspense>
+      </Suspense>
       <Footer />
     </>
   )

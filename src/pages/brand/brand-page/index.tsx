@@ -1,4 +1,3 @@
-import {useState} from 'react'
 import {Box, styled} from '@mui/material'
 import BrandTap from './brand-tap.js'
 import BrandInfo from './brand-info.js'
@@ -7,10 +6,9 @@ import PerfumeFetch from './perfume-fetch.js'
 import useGoTop from '@hooks/use-go-top.js'
 import Banner from '@components/base/banner.js'
 import ListArea from '@layouts/list-area.js'
-import MagazineFetch from './magazine-fetch.js'
+
 
 const Brand = () => {
-  const [current, setCurrent] = useState<'magazine' | 'perfume'>('magazine')
   const {brandId} = useParams()
 
   useGoTop()
@@ -22,16 +20,10 @@ const Brand = () => {
           <Banner />
           <Container>
             <BrandInfo brandId={brandId} />
-            <BrandTap current={current} setCurrent={setCurrent} />
-            {current === 'magazine' ? (
-              <ListArea>
-                <MagazineFetch brandId={brandId} />
-              </ListArea>
-            ) : (
-              <ListArea>
-                <PerfumeFetch brandId={brandId} />
-              </ListArea>
-            )}
+            <BrandTap/>
+            <ListArea>
+              <PerfumeFetch brandId={brandId} />
+            </ListArea>
           </Container>
         </>
       )}

@@ -18,4 +18,4 @@ export const LazyBrandDetailsPage = lazy(
 )
 export const LazyBrandsPage = lazy(() => import('@pages/brand/brand-list'))
 export const LazyMyPage = lazy(() => import('@pages/my-page'))
-export const LazyAccoutntPage = lazy(() => import('@pages/account'))
+export const LazyAccountPage = lazy(() => import('@pages/account'))
