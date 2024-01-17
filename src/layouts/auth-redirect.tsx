@@ -13,7 +13,7 @@ const AuthRedirect = ({children, flag}: proptype) => {
   const location = useLocation()
 
   if (!flag) {
-    return <>{children}</>
+    return children
   }
   if (isLoading) {
     return <Loading width="100%" height="100%" borderRadius={0} />
@@ -23,7 +23,7 @@ const AuthRedirect = ({children, flag}: proptype) => {
     return <Navigate replace to="/sign-in" state={location} />
   }
 
-  return <>{children}</>
+  return children
 }
 
 export default AuthRedirect

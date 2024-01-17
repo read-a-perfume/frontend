@@ -1,6 +1,5 @@
 import {useState} from 'react'
 import {Popper, Paper, List, Typography, styled} from '@mui/material'
-
 import usePostLogout from '@hooks/use-post-logout'
 import {IfLoginUserProfileResponse} from 'types/auth.interface'
 import SubNavMenuElement from './sub-nav-menu-element'
