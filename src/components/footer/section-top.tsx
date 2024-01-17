@@ -14,7 +14,7 @@ const SectionTop = () => {
       {data.map((e, i) => (
         <Content
           key={i}
-          flag={i < data.length - 1}
+          $flag={i < data.length - 1}
           onClick={() => {
             /*routeTo(e.url)*/
           }}

@@ -7,11 +7,11 @@ import SubNavMenu from './sub-nav-menu'
 // import {UserProfileAtom} from 'src/store/client/auth/atoms'
 import {useState} from 'react'
 import NotificationModal from '@components/modal/notification-modal'
-import useAuthProfile from '@hooks/use-auth-profile'
+import useFetchAuthProfile from '@hooks/use-fetch-auth-profile'
 
 const HeaderSubNav = () => {
   // const user = useRecoilValue(UserProfileAtom)
-  const {data: user, isLoading, isError} = useAuthProfile()
+  const {data: user, isLoading, isError} = useFetchAuthProfile()
   const [open, setOpen] = useState<boolean>(false)
 
   const handleOpen = () => {

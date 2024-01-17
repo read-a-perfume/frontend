@@ -3,11 +3,9 @@ import Left from './left'
 import EditProfile from './edit-profile'
 import {useEffect, useState} from 'react'
 import EditAccount from './edit-account'
-import {useQuery} from '@tanstack/react-query'
 import getImageFromURL from './util/getImageFromURL'
 import useGoTop from '@hooks/use-go-top'
-import { authQueryKeys } from 'src/react-query-keys/auth.keys'
-import { fetchUserProfile } from 'src/store/server/auth/queries'
+import useFetchAuthProfile from '@hooks/use-fetch-auth-profile'
 
 const Account = () => {
   useGoTop()
@@ -15,7 +13,7 @@ const Account = () => {
   
 
   const [isProfileSection, setIsProfileSection] = useState<boolean>(true)
-  const {data: curUser} = useQuery(authQueryKeys.userProfile, () => fetchUserProfile(),{useErrorBoundary:false})
+  const {data: curUser} = useFetchAuthProfile()
   const [thumbnail, setThumbnail] = useState<File | null>(null)
 
   useEffect(() => {
