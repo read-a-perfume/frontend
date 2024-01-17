@@ -3,10 +3,7 @@ import FlexBox from '@layouts/flex-box'
 import {Box, Typography, styled} from '@mui/material'
 import Category from '@components/perfume/category'
 import NoteProducts from './note-products'
-import {IfCategory} from 'types/perfume.interface'
-import useQuery from 'src/store/server/use-query'
-import {perfumeQueryKeys} from 'src/react-query-keys/perfume.keys'
-import {fetchCategories} from 'src/store/server/categories/queries'
+import useFetchNoteCateogry from '@hooks/use-fetch-note-cateogry'
 
 const NoteSection = () => {
   const [categoryId, setCategoryId] = useState<number>(1)
@@ -14,18 +11,11 @@ const NoteSection = () => {
   const [description, setDescription] = useState<string>(
     '달콤한 과일의 향이 지속되어 생동감과 매력적인 느낌을 줍니다.',
   )
-
   const {
+    data: categories,
     isLoading: categoryLoading,
     error: categoryError,
-    data: categories,
-  } = useQuery<IfCategory[]>({
-    queryKey: [perfumeQueryKeys.perfumesCategory()],
-    queryFn: fetchCategories,
-    options: {
-      staleTime: Infinity,
-    },
-  })
+  } = useFetchNoteCateogry()
 
   return (
     <Wrapper>

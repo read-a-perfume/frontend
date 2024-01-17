@@ -1,4 +1,5 @@
 import instance from '@api/instance'
+import {IfPerfume} from 'types/perfume.interface'
 
 // 향수 조회
 export const fetchPerfume = async (id: string) => {
@@ -62,4 +63,12 @@ export const fetchPerfumeReviewData = async (
     console.error('향수 리뷰 데이터 조회 중 오류 발생:', error)
     throw error
   }
+}
+export const fetchPerfumesByFavorite: () => Promise<{
+  content: IfPerfume[]
+}> = async () => {
+  const res = await instance.get(
+    '/perfumes?sort=favorite&lastPerfumeId=8&pageSize=8',
+  )
+  return res.data
 }

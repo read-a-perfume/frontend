@@ -1,52 +1,27 @@
+import useFetchNoteProducts from '@hooks/use-fetch-note-products'
+import {useRouter} from '@hooks/use-router'
 import {Box, Skeleton, Typography, styled} from '@mui/material'
-import {useQuery} from '@tanstack/react-query'
 import {theme} from '@theme/index'
-import {useNavigate} from 'react-router-dom'
-import {fetchPerfumeList} from 'src/store/server/categories/queries'
-
-type PerfumesType = {
-  content: {
-    id: number
-    name: string
-    thumbnail?: string
-    brandName: string
-    strength: string
-    duration: string
-  }[]
-  first: boolean
-  hasNext: boolean
-  last: boolean
-  pageNumber: number
-  size: number
-  totalElements: number
-  totalPages: number
-}
 
 const skeletons = new Array(6).fill(0).map((_, idx) => idx + 1)
 
 const NoteProducts = ({categoryId}: {categoryId: number}) => {
-  const navigate = useNavigate()
+  const {routeTo} = useRouter()
 
   const {
     isLoading,
     error,
     data: perfumes,
-  } = useQuery<PerfumesType>(
-    ['perfumes-by-note', categoryId],
-    () => fetchPerfumeList(categoryId, 0, 6),
-    {
-      keepPreviousData: false,
-    },
-  )
+  } = useFetchNoteProducts({queryCategoryId: categoryId, queryPageNumber: 1})
 
   return (
     <ProductLayout>
       {!isLoading &&
         !error &&
-        perfumes!.content.map((perfume, idx) => (
+        perfumes!.content.slice(0, 6).map((perfume, idx) => (
           <ProductBox
             key={idx}
-            onClick={() => navigate(`/perfume/${perfume.id}`)}
+            onClick={() => routeTo(`/perfume/${perfume.id}`)}
           >
             <ThumbNailBox>
               <ThumbNail
@@ -122,8 +97,7 @@ const BrandName = styled(Typography)({
   fontSize: theme.typography.body5.fontSize,
 })
 
-const ThumbNailBox = styled(Box)(() => ({
-}))
+const ThumbNailBox = styled(Box)(() => ({}))
 
 const ThumbNail = styled('img')({
   objectFit: 'contain',

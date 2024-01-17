@@ -1,20 +1,14 @@
 import {useState} from 'react'
 import {styled} from '@mui/material'
-import {useQueries} from '@tanstack/react-query'
 import {Link, useSearchParams} from 'react-router-dom'
-import {
-  fetchCategories,
-  fetchPerfumeList,
-} from 'src/store/server/categories/queries'
-import {fetchPerfumeTheme} from 'src/store/server/perfumes/queries'
-import {perfumeQueryKeys} from 'src/react-query-keys/perfume.keys'
-
 import FlexBox from '@layouts/flex-box'
 import Category from '@components/perfume/category'
 import Pagination from '@mui/material/Pagination'
 import {Box, Skeleton, Stack, Typography} from '@mui/material'
 import PerfumeList from '@components/perfumes/perfume-card-list'
 import PerfumeSkeleton from '@components/perfumes/perfume-card-skeleton'
+
+import useFetchPerfume from './hooks/use-fetch-perfume'
 
 const topSkeletons = Array.from({length: 4}, (_, index) => index + 1)
 const skeletons = Array.from({length: 12}, (_, index) => index + 1)
@@ -34,38 +28,16 @@ const Perfumes = () => {
     ? Number(searchParams.get('page'))
     : currentPage
 
-  const results = useQueries({
-    queries: [
-      {
-        queryKey: [perfumeQueryKeys.perfumes(queryCategoryId, queryPageNumber)],
-        queryFn: () => fetchPerfumeList(queryCategoryId, currentPage),
-      },
-      {
-        queryKey: [perfumeQueryKeys.perfumesCategory()],
-        queryFn: fetchCategories,
-        staleTime: Infinity,
-      },
-      {
-        queryKey: [perfumeQueryKeys.perfumeThemes],
-        queryFn: fetchPerfumeTheme,
-        staleTime: Infinity,
-      },
-    ],
-  })
-
   const {
-    isLoading: perfumesLoading,
-    error: perfumesError,
-    data: perfumeListData,
-  } = results[0]
-
-  const {
-    isLoading: categoryLoading,
-    error: categoryError,
-    data: categories,
-  } = results[1]
-
-  const {isLoading: themeDataLoading, data: perfumeThemeData} = results[2]
+    themeDataLoading,
+    perfumeThemeData,
+    perfumesLoading,
+    perfumesError,
+    perfumeListData,
+    categoryLoading,
+    categoryError,
+    categories,
+  } = useFetchPerfume(categoryId, queryPageNumber)
 
   const handlePage = (event: any) => {
     setSearchParams({
