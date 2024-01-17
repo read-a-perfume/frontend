@@ -1,7 +1,6 @@
 import {Box, Typography, styled} from '@mui/material'
 import {Link} from 'react-router-dom'
-import { IfFormFooterProps } from '../types'
-
+import {IfFormFooterProps} from '../types'
 
 const SignUpFooter = ({subText, title}: IfFormFooterProps) => {
   return (

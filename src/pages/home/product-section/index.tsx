@@ -1,50 +1,19 @@
-import FlexBox from '@layouts/flex-box.js'
-import {
-  Box,
-  Pagination,
-  PaginationItem,
-  Typography,
-  styled,
-} from '@mui/material'
-import {useEffect, useState} from 'react'
-import instance from '@api/instance.js'
-import {useQuery} from '@tanstack/react-query'
-import PerfumeSkeleton from '@components/perfumes/perfume-card-skeleton/index.js'
-import PerfumeList from '@components/perfumes/perfume-card-list/index.js'
+import {Box, Typography, styled} from '@mui/material'
+import PerfumeSkeleton from '@components/perfumes/perfume-card-skeleton'
+import PerfumeList from '@components/perfumes/perfume-card-list'
+import useQuery from 'src/store/server/use-query'
+import {fetchPerfumesByFavorite} from 'src/store/server/perfumes/queries'
 
-type Product = {
-  id: number
-  name: string
-  thumbnail: string | null
-  brandName: string
-  strength: string
-  duration: string
-}
-
-const getPerfumesByFavorite = async () => {
-  const res = await instance.get(
-    '/perfumes?sort=favorite&lastPerfumeId=8&pageSize=8',
-  )
-  return res.data
-}
 const skeletons = Array.from({length: 12}, (_, index) => index + 1)
 
 const ProductSection = () => {
-  const [page, setPage] = useState<number>(0)
-  const [perfumes, setPerfumes] = useState<Product[]>([])
-
-  const {data, isLoading} = useQuery(['perfumes'], getPerfumesByFavorite)
-
-  useEffect(() => {
-    if (data && Array.isArray(data.content)) {
-      setPerfumes(data.content)
-    }
-  }, [data])
-
-  const handlePage = (_, page: number) => {
-    setPage(page)
-  }
-
+  const {data, isLoading} = useQuery({
+    queryKey: ['best-perfume'],
+    queryFn: fetchPerfumesByFavorite,
+    options: {
+      staleTime: Infinity,
+    },
+  })
   return (
     <ProductsContainer>
       <SectionTitle>사람들이 많이 찾은 향수</SectionTitle>
@@ -53,35 +22,10 @@ const ProductSection = () => {
       </SectionSubTitle>
 
       {isLoading ? (
-        <>
-          <PerfumeSkeleton skeletons={skeletons} />
-        </>
+        <PerfumeSkeleton skeletons={skeletons} />
       ) : (
-        <>
-          <PerfumeList perfumeListData={data.content} />
-        </>
+        <PerfumeList perfumeListData={data?.content || []} />
       )}
-
-      <FlexBox justifyContent="center">
-        <Pagination
-          page={page}
-          count={Math.ceil(perfumes.length / 6)}
-          onChange={handlePage}
-          variant="outlined"
-          shape="rounded"
-          size="large"
-          hidePrevButton
-          hideNextButton
-          renderItem={item => <Item {...item} />}
-          sx={{
-            marginTop: 20,
-            marginBottom: 20,
-            '& .Mui-selected': {
-              backgroundColor: '#D9D9D9',
-            },
-          }}
-        />
-      </FlexBox>
     </ProductsContainer>
   )
 }
@@ -92,20 +36,6 @@ const ProductsContainer = styled(Box)({
   width: 1200,
 })
 
-const Product = styled(Box)({
-  height: '426px',
-  borderRadius: 16,
-  border: '1px solid #EDEDED',
-})
-
-const Item = styled(PaginationItem)({
-  backgroundColor: '#F1F1F5',
-  outline: 'none',
-  border: 'none',
-  fontSize: 16,
-  fontWeight: '500',
-  marginRight: 10,
-})
 const SectionTitle = styled(Typography)({
   fontFamily: 'Arita buri',
   fontSize: 18,
