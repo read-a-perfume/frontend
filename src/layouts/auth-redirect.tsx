@@ -1,6 +1,7 @@
 import Loading from '@components/base/loading'
 import useFetchAuthProfile from '@hooks/use-fetch-auth-profile'
 import {ReactNode} from 'react'
+import {Navigate, useLocation} from 'react-router-dom'
 
 interface proptype {
   children: ReactNode
@@ -9,6 +10,7 @@ interface proptype {
 
 const AuthRedirect = ({children, flag}: proptype) => {
   const {isError, isLoading} = useFetchAuthProfile()
+  const location = useLocation()
 
   if (!flag) {
     return <>{children}</>
@@ -16,9 +18,9 @@ const AuthRedirect = ({children, flag}: proptype) => {
   if (isLoading) {
     return <Loading width="100%" height="100%" borderRadius={0} />
   }
-  console.log('err', isError)
+
   if (isError) {
-    window.location.href = '/sign-in'
+    return <Navigate replace to="/sign-in" state={location} />
   }
 
   return <>{children}</>
