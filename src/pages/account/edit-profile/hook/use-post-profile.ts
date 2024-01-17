@@ -1,16 +1,14 @@
 import {useMutation, useQueryClient} from '@tanstack/react-query'
 import {FormInfoDataType, FormThumbnailDataType} from '../type'
-import { patchProfile, patchProfileImage } from 'src/store/server/user/mutations'
-import { authQueryKeys } from 'src/react-query-keys/auth.keys'
-
+import {patchProfile, patchProfileImage} from 'src/store/server/user/mutations'
+import {authQueryKeys} from 'src/react-query-keys/auth.keys'
 
 const usePostProfile = () => {
-
   const QueryClient = useQueryClient()
 
   const profileImage = useMutation((d: any) => patchProfileImage(d), {
     onSuccess: () => {
-      QueryClient.invalidateQueries({queryKey:authQueryKeys.userProfile})
+      QueryClient.invalidateQueries({queryKey: authQueryKeys.userProfile})
       alert('프로필 사진 변경 성공')
     },
     onError: () => {
@@ -23,7 +21,7 @@ const usePostProfile = () => {
     (d: {bio: string; birthday: string; sex: string}) => patchProfile(d),
     {
       onSuccess: () => {
-        QueryClient.invalidateQueries({queryKey:authQueryKeys.userProfile})
+        QueryClient.invalidateQueries({queryKey: authQueryKeys.userProfile})
         alert('프로필 정보 변경 성공')
       },
       onError: () => {
@@ -43,12 +41,10 @@ const usePostProfile = () => {
 
   const onSubmitThumbnail = (data: FormThumbnailDataType) => {
     try {
-      if (data.thumbnail !== null) {
+      if (data.thumbnail.file !== null) {
         const formData = new FormData()
-        formData.append('file', data.thumbnail)
+        formData.append('file', data.thumbnail.file)
         profileImage.mutate(formData)
-      } else {
-        alert('프로필 사진을 지정해주세요')
       }
     } catch (error: any) {
       alert(error.message)
@@ -58,7 +54,7 @@ const usePostProfile = () => {
   const profileLoading = profile.isLoading
   const profileImageLoading = profileImage.isLoading
 
-  return {onSubmit, onSubmitThumbnail,profileImageLoading,profileLoading}
+  return {onSubmit, onSubmitThumbnail, profileImageLoading, profileLoading}
 }
 
 export default usePostProfile

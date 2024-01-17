@@ -13,7 +13,7 @@ export const patchPassword = async (data: IfPasswordPatch) => {
   }
 }
 
-export const patchProfileImage = async (data: any) => {
+export const patchProfileImage = async (data: File) => {
   try {
     const res: any = await instance.patch(`/user/profile-pic`, data, {
       headers: {
