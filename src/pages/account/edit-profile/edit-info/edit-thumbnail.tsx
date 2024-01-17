@@ -3,22 +3,19 @@ import EditTitle from '@pages/account/base/edit-title'
 import SaveButton from '@pages/account/base/save-button'
 import useEditThumbnailForms from '@pages/account/edit-profile/hook/use-edit-thumbnail-forms'
 import {useRef} from 'react'
-import {useWatch} from 'react-hook-form'
 import SettingButton from '@pages/account/base/setting-button'
 
 const EditThumbnail = () => {
   const buttonRef = useRef<HTMLInputElement | null>(null)
 
-  const {thumbnail, control} = useEditThumbnailForms()
+  const {thumbnail} = useEditThumbnailForms()
 
   const {field} = thumbnail
-
-  const image = useWatch({control: control, name: 'thumbnail'})
 
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const file = e.target.files[0]
-      field.onChange(file)
+      field.onChange({file: file, url: URL.createObjectURL(file)})
     }
   }
 
@@ -26,10 +23,7 @@ const EditThumbnail = () => {
     <>
       <EditTitle title="프로필 사진" />
       <Container>
-        <Avatar
-          src={image !== null ? URL.createObjectURL(image) : ''}
-          sx={{width: '104px', height: '104px'}}
-        />
+        <Avatar src={field.value.url} sx={{width: '104px', height: '104px'}} />
         <input
           type="file"
           hidden

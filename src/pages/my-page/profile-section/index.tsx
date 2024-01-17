@@ -8,8 +8,7 @@ import {
   fetchMytype,
   fetchUserWithId,
 } from 'src/store/server/user/queries'
-import { authQueryKeys } from 'src/react-query-keys/auth.keys'
-import { fetchUserProfile } from 'src/store/server/auth/queries'
+import useFetchAuthProfile from '@hooks/use-fetch-auth-profile'
 
 interface proptype {
   userId: string
@@ -26,7 +25,7 @@ const ProfileSection = ({userId}: proptype) => {
     fetchMytype(userId),
   )
 
-  const {data: me} = useQuery(authQueryKeys.userProfile, () => fetchUserProfile())
+  const {data: me} = useFetchAuthProfile()
 
   const flag = String(me?.userId) === userId
 

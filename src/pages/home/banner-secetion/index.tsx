@@ -1,11 +1,11 @@
 import MuiButton from '@components/base/mui-button'
-import useAuthProfile from '@hooks/use-auth-profile'
+import useFetchAuthProfile from '@hooks/use-fetch-auth-profile'
 import {useRouter} from '@hooks/use-router'
 import {Typography, styled} from '@mui/material'
 
 const BannerSection = () => {
   const {routeTo} = useRouter()
-  const {data} = useAuthProfile()
+  const {data} = useFetchAuthProfile()
 
   const handleRoute = () => {
     if (data) {
