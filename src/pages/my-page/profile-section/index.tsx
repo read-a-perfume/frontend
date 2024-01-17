@@ -18,11 +18,15 @@ const ProfileSection = ({userId}: proptype) => {
   const {data: curUser} = useQuery(userQueryKeys.user(userId), () =>
     fetchUserWithId(userId),
   )
-  const {data: followCount} = useQuery(followQueryKeys.follows(userId), () =>
-    fetchFollowCount(userId),
+  const {data: followCount} = useQuery(
+    followQueryKeys.follows(userId),
+    () => fetchFollowCount(userId),
+    {useErrorBoundary: false},
   )
-  const {data: mytype} = useQuery(userQueryKeys.userTastes(userId), () =>
-    fetchMytype(userId),
+  const {data: mytype} = useQuery(
+    userQueryKeys.userTastes(userId),
+    () => fetchMytype(userId),
+    {useErrorBoundary: false},
   )
 
   const {data: me} = useFetchAuthProfile()

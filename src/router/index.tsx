@@ -107,7 +107,7 @@ const routerData: RouterElement[] = [
     path: '/mypage/:userId',
     element: <LazyMyPage />,
     isLayout: true,
-    withAuth: false,
+    withAuth: true,
   },
   {
     label: '프로필 관리',
