@@ -27,12 +27,9 @@ interface UserAccessibleRouterElement extends RouterBase {
   withAuth?: boolean // 인증이 필요한 페이지 여부
 }
 
-type RouterElement = UserAccessibleRouterElement | AdminAccessibleRouterElement
+type RouterElement = UserAccessibleRouterElement
 
-interface AdminAccessibleRouterElement extends RouterBase {
-  withAuth: true // 인증이 필요한 페이지 여부
-  isAdminPage?: boolean // 어드민 페이지 여부
-}
+
 
 const routerData: RouterElement[] = [
   {
@@ -61,7 +58,7 @@ const routerData: RouterElement[] = [
     path: '/reviews',
     element: <LazyReviewListPage />,
     isLayout: true,
-    withAuth: true,
+    withAuth: false,
   },
   {
     label: '리뷰 작성 페이지',
@@ -110,8 +107,7 @@ const routerData: RouterElement[] = [
     path: '/mypage/:userId',
     element: <LazyMyPage />,
     isLayout: true,
-    withAuth: true,
-    isAdminPage: true,
+    withAuth: false,
   },
   {
     label: '프로필 관리',
@@ -119,23 +115,18 @@ const routerData: RouterElement[] = [
     element: <LazyAccountPage />,
     isLayout: true,
     withAuth: true,
-    isAdminPage: true,
   },
 ]
 
 export const router = createBrowserRouter(
   routerData.map(router => {
-    const element: ReactNode = router.element
+    const element: ReactNode = (
+      <AuthRedirect flag={router.withAuth}>{router.element}</AuthRedirect>
+    )
     if (router.isLayout) {
       return {
         path: router.path,
         element: <GeneralLayout>{element}</GeneralLayout>,
-      }
-    }
-    if (router.withAuth) {
-      return {
-        path: router.path,
-        element: <AuthRedirect>{element}</AuthRedirect>,
       }
     }
 
