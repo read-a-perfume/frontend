@@ -1,7 +1,7 @@
 import {RouterProvider} from 'react-router-dom'
 import {router} from './router'
-import { Box } from '@mui/material'
-import { Suspense } from 'react'
+import {Box} from '@mui/material'
+import {Suspense} from 'react'
 
 const App = () => {
   return (
