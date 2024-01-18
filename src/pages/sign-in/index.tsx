@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import {styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 import SignInForm from './sign-in-form'
 
 const SignIn = () => {

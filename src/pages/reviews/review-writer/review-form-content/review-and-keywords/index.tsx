@@ -1,5 +1,4 @@
-import {FormControl} from '@mui/material'
-
+import FormControl from '@mui/material/FormControl'
 import ShortReview from './short-review'
 import FullReview from './full-review'
 import PerfumeKeywords from './perfume-keywords'

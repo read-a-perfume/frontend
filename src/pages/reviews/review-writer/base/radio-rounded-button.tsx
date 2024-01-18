@@ -1,4 +1,6 @@
-import {FormControlLabel, Radio, styled} from '@mui/material'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Radio from '@mui/material/Radio'
+import {styled} from '@mui/material'
 
 interface Props {
   title: string

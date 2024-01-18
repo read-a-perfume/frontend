@@ -1,5 +1,5 @@
 import MuiButton from '@components/base/mui-button'
-import {Box} from '@mui/material'
+import Box from '@mui/material/Box'
 import {IfReviewFormPreNextProps} from '../types'
 
 const ReviewFormNavButtons = ({

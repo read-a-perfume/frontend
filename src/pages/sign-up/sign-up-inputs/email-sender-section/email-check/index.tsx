@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import {styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 import MuiButton from '@components/base/mui-button'
 import {IfSignUpEmailCheckProps} from '../../../types'
 

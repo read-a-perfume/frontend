@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import {styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 import {bottomData} from './data/data'
 import Content from './base/content'
 

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@mui/material/styles/styled'
 import Button from '@mui/material/Button'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import Typography from '@mui/material/Typography'
@@ -20,7 +20,7 @@ const Header = () => {
 
 export default Header
 
-const HeaderLayout = styled.div({
+const HeaderLayout = styled('div')({
   width: '100%',
   height: '152px',
   display: 'flex',
@@ -29,7 +29,7 @@ const HeaderLayout = styled.div({
   borderBottom: '1px solid black',
 })
 
-export const HeaderNavigation = styled.div(({height}: {height: string}) => ({
+export const HeaderNavigation = styled('div')(({height}: {height: string}) => ({
   width: 1200,
   height: height,
   display: 'flex',
@@ -57,7 +57,7 @@ export const NavBottom = styled(Typography)({
   cursor: 'pointer',
 })
 
-export const Logo = styled.img({
+export const Logo = styled('img')({
   width: '236px',
   height: '28.81px',
   objectFit: 'contain',

@@ -1,10 +1,8 @@
-import {
-  Box,
-  List,
-  FormControl,
-  styled as muiStyled,
-  TextField,
-} from '@mui/material'
+import Box from '@mui/material/Box'
+import List from '@mui/material/List'
+import FormControl from '@mui/material/FormControl'
+import TextField from '@mui/material/TextField'
+import styled from '@mui/material/styles/styled'
 import MainPreviewImage from './main-preview-image'
 import SubPreviewImage from './sub-preview-image'
 import {useWatch} from 'react-hook-form'
@@ -106,7 +104,7 @@ const PhotoUpload = () => {
 
 export default PhotoUpload
 
-const PreviewFileLabel = muiStyled('label')(({theme}) => ({
+const PreviewFileLabel = styled('label')(({theme}) => ({
   display: 'block',
   width: 'fit-content',
   padding: '9px 14px',
@@ -117,15 +115,15 @@ const PreviewFileLabel = muiStyled('label')(({theme}) => ({
   cursor: 'pointer',
 }))
 
-const PreviewFileInput = muiStyled(TextField)({
+const PreviewFileInput = styled(TextField)({
   display: 'none',
 }) as typeof TextField
 
-const SubPreview = muiStyled(Box)({
+const SubPreview = styled(Box)({
   marginTop: '14px',
 })
 
-const SubPreviewList = muiStyled(List)({
+const SubPreviewList = styled(List)({
   display: 'flex',
   justifyContent: 'space-between',
 })
