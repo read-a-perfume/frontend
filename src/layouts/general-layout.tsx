@@ -1,4 +1,3 @@
-import useAuthRedirect from '@hooks/use-auth-redirect'
 import Footer from '@components/footer'
 import Header from '@components/header'
 import Box from '@mui/material/Box'
@@ -8,7 +7,6 @@ interface GeneralLayoutProps {
 }
 
 const GeneralLayout: React.FC<GeneralLayoutProps> = ({children}) => {
-  useAuthRedirect()
 
   return (
     <>
