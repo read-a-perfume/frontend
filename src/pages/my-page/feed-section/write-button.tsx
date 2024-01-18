@@ -1,5 +1,6 @@
 import {useRouter} from '@hooks/use-router'
-import {Button, styled} from '@mui/material'
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material";
 
 const WriteButton = () => {
   const {routeTo} = useRouter()

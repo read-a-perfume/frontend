@@ -1,4 +1,7 @@
-import {Box, Modal, Typography, styled} from '@mui/material'
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material";
 import TypeInfoCard from './type-info-card'
 import TypeAddCard from './type-add-card'
 import {useContext} from 'react'

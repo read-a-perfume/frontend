@@ -1,4 +1,5 @@
-import {Box, styled} from '@mui/material'
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material";
 import EditInfo from './edit-info/edit-info'
 import {FormProvider, useForm} from 'react-hook-form'
 import usePostProfile from './hook/use-post-profile'

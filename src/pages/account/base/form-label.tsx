@@ -1,4 +1,5 @@
-import {Typography, styled} from '@mui/material'
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material";
 
 const FormLabel = styled(Typography)(({theme}) => ({
   color: '#303030',

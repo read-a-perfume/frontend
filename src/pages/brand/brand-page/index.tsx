@@ -1,4 +1,5 @@
-import {Box, styled} from '@mui/material'
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material";
 import BrandTap from './brand-tap.js'
 import BrandInfo from './brand-info.js'
 import {useParams} from 'react-router-dom'
