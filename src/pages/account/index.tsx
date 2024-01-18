@@ -7,6 +7,7 @@ import EditAccount from './edit-account'
 import useGoTop from '@hooks/use-go-top'
 import useFetchAuthProfile from '@hooks/use-fetch-auth-profile'
 
+
 const Account = () => {
   useGoTop()
 

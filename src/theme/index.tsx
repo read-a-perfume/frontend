@@ -1,4 +1,4 @@
-import {createTheme} from '@mui/material'
+import createTheme from '@mui/material/styles/createTheme'
 import {Palette, Typography, CustomThemeOptions} from './index.interface'
 
 declare module '@mui/material/styles' {
