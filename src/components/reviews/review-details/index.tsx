@@ -1,11 +1,9 @@
-import {
-  Box,
-  CardContent,
-  CardHeader,
-  styled,
-  Modal,
-  LinearProgress,
-} from '@mui/material'
+import Box from '@mui/material/Box'
+import CardContent from '@mui/material/CardContent'
+import CardHeader from '@mui/material/CardHeader'
+import Modal from '@mui/material/Modal'
+import LinearProgress from '@mui/material/LinearProgress'
+import {styled} from '@mui/material'
 import FeedbackSection from './feedback-section'
 import PhotoSection from './photo-section'
 import ReviewInfoSection from './review-info-section'

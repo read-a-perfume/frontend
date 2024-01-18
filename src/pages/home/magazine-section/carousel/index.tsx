@@ -1,4 +1,4 @@
-import {MobileStepper} from '@mui/material'
+import MobileStepper from '@mui/material/MobileStepper'
 import 'react-multi-carousel/lib/styles.css'
 import {useState} from 'react'
 import MagazineCard from '@components/magazine/magazine-card'

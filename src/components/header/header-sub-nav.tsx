@@ -1,6 +1,7 @@
 import FlexBox from '@layouts/flex-box'
 import {HeaderNavigation} from '.'
-import {Avatar, styled} from '@mui/material'
+import Avatar from '@mui/material/Avatar'
+import {styled} from '@mui/material'
 import {Link} from 'react-router-dom'
 import SubNavMenu from './sub-nav-menu'
 // import {useRecoilValue} from 'recoil'
@@ -34,7 +35,7 @@ const HeaderSubNav = () => {
                 알림
               </NavTop>
               <VerticalLine />
-              <UserIcon src={user.thumbnail}/>
+              <UserIcon src={user.thumbnail} />
               <SubNavMenu user={user} />
             </FlexBox>
           ))}

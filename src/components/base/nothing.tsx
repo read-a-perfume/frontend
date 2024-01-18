@@ -1,13 +1,13 @@
-import {Typography} from '@mui/material'
+import Typography from '@mui/material/Typography'
 
-interface proptype{
-    text?:string
+interface proptype {
+  text?: string
 }
 
-const Nothing = ({text="아직 아무것도 없어요"}:proptype) => {
+const Nothing = ({text = '아직 아무것도 없어요'}: proptype) => {
   return (
     <Typography variant="h2" sx={{color: '#bbb'}}>
-        {text}
+      {text}
     </Typography>
   )
 }

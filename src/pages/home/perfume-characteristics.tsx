@@ -1,7 +1,7 @@
 import FlexBox from '@layouts/flex-box.js'
 import React from 'react'
 import styled from '@emotion/styled'
-import {Typography} from '@mui/material'
+import Typography from '@mui/material/Typography'
 import {theme} from '@theme/index.js'
 
 interface PerfumeCharacteristicsProps {

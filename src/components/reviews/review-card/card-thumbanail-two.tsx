@@ -1,5 +1,5 @@
 import FlexBox from '@layouts/flex-box'
-import {CardMedia} from '@mui/material'
+import CardMedia from '@mui/material/CardMedia'
 
 interface IfCardThumbnailProps {
   thumbnails: string[]

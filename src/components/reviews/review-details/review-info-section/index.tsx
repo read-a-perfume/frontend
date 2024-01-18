@@ -1,4 +1,4 @@
-import {Box} from '@mui/material'
+import Box from '@mui/material/Box'
 import FullReviewSection from './full-review-section'
 import KeywordSection from './keyword-section'
 import PerfumeInfoSection from './perfume-info-section'

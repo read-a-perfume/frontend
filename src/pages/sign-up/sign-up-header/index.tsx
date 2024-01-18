@@ -1,4 +1,6 @@
-import {ButtonBase, Typography, styled} from '@mui/material'
+import ButtonBase from '@mui/material/ButtonBase'
+import Typography from '@mui/material/Typography'
+import {styled} from '@mui/material'
 import WestIcon from '@mui/icons-material/West'
 
 const SignUpHeader = ({title}: any) => {

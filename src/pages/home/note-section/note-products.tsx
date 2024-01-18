@@ -1,6 +1,9 @@
 import useFetchNoteProducts from '@hooks/use-fetch-note-products'
 import {useRouter} from '@hooks/use-router'
-import {Box, Skeleton, Typography, styled} from '@mui/material'
+import Box from '@mui/material/Box'
+import Skeleton from '@mui/material/Skeleton'
+import Typography from '@mui/material/Typography'
+import {styled} from '@mui/material'
 import {theme} from '@theme/index'
 
 const skeletons = new Array(6).fill(0).map((_, idx) => idx + 1)

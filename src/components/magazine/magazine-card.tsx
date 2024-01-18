@@ -1,7 +1,8 @@
 import CustomIcons from '@assets/icons/custom-Icons.js'
-import {Box, styled} from '@mui/material'
+import Box from '@mui/material/Box'
+import {styled} from '@mui/material'
 import FlexBox from '@layouts/flex-box.js'
-import {Typography} from '@mui/material'
+import Typography from '@mui/material/Typography'
 import Avatar from '@components/base/avatar'
 
 interface CardProps {

@@ -1,4 +1,5 @@
-import {Box, ButtonBase} from '@mui/material'
+import Box from '@mui/material/Box'
+import ButtonBase from '@mui/material/ButtonBase'
 import {FormProvider, useForm} from 'react-hook-form'
 import styled from '@emotion/styled'
 import {theme} from '../../theme'

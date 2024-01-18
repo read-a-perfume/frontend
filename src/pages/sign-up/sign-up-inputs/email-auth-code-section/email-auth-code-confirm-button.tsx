@@ -1,5 +1,5 @@
 import MuiButton from '@components/base/mui-button'
-import {Box} from '@mui/material'
+import Box from '@mui/material/Box'
 import {IfSignUpEmailConfirmProps} from '@pages/sign-up/types'
 
 const EmailAuthCodeConfirmButton = ({

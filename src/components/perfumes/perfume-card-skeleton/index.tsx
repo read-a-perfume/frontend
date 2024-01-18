@@ -1,5 +1,6 @@
 import FlexBox from '@layouts/flex-box'
-import {Skeleton, Stack} from '@mui/material'
+import Skeleton from '@mui/material/Skeleton'
+import Stack from '@mui/material/Stack'
 
 const PerfumeSkeleton = ({skeletons}: any) => {
   return (

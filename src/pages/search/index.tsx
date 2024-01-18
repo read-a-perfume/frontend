@@ -1,4 +1,4 @@
-import {Box} from '@mui/material'
+import Box from '@mui/material/Box'
 import TopBar from './top-bar'
 import SearchContent from './search-content'
 

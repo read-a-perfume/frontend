@@ -18,6 +18,6 @@ module.exports = {
     ],
     '@typescript-eslint/no-explicit-any': 0, //any허용
     'no-useless-escape': 0, // \ 허용
-    // "mui-path-imports/mui-path-imports": "error"
+    // 'mui-path-imports/mui-path-imports': 'error',
   },
 }

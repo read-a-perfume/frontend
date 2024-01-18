@@ -1,4 +1,4 @@
-import {CardMedia} from '@mui/material'
+import CardMedia from '@mui/material/CardMedia'
 
 interface IfCardThumbnailOneProps {
   thumbnails: string

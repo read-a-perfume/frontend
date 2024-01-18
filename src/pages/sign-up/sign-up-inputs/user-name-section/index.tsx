@@ -1,6 +1,7 @@
 import SignUpLabel from '@pages/sign-up/base/sign-up-label'
 import SignUpTextFiled from '@pages/sign-up/base/sign-up-text-filed'
-import {Box, styled} from '@mui/material'
+import Box from '@mui/material/Box'
+import {styled} from '@mui/material'
 import {IfUserNameProps} from '@pages/sign-up/types'
 import UserNameCheckButton from './user-name-check-button'
 import {useSignUpContext} from '@pages/sign-up/hooks/use-sign-up-context'

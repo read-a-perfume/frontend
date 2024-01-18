@@ -1,6 +1,5 @@
 import {styled} from '@mui/material'
 import {IfPerfumeListProps} from '../type'
-
 import PerfumesCard from '../perfume-card'
 import Nothing from '@components/base/nothing'
 

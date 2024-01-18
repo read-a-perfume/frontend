@@ -1,5 +1,6 @@
 import ReviewCardList from '@components/reviews/review-card-list'
-import {Pagination, PaginationItem} from '@mui/material'
+import Pagination from '@mui/material/Pagination'
+import PaginationItem from '@mui/material/PaginationItem'
 import {Link, useLocation} from 'react-router-dom'
 import {reviewQueryKeys} from 'src/react-query-keys/review.keys'
 import {fetchAllReviews} from 'src/store/server/reviews/queries'
