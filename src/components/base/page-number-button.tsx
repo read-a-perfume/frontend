@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import {styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 
 interface proptype {
   number: number

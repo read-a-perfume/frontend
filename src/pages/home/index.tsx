@@ -2,7 +2,7 @@ import NoteSection from './note-section'
 import ProductSection from './product-section'
 import ReviewSection from './review-section'
 import Box from '@mui/material/Box'
-import {styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 import MagazineSection from './magazine-section'
 import BannerSection from './banner-secetion'
 

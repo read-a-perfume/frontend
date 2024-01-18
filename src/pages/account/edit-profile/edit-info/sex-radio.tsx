@@ -1,9 +1,7 @@
-import {
-  FormControlLabel,
-  RadioGroup,
-  Radio as _Radio,
-  styled,
-} from '@mui/material'
+import FormControlLabel from "@mui/material/FormControlLabel";
+import RadioGroup from "@mui/material/RadioGroup";
+import _Radio from "@mui/material/Radio";
+import { styled } from "@mui/material";
 import useEditProfileForms from '@pages/account/edit-profile/hook/use-edit-profile-forms'
 
 const Arr: {

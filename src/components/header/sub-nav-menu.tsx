@@ -2,11 +2,11 @@ import {useState} from 'react'
 import Popper from '@mui/material/Popper'
 import Paper from '@mui/material/Paper'
 import List from '@mui/material/List'
-import Typography from '@mui/material/Typography'
-import {styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 import usePostLogout from '@hooks/use-post-logout'
 import {IfLoginUserProfileResponse} from 'types/auth.interface'
 import SubNavMenuElement from './sub-nav-menu-element'
+import Typography from '@mui/material/Typography'
 
 const SubNavMenu = ({user}: {user: IfLoginUserProfileResponse}) => {
   const [anchorEl, setAnchorEl] = useState(null)

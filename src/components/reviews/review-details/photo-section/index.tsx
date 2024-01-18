@@ -1,4 +1,4 @@
-import {Box} from '@mui/material'
+import Box from "@mui/material/Box";
 import MainThumbnailPhoto from './main-thumbnail-photo'
 import SubThumbnailPhotos from './sub-thumbnail-photos'
 import {IfReviewDetailResponse} from 'types/review.interface'

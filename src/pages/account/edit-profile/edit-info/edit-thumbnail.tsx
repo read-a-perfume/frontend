@@ -1,4 +1,7 @@
-import {Avatar, Box, Divider, styled} from '@mui/material'
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import { styled } from "@mui/material";
 import EditTitle from '@pages/account/base/edit-title'
 import SaveButton from '@pages/account/base/save-button'
 import useEditThumbnailForms from '@pages/account/edit-profile/hook/use-edit-thumbnail-forms'

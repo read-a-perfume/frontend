@@ -1,4 +1,6 @@
-import {Box, styled,Chip} from '@mui/material'
+import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
+import { styled } from "@mui/material";
 
 interface proptype {
   tags: string[]

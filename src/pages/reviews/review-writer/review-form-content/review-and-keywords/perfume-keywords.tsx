@@ -1,9 +1,11 @@
-import {Checkbox, FormControlLabel, Typography, styled} from '@mui/material'
+import Checkbox from '@mui/material/Checkbox'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Typography from '@mui/material/Typography'
+import styled from '@mui/material/styles/styled'
 import {REVIEW_OPTIONS} from '../../data/review-options'
 import {useWatch} from 'react-hook-form'
 import ErrorMessage from '@components/base/error-message'
 import useFormValidateReview from '../../hooks/use-form-validate-review'
-
 
 const PerfumeKeywords = ({title}: {title: string}) => {
   const {keywordMethods, control} = useFormValidateReview()

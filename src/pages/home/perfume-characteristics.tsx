@@ -1,6 +1,6 @@
 import FlexBox from '@layouts/flex-box.js'
 import React from 'react'
-import styled from '@emotion/styled'
+import styled from '@mui/material/styles/styled'
 import Typography from '@mui/material/Typography'
 import {theme} from '@theme/index.js'
 
@@ -43,7 +43,7 @@ const PerfumeCharacteristics: React.FC<PerfumeCharacteristicsProps> = ({
 
 export default PerfumeCharacteristics
 
-export const InfoBox = styled.div<{width: string}>(({width}) => ({
+export const InfoBox = styled("div")<{width: string}>(({width}) => ({
   width,
   height: '46px',
   borderRadius: '10px',
@@ -52,7 +52,7 @@ export const InfoBox = styled.div<{width: string}>(({width}) => ({
   alignItems: 'center',
 }))
 
-export const BoxContent = styled.div(({left}: {left: boolean}) => ({
+export const BoxContent = styled("div")(({left}: {left: boolean}) => ({
   width: '75%',
   borderRight: left ? '1px solid #BDBDBD' : 'none',
   paddingLeft: left ? '32px' : '13px',
@@ -74,7 +74,7 @@ export const Types = styled(Typography)({
   marginLeft: '16px',
 })
 
-const Content = styled.div({
+const Content = styled("div")({
   width: '50%',
   borderRight: '1px solid #BDBDBD',
   display: 'flex',

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@mui/material/styles/styled'
 
 interface AvatarProps {
   size: string
@@ -18,7 +18,7 @@ const Avatar: React.FC<AvatarProps> = ({size, url, style}) => {
   )
 }
 
-const Image = styled.img(
+const Image = styled('img')(
   ({url, size}: {url: string | undefined; size: string}) => ({
     width: size,
     height: size,

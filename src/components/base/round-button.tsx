@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@mui/material/styles/styled'
 import React from 'react'
 
 interface RoundButtonProps {
@@ -31,7 +31,7 @@ const RoundButton: React.FC<RoundButtonProps> = ({
   )
 }
 
-const RoundButtonLayout = styled.button(
+const RoundButtonLayout = styled('button')(
   ({
     width,
     borderColor,
