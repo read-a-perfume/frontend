@@ -4,14 +4,11 @@ import Avatar from '@mui/material/Avatar'
 import {styled} from '@mui/material'
 import {Link} from 'react-router-dom'
 import SubNavMenu from './sub-nav-menu'
-// import {useRecoilValue} from 'recoil'
-// import {UserProfileAtom} from 'src/store/client/auth/atoms'
 import {useState} from 'react'
 import NotificationModal from '@components/modal/notification-modal'
 import useFetchAuthProfile from '@hooks/use-fetch-auth-profile'
 
 const HeaderSubNav = () => {
-  // const user = useRecoilValue(UserProfileAtom)
   const {data: user, isLoading, isError} = useFetchAuthProfile()
   const [open, setOpen] = useState<boolean>(false)
 

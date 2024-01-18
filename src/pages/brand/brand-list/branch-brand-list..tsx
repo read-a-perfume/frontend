@@ -1,6 +1,6 @@
 import useClassifyKorean from './hook/use-classify-korean'
-import Box from "@mui/material/Box";
-import { styled } from "@mui/material";
+import Box from '@mui/material/Box'
+import {styled} from '@mui/material'
 import BrandCard from './brand-card'
 import Nothing from '../base/nothing'
 import {useQuery} from '@tanstack/react-query'

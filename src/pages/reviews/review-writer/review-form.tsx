@@ -1,4 +1,5 @@
-import {Box, styled} from '@mui/material'
+import Box from '@mui/material/Box'
+import {styled} from '@mui/material'
 import ReviewFormProgassState from './review-form-prograss-state'
 import useReviewFormPreNext from './hooks/use-review-form-pre-nex'
 import usePostReviewCreate from './hooks/use-post-review-create'

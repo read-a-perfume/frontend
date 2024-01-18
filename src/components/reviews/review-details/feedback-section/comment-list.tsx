@@ -1,3 +1,4 @@
+import useFetchAuthProfile from '@hooks/use-fetch-auth-profile'
 import ClearIcon from '@mui/icons-material/Clear'
 import Box from '@mui/material/Box'
 import Collapse from '@mui/material/Collapse'
@@ -5,8 +6,6 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
-import {useRecoilValue} from 'recoil'
-import {UserProfileAtom} from 'src/store/client/auth/atoms'
 import {IfReviewCommentBase} from 'types/review.interface'
 
 interface IfCommentListProps {
@@ -22,8 +21,7 @@ const CommentList = ({
   deleteCommnet,
   id,
 }: IfCommentListProps) => {
-  const user = useRecoilValue(UserProfileAtom)
-  console.log(id)
+  const {data: user} = useFetchAuthProfile()
   return (
     <Box>
       <Collapse
@@ -55,7 +53,7 @@ const CommentList = ({
                     secondary={item.content}
                     sx={{'& p,span': {fontSize: '12px'}}}
                   />
-                  {user.username === item.author.name && (
+                  {user?.username === item.author.name && (
                     <ClearIcon
                       sx={{cursor: 'pointer'}}
                       onClick={() =>

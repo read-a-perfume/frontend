@@ -1,6 +1,6 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material";
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import {styled} from '@mui/material'
 
 interface proptype {
   setIsProfileSection: React.Dispatch<React.SetStateAction<boolean>>
@@ -40,7 +40,7 @@ const Container = styled(Box)(() => ({
 const Title = styled(Typography)(({theme}) => ({
   fontWeight: 'bold',
   fontSize: theme.typography.h1.fontSize,
-  marginBottom: '40px'
+  marginBottom: '40px',
 }))
 
 const Text = styled(Typography)<{flag: boolean}>(({theme, flag}) => ({
@@ -49,6 +49,6 @@ const Text = styled(Typography)<{flag: boolean}>(({theme, flag}) => ({
   color: `${flag ? theme.palette.primary.main : '#000'}`,
   fontSize: theme.typography.body1.fontSize,
   cursor: `${flag ? '' : 'pointer'}`,
-  fontWeight: `${flag? 600 : 400}`,
-  marginBottom:'15px',
+  fontWeight: `${flag ? 600 : 400}`,
+  marginBottom: '15px',
 }))

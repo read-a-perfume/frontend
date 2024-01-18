@@ -1,5 +1,5 @@
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material";
+import Button from '@mui/material/Button'
+import {styled} from '@mui/material'
 
 const SaveButton = styled(Button)(({theme}) => ({
   width: '124px',
@@ -12,7 +12,7 @@ SaveButton.defaultProps = {
   disableElevation: true,
   type: 'submit',
   variant: 'contained',
-  "aria-label": '저장하기',
+  'aria-label': '저장하기',
 }
 
 export default SaveButton

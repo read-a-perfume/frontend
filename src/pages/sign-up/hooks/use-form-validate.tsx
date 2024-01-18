@@ -3,7 +3,7 @@ import signUpvalidate from '../utils/sign-up-validate'
 
 const useFormValidate = () => {
   const {control, watch} = useFormContext()
-
+  //각 입력필드이의 데이터
   const username = useController({
     name: 'username', // defaultsvalues 저장한 객체 키
     control,

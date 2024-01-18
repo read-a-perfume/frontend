@@ -13,7 +13,6 @@ const PerfumeFetch = ({brandId}: proptype) => {
     () => fetchBrandPerfumes(brandId, ''),
   )
 
-
   return (
     <>{perfumeList && <PerfumeList perfumeListData={perfumeList.content} />}</>
   )

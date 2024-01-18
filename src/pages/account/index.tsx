@@ -1,5 +1,5 @@
-import Box from "@mui/material/Box";
-import { styled } from "@mui/material";
+import Box from '@mui/material/Box'
+import {styled} from '@mui/material'
 import Left from './left'
 import EditProfile from './edit-profile'
 import {useState} from 'react'

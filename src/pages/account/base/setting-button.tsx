@@ -1,5 +1,5 @@
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material";
+import Button from '@mui/material/Button'
+import {styled} from '@mui/material'
 
 const SettingButton = styled(Button)(({theme}) => ({
   height: '33px',
@@ -13,7 +13,7 @@ const SettingButton = styled(Button)(({theme}) => ({
 }))
 
 SettingButton.defaultProps = {
-  "aria-label": '설정하기',
+  'aria-label': '설정하기',
 }
 
 export default SettingButton

@@ -1,4 +1,5 @@
-import {RadioGroup, styled} from '@mui/material'
+import RadioGroup from '@mui/material/RadioGroup'
+import {styled} from '@mui/material'
 import RadioRoundedButton from '../../base/radio-rounded-button'
 import {REVIEW_OPTIONS} from '@pages/reviews/review-writer/data/review-options'
 import ErrorMessage from '@components/base/error-message'

@@ -2,10 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './App.css'
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
-import {RecoilRoot} from 'recoil'
-import {CssBaseline, ThemeProvider as MuiThemeProvider} from '@mui/material'
-import {Global} from '@emotion/react'
-import globalReset from '@theme/global-reset'
+import CssBaseline from '@mui/material/CssBaseline'
+import {ThemeProvider as MuiThemeProvider} from '@mui/material'
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
 import {theme} from '@theme/index'
 import App from './App.tsx'
@@ -25,13 +23,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={client}>
       <ReactQueryDevtools initialIsOpen />
-      <RecoilRoot>
-        <MuiThemeProvider theme={theme}>
-          <Global styles={globalReset} />
-          <CssBaseline />
-          <App />
-        </MuiThemeProvider>
-      </RecoilRoot>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </MuiThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>,
 )

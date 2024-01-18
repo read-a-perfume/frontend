@@ -1,5 +1,6 @@
 import {useState} from 'react'
-import {Slider, useTheme} from '@mui/material'
+import Slider from '@mui/material/Slider'
+import {useTheme} from '@mui/material'
 
 const marks = [
   {

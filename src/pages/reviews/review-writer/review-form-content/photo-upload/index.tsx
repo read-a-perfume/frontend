@@ -1,10 +1,8 @@
-import {
-  Box,
-  List,
-  FormControl,
-  styled as muiStyled,
-  TextField,
-} from '@mui/material'
+import Box from '@mui/material/Box'
+import List from '@mui/material/List'
+import FormControl from '@mui/material/FormControl'
+import TextField from '@mui/material/TextField'
+import {styled as muiStyled} from '@mui/material'
 import MainPreviewImage from './main-preview-image'
 import SubPreviewImage from './sub-preview-image'
 import {useWatch} from 'react-hook-form'

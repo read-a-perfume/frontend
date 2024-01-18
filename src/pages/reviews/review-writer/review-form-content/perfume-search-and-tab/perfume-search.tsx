@@ -1,4 +1,6 @@
-import {Autocomplete, TextField, styled} from '@mui/material'
+import Autocomplete from '@mui/material/Autocomplete'
+import TextField from '@mui/material/TextField'
+import {styled} from '@mui/material'
 import SubTitle from '../../base/sub-title'
 import {useState} from 'react'
 import useFetchPerfumeSearch from '../../hooks/use-fetch-perfume-search'
@@ -52,7 +54,7 @@ const PerfumeSearch = () => {
         )}
         getOptionLabel={option => option.name}
         isOptionEqualToValue={(option, value) => {
-        console.log(option,value,"테스트")
+          console.log(option, value, '테스트')
           return option.id === value.id
         }}
         renderOption={(props, option) => (

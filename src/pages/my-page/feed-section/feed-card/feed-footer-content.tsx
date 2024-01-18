@@ -1,4 +1,6 @@
-import {Box, Typography, styled} from '@mui/material'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import {styled} from '@mui/material'
 import {ReactNode} from 'react'
 
 interface proptype {
@@ -25,6 +27,9 @@ const FooterText = styled(Typography)(({theme}) => ({
   fontSize: theme.typography.body4.fontSize,
 }))
 
-const Container = styled(Box)(()=>({
-  display: 'flex', alignItems: 'center', width:'120px',height: '40px',
+const Container = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  width: '120px',
+  height: '40px',
 }))

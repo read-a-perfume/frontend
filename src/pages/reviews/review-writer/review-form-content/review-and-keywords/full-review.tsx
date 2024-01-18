@@ -1,4 +1,6 @@
-import {TextareaAutosize, Typography, styled} from '@mui/material'
+import TextareaAutosize from '@mui/material/TextareaAutosize'
+import Typography from '@mui/material/Typography'
+import {styled} from '@mui/material'
 import ErrorMessage from '@components/base/error-message'
 import useFormValidateReview from '../../hooks/use-form-validate-review'
 
