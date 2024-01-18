@@ -9,12 +9,18 @@ interface proptype {
 }
 
 const AuthRedirect = ({children, flag}: proptype) => {
-  const {isError, isLoading} = useFetchAuthProfile()
-  const location = useLocation()
-
   if (!flag) {
     return children
   }
+  return <Branch>{children}</Branch>
+}
+
+export default AuthRedirect
+
+const Branch = ({children}: {children: ReactNode}) => {
+  const {isError, isLoading} = useFetchAuthProfile()
+  const location = useLocation()
+
   if (isLoading) {
     return <Loading width="100%" height="100%" borderRadius={0} />
   }
@@ -25,5 +31,3 @@ const AuthRedirect = ({children, flag}: proptype) => {
 
   return children
 }
-
-export default AuthRedirect
