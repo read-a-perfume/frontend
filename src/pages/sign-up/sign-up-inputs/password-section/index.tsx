@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import {styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 import SignUpLabel from '@pages/sign-up/base/sign-up-label'
 import SignUpTextFiled from '@pages/sign-up/base/sign-up-text-filed'
 import {IfPasswordProps} from '@pages/sign-up/types'

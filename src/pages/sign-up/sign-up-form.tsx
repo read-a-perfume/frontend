@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
 import ButtonBase from '@mui/material/ButtonBase'
 import {FormProvider, useForm} from 'react-hook-form'
-import styled from '@emotion/styled'
+import styled from '@mui/material/styles/styled'
 import {theme} from '../../theme'
 import FormAgreement from './sign-up-agreement'
 import SignUpHeader from './sign-up-header'

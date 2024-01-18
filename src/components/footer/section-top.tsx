@@ -1,7 +1,7 @@
 //import {useRouter} from '@hooks/use-router'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import {styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 import Content from './base/content'
 import {topData} from './data/data'
 

@@ -1,4 +1,6 @@
-import {Input, Typography, styled} from '@mui/material'
+import Input from '@mui/material/Input'
+import Typography from '@mui/material/Typography'
+import styled from '@mui/material/styles/styled'
 import ErrorMessage from '@components/base/error-message'
 import useFormValidateReview from '../../hooks/use-form-validate-review'
 

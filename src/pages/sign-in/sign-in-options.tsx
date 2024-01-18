@@ -1,10 +1,10 @@
-import Box from '@mui/material/Box'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Typography from '@mui/material/Typography'
-import {styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import Box from '@mui/material/Box'
 
 const checkData = {
   checkoff: (

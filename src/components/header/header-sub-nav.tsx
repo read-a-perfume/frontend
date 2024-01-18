@@ -1,7 +1,7 @@
 import FlexBox from '@layouts/flex-box'
 import {HeaderNavigation} from '.'
 import Avatar from '@mui/material/Avatar'
-import {styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 import {Link} from 'react-router-dom'
 import SubNavMenu from './sub-nav-menu'
 // import {useRecoilValue} from 'recoil'

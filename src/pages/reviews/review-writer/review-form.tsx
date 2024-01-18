@@ -1,4 +1,4 @@
-import {Box, styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 import ReviewFormProgassState from './review-form-prograss-state'
 import useReviewFormPreNext from './hooks/use-review-form-pre-nex'
 import usePostReviewCreate from './hooks/use-post-review-create'
@@ -7,6 +7,7 @@ import {FormProvider, useForm} from 'react-hook-form'
 import {IfReviewRequest} from 'types/review.interface'
 import ReviewFormContent from './review-form-content'
 import ReviewFormNavButtons from './review-form-nav-buttons'
+import Box from '@mui/material/Box'
 
 const ReviewRequest = {
   perfume: {
