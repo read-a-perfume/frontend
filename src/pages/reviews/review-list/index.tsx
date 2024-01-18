@@ -1,6 +1,6 @@
 import ReviewSkeleton from '@components/reviews/review-card-list/review-skeleton'
 import ReviewFilterTabs from '@components/reviews/review-filter-tabs'
-import {Box} from '@mui/material'
+import Box from '@mui/material/Box'
 import {Suspense, lazy, useState} from 'react'
 
 const ListSection = lazy(() => import('./list-section'))

@@ -1,13 +1,11 @@
-import {
-  Avatar,
-  Box,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Skeleton,
-  Typography,
-} from '@mui/material'
+import Avatar from '@mui/material/Avatar'
+import Box from '@mui/material/Box'
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+import CardHeader from '@mui/material/CardHeader'
+import Skeleton from '@mui/material/Skeleton'
+import Typography from '@mui/material/Typography'
 
 const SkeletonCard = () => {
   return (

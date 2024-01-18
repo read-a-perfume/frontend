@@ -1,4 +1,4 @@
-import {Box} from '@mui/material'
+import Box from '@mui/material/Box'
 import CounterSection from './counter-section'
 import {useState} from 'react'
 import CommentList from './comment-list'

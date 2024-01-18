@@ -1,4 +1,7 @@
-import {Box, Divider, Typography, styled} from '@mui/material'
+import Box from '@mui/material/Box'
+import Divider from '@mui/material/Divider'
+import Typography from '@mui/material/Typography'
+import {styled} from '@mui/material'
 import {IfPerfumeCardProps} from '../type'
 import {Link} from 'react-router-dom'
 
@@ -10,7 +13,12 @@ const PerfumeCard = ({data}: IfPerfumeCardProps) => {
       <SLink to={`/perfume/${data.id}`}>
         <TopContainer>
           <Box sx={{overflow: 'hidden'}}>
-            <PerfumeImage alt={data.name} src={data.thumbnail} width="280px" height="256px" />
+            <PerfumeImage
+              alt={data.name}
+              src={data.thumbnail}
+              width="280px"
+              height="256px"
+            />
           </Box>
           <PerfumeBrand>{data.brandName}</PerfumeBrand>
           <PerfumeTitle>{data.name}</PerfumeTitle>

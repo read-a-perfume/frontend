@@ -1,4 +1,8 @@
-import {AppBar, Box, Toolbar, Typography, styled} from '@mui/material'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import {styled} from '@mui/material'
 import {Link} from 'react-router-dom'
 
 const menuData: {url: string; name: string; id: number}[] = [

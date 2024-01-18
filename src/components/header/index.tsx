@@ -1,5 +1,7 @@
 import styled from '@emotion/styled'
-import {Button, OutlinedInput, Typography} from '@mui/material'
+import Button from '@mui/material/Button'
+import OutlinedInput from '@mui/material/OutlinedInput'
+import Typography from '@mui/material/Typography'
 import {Link} from 'react-router-dom'
 import {theme} from '@theme/index.js'
 import HeaderNavBar from '@components/header/header-nav-bar'

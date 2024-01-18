@@ -1,4 +1,5 @@
-import {Box, Tabs} from '@mui/material'
+import Box from '@mui/material/Box'
+import Tabs from '@mui/material/Tabs'
 import SearchTab from './search-tab'
 
 const SearchTabs = () => {

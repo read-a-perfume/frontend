@@ -1,11 +1,8 @@
-import {
-  Box,
-  Button,
-  TextField,
-  Typography,
-  styled,
-  useTheme,
-} from '@mui/material'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
+import {styled, useTheme} from '@mui/material'
 import {useState} from 'react'
 
 interface IfProps {

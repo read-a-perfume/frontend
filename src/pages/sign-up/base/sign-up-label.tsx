@@ -1,4 +1,4 @@
-import {Typography} from '@mui/material'
+import Typography from '@mui/material/Typography'
 
 const SignUpLabel = ({label}: {label: string}) => {
   return (

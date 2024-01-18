@@ -1,9 +1,9 @@
 const UploadIcon = ({
-  width = "61",
-  height = "55",
+  width = '61',
+  height = '55',
 }: {
-  width?: string;
-  height?: string;
+  width?: string
+  height?: string
 }) => {
   return (
     <svg
@@ -18,7 +18,7 @@ const UploadIcon = ({
         fill="#B4B4B4"
       />
     </svg>
-  );
-};
+  )
+}
 
-export default UploadIcon;
+export default UploadIcon

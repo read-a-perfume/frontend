@@ -1,4 +1,4 @@
-import {List} from '@mui/material'
+import List from '@mui/material/List'
 import useFormValidate from '../hooks/use-form-validate'
 import UserNameSection from './user-name-section'
 import PasswordSection from './password-section'

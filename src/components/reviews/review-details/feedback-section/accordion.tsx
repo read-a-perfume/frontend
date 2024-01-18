@@ -1,5 +1,5 @@
 const Accordion = () => {
-    return 
+  return
 }
 
 export default Accordion

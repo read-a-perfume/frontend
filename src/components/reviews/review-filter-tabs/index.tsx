@@ -1,7 +1,9 @@
 import {useRouter} from '@hooks/use-router'
 import FlexBox from '@layouts/flex-box'
-import {Box, Button, Typography, styled} from '@mui/material'
-
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+import {styled} from '@mui/material'
 import {Link} from 'react-router-dom'
 
 interface IfReviewListSelectProps {

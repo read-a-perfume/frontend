@@ -1,4 +1,6 @@
-import {Box, Typography, styled} from '@mui/material'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import {styled} from '@mui/material'
 import PerfumeSkeleton from '@components/perfumes/perfume-card-skeleton'
 import PerfumeList from '@components/perfumes/perfume-card-list'
 import useQuery from 'src/store/server/use-query'

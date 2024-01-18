@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
 import FlexBox from '@layouts/flex-box.js'
-import {Box, Modal, Typography} from '@mui/material'
+import Box from '@mui/material/Box'
+import Modal from '@mui/material/Modal'
+import Typography from '@mui/material/Typography'
 import CloseIcon from '@mui/icons-material/Close'
 export const ModalStyle = styled(Modal)({
   width: 350,

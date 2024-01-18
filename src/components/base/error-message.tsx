@@ -1,8 +1,9 @@
-import {SxProps, Theme, Typography} from '@mui/material'
+import Typography from '@mui/material/Typography'
+import {SxProps, Theme} from '@mui/material'
 
 const ErrorMessage = ({
   errorMessage,
-  sx
+  sx,
 }: {
   errorMessage?: string
   sx?: SxProps<Theme> | undefined

@@ -1,4 +1,7 @@
-import {Box, Checkbox, Typography, styled} from '@mui/material'
+import Box from '@mui/material/Box'
+import Checkbox from '@mui/material/Checkbox'
+import Typography from '@mui/material/Typography'
+import {styled} from '@mui/material'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import useAgreeSignUp from '../hooks/use-agree-sign-up'

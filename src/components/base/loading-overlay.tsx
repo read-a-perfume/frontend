@@ -1,4 +1,5 @@
-import {Box, styled} from '@mui/material'
+import Box from '@mui/material/Box'
+import {styled} from '@mui/material'
 
 const LoadingOverlay = () => {
   /*
@@ -29,7 +30,7 @@ const LoadingOverlay = () => {
   }, [])
   */
 
-  return <Container/>
+  return <Container />
 }
 
 export default LoadingOverlay
@@ -41,7 +42,7 @@ const Container = styled(Box)(() => ({
   backgroundColor: 'gray',
   opacity: '0.5',
   width: '100%',
-  height:'100vh',
+  height: '100vh',
   zIndex: 10,
-  overflowX:'hidden',
+  overflowX: 'hidden',
 }))

@@ -1,12 +1,10 @@
 import ClearIcon from '@mui/icons-material/Clear'
-import {
-  Box,
-  Collapse,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-} from '@mui/material'
+import Box from '@mui/material/Box'
+import Collapse from '@mui/material/Collapse'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
+import Typography from '@mui/material/Typography'
 import {useRecoilValue} from 'recoil'
 import {UserProfileAtom} from 'src/store/client/auth/atoms'
 import {IfReviewCommentBase} from 'types/review.interface'

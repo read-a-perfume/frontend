@@ -1,4 +1,4 @@
-import {Box} from '@mui/material'
+import Box from '@mui/material/Box'
 import ReviewKeyword from '../review-keyword'
 import {IfReviewDetailResponse} from 'types/review.interface'
 

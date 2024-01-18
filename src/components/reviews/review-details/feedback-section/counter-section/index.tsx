@@ -1,6 +1,7 @@
 import CommnetCounter from '@components/reviews/commnet-counter'
 import LikeCounter from '@components/reviews/like-counter'
-import {Box, createSvgIcon} from '@mui/material'
+import Box from '@mui/material/Box'
+import {createSvgIcon} from '@mui/material'
 import {useState} from 'react'
 
 const CounterSection = ({setIsOpen, open}: any) => {

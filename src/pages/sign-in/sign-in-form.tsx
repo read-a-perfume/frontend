@@ -1,12 +1,10 @@
-import {
-  Box,
-  Tab,
-  Tabs,
-  Grid,
-  styled,
-  Typography,
-  TextField,
-} from '@mui/material'
+import Box from '@mui/material/Box'
+import Tab from '@mui/material/Tab'
+import Tabs from '@mui/material/Tabs'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import TextField from '@mui/material/TextField'
+import {styled} from '@mui/material'
 import {SyntheticEvent, useCallback, useState} from 'react'
 import useMutation from 'src/store/server/use-mutation'
 import SignInOptions from './sign-in-options'

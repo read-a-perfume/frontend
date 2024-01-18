@@ -1,4 +1,5 @@
-import {Box, keyframes, styled} from '@mui/material'
+import Box from '@mui/material/Box'
+import {keyframes, styled} from '@mui/material'
 
 const blinkAnimation = keyframes`
     from{
