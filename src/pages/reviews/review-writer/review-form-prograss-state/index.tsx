@@ -1,4 +1,9 @@
-import {Box, Step, StepLabel, Stepper, Typography, styled} from '@mui/material'
+import Box from '@mui/material/Box'
+import Step from '@mui/material/Step'
+import StepLabel from '@mui/material/StepLabel'
+import Stepper from '@mui/material/Stepper'
+import Typography from '@mui/material/Typography'
+import styled from '@mui/material/styles/styled'
 import {IfReviewFormProgassStateProps} from '../types'
 
 const category = ['향수 이미지 업로드', '향수 특징 선택', '상세 리뷰 작성']

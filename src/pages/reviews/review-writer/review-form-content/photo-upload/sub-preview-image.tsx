@@ -1,7 +1,9 @@
-import {ListItem, ListItemIcon, createSvgIcon, styled} from '@mui/material'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import {createSvgIcon} from '@mui/material'
 import {useEffect, useState} from 'react'
 import {IfSubPreviewImageProps} from '../../types'
-
+import styled from '@mui/material/styles/styled'
 const SubPreviewImage = ({
   thumbnailsFiles,
   handleThumbnailDelete,

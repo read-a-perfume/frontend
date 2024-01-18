@@ -1,5 +1,5 @@
 import Tab from '@mui/material/Tab'
-import {styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 import {IfSearchTab} from '../types'
 import {Link} from 'react-router-dom'
 

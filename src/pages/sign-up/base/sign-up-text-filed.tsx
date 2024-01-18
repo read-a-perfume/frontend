@@ -1,6 +1,6 @@
 import ErrorMessage from '@components/base/error-message'
 import TextField from '@mui/material/TextField'
-import {styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 
 const SignUpTextFiled = ({type, method, placeholder, isAuthCheck}: any) => {
   const {

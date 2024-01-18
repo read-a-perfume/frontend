@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import {styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 import SectionTop from './section-top'
 import SectionBottom from './section-bottom'
 

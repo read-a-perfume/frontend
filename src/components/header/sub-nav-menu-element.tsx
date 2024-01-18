@@ -1,6 +1,6 @@
 import ListItem from '@mui/material/ListItem'
 import Typography from '@mui/material/Typography'
-import {styled} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 import {Link} from 'react-router-dom'
 
 interface proptype {

@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box'
-import {keyframes, styled} from '@mui/material'
-
+import {keyframes} from '@mui/material'
+import styled from '@mui/material/styles/styled'
 const blinkAnimation = keyframes`
     from{
         background-color: #ddd
