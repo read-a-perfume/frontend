@@ -1,4 +1,4 @@
-import {Box} from '@mui/material'
+import Box from "@mui/material/Box";
 import {Input} from '@pages/account/base/input'
 import SaveButton from '@pages/account/base/save-button'
 import useEditEmailForms from '../hook/use-edit-email-forms'

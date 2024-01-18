@@ -1,4 +1,5 @@
-import {Box, styled} from '@mui/material'
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material";
 import {PwFormDataType} from './type'
 import {FormProvider, useForm} from 'react-hook-form'
 import usePostPw from './hook/use-post-pw'

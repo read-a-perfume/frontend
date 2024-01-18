@@ -1,4 +1,6 @@
-import {Typography, styled, Modal} from '@mui/material'
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import { styled } from "@mui/material";
 import FollowModal from '../modal/follow-modal'
 import {useState} from 'react'
 

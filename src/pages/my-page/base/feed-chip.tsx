@@ -1,4 +1,5 @@
-import {Chip, styled} from '@mui/material'
+import Chip from "@mui/material/Chip";
+import { styled } from "@mui/material";
 import {ShowBenchmarkType} from '../feed-section/type'
 
 interface proptype {

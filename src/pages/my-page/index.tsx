@@ -1,4 +1,6 @@
-import {Box, Typography, styled} from '@mui/material'
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material";
 import ProfileSection from './profile-section'
 // import FeedSection from './feed-section/feed-section'
 import Banner from '@components/base/banner'

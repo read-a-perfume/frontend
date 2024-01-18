@@ -13,14 +13,12 @@ import FlexBox from '@layouts/flex-box'
 import Notes from './notes'
 import Information from './information'
 import PerfumeReviewList from './review'
-import {
-  Box,
-  Button,
-  Pagination,
-  Skeleton,
-  Typography,
-  styled,
-} from '@mui/material'
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Pagination from "@mui/material/Pagination";
+import Skeleton from "@mui/material/Skeleton";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material";
 
 const PerfumeDetail = () => {
   const params = useParams()

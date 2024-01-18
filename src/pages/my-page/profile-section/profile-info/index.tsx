@@ -1,4 +1,8 @@
-import {Box, Button, Stack, Typography, styled} from '@mui/material'
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material";
 import FollowText from './follow-text'
 import {useRouter} from '@hooks/use-router'
 

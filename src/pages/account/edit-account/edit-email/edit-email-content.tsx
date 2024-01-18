@@ -1,5 +1,5 @@
 import EditTitle from '@pages/account/base/edit-title'
-import {Divider} from '@mui/material'
+import Divider from "@mui/material/Divider";
 import {FormProvider, useForm} from 'react-hook-form'
 import {EmailFormDataType} from '../type'
 import usePostEmail from '../hook/use-post-email'

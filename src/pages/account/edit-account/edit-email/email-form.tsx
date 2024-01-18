@@ -1,4 +1,4 @@
-import {Box} from '@mui/material'
+import Box from "@mui/material/Box";
 import FormLabel from '@pages/account/base/form-label'
 import {Input} from '@pages/account/base/input'
 import SettingButton from '@pages/account/base/setting-button'

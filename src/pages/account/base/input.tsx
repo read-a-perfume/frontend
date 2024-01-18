@@ -1,4 +1,5 @@
-import {TextField, styled} from '@mui/material'
+import TextField from "@mui/material/TextField";
+import { styled } from "@mui/material";
 
 export const Input = styled(TextField)<{width?: string}>(
   ({width = '342px', theme}) => ({

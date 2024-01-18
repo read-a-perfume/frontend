@@ -2,15 +2,13 @@ import {useState} from 'react'
 import instance from '@api/instance'
 
 import FlexBox from '@layouts/flex-box'
-import {
-  Box,
-  Popover,
-  Skeleton,
-  Tab,
-  Tabs,
-  Typography,
-  styled,
-} from '@mui/material'
+import Box from "@mui/material/Box";
+import Popover from "@mui/material/Popover";
+import Skeleton from "@mui/material/Skeleton";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material";
 import NoteCarouselItem from './Note-carousel-item'
 
 interface IfNotesProps {

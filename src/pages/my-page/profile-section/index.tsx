@@ -1,4 +1,6 @@
-import {Avatar, Box, styled} from '@mui/material'
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material";
 import {useQuery} from '@tanstack/react-query'
 import ProfileInfo from './profile-info'
 import ProfileType from './profile-type'

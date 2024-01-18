@@ -1,6 +1,7 @@
 import {IfCategory} from 'types/perfume.interface'
 import TypeCard from './type-card'
-import {Box, styled} from '@mui/material'
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material";
 
 interface proptype {
   data: IfCategory[]

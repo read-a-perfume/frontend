@@ -3,7 +3,9 @@ import Chart from 'react-apexcharts'
 import {IfInformationProps, IfGraphDataType} from './information-interface'
 
 import AccordionGraph from './accordion-chart'
-import {Box, Skeleton, styled} from '@mui/material'
+import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
+import { styled } from "@mui/material";
 
 const options = {
   colors: ['#FE7156'],

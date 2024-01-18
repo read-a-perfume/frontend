@@ -1,4 +1,5 @@
-import {Typography, styled} from '@mui/material'
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material";
 import {useContext} from 'react'
 import {IfCategory} from 'types/perfume.interface'
 import {FormCategoryDataType, getDefaultValues} from './util/util'

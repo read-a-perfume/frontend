@@ -1,4 +1,4 @@
-import {Stack} from '@mui/material'
+import Stack from "@mui/material/Stack";
 import {PwInput} from '@pages/account/base/input'
 import SaveButton from '@pages/account/base/save-button'
 import useEditPwForms from '../hook/use-edit-pw-forms'

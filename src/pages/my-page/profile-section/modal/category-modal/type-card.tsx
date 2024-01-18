@@ -1,4 +1,5 @@
-import {Typography, styled} from '@mui/material'
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material";
 import {IfCategory} from 'types/perfume.interface'
 import CustomCheck from './custom-check'
 import useCategoryForms from './hook/use-category-forms'

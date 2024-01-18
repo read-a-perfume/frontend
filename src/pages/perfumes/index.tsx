@@ -4,7 +4,10 @@ import {Link, useSearchParams} from 'react-router-dom'
 import FlexBox from '@layouts/flex-box'
 import Category from '@components/perfume/category'
 import Pagination from '@mui/material/Pagination'
-import {Box, Skeleton, Stack, Typography} from '@mui/material'
+import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import PerfumeList from '@components/perfumes/perfume-card-list'
 import PerfumeSkeleton from '@components/perfumes/perfume-card-skeleton'
 

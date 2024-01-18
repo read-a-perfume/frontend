@@ -1,4 +1,5 @@
-import {Button, styled} from '@mui/material'
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add'
 import { useContext } from 'react'
 import { TypeContext } from '.'

@@ -1,5 +1,8 @@
 import Avatar from '@components/base/avatar'
-import {Box, Link, Typography, styled} from '@mui/material'
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material";
 import {useQuery} from '@tanstack/react-query'
 import {brandQueryKeys} from 'src/react-query-keys/brand.keys'
 import {fetchBrand} from 'src/store/server/brand/queries'

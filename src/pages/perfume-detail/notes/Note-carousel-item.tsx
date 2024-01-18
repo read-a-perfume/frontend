@@ -1,4 +1,6 @@
-import {Popover, Typography, styled} from '@mui/material'
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material";
 import {Swiper, SwiperSlide} from 'swiper/react'
 import {FreeMode, Navigation, Pagination} from 'swiper/modules'
 import SwiperCore from 'swiper'

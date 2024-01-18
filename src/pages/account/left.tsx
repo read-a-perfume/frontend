@@ -1,4 +1,6 @@
-import {Box, Typography, styled} from '@mui/material'
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material";
 
 interface proptype {
   setIsProfileSection: React.Dispatch<React.SetStateAction<boolean>>

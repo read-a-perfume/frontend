@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
-import {Box, styled} from '@mui/material'
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material";
 
 interface ProgressBarProp {
   percent: number

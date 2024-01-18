@@ -1,7 +1,8 @@
 import {IfReviewResponse} from 'types/review.interface'
 
 import FlexBox from '@layouts/flex-box'
-import {Typography, styled} from '@mui/material'
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material";
 import ReviewCard from '@components/reviews/review-card'
 import SkeletonCard from '@components/skeleton-card'
 import ReviewFilterTabs from '@components/reviews/review-filter-tabs'
