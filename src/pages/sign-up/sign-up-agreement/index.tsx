@@ -19,7 +19,7 @@ const SignUpAgreement = () => {
   return (
     <AgreementWrapper>
       <AgrrementTitle variant="body3">약관동의</AgrrementTitle>
-      <AllAgreeChecbox title="전체 동의" allCheck={allCheck} />
+      <AllAgreeChecbox title="전체 동의" method={allCheck} />
       <CheckBoxItem label="만 14세 이상입니다." method={age} />
       <CheckBoxItem
         label="개인정보 마케팅 활용 동의"
