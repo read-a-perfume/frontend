@@ -1,6 +1,7 @@
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Typography from '@mui/material/Typography'
+import TextField from '@mui/material/TextField'
 import {styled} from '@mui/material'
 import {REVIEW_OPTIONS} from '../../data/review-options'
 import {useWatch} from 'react-hook-form'
@@ -11,11 +12,12 @@ const PerfumeKeywords = ({title}: {title: string}) => {
   const {keywordMethods, control} = useFormValidateReview()
 
   const {
-    field: {ref, value, onChange, ...inputProps},
+    field,
     formState: {errors},
   } = keywordMethods
 
   const checkboxIds = useWatch({control: control, name: 'keywords'}) || []
+
   const handleChange = value => {
     const newArray = [...checkboxIds]
 
@@ -32,7 +34,7 @@ const PerfumeKeywords = ({title}: {title: string}) => {
     } else {
       newArray.push(item)
     }
-    onChange(newArray)
+    field.onChange(newArray)
   }
 
   return (
@@ -45,6 +47,12 @@ const PerfumeKeywords = ({title}: {title: string}) => {
         {title}
       </Typography>
       <Group>
+        <TextField
+          {...field}
+          hidden
+          sx={{height: 0, opacity: 0, width: 0, overflow: 'hidden'}}
+          required={true}
+        />
         {REVIEW_OPTIONS.keywords.map(item => (
           <MuIFormControlLabel
             sx={{
@@ -52,13 +60,10 @@ const PerfumeKeywords = ({title}: {title: string}) => {
             }}
             control={
               <CustomCheckBox
-                checked={value?.some(checked => checked === item['code'])}
-                {...inputProps}
+                checked={field.value?.some(checked => checked === item['code'])}
                 onChange={() => handleChange(item['code'])}
                 value={item['code']}
-                inputRef={ref}
-                // key={item.name}
-                // name={item.name}
+                inputRef={field.ref}
               />
             }
             key={item['name']}

@@ -14,7 +14,7 @@ const reviwFormValidation = {
   },
   keywords: {
     validate: (item: number[] | []) => {
-      return item.length <= 3 || '(최대 3개).'
+      return item.length < 3 || '(최대 3개).'
     },
   },
   perfume: {

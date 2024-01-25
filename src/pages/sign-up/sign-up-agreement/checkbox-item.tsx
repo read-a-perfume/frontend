@@ -16,10 +16,8 @@ const CheckBoxItem = ({method, label}: CheckBoxList) => {
         <Checkbox
           {...method.field}
           checked={method.field.value}
-          value={method.field.value}
           icon={<RadioButtonUncheckedIcon />} // 미선택 시 아이콘
           checkedIcon={<CheckCircleIcon sx={{color: '#131313'}} />} // 선택 시 아이콘
-          onChange={method.field.onChange}
         />
         <FormLabel sx={{fontSize: '14px', color: '#000'}}>{label}</FormLabel>
       </Box>
