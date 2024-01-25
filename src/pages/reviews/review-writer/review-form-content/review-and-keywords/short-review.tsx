@@ -22,10 +22,10 @@ const ShortReview = ({title}: {title: string}) => {
           {title}
         </Typography>
         <OneLineReviewInput
+          {...field}
+          required={true}
           name="shortReview"
           placeholder="한줄평을 남겨주세요."
-          value={field.value}
-          onChange={field.onChange}
         />
         <ErrorMessage errorMessage={errors.shortReview?.message} />
       </OneLineReview>

@@ -28,13 +28,13 @@ const PerfumeSearch = () => {
       <CustomAutoComplete
         disablePortal
         id="perfume"
+        {...field}
         options={options}
         onChange={(_event, newValue) => {
           field.onChange(newValue)
         }}
         inputValue={search}
         onInputChange={(_evt, newValue) => setSearch(newValue)}
-        value={field.value}
         sx={{width: 411}}
         autoHighlight
         loading={isLoading}
@@ -54,7 +54,6 @@ const PerfumeSearch = () => {
         )}
         getOptionLabel={option => option.name}
         isOptionEqualToValue={(option, value) => {
-          console.log(option, value, '테스트')
           return option.id === value.id
         }}
         renderOption={(props, option) => (

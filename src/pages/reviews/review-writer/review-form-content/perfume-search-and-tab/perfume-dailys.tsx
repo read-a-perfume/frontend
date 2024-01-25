@@ -19,9 +19,7 @@ const PerfumeDailys = () => {
       <CustomRadioGroup
         row
         aria-label="향수"
-        name={field.name}
-        value={field.value}
-        onChange={field.onChange}
+        {...field}
       >
         {REVIEW_OPTIONS.dayTypes.map(dayType => (
           <RadioRoundedButton

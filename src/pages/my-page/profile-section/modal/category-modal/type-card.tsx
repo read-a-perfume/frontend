@@ -1,22 +1,14 @@
-import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material";
+import Typography from '@mui/material/Typography'
+import {styled} from '@mui/material'
 import {IfCategory} from 'types/perfume.interface'
-import CustomCheck from './custom-check'
 import useCategoryForms from './hook/use-category-forms'
-import {useWatch} from 'react-hook-form'
 interface proptype {
   data: IfCategory
 }
 
 const TypeCard = ({data}: proptype) => {
   const id = data.id
-  const {category, getValues, control} = useCategoryForms(id)
-
-  const flag = useWatch({
-    control: control,
-    name: String(id) as never,
-  }) as boolean
-
+  const {category, getValues} = useCategoryForms(id)
   const ableClick = (): boolean => {
     const allData = getValues()
     const cnt = Object.values(allData).filter(e => e === true).length
@@ -26,28 +18,28 @@ const TypeCard = ({data}: proptype) => {
     return true
   }
 
-  const handleChange = () => {
-    //category.field.onChange(!e.target.checked)
-    if (!flag && !ableClick()) {
+  const handleChange = e => {
+    if (e.target.checked && !ableClick()) {
       alert('타입은 최대 3개까지 설정 가능합니다.')
     } else {
-      category.field.onChange(!flag)
+      category.field.onChange(e.target.checked)
     }
   }
 
   return (
     <>
-      <input
-        type="checkbox"
-        hidden
-        {...category.field}
-        id={String(id)}
-        name={category.field.name}
-        onChange={handleChange}
-      />
       <Container htmlFor={String(id)}>
         <TypeImage src={data.thumbnail} alt={data.name} />
-        {<CustomCheck flag={flag} />}
+
+        <CheckBox
+          type="checkbox"
+          {...category.field}
+          id={String(id)}
+          name={category.field.name}
+          onChange={handleChange}
+          checked={category.field.value}
+        />
+
         <Title>{data.name}</Title>
       </Container>
     </>
@@ -85,4 +77,33 @@ const Title = styled(Typography)(({theme}) => ({
   fontFamily: 'Arita buri',
   color: '#fff',
   zIndex: 1,
+}))
+
+const CheckBox = styled('input')(({theme}) => ({
+  appearance: 'none',
+  cursor: 'pointer',
+  backgroundColor: '#fff',
+  borderRadius: '50%',
+  width: '25px',
+  height: '25px',
+  fontSize: '25px',
+  fontWeight: 'bold',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  zIndex: 1,
+  alignSelf: 'flex-end',
+  paddingTop: '3px',
+  '&:after': {content: '"✓"', color: '#bbb'},
+  '&:hover': {
+    backgroundColor: '#ddd',
+    '&:after': {content: '"✓"', color: '#fff'},
+  },
+  '&:checked': {
+    backgroundColor: theme.palette.primary.main,
+    '&:after': {
+      color: '#fff',
+      content: '"✓"',
+    },
+  },
 }))
