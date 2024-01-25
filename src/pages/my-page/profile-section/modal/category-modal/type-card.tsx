@@ -97,7 +97,6 @@ const CheckBox = styled('input')(({theme}) => ({
   '&:after': {content: '"✓"', color: '#bbb'},
   '&:hover': {
     backgroundColor: '#ddd',
-    '&:after': {content: '"✓"', color: '#fff'},
   },
   '&:checked': {
     backgroundColor: theme.palette.primary.main,
