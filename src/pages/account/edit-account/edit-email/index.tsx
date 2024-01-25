@@ -1,15 +1,11 @@
 import {useState} from 'react'
 import TypingContext from '../util/typing-context'
 import EditEmailContent from './edit-email-content'
-import {useQuery} from '@tanstack/react-query'
-import {authQueryKeys} from 'src/react-query-keys/auth.keys'
-import {fetchUserProfile} from 'src/store/server/auth/queries'
+import useFetchAuthProfile from '@hooks/use-fetch-auth-profile'
 
 const EditEmail = () => {
   const [isTyping, setIsTyping] = useState<boolean>(false)
-  const {data: curUser} = useQuery(authQueryKeys.userProfile, () =>
-    fetchUserProfile(),
-  )
+  const {data:curUser} = useFetchAuthProfile()
 
   return (
     <TypingContext.Provider value={{isTyping, setIsTyping}}>
