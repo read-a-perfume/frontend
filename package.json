@@ -31,6 +31,7 @@
     "react-icons": "^4.11.0",
     "react-multi-carousel": "^2.8.4",
     "react-router-dom": "^6.17.0",
+    "storybook-addon-react-router-v6": "^2.0.10",
     "swiper": "^11.0.5"
   },
   "devDependencies": {
