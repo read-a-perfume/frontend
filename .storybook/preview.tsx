@@ -2,6 +2,8 @@ import type {Preview} from '@storybook/react'
 import {CssBaseline, ThemeProvider} from '@mui/material'
 import {theme} from '../src/theme/index'
 import React from 'react'
+import {withRouter} from 'storybook-addon-react-router-v6'
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 
 export const preview: Preview = {
   parameters: {
@@ -13,18 +15,23 @@ export const preview: Preview = {
         date: /Date$/,
       },
     },
+    reactRouter: {routePath: ''},
   },
 }
+
+const client = new QueryClient()
 
 //MUI 테마연동
 
 export const withMuiTheme = Story => {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Story />
-    </ThemeProvider>
+    <QueryClientProvider client={client}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Story />
+      </ThemeProvider>
+    </QueryClientProvider>
   )
 }
 
-export const decorators = [withMuiTheme]
+export const decorators = [withRouter, withMuiTheme]
