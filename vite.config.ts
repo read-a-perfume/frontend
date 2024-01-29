@@ -5,19 +5,10 @@ import checker from 'vite-plugin-checker'
 // import envCompatible from "vite-plugin-env-compatible";
 
 export default defineConfig(({command, mode}) => {
-  if (command === 'serve' && mode === 'development') {
-    return {
-      env: env,
-      plugins: plugins,
-      server: derServer,
-    }
-  } else {
-    // command === 'build'
-    return {
-      env: env,
-      plugins: plugins,
-      server: {},
-    }
+  return {
+    env: env,
+    plugins: plugins,
+    server: derServer,
   }
 })
 
