@@ -16,6 +16,7 @@ npm run dev 실행
 
 ### 스토리북
 <img src="https://github.com/read-a-perfume/frontend/assets/77400131/7e03c3e1-2275-4857-a99c-de66e5f36899" width="800px" height="500px" alt="storybook">
+<br/>
 <a href="https://65b77008a475f07078b8424e-xaguxgxkvb.chromatic.com/">스토리북 배포 링크</a>
 
 ### 브랜치 관리 전략
