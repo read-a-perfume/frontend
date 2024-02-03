@@ -12,7 +12,7 @@ import usePostUserNameConfirm from '../hooks/use-post-user-name-confirm '
 const SignupInputs = () => {
   const {username, password, passwordConfirm, email, emailAuthCode} =
     useFormValidate()
-  const {handleUserNameConfirm} = usePostUserNameConfirm({
+  const {handleUserNameConfirm, handleUserNameChange} = usePostUserNameConfirm({
     successMessage: '사용 가능한 아이디입니다',
     failedMessage: '아이디 중복입니다.',
     userId: username.field.value,
@@ -31,6 +31,7 @@ const SignupInputs = () => {
       <UserNameSection
         username={username}
         handleUserNameConfirm={handleUserNameConfirm}
+        handleUserNameChange={handleUserNameChange}
       />
       <PasswordSection password={password} />
       <PasswordConfirmSection passwordConfirm={passwordConfirm} />

@@ -9,6 +9,7 @@ import {useSignUpContext} from '@pages/sign-up/hooks/use-sign-up-context'
 const UserNameSection = ({
   username,
   handleUserNameConfirm,
+  handleUserNameChange,
 }: IfUserNameProps) => {
   const {signUpState} = useSignUpContext()
 
@@ -26,6 +27,7 @@ const UserNameSection = ({
         afterTitle="인증완료"
         value={username.field.value}
         handleUserNameConfirm={handleUserNameConfirm}
+        handleUserNameChange={handleUserNameChange}
         isAuthCheck={signUpState.isUserNameCheck}
       />
     </TextFiledWrapper>
