@@ -10,7 +10,7 @@ const usePostUserNameConfirm = ({
   failedMessage,
   userId,
 }: IfUsePostCheckDuplicateProps) => {
-  const {signUpState,updateSignUpState} = useSignUpContext()
+  const {signUpState, updateSignUpState} = useSignUpContext()
   const {setError, trigger} = useFormContext()
 
   //아이디 중복체크
@@ -40,9 +40,14 @@ const usePostUserNameConfirm = ({
   }
   // 이메일 중복체크
 
+  const handleUserNameChange = async () => {
+    updateSignUpState({...signUpState, isUserNameCheck: false})
+  }
+
   return {
     mutateCheckUserId,
     handleUserNameConfirm,
+    handleUserNameChange,
   }
 }
 

@@ -40,6 +40,7 @@ export interface IfSignUpInputBase {
 export interface IfUserNameProps {
   username: UseControllerReturn<FieldValues, 'username'>
   handleUserNameConfirm: (username: string) => void
+  handleUserNameChange: () => void
 }
 export interface IfPasswordProps {
   password: UseControllerReturn<FieldValues, 'password'>
