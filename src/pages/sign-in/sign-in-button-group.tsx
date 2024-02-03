@@ -4,25 +4,20 @@ import Typography from '@mui/material/Typography'
 import {styled} from '@mui/material'
 import {Link} from 'react-router-dom'
 
-const SignInButtonGroup = () => {
+const SignInButtonGroup = ({isLoading}: {isLoading: boolean}) => {
   return (
     <>
       <CustomButton
         variant="contained"
         type="submit"
         sx={{background: '#202020'}}
+        disabled={isLoading}
       >
         로그인
       </CustomButton>
       <Box>
         <Line variant="body4">또는</Line>
       </Box>
-      <CustomButton
-        variant="outlined"
-        sx={{mt: 1, background: '#fff', color: '#000'}}
-      >
-        Google 로그인
-      </CustomButton>
       <AdditionOptions variant="body4">
         아직 회원이 아니신가요? <Link to="/sign-up">회원가입하기</Link>
       </AdditionOptions>
