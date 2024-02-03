@@ -33,8 +33,8 @@ const signUpvalidate = {
         message: '비밀번호를 입력하세요',
       },
       minLength: {
-        value: 8,
-        message: '비밀번호는 최소 8자리 입니다.',
+        value: 4,
+        message: '비밀번호는 최소 4자리 입니다.',
       },
       maxLength: {
         value: 16,

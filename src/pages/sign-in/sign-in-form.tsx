@@ -5,88 +5,85 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
 import {styled} from '@mui/material'
-import {SyntheticEvent, useCallback, useState} from 'react'
-import useMutation from 'src/store/server/use-mutation'
 import SignInOptions from './sign-in-options'
 import SignInButtonGroup from './sign-in-button-group'
-import {postLogin} from 'src/store/server/auth/mutations'
-import {useRouter} from '@hooks/use-router'
+import useFormValidate from './use-form-validate'
+import ErrorMessage from '@components/base/error-message'
+import usePostSignIn from './hooks/use-post-sign-in'
+import {FormProvider, useForm} from 'react-hook-form'
+
+const defaultValue = {
+  username: '',
+  password: '',
+}
 
 const SignInForm = () => {
-  const [value, setValue] = useState(0)
-  const {routeTo} = useRouter()
-  const handleChange = useCallback(
-    (event: SyntheticEvent, newValue: number) => {
-      console.log(event, 'event')
-      setValue(newValue)
-    },
-    [],
-  )
-
-  const {mutate} = useMutation({
-    mutationFn: postLogin,
-    mutationKey: ['sign-in'],
-    options: {
-      onError: error => alert(error),
-      onSuccess: () => routeTo('/'),
-    },
+  const methods = useForm({
+    defaultValues: defaultValue,
   })
+  const {username, password} = useFormValidate(methods.control)
+  const {mutate, isLoading} = usePostSignIn(methods.setError)
 
-  const onSubmit = async event => {
-    event.preventDefault()
-    const formData = new FormData(event.target)
-    const username = String(formData.get('username'))
-    const password = String(formData.get('password'))
+  const onSubmit = async () => {
+    const usernameValue = username.field.value
+    const passwordValue = password.field.value
 
-    if (username && password) {
-      mutate({username, password})
-    }
+    mutate({username: usernameValue, password: passwordValue})
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <Box sx={{width: '342px', margin: 'auto'}}>
-        <SignInGrid item>
-          <Title variant="h2">
-            향기로움을 찾는 <br /> 사람들의 리뷰 모음집
-          </Title>
-        </SignInGrid>
-        <SignInGrid item>
-          <SignInTypeList>
-            <Tabs
-              variant="fullWidth"
-              textColor="inherit"
-              value={value}
-              onChange={handleChange}
-              TabIndicatorProps={{sx: {background: 'black'}}}
-            >
-              <Tab label="개인용" />
-              <Tab label="기업용" />
-            </Tabs>
-          </SignInTypeList>
-          <Box sx={{marginTop: '30px'}}>
-            <Box>
-              <SignInFormTextFiled
-                placeholder="아이디"
-                type="text"
-                name="username"
-              />
-              <SignInFormTextFiled
-                placeholder="패스워드"
-                type="password"
-                name="password"
-              />
-              <SignInOptions
-                label="로그인 유지"
-                option1="비밀번호 찾기"
-                option2="아이디 찾기"
-              />
-              <SignInButtonGroup />
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <Box sx={{width: '342px', margin: 'auto'}}>
+          <SignInGrid item>
+            <Title variant="h2">
+              향기로움을 찾는 <br /> 사람들의 리뷰 모음집
+            </Title>
+          </SignInGrid>
+          <SignInGrid item>
+            <SignInTypeList>
+              <Tabs
+                variant="fullWidth"
+                textColor="inherit"
+                TabIndicatorProps={{sx: {background: 'black'}}}
+              >
+                <Tab label="개인용" />
+              </Tabs>
+            </SignInTypeList>
+            <Box sx={{marginTop: '30px'}}>
+              <Box>
+                <SignInFormTextFiled
+                  placeholder="아이디"
+                  type="text"
+                  {...username.field}
+                  helperText={
+                    <ErrorMessage
+                      errorMessage={username.fieldState.error?.message}
+                    />
+                  }
+                />
+                <SignInFormTextFiled
+                  placeholder="패스워드"
+                  type="password"
+                  {...password.field}
+                  helperText={
+                    <ErrorMessage
+                      errorMessage={password.fieldState.error?.message}
+                    />
+                  }
+                />
+                <SignInOptions
+                  label="로그인 유지"
+                  option1="비밀번호 찾기"
+                  option2="아이디 찾기"
+                />
+                <SignInButtonGroup isLoading={isLoading} />
+              </Box>
             </Box>
-          </Box>
-        </SignInGrid>
-      </Box>
-    </form>
+          </SignInGrid>
+        </Box>
+      </form>
+    </FormProvider>
   )
 }
 
@@ -112,13 +109,13 @@ const SignInTypeList = styled(Box)(() => ({
 const SignInFormTextFiled = styled(TextField)(({theme}) => ({
   '&': {
     width: '100%',
-    height: '48px',
+    minHeight: '48px',
     boxSizing: 'border-box',
     marginBottom: '4px',
   },
   '&.MuiTextField-root > div': {
     width: '100%',
-    height: '48px',
+    minHeight: '48px',
     boxSizing: 'border-box',
     backgroundColor: theme.palette.grey[100],
   },
