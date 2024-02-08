@@ -9,7 +9,7 @@ import NotificationModal from '@components/modal/notification-modal'
 import useFetchAuthProfile from '@hooks/use-fetch-auth-profile'
 
 const HeaderSubNav = () => {
-  const {data: user, isLoading, isError} = useFetchAuthProfile()
+  const {data: user, isLoading, isError} = useFetchAuthProfile(true)
   const [open, setOpen] = useState<boolean>(false)
 
   const handleOpen = () => {
