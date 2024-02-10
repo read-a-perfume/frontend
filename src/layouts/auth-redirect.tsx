@@ -18,14 +18,14 @@ const AuthRedirect = ({children, flag}: proptype) => {
 export default AuthRedirect
 
 const Branch = ({children}: {children: ReactNode}) => {
-  const {isError, isLoading} = useFetchAuthProfile()
+  const {data: loginState, isLoading} = useFetchAuthProfile()
   const location = useLocation()
 
   if (isLoading) {
     return <Loading width="100%" height="100%" borderRadius={0} />
   }
 
-  if (isError) {
+  if (!loginState) {
     return <Navigate replace to="/sign-in" state={location} />
   }
 
