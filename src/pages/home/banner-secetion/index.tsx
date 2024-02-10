@@ -7,7 +7,7 @@ import {styled} from '@mui/material'
 const BannerSection = () => {
   const {routeTo} = useRouter()
   const {data} = useFetchAuthProfile()
-  console.log(data, 'Data')
+
   const handleRoute = () => {
     if (data) {
       routeTo('/reviews/writer')

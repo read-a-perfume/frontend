@@ -9,7 +9,7 @@ import NotificationModal from '@components/modal/notification-modal'
 import useFetchAuthProfile from '@hooks/use-fetch-auth-profile'
 
 const HeaderSubNav = () => {
-  const {data: user, isLoading, isError} = useFetchAuthProfile(true)
+  const {data: user, isLoading} = useFetchAuthProfile(true)
   const [open, setOpen] = useState<boolean>(false)
 
   const handleOpen = () => {
@@ -21,7 +21,7 @@ const HeaderSubNav = () => {
       <NotificationModal isOpen={open} setIsOpen={setOpen} />
       <HeaderNavigation height="58px">
         {!isLoading &&
-          (isError ? (
+          (!user ? (
             <FlexBox gap="4px">
               <NavTop to="/sign-up">회원가입</NavTop>
               <NavTop to="/sign-in">로그인</NavTop>

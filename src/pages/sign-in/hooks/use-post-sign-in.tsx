@@ -1,10 +1,13 @@
 import {isServerError} from '@api/instance'
 import {useRouter} from '@hooks/use-router'
+import {useQueryClient} from '@tanstack/react-query'
+import {authQueryKeys} from 'src/react-query-keys/auth.keys'
 import {postLogin} from 'src/store/server/auth/mutations'
 import useMutation from 'src/store/server/use-mutation'
 
 const usePostSignIn = setError => {
   const {routeTo} = useRouter()
+  const queryClient = useQueryClient()
   return useMutation({
     mutationFn: postLogin,
     mutationKey: ['sign-in'],
@@ -21,7 +24,10 @@ const usePostSignIn = setError => {
           })
         }
       },
-      onSuccess: () => routeTo('/'),
+      onSuccess: data => {
+        routeTo('/')
+        queryClient.setQueryData(authQueryKeys.userProfile, data.data)
+      },
     },
   })
 }
