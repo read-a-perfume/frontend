@@ -6,6 +6,7 @@ import {styled} from '@mui/material'
 import BannerSection from './banner-secetion'
 
 export default function Home() {
+  console.log("안녕")
   return (
     <>
       <BannerSection />

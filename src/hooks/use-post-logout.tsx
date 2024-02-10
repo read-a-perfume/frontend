@@ -11,7 +11,7 @@ const usePostLogout = () => {
     mutationFn: postLogout,
     options: {
       onSuccess: () => {
-        QueryClient.invalidateQueries(authQueryKeys.userProfile)
+        QueryClient.removeQueries(authQueryKeys.userProfile)
         window.location.reload()
         alert('로그아웃 성공')
       },
