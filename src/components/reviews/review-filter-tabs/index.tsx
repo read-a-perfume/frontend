@@ -34,13 +34,13 @@ const ReviewFilterTabs = ({
       <FlexBox justifyContent="space-between" style={{marginTop: '21.5px'}}>
         <FlexBox gap="12px">
           <Chip
-            isClicked={sort === 'RECENT'}
+            active={sort === 'RECENT'}
             onClick={() => handleChangeSort('RECENT')}
           >
             {optionName[0]}
           </Chip>
           <Chip
-            isClicked={sort === 'LIKE'}
+            active={sort === 'LIKE'}
             onClick={() => handleChangeSort('LIKE')}
           >
             {optionName[1]}
@@ -66,7 +66,7 @@ const ReviewFilterTabs = ({
 }
 export default ReviewFilterTabs
 
-const Chip = styled(Box)(({isClicked}: {isClicked: boolean}) => ({
+const Chip = styled(Box)(({active}: {active: boolean}) => ({
   border: 'none',
   fontSize: 16,
   fontWeight: '600',
@@ -78,8 +78,8 @@ const Chip = styled(Box)(({isClicked}: {isClicked: boolean}) => ({
   padding: '20px 15px',
   fontFamily: 'Pretendard',
   cursor: 'pointer',
-  backgroundColor: isClicked ? '#FE7156' : '#F1F1F5',
-  color: isClicked ? 'white' : '#A9A9A9',
+  backgroundColor: active ? '#FE7156' : '#F1F1F5',
+  color: active ? 'white' : '#A9A9A9',
 }))
 
 const SectionTitle = styled(Typography)({

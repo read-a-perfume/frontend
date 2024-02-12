@@ -41,6 +41,8 @@ const NoteSection = () => {
         <NoteBox>
           <Image
             src={categories && categories[categoryId - 1]?.thumbnail}
+            width="282px"
+            height="450px"
             alt="note"
           />
           <NoteTitle>
@@ -96,8 +98,6 @@ const Image = styled('img')({
     'linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%), lightgray 50% / cover no-repeat',
   borderRadius: 16,
   position: 'absolute',
-  width: '282px',
-  height: '450px',
 })
 const SectionTitle = styled(Typography)({
   fontFamily: 'AritaBuri, sans-serif, Arial !important',

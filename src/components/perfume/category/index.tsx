@@ -76,7 +76,7 @@ const Category = ({
     }
   }
   return (
-    <Wrapper customStyle={margin}>
+    <Wrapper margin={margin}>
       <Box sx={{cursor: 'pointer'}} onClick={handleLeftArrowClick}>
         <CustomIcons.BeforeIcon />
       </Box>
@@ -147,8 +147,8 @@ const Category = ({
   )
 }
 
-const Wrapper = styled(Box)<{customStyle: string}>(({customStyle}) => ({
-  margin: customStyle,
+const Wrapper = styled(Box)<{margin: string}>(({margin}) => ({
+  margin: margin,
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'center',
