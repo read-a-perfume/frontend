@@ -38,9 +38,17 @@ Git Flow를 사용하여 브랜치를 관리합니다.
 
 <img src="https://github.com/read-a-perfume/frontend/assets/71584114/be85aaff-37d7-4d19-9ec3-f39b51fb7f72" width="500px" height="400px" />
 
-### 사용자 인증 Auth 시퀸스 다이어그램 
 
-<img src="https://github.com/read-a-perfume/frontend/assets/71584114/72076485-3646-4a87-8ce3-bb53d7f8978a" width="700px" height="400px"/>
+### 역할 
+
+| 이름 | 기여도 |
+|---|---|
+| 고지훈 | - 회원가입 및 리뷰 폼 개발 및 유효성 검사. <br>- JWT 로그인 / 로그인 유지 기능 개발. <br>- 초기 개발 환경 구축 및 디자인 시스템 구축  <br>- 스토리북 통한 UI 테스트 코드를 작성 해 UI 검증 자동화 <br>- 메인 페이지 리팩토링. <br>- 코드 스플리팅을 통한 번들링 최적화 <br>- 이미지 최적화 <br>- 웹 폰트 최적화 <br>- 기타 전체 웹 페이지 최적화.  <br>- React-Query 중복 패칭 개선 <br>- 팀 코드 컨벤션 정립, 트러블 슈팅 문서화 |
+| 나윤상 | [기여도2] |
+| [이름3](링크) | [기여도3] |
+
+
+
 
 ### 사용 기술 및 환경
 
