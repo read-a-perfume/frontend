@@ -30,8 +30,7 @@ jobs:
       - name: Build Docker Image and Push DockerHub
         uses: docker/build-push-action@v4
         with:
-          # context: .
-          file: ./Dockerfile # 변경 필요
+          file: ./Dockerfile
           push: true
           platforms: linux/arm64
           tags: gn753/read-a-perfume:latest
