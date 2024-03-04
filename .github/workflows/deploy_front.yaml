@@ -30,7 +30,7 @@ jobs:
       - name: Build Docker Image and Push DockerHub
         uses: docker/build-push-action@v4
         with:
-          context: . # 변경 필요
+          # context: .
           file: ./Dockerfile # 변경 필요
           push: true
           platforms: linux/arm64
