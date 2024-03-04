@@ -34,7 +34,7 @@ jobs:
           file: ./Dockerfile # 변경 필요
           push: true
           platforms: linux/arm64
-          tags: gn753/read-a-perfume#:latest
+          tags: gn753/read-a-perfume:latest
 
   deploy:
       runs-on: [ self-hosted, dev ]
