@@ -17,15 +17,8 @@ import ReviewDetails from '../review-details'
 import {IfReviewContent} from 'types/review.interface'
 
 const ReviewCard = ({...rest}: IfReviewContent) => {
-  const {
-    id = 5,
-    user,
-    likeCount,
-    commentCount,
-    shortReview,
-    thumbnails,
-    keywords,
-  } = rest
+  const {id, user, likeCount, commentCount, shortReview, thumbnails, keywords} =
+    rest
   const [isLikeActive, setIsLikeActive] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const handleLikeActive = () => {

@@ -1,4 +1,4 @@
-import { perfumeQueryKeys } from 'src/react-query-keys/perfume.keys'
+import {perfumeQueryKeys} from 'src/react-query-keys/perfume.keys'
 import {reviewQueryKeys} from 'src/react-query-keys/review.keys'
 import {fetchPerfume} from 'src/store/server/perfumes/queries'
 import {fetchReviewDeatils} from 'src/store/server/reviews/queries'
@@ -14,10 +14,11 @@ const useFetchReviewDetails = ({id}: {id: number}) => {
   })
 
   const {data: perfumeDetails} = useQuery({
-    queryKey: perfumeQueryKeys.perfumeDetail(id),
-    queryFn: () => fetchPerfume(String(id)),
+    queryKey: perfumeQueryKeys.perfumeDetail(Number(reviewDetails?.perfumeId)),
+    queryFn: () => fetchPerfume(String(reviewDetails?.perfumeId)),
     options: {
       staleTime: 15000,
+      enabled: !!reviewDetails,
     },
   })
 

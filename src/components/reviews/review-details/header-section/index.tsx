@@ -20,9 +20,11 @@ const HeaderSection = ({perfumeDetails}: IfProps) => {
           color={theme => theme.palette.secondary.main}
           fontWeight={600}
         >
-          {perfumeDetails.name}
+          {perfumeDetails && perfumeDetails.name}
         </Typography>
-        <Typography variant="body3">{perfumeDetails.brandName}</Typography>
+        <Typography variant="body3">
+          {perfumeDetails && perfumeDetails.brandName}
+        </Typography>
       </Box>
     </Box>
   )

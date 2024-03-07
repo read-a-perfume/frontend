@@ -36,7 +36,7 @@ const ReviewDetails = ({id, handleClose, open}: IfProps) => {
     <Wrapper open={open} onClose={handleClose}>
       <Container sx={style}>
         <>
-          {reviewDetails ? (
+          {reviewDetails && perfumeDetails ? (
             <>
               <ModalHeader
                 title={<HeaderSection perfumeDetails={perfumeDetails} />}
