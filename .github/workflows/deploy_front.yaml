@@ -28,10 +28,8 @@ jobs:
           path: frontend/dist
 
   deploy:
-    runs-on: [ self-hosted, dev ]
+    runs-on: [self-hosted, dev]
     needs: build-and-upload
-
-    if: github.event.pull_request.merged
 
     steps:
       - name: delete old js file
