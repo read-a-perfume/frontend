@@ -2,9 +2,10 @@ on:
   push:
     branches:
       - dev
-defaults:
-  run:
-    working-directory: ./frontend
+
+permissions:
+  contents: read
+
 jobs:
   build-and-upload:
     runs-on: ubuntu-22.04
@@ -21,6 +22,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: grant excute access
+        run: chmod +x npm
       - name: Build React app
         run: npm run build
 
