@@ -4,7 +4,7 @@ on:
       - dev
 
 jobs:
-  build:
+  build-and-upload:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
@@ -28,8 +28,32 @@ jobs:
           path: frontend/dist
 
   deploy:
-    runs-on: [self-hosted, dev]
-    needs: build
+    runs-on: [ self-hosted, dev ]
+    needs: build-and-upload
+
+    if: github.event.pull_request.merged
+
     steps:
-      - name: Deploy Using Docker Image
-        run: sh /home/ubuntu/frontend/deploy.sh
+      - name: delete old js file
+        run: rm -rf /home/ubuntu/frontend/dist
+
+      - name: download js file from artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: FrontendApplication
+          path: /home/ubuntu/frontend
+
+      - name: deploy
+        run: /home/ubuntu/frontend/deploy.sh
+
+      - name: send slack message
+
+        uses: 8398a7/action-slack@v3
+        with:
+          mention: 'here'
+          if_mention: always
+          status: ${{ job.status }}
+          fields: workflow,job,commit,message,ref,author,took
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.DEV_DEPLOY_SLACK_WEBHOOK_URL }}
+        if: always()
