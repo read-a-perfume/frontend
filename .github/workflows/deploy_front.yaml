@@ -21,6 +21,9 @@ jobs:
       - name: Build React app
         run: npm run build
 
+      - name: grant excute access
+        run: chmod +x npm
+
       - name: upload to artifact
         uses: actions/upload-artifact@v3
         with:
