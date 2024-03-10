@@ -17,12 +17,10 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm install
-
-      - name: Build React app
-        run: npm run build
-
       - name: grant excute access
         run: chmod +x npm
+      - name: Build React app
+        run: npm run build
 
       - name: upload to artifact
         uses: actions/upload-artifact@v3
