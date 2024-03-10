@@ -9,35 +9,28 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Set up Node.js 18
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-
+          cache: 'npm'
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm install
 
       - name: Build React app
-        run: yarn build
+        run: npm run build
 
-      - name: Login to DockerHub
-        uses: docker/login-action@v2
+      - name: upload to artifact
+        uses: actions/upload-artifact@v3
         with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      - name: Build Docker Image and Push DockerHub
-        uses: docker/build-push-action@v4
-        with:
-          file: ./Dockerfile
-          push: true
-          platforms: linux/arm64
-          tags: gn753/read-a-perfume:latest
+          name: FrontendApplication
+          path: frontend/dist
 
   deploy:
-      runs-on: [ self-hosted, dev ]
-      needs: build
-      steps:
+    runs-on: [self-hosted, dev]
+    needs: build
+    steps:
       - name: Deploy Using Docker Image
         run: sh /home/ubuntu/frontend/deploy.sh
