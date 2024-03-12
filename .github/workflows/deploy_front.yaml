@@ -24,6 +24,7 @@ jobs:
 
       - name: grant excute access
         run: chmod +x npm
+
       - name: Build React app
         run: npm run build
 
