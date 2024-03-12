@@ -11,7 +11,7 @@ type Story = StoryObj<typeof ReviewCard>
 
 export const Default: Story = {
   args: {
-    user: {
+    author: {
       username: '어드민',
       id: 0,
       thumbnail: '',
@@ -25,7 +25,7 @@ export const Default: Story = {
 
 export const One: Story = {
   args: {
-    user: {
+    author: {
       username: '어드민',
       id: 0,
       thumbnail: '',
@@ -39,7 +39,7 @@ export const One: Story = {
 
 export const Two: Story = {
   args: {
-    user: {
+    author: {
       username: '어드민',
       id: 0,
       thumbnail: '',
@@ -56,7 +56,7 @@ export const Two: Story = {
 
 export const Three: Story = {
   args: {
-    user: {
+    author: {
       username: '어드민',
       id: 0,
       thumbnail: '',
