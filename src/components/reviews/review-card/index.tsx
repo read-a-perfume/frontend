@@ -17,8 +17,15 @@ import ReviewDetails from '../review-details'
 import {IfReviewContent} from 'types/review.interface'
 
 const ReviewCard = ({...rest}: IfReviewContent) => {
-  const {id, user, likeCount, commentCount, shortReview, thumbnails, keywords} =
-    rest
+  const {
+    id,
+    author,
+    likeCount,
+    commentCount,
+    shortReview,
+    thumbnails,
+    keywords,
+  } = rest
   const [isLikeActive, setIsLikeActive] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const handleLikeActive = () => {
@@ -43,11 +50,11 @@ const ReviewCard = ({...rest}: IfReviewContent) => {
             paddingLeft: '0px',
             '& .MuiCardHeader-avatar': {marginRight: '12px'},
           }}
-          avatar={<UserAvatar src={user?.thumbnail} aria-label="유저이미지" />}
+          avatar={<UserAvatar aria-label="유저이미지" />}
           // 유저 닉네임, 아이디
           title={
             <Typography variant="body4" sx={{fontWeight: '600', color: '#000'}}>
-              {user?.username}
+              {author?.username}
             </Typography>
           }
         />

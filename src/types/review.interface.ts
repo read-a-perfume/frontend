@@ -28,7 +28,7 @@ interface IfReviewBaseDetail {
 //API 구조 변경됨에 따라 기존 IfReviewRespnose데이터는 content로 가게됨.
 export interface IfReviewContent extends IfReviewBase {
   id: number
-  user: IfReviewUser
+  author: IfReviewUser
   likeCount: number
   commentCount: number
 }
@@ -101,7 +101,7 @@ export interface IfReviewPerFumeSearch {
 }
 
 export interface IfReviewCommentResponse {
-  items:  IfReviewCommentBase[]
+  items: IfReviewCommentBase[]
   hasNext: boolean
   hasPrev: boolean
   nextCursor: boolean
