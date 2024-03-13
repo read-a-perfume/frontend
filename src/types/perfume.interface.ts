@@ -12,6 +12,7 @@ export interface InPerfumeNoteDetail extends IfPerfumeNote {
 
 // 향수 리스트 향수 조회
 export interface IfPerfume {
+  categoryName?: string
   id: number
   name: string
   thumbnail: string
@@ -19,7 +20,6 @@ export interface IfPerfume {
   strength: string
   duration: string
 }
-
 
 interface IfPerfumeBase {
   name: string
