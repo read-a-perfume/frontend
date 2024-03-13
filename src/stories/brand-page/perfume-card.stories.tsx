@@ -2,23 +2,24 @@ import PerfumeCard from '@components/perfumes/perfume-card'
 import type {Meta, StoryObj} from '@storybook/react'
 
 const meta: Meta<typeof PerfumeCard> = {
-    component: PerfumeCard,
-    title: 'Brandpage/perfume-card',
-  }
-  
-  export default meta
+  component: PerfumeCard,
+  title: 'Brandpage/perfume-card',
+}
 
-  type Story = StoryObj<typeof PerfumeCard>
+export default meta
 
-  export const Example: Story = {
-    args: {
-      data: {
-        thumbnail:'',
-        name:'퍼퓸 카모',
-        brandName:'탬버린즈',
-        strength:'적당한 향',
-        duration:'3시간~6시간',
-        id:0,
-      },
+type Story = StoryObj<typeof PerfumeCard>
+
+export const Example: Story = {
+  args: {
+    data: {
+      categoryName: '',
+      thumbnail: '',
+      name: '퍼퓸 카모',
+      brandName: '탬버린즈',
+      strength: '적당한 향',
+      duration: '3시간~6시간',
+      id: 0,
     },
-  }
+  },
+}

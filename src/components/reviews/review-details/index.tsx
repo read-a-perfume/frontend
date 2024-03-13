@@ -39,7 +39,12 @@ const ReviewDetails = ({id, handleClose, open}: IfProps) => {
           {reviewDetails && perfumeDetails ? (
             <>
               <ModalHeader
-                title={<HeaderSection perfumeDetails={perfumeDetails} />}
+                title={
+                  <HeaderSection
+                    perfumeDetails={perfumeDetails}
+                    autherName={reviewDetails.author.name}
+                  />
+                }
               />
               <ModalContent>
                 <ModalContentWrapper>
